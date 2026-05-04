@@ -14,7 +14,9 @@
 
     "files.trimTrailingWhitespace": true,
     "files.associations": {
-      "VERSION": "plaintext"
+      "VERSION": "plaintext",
+      "*.codespellrc": "ini",
+      ".codespellrc": "ini"
     },
 
     // --- Terminal ---

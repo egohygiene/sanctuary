@@ -6,3 +6,17 @@ dist
 build
 coverage
 *.log
+
+
+
+
+# ==============================================================================
+# 🌳 Repository Structure Reports
+# ------------------------------------------------------------------------------
+# Ensure generated tree reports are tracked in version control
+# (override any broader ignore rules that might exclude them)
+# ==============================================================================
+
+!reports/
+!reports/tree/
+!reports/tree/**

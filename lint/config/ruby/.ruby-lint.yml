@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://www.rubyschema.org/rubocop.json
+
+# Inherit from the default RuboCop configuration provided by the rubocop-github gem.
+inherit_gem:
+  rubocop-github:
+    - config/default.yml
+
+# Enable new cops by default. This will be the default in RuboCop 2.0.
+AllCops:
+  NewCops: enable
+  CacheRootDirectory: .cache/rubocop
