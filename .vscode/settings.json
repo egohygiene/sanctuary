@@ -129,5 +129,64 @@
     "files.saveConflictResolution": "askUser",
     "files.trimFinalNewlines": false,
     "files.trimTrailingWhitespace": false,
-    "files.trimTrailingWhitespaceInRegexAndStrings": true
+    "files.trimTrailingWhitespaceInRegexAndStrings": true,
+
+    // --- Spell Checker ---
+    "cSpell.enabled": true,
+    "cSpell.language": "en",
+    "cSpell.caseSensitive": false,
+    "cSpell.useGitignore": true,
+    "cSpell.mergeCSpellSettings": true,
+    "cSpell.words": ["cspell", "TASKFILE"],
+    "cSpell.ignorePaths": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/.vercel/**",
+      "**/.turbo/**",
+      "**/coverage/**",
+      "**/out/**",
+      "**/tmp/**",
+      "**/temp/**",
+      "**/logs/**",
+      "**/log/**",
+      "**/vendor/**",
+      "**/bower_components/**",
+      "**/pnpm-lock.yaml",
+      "**/yarn.lock",
+      "**/package-lock.json",
+      "**/.cache/**",
+      "**/reports/**",
+      "**/.vscode/**",
+      "**/.git/**",
+      "**/package.json",
+      "**/.spectral.yaml"
+    ],
+    "cSpell.customDictionaries": {
+      "project-words": {
+        "path": "${workspaceFolder}/lint/prose/dictionaries/project-words.dictionary",
+        "addWords": true
+      },
+      "backend-terms": {
+        "path": "${workspaceFolder}/lint/prose/dictionaries/backend-terms.dictionary",
+        "addWords": false
+      },
+      "devops-cloud-terms": {
+        "path": "${workspaceFolder}/lint/prose/dictionaries/devops-cloud-terms.dictionary",
+        "addWords": false
+      },
+      "frontend-terms": {
+        "path": "${workspaceFolder}/lint/prose/dictionaries/frontend-terms.dictionary",
+        "addWords": false
+      },
+      "programming-terms": {
+        "path": "${workspaceFolder}/lint/prose/dictionaries/programming-terms.dictionary",
+        "addWords": false
+      },
+      "software-terms": {
+        "path": "${workspaceFolder}/lint/prose/dictionaries/software-terms.dictionary",
+        "addWords": false
+      }
+    },
 }

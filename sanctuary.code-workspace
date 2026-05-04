@@ -25,66 +25,9 @@
     "terminal.integrated.gpuAcceleration": "off",
     "terminal.integrated.enablePersistentSessions": true,
 
-    // --- Spell Checker ---
-    "cSpell.enabled": true,
-    "cSpell.language": "en",
-    "cSpell.caseSensitive": false,
-    "cSpell.useGitignore": true,
+    // Spell Check
     "cSpell.logFile": "${workspaceFolder}/.cache/cspell/cspell.log",
     "cSpell.trustedWorkspace": true,
-    "cSpell.mergeCSpellSettings": true,
-    "cSpell.words": ["cspell", "TASKFILE"],
-    "cSpell.ignorePaths": [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/build/**",
-      "**/.next/**",
-      "**/.vercel/**",
-      "**/.turbo/**",
-      "**/coverage/**",
-      "**/out/**",
-      "**/tmp/**",
-      "**/temp/**",
-      "**/logs/**",
-      "**/log/**",
-      "**/vendor/**",
-      "**/bower_components/**",
-      "**/pnpm-lock.yaml",
-      "**/yarn.lock",
-      "**/package-lock.json",
-      "**/.cache/**",
-      "**/reports/**",
-      "**/.vscode/**",
-      "**/.git/**",
-      "**/package.json",
-      "**/.spectral.yaml"
-    ],
-    "cSpell.customDictionaries": {
-      "project-words": {
-        "path": "${workspaceFolder}/.vscode/dictionaries/project-words.dictionary",
-        "addWords": true
-      },
-      "backend-terms": {
-        "path": "${workspaceFolder}/.vscode/dictionaries/backend-terms.dictionary",
-        "addWords": false
-      },
-      "devops-cloud-terms": {
-        "path": "${workspaceFolder}/.vscode/dictionaries/devops-cloud-terms.dictionary",
-        "addWords": false
-      },
-      "frontend-terms": {
-        "path": "${workspaceFolder}/.vscode/dictionaries/frontend-terms.dictionary",
-        "addWords": false
-      },
-      "programming-terms": {
-        "path": "${workspaceFolder}/.vscode/dictionaries/programming-terms.dictionary",
-        "addWords": false
-      },
-      "software-terms": {
-        "path": "${workspaceFolder}/.vscode/dictionaries/software-terms.dictionary",
-        "addWords": false
-      }
-    },
 
     // --- Formatter overrides ---
     "prettier.useEditorConfig": true,
@@ -124,14 +67,16 @@
       { "fileMatch": [".prettierrc", ".prettierrc.*"], "url": "https://json.schemastore.org/prettierrc.json" },
       { "fileMatch": [".luacheckrc"], "url": "https://json.schemastore.org/luacheckrc.json" },
       { "fileMatch": [".markdown-link-check.json"], "url": "https://www.schemastore.org/markdown-link-check.json" },
-      { "fileMatch": [".yamllint.yml", ".yamllint.yaml"], "url": "https://www.schemastore.org/yamllint.json" }
+      { "fileMatch": [".yamllint.yml", ".yamllint.yaml"], "url": "https://www.schemastore.org/yamllint.json" },
+      { "fileMatch": [".hadolint.yaml", ".hadolint.yml"], "url": "https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json" }
     ],
     "yaml.schemas": {
       "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible-lint-config.json": "**/.ansible-lint",
       "https://taskfile.dev/schema.json": "**/Taskfile.yml",
       "https://json.schemastore.org/github-issue-config.json": "**/.github/ISSUE_TEMPLATE/config.yml",
       "https://json.schemastore.org/github-workflow.json": "**/.github/workflows/*.yml",
-      "https://json.schemastore.org/github-action.json": "**/.github/actions/*.yml"
+      "https://json.schemastore.org/github-action.json": "**/.github/actions/*.yml",
+      "https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json": "**/.hadolint.yaml||**/.hadolint.yml"
     },
 
     // --- HTMLHint ---

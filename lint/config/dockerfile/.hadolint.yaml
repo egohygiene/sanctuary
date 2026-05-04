@@ -1,18 +1,55 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json
-# Disable inline ignore pragmas `# hadolint ignore=`
+# =============================================================================
+# 🐳 Hadolint Configuration — Dockerfile Linting Baseline
+# -----------------------------------------------------------------------------
+# Schema:
+#   https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json
+#
+# Purpose:
+#   Enforce best practices for Dockerfiles with a balance of:
+#     - correctness
+#     - security
+#     - developer ergonomics
+#
+# Design Goals:
+#   - CI-friendly (deterministic, non-interactive)
+#   - Low-noise (warnings over hard failures where appropriate)
+#   - Portable across projects
+# =============================================================================
+
+# =============================================================================
+# ⚙️ Core Behavior
+# =============================================================================
+
+# Allow inline ignores:
+#   # hadolint ignore=DLxxxx
 disable-ignore-pragma: false
 
-# Allow CI to continue on warnings
+# Fail CI only on errors above this level
+# Options: error | warning | info | style | ignore
 failure-threshold: warning
 
-# Output format
+# Output format (tty is readable locally; CI may override to json)
 format: tty
 
-# Strictly adhere to label-schema, don't allow additional labels.
+# Do not disable color (better local DX)
+no-color: false
+
+# If true → never fail (NOT recommended for CI)
+no-fail: false
+
+
+# =============================================================================
+# 🏷️ OCI Label Enforcement
+# =============================================================================
+# Enforces standardized metadata for container images
+# Reference:
+#   https://github.com/opencontainers/image-spec/blob/main/annotations.md
+# =============================================================================
+
 strict-labels: true
 
-# A label-schema. See https://github.com/hadolint/hadolint#linting-labels for reference.
 label-schema:
   org.opencontainers.image.version: semver
   org.opencontainers.image.title: text
@@ -22,29 +59,58 @@ label-schema:
   org.opencontainers.image.documentation: url
   org.opencontainers.image.vendor: text
   org.opencontainers.image.licenses: spdx
-  org.opencontainers.image.sources: url
+  org.opencontainers.image.source: url   # NOTE: fixed (singular is correct)
 
-# Don't colorize output.
-no-color: false
 
-# Set to true if you only want to warn, never fail
-no-fail: false
+# =============================================================================
+# ⚠️ Rule Overrides
+# =============================================================================
+# Downgrade selected rules to warnings instead of errors
+# Useful for pragmatic adoption of best practices
+# =============================================================================
 
-# Set a warning level instead of hard errors
 override:
   warning:
-    - DL3006
-    - DL3025
-    - DL3059
+    - DL3006   # Always tag the version of an image explicitly
+    - DL3025   # Use JSON notation for CMD/ENTRYPOINT
+    - DL3059   # Multiple consecutive RUN instructions
 
-# A list of rules to ignore
+
+# =============================================================================
+# 🚫 Ignored Rules
+# =============================================================================
+
 ignored: []
 
-# A list of trusted registries to use for image names
+
+# =============================================================================
+# 🔐 Trusted Registries
+# =============================================================================
+# Restricts allowed base images to known/trusted registries
+# Helps prevent supply-chain risks
+# =============================================================================
+
 trustedRegistries:
+  # --- Core registries ---
   - docker.io
-  - gcr.io
-  - ghcr.io
   - registry.hub.docker.com
+  - ghcr.io
   - quay.io
+
+  # --- Cloud providers ---
+  - gcr.io
+  - public.ecr.aws
+  - mcr.microsoft.com
+
+  # --- Kubernetes ecosystem ---
+  - registry.k8s.io
+  - k8s.gcr.io   # legacy support
+
+  # --- Security / specialized ---
+  - cgr.dev
+
+  # cspell:ignore nvcr
+  - nvcr.io
+
+  # --- Vendor-specific ---
   - docker.elastic.co
