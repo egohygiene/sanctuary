@@ -165,28 +165,35 @@
     ],
     "cSpell.customDictionaries": {
       "project-words": {
-        "path": "${workspaceFolder}/lint/prose/dictionaries/project-words.dictionary",
+        "path": "${workspaceFolder}/lint/config/prose/dictionaries/project-words.dictionary",
         "addWords": true
       },
       "backend-terms": {
-        "path": "${workspaceFolder}/lint/prose/dictionaries/backend-terms.dictionary",
+        "path": "${workspaceFolder}/lint/config/prose/dictionaries/backend-terms.dictionary",
         "addWords": false
       },
       "devops-cloud-terms": {
-        "path": "${workspaceFolder}/lint/prose/dictionaries/devops-cloud-terms.dictionary",
+        "path": "${workspaceFolder}/lint/config/prose/dictionaries/devops-cloud-terms.dictionary",
         "addWords": false
       },
       "frontend-terms": {
-        "path": "${workspaceFolder}/lint/prose/dictionaries/frontend-terms.dictionary",
+        "path": "${workspaceFolder}/lint/config/prose/dictionaries/frontend-terms.dictionary",
         "addWords": false
       },
       "programming-terms": {
-        "path": "${workspaceFolder}/lint/prose/dictionaries/programming-terms.dictionary",
+        "path": "${workspaceFolder}/lint/config/prose/dictionaries/programming-terms.dictionary",
         "addWords": false
       },
       "software-terms": {
-        "path": "${workspaceFolder}/lint/prose/dictionaries/software-terms.dictionary",
+        "path": "${workspaceFolder}/lint/config/prose/dictionaries/software-terms.dictionary",
         "addWords": false
       }
     },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/*.code-search": true,
+      "**/.dart_tool": true,
+      "/public/locales/**": true
+    }
 }

@@ -23,7 +23,8 @@
 # =============================================================================
 
 # Allow inline ignores:
-#   # hadolint ignore=DLxxxx
+# cspell:ignore DLxxxx
+# hadolint ignore=DLxxxx
 disable-ignore-pragma: false
 
 # Fail CI only on errors above this level
