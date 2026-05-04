@@ -194,6 +194,47 @@
       "**/bower_components": true,
       "**/*.code-search": true,
       "**/.dart_tool": true,
-      "/public/locales/**": true
-    }
+      "/public/locales/**": true,
+      "**/.git": true,
+      "**/reports": true,
+      "**/.lock": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/coverage": true,
+      "**/pnpm-lock.*": true
+    },
+
+    // --- JSON/YAML/TOML Schema support ---
+    "json.schemas": [
+              {
+            "fileMatch": ["manifest.webmanifest"],
+            "url": "https://json.schemastore.org/web-manifest-combined.json"
+        },
+        {
+            "fileMatch": [".htmlhintrc"],
+            "url": "https://json.schemastore.org/htmlhint.json"
+        },
+        {
+            "fileMatch": [".npmpackagejsonlintrc.json"],
+            "url": "https://json.schemastore.org/npm-package-json-lint.json"
+        },
+        {
+            "fileMatch": [".prettierrc", ".prettierrc.json", ".prettierrc.yaml", ".prettierrc.yml", ".prettierrc.js", ".prettierrc.cjs", ".prettierrc.mjs"],
+            "url": "https://json.schemastore.org/prettierrc.json"
+        },
+        {
+            "fileMatch": [".luacheckrc"],
+            "url": "https://json.schemastore.org/luacheckrc.json"
+        },
+        {
+            "fileMatch": [".markdown-link-check.json"],
+            "url": "https://www.schemastore.org/markdown-link-check.json"
+        },
+        {
+            "fileMatch": [".yamllint.yml", ".yamllint.yaml", ".yamllint.yml"],
+            "url": "https://www.schemastore.org/yamllint.json"
+        },
+              { "fileMatch": [".hadolint.yaml", ".hadolint.yml"], "url": "https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json" }
+
+    ],
 }

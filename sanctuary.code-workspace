@@ -59,17 +59,6 @@
     "[yaml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 
-    // --- JSON/YAML Schema support ---
-    "json.schemas": [
-      { "fileMatch": ["manifest.webmanifest"], "url": "https://json.schemastore.org/web-manifest-combined.json" },
-      { "fileMatch": [".htmlhintrc"], "url": "https://json.schemastore.org/htmlhint.json" },
-      { "fileMatch": [".npmpackagejsonlintrc.json"], "url": "https://json.schemastore.org/npm-package-json-lint.json" },
-      { "fileMatch": [".prettierrc", ".prettierrc.*"], "url": "https://json.schemastore.org/prettierrc.json" },
-      { "fileMatch": [".luacheckrc"], "url": "https://json.schemastore.org/luacheckrc.json" },
-      { "fileMatch": [".markdown-link-check.json"], "url": "https://www.schemastore.org/markdown-link-check.json" },
-      { "fileMatch": [".yamllint.yml", ".yamllint.yaml"], "url": "https://www.schemastore.org/yamllint.json" },
-      { "fileMatch": [".hadolint.yaml", ".hadolint.yml"], "url": "https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json" }
-    ],
     "yaml.schemas": {
       "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible-lint-config.json": "**/.ansible-lint",
       "https://taskfile.dev/schema.json": "**/Taskfile.yml",
