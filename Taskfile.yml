@@ -1,0 +1,9 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+includes:
+  git: 
+    taskfile: ".taskfile/git.yml"
+    description: Git-related tasks
+    optional: true
