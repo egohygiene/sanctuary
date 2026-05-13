@@ -153,5 +153,10 @@
     },
     "peacock.remoteColor": "#42b883",
     "notebook.formatOnSave.enabled": true
+  },
+  "extensions": {
+    "recommendations": [
+      "jasonnutter.vscode-codeowners"
+    ]
   }
 }

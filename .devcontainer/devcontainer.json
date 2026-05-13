@@ -1,0 +1,23 @@
+{
+    "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
+    "name": "${localWorkspaceFolderBasename}",
+    "initializeCommand": {
+        "initialize-devcontainer": [
+            "/bin/bash",
+            ".devcontainer/scripts/initialize.sh"
+        ]
+    },
+    "onCreateCommand": {
+        "init-submodules": ["git", "submodule", "update", "--init", "--recursive"]
+    },
+    "postCreateCommand": {
+        "update-submodules": ["git", "submodule", "update", "--recursive"]
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "jasonnutter.vscode-codeowners"
+            ]
+        }
+    }
+}
