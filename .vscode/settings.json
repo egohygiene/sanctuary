@@ -21,8 +21,13 @@
     "editor.fontSize": 12,
     "editor.formatOnPaste": false,
     "editor.formatOnSave": false,
-    "editor.formatOnSaveMode": "file",
+    "editor.formatOnSaveMode": "modifications",
     "editor.formatOnType": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "always",
+      "source.formatDocument": "explicit"
+    },
     "diffEditor.codeLens": true,
     "diffEditor.diffAlgorithm": "advanced",
     "diffEditor.experimental.showEmptyDecorations": true,
@@ -130,111 +135,403 @@
     "files.trimFinalNewlines": false,
     "files.trimTrailingWhitespace": false,
     "files.trimTrailingWhitespaceInRegexAndStrings": true,
-
-    // --- Spell Checker ---
     "cSpell.enabled": true,
     "cSpell.language": "en",
     "cSpell.caseSensitive": false,
     "cSpell.useGitignore": true,
     "cSpell.mergeCSpellSettings": true,
-    "cSpell.words": ["cspell", "TASKFILE"],
+    "cSpell.maxDuplicateProblems": 20,
+    "cSpell.hideAddToDictionaryCodeActions": false,
+    "cSpell.useLocallyInstalledCSpellDictionaries": true,
+    "cSpell.diagnosticLevelFlaggedWords": "Information",
+    "cSpell.words": [
+        "cspell",
+        "TASKFILE"
+    ],
     "cSpell.ignorePaths": [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/build/**",
-      "**/.next/**",
-      "**/.vercel/**",
-      "**/.turbo/**",
-      "**/coverage/**",
-      "**/out/**",
-      "**/tmp/**",
-      "**/temp/**",
-      "**/logs/**",
-      "**/log/**",
-      "**/vendor/**",
-      "**/bower_components/**",
-      "**/pnpm-lock.yaml",
-      "**/yarn.lock",
-      "**/package-lock.json",
-      "**/.cache/**",
-      "**/reports/**",
-      "**/.vscode/**",
-      "**/.git/**",
-      "**/package.json",
-      "**/.spectral.yaml"
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.next/**",
+        "**/.vercel/**",
+        "**/.turbo/**",
+        "**/coverage/**",
+        "**/out/**",
+        "**/tmp/**",
+        "**/temp/**",
+        "**/logs/**",
+        "**/log/**",
+        "**/vendor/**",
+        "**/bower_components/**",
+        "**/pnpm-lock.yaml",
+        "**/yarn.lock",
+        "**/package-lock.json",
+        "**/.cache/**",
+        "**/reports/**",
+        "**/.vscode/**",
+        "**/.git/**",
+        "**/package.json",
+        "**/.spectral.yaml"
     ],
     "cSpell.customDictionaries": {
-      "project-words": {
-        "path": "${workspaceFolder}/lint/config/prose/dictionaries/project-words.dictionary",
-        "addWords": true
-      },
-      "backend-terms": {
-        "path": "${workspaceFolder}/lint/config/prose/dictionaries/backend-terms.dictionary",
-        "addWords": false
-      },
-      "devops-cloud-terms": {
-        "path": "${workspaceFolder}/lint/config/prose/dictionaries/devops-cloud-terms.dictionary",
-        "addWords": false
-      },
-      "frontend-terms": {
-        "path": "${workspaceFolder}/lint/config/prose/dictionaries/frontend-terms.dictionary",
-        "addWords": false
-      },
-      "programming-terms": {
-        "path": "${workspaceFolder}/lint/config/prose/dictionaries/programming-terms.dictionary",
-        "addWords": false
-      },
-      "software-terms": {
-        "path": "${workspaceFolder}/lint/config/prose/dictionaries/software-terms.dictionary",
-        "addWords": false
-      }
+        "project-words": {
+            "path": "${workspaceFolder}/lint/config/prose/dictionaries/project-words.dictionary",
+            "addWords": true
+        },
+        "backend-terms": {
+            "path": "${workspaceFolder}/lint/config/prose/dictionaries/backend-terms.dictionary",
+            "addWords": false
+        },
+        "devops-cloud-terms": {
+            "path": "${workspaceFolder}/lint/config/prose/dictionaries/devops-cloud-terms.dictionary",
+            "addWords": false
+        },
+        "frontend-terms": {
+            "path": "${workspaceFolder}/lint/config/prose/dictionaries/frontend-terms.dictionary",
+            "addWords": false
+        },
+        "programming-terms": {
+            "path": "${workspaceFolder}/lint/config/prose/dictionaries/programming-terms.dictionary",
+            "addWords": false
+        },
+        "software-terms": {
+            "path": "${workspaceFolder}/lint/config/prose/dictionaries/software-terms.dictionary",
+            "addWords": false
+        }
     },
+    "prettier.useEditorConfig": true,
+    "prettier.configPath": "${workspaceFolder}/lint/config/javascript/.prettier.config.mjs",
+    "shellcheck.enable": true,
+    "shellcheck.disableVersionCheck": false,
+    "shellcheck.enableQuickFix": true,
+    "shellcheck.useWorkspaceRootAsCwd": false,
+    "shellcheck.run": "onSave",
+    "biome.configurationPath": "${workspaceFolder}/biome.json",
+    "biome.lsp.bin": "${workspaceFolder}/node_modules/@biomejs/biome/bin/biome",
     "search.exclude": {
-      "**/node_modules": true,
-      "**/bower_components": true,
-      "**/*.code-search": true,
-      "**/.dart_tool": true,
-      "/public/locales/**": true,
-      "**/.git": true,
-      "**/reports": true,
-      "**/.lock": true,
-      "**/dist": true,
-      "**/build": true,
-      "**/coverage": true,
-      "**/pnpm-lock.*": true
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "**/.dart_tool": true,
+        "/public/locales/**": true,
+        "**/.git": true,
+        "**/reports": true,
+        "**/.lock": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/coverage": true,
+        "**/pnpm-lock.*": true
     },
-
-    // --- JSON/YAML/TOML Schema support ---
     "json.schemas": [
-              {
-            "fileMatch": ["manifest.webmanifest"],
+        {
+            "fileMatch": [
+                "manifest.webmanifest"
+            ],
             "url": "https://json.schemastore.org/web-manifest-combined.json"
         },
         {
-            "fileMatch": [".htmlhintrc"],
+            "fileMatch": [
+                ".htmlhintrc"
+            ],
             "url": "https://json.schemastore.org/htmlhint.json"
         },
         {
-            "fileMatch": [".npmpackagejsonlintrc.json"],
+            "fileMatch": [
+                ".npmpackagejsonlintrc.json"
+            ],
             "url": "https://json.schemastore.org/npm-package-json-lint.json"
         },
         {
-            "fileMatch": [".prettierrc", ".prettierrc.json", ".prettierrc.yaml", ".prettierrc.yml", ".prettierrc.js", ".prettierrc.cjs", ".prettierrc.mjs"],
+            "fileMatch": [
+                ".prettierrc",
+                ".prettierrc.json",
+                ".prettierrc.yaml",
+                ".prettierrc.yml",
+                ".prettierrc.js",
+                ".prettierrc.cjs",
+                ".prettierrc.mjs"
+            ],
             "url": "https://json.schemastore.org/prettierrc.json"
         },
         {
-            "fileMatch": [".luacheckrc"],
+            "fileMatch": [
+                ".luacheckrc"
+            ],
             "url": "https://json.schemastore.org/luacheckrc.json"
         },
         {
-            "fileMatch": [".markdown-link-check.json"],
+            "fileMatch": [
+                ".markdown-link-check.json"
+            ],
             "url": "https://www.schemastore.org/markdown-link-check.json"
         },
         {
-            "fileMatch": [".yamllint.yml", ".yamllint.yaml", ".yamllint.yml"],
+            "fileMatch": [
+                ".yamllint.yml",
+                ".yamllint.yaml",
+                ".yamllint.yml"
+            ],
             "url": "https://www.schemastore.org/yamllint.json"
         },
-              { "fileMatch": [".hadolint.yaml", ".hadolint.yml"], "url": "https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json" }
-
+        {
+            "fileMatch": [
+                ".hadolint.yaml",
+                ".hadolint.yml"
+            ],
+            "url": "https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json"
+        }
     ],
+    "evenBetterToml.schema.associations": {
+        "pyproject.toml": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/pyproject.json"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[ignore]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
+    },
+    "[gitignore]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
+    },
+    "[bats]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format",
+        "editor.formatOnSave": false
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[dockerfile]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format",
+        "editor.formatOnSave": false,
+    },
+    "[markdown]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
+    },
+    "ipynb.pasteImagesAsAttachments.enabled": true,
+    "ipynb.experimental.serialization": true,
+    "ansible.ansible.path": "ansible",
+    "ansible.ansible.useFullyQualifiedCollectionNames": true,
+    "ansible.ansible.reuseTerminal": false,
+    "ansible.ansibleNavigator.path": "ansible-navigator",
+    "ansible.playbook.arguments": "",
+    "ansible.completion.provideRedirectModules": true,
+    "ansible.completion.provideModuleOptionAliases": true,
+    "ansible.validation.lint.enabled": true,
+    "ansible.validation.lint.path": "ansible-lint",
+    "ansible.validation.lint.arguments": "",
+    "ansible.validation.lint.autoFixOnSave": false,
+    "ansible.executionEnvironment.enabled": false,
+    "ansible.executionEnvironment.containerEngine": "auto",
+    "ansible.executionEnvironment.containerOptions": "",
+    "ansible.executionEnvironment.image": "ghcr.io/ansible/community-ansible-dev-tools:latest",
+    "ansible.executionEnvironment.pull.arguments": "",
+    "ansible.executionEnvironment.pull.policy": "missing",
+    "ansible.lightspeed.enabled": true,
+    "ansible.lightspeed.suggestions.enabled": true,
+    "ansible.lightspeed.suggestions.waitWindow": 0,
+    "ansible.lightspeed.timeout": 30000,
+    "ansible.mcpServer.enabled": false,
+    "astro.auto-import-cache.enabled": true,
+    "astro.content-intellisense": false,
+    "astro.updateImportsOnFileMove.enabled": false,
+    "bazel.buildifierConfigJsonPath": "",
+    "bazel.buildifierExecutable": "buildifier",
+    "bazel.executable": "bazel",
+    "biome.enabled": true,
+    "biome.lsp.watcher.kind": null,
+    "biome.requireConfiguration": false,
+    "biome.suggestInstallingGlobally": true,
+    "C_Cpp.autocomplete": "default",
+    "C_Cpp.autocompleteAddParentheses": false,
+    "C_Cpp.configurationWarnings": "enabled",
+    "C_Cpp.default.browse.databaseFilename": "",
+    "C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true,
+    "C_Cpp.default.configurationProvider": "",
+    "C_Cpp.default.cppStandard": "",
+    "C_Cpp.default.cStandard": "",
+    "C_Cpp.default.dotConfig": "",
+    "C_Cpp.default.enableConfigurationSquiggles": true,
+    "C_Cpp.default.intelliSenseMode": "",
+    "C_Cpp.default.mergeConfigurations": false,
+    "C_Cpp.default.recursiveIncludes.order": "",
+    "C_Cpp.default.recursiveIncludes.priority": "",
+    "C_Cpp.default.recursiveIncludes.reduce": "",
+    "C_Cpp.default.windowsSdkVersion": "",
+    "C_Cpp.dimInactiveRegions": true,
+    "C_Cpp.errorSquiggles": "enabledIfIncludesResolve",
+    "C_Cpp.exclusionPolicy": "checkFolders",
+    "C_Cpp.hover": "default",
+    "C_Cpp.inactiveRegionBackgroundColor": "",
+    "C_Cpp.inactiveRegionForegroundColor": "",
+    "C_Cpp.inactiveRegionOpacity": 0.55,
+    "C_Cpp.inlayHints.autoDeclarationTypes.enabled": false,
+    "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": false,
+    "C_Cpp.inlayHints.parameterNames.enabled": false,
+    "C_Cpp.inlayHints.parameterNames.hideLeadingUnderscores": true,
+    "C_Cpp.inlayHints.parameterNames.suppressWhenArgumentContainsName": true,
+    "C_Cpp.inlayHints.referenceOperator.enabled": false,
+    "C_Cpp.inlayHints.referenceOperator.showSpace": false,
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.legacyCompilerArgsBehavior": false,
+    "C_Cpp.refactoring.includeHeader": "always",
+    "C_Cpp.suggestSnippets": true,
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.clang_format_path": "",
+    "C_Cpp.clang_format_sortIncludes": null,
+    "C_Cpp.clang_format_style": "file",
+    "C_Cpp.formatting": "default",
+    "C_Cpp.vcFormat.indent.accessSpecifiers": false,
+    "C_Cpp.vcFormat.indent.braces": false,
+    "C_Cpp.vcFormat.indent.caseContents": true,
+    "C_Cpp.vcFormat.indent.caseContentsWhenBlock": false,
+    "C_Cpp.vcFormat.indent.caseLabels": false,
+    "C_Cpp.vcFormat.indent.gotoLabels": "oneLeft",
+    "C_Cpp.vcFormat.indent.lambdaBracesWhenParameter": true,
+    "C_Cpp.vcFormat.indent.multiLineRelativeTo": "innermostParenthesis",
+    "C_Cpp.vcFormat.indent.namespaceContents": true,
+    "C_Cpp.vcFormat.indent.preprocessor": "leftmostColumn",
+    "C_Cpp.vcFormat.indent.preserveComments": false,
+    "C_Cpp.vcFormat.indent.preserveWithinParentheses": false,
+    "C_Cpp.vcFormat.indent.withinParentheses": "indent",
+    "C_Cpp.vcFormat.newLine.beforeCatch": true,
+    "C_Cpp.vcFormat.newLine.beforeElse": true,
+    "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "ignore",
+    "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "ignore",
+    "C_Cpp.vcFormat.newLine.beforeOpenBrace.lambda": "ignore",
+    "C_Cpp.vcFormat.newLine.beforeOpenBrace.namespace": "ignore",
+    "C_Cpp.vcFormat.newLine.beforeOpenBrace.type": "ignore",
+    "C_Cpp.vcFormat.newLine.beforeWhileInDoWhile": false,
+    "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyFunction": false,
+    "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": false,
+    "C_Cpp.vcFormat.newLine.scopeBracesOnSeparateLines": false,
+    "C_Cpp.vcFormat.space.afterCastCloseParenthesis": false,
+    "C_Cpp.vcFormat.space.afterComma": true,
+    "C_Cpp.vcFormat.space.afterKeywordsInControlFlowStatements": true,
+    "C_Cpp.vcFormat.space.aroundAssignmentOperator": "insert",
+    "C_Cpp.vcFormat.space.aroundBinaryOperator": "insert",
+    "C_Cpp.vcFormat.space.aroundTernaryOperator": "insert",
+    "C_Cpp.vcFormat.space.beforeBlockOpenBrace": true,
+    "C_Cpp.vcFormat.space.beforeComma": false,
+    "C_Cpp.vcFormat.space.beforeConstructorColon": true,
+    "C_Cpp.vcFormat.space.beforeEmptySquareBrackets": false,
+    "C_Cpp.vcFormat.space.beforeFunctionOpenParenthesis": "remove",
+    "C_Cpp.vcFormat.space.beforeInheritanceColon": true,
+    "C_Cpp.vcFormat.space.beforeInitializerListOpenBrace": false,
+    "C_Cpp.vcFormat.space.beforeLambdaOpenParenthesis": false,
+    "C_Cpp.vcFormat.space.beforeOpenSquareBracket": false,
+    "C_Cpp.vcFormat.space.betweenEmptyBraces": false,
+    "C_Cpp.vcFormat.space.betweenEmptyLambdaBrackets": false,
+    "C_Cpp.vcFormat.space.betweenEmptyParameterListParentheses": false,
+    "C_Cpp.vcFormat.space.betweenEmptySquareBrackets": false,
+    "C_Cpp.vcFormat.space.groupSquareBrackets": true,
+    "C_Cpp.vcFormat.space.insertAfterSemicolon": false,
+    "C_Cpp.vcFormat.space.pointerReferenceAlignment": "left",
+    "C_Cpp.vcFormat.space.preserveInInitializerList": true,
+    "C_Cpp.vcFormat.space.removeAroundMemberOperators": true,
+    "C_Cpp.vcFormat.space.removeAroundUnaryOperator": true,
+    "C_Cpp.vcFormat.space.removeBeforeSemicolon": true,
+    "C_Cpp.vcFormat.space.withinCastParentheses": false,
+    "C_Cpp.vcFormat.space.withinControlFlowStatementParentheses": false,
+    "C_Cpp.vcFormat.space.withinExpressionParentheses": false,
+    "C_Cpp.vcFormat.space.withinInitializerListBraces": true,
+    "C_Cpp.vcFormat.space.withinLambdaBrackets": false,
+    "C_Cpp.vcFormat.space.withinParameterListParentheses": false,
+    "C_Cpp.vcFormat.space.withinSquareBrackets": false,
+    "C_Cpp.vcFormat.wrap.preserveBlocks": "oneLiners",
+    "C_Cpp.doxygen.generatedStyle": "///",
+    "C_Cpp.doxygen.generateOnCodeAction": true,
+    "C_Cpp.doxygen.generateOnType": true,
+    "C_Cpp.markdownInComments": "subsetEnabled",
+    "C_Cpp.codeAnalysis.clangTidy.codeAction.formatFixes": true,
+    "C_Cpp.codeAnalysis.clangTidy.enabled": false,
+    "C_Cpp.codeAnalysis.clangTidy.config": "",
+    "C_Cpp.codeAnalysis.clangTidy.fallbackConfig": "",
+    "C_Cpp.codeAnalysis.clangTidy.path": "",
+    "C_Cpp.codeAnalysis.clangTidy.useBuildPath": false,
+    "C_Cpp.codeAnalysis.runAutomatically": true,
+    "C_Cpp.debugShortcut": true,
+    "C_Cpp.intelliSenseCachePath": "",
+    "C_Cpp.intelliSenseCacheSize": 5120,
+    "C_Cpp.intelliSenseMemoryLimit": 4096,
+    "C_Cpp.preferredPathSeparator": "Forward Slash",
+    "C_Cpp.vcpkg.enabled": true,
+    "cmake.allowCommentsInPresetsFile": false,
+    "cmake.allowUnsupportedPresetsVersions": false,
+    "cmake.automaticReconfigure": true,
+    "cmake.buildBeforeRun": true,
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.buildTask": false,
+    "cmake.clearOutputBeforeBuild": true,
+    "cmake.cmakeCommunicationMode": "automatic",
+    "cmake.cmakePath": "cmake",
+    "cmake.configureOnEdit": true,
+    "cmake.configureOnOpen": true,
+    "cmake.copyCompileCommands": "",
+    "cmake.cpackPath": "",
+    "cmake.ctest.allowParallelJobs": false,
+    "cmake.ctest.debugLaunchTarget": "",
+    "cmake.ctest.neverDebugTestsWithLaunchConfiguration": false,
+    "cmake.ctest.parallelJobs": 0,
+    "cmake.ctest.testExplorerIntegrationEnabled": true,
+    "cmake.ctest.testSuiteDelimiter": "",
+    "cmake.ctest.testSuiteDelimiterMaxOccurrence": 0,
+    "cmake.ctestPath": "",
+    "cmake.deleteBuildDirOnCleanConfigure": false,
+    "cmake.enableAutomaticKitScan": true,
+    "cmake.exportCompileCommandsFile": true,
+    "cmake.generator": "",
+    "cmake.ignoreCMakeListsMissing": false,
+    "cmake.ignoreKitEnv": false,
+    "cmake.installPrefix": "",
+    "cmake.loadCompileCommands": true,
+    "cmake.mergedCompileCommands": "",
+    "cmake.modifyLists.addNewSourceFiles": "ask",
+    "cmake.modifyLists.removeDeletedSourceFiles": "ask",
+    "cmake.modifyLists.scopeSelection": "ask",
+    "cmake.modifyLists.targetCommandInvocationSelection": "askParentDirs",
+    "cmake.modifyLists.targetSelection": "askParentSourceDirs",
+    "cmake.modifyLists.variableSelection": "never",
+    "cmake.outlineViewType": "list",
+    "cmake.parallelJobs": 0,
+    "cmake.parseBuildDiagnostics": true,
+    "cmake.platform": "",
+    "cmake.postConfigureTask": "",
+    "cmake.postRunCoverageTarget": "",
+    "cmake.preRunCoverageTarget": "",
+    "cmake.saveBeforeBuild": true,
+    "cmake.setBuildTargetSameAsLaunchTarget": false,
+    "cmake.setBuildTypeOnMultiConfig": false,
+    "cmake.showSystemKits": true,
+    "cmake.skipConfigureIfCachePresent": false,
+    "cmake.toolset": "",
+    "cmake.useCMakePresets": "auto",
+    "cmake.useFolderPropertyInBuildTargetDropdown": false,
+    "cmake.useVsDeveloperEnvironment": "auto",
+    "yaml.format.enable": true,
+    "yaml.validate": true
 }

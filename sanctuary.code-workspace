@@ -9,7 +9,7 @@
     "editor.insertSpaces": true,
     "editor.formatOnSave": true,
 
-      // Prevent any extension from formatting CHANGELOG.md specifically:
+    // Prevent any extension from formatting CHANGELOG.md specifically:
     "editor.formatOnSaveMode": "modifications",
 
     "files.trimTrailingWhitespace": true,
@@ -100,6 +100,8 @@
       "**/Notes/**"
     ],
     "local-history.path": "${workspaceFolder}/.cache/vscode",
+    "local-history.absolute": true,
+    "local-history.treeLocation": "explorer",
 
     // --- Peacock Colors ---
     "peacock.color": "#5B1A53",
@@ -152,7 +154,7 @@
       "titleBar.inactiveForeground": "#e7e7e799"
     },
     "peacock.remoteColor": "#42b883",
-    "notebook.formatOnSave.enabled": true
+    "notebook.formatOnSave.enabled": true,
   },
   "extensions": {
     "recommendations": [
