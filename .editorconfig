@@ -109,6 +109,10 @@ indent_size = 4
 [*.{groovy,gradle}]
 indent_size = 4
 
+[gradle/verification-metadata.xml]
+indent_size = 3
+
+
 # INI and Config Files
 [*.{ini,conf}]
 indent_size = 2

@@ -14,7 +14,9 @@
     "files.associations": {
       "VERSION": "plaintext",
       "*.codespellrc": "ini",
-      ".codespellrc": "ini"
+      ".codespellrc": "ini",
+      ".mailmap": "plaintext",
+      "CHANGELOG": "markdown",
     },
 
     // --- Terminal ---
