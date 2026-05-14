@@ -28,6 +28,7 @@
       "source.organizeImports": "always",
       "source.formatDocument": "explicit"
     },
+    "editor.wordWrap": "on",
     "diffEditor.codeLens": true,
     "diffEditor.diffAlgorithm": "advanced",
     "diffEditor.experimental.showEmptyDecorations": true,
@@ -533,5 +534,6 @@
     "cmake.useFolderPropertyInBuildTargetDropdown": false,
     "cmake.useVsDeveloperEnvironment": "auto",
     "yaml.format.enable": true,
-    "yaml.validate": true
+    "yaml.validate": true,
+    "editor.inlineSuggest.experimental.suppressInlineSuggestions": ""
 }

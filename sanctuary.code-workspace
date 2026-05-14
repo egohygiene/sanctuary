@@ -7,12 +7,10 @@
     "git.ignoreLimitWarning": true,
     "telemetry.feedback.enabled": false,
     "editor.insertSpaces": true,
-    "editor.formatOnSave": true,
-
-    // Prevent any extension from formatting CHANGELOG.md specifically:
-    "editor.formatOnSaveMode": "modifications",
 
     "files.trimTrailingWhitespace": true,
+    "files.enableTrash": true,
+    "files.encoding": "utf8",
     "files.associations": {
       "VERSION": "plaintext",
       "*.codespellrc": "ini",
@@ -29,36 +27,6 @@
     "cSpell.logFile": "${workspaceFolder}/.cache/cspell/cspell.log",
     "cSpell.trustedWorkspace": true,
 
-    // --- Formatter overrides ---
-    "prettier.useEditorConfig": true,
-    "prettier.configPath": "${workspaceFolder}/config/.prettier.config.mjs",
-    "[shellscript]": {
-      "editor.defaultFormatter": "foxundermoon.shell-format",
-      "editor.formatOnSave": false
-    },
-    "[dockerfile]": {
-      "editor.formatOnSave": false,
-      "editor.defaultFormatter": "ms-azuretools.vscode-containers"
-    },
-    "[ignore]": {
-      "editor.formatOnSave": false,
-      "editor.defaultFormatter": null
-    },
-    "[gitignore]": {
-      "editor.formatOnSave": false,
-      "editor.defaultFormatter": null
-    },
-    "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-    "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-    "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-    "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-    "[markdown]": {
-      "editor.defaultFormatter": null,
-      "editor.formatOnSave": false
-    },
-    "[yaml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-    "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-
     "yaml.schemas": {
       "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible-lint-config.json": "**/.ansible-lint",
       "https://taskfile.dev/schema.json": "**/Taskfile.yml",
@@ -73,13 +41,6 @@
     "htmlhint.options": {
       "config": "${workspaceFolder}/config/.htmlhintrc"
     },
-
-    // --- ShellCheck ---
-    "shellcheck.enable": true,
-    "shellcheck.disableVersionCheck": false,
-    "shellcheck.enableQuickFix": true,
-    "shellcheck.useWorkspaceRootAsCwd": false,
-    "shellcheck.run": "onSave",
 
     // --- Extensions behavior ---
     "local-history.enabled": 1,
