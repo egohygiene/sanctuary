@@ -10,7 +10,6 @@
         "Dart-Code.flutter",
         "donjayamanne.githistory",
         "editorconfig.editorconfig",
-        "equinusocio.vsc-material-theme-icons",
         "esbenp.prettier-vscode",
         "foxundermoon.shell-format",
         "github.vscode-github-actions",
@@ -52,6 +51,7 @@
         "wmaurer.change-case",
         "xaver.clang-format",
         "xyz.local-history",
-        "shopify.ruby-lsp"
+        "shopify.ruby-lsp",
+        "vira.vsc-vira-theme"
     ]
 }

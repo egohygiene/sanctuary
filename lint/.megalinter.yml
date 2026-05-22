@@ -456,7 +456,7 @@ SNAKEMAKE_SNAKEFMT_CONFIG_FILE: lint/snakemake/.snakefmt.toml
 
 # cspell: https://github.com/streetsidesoftware/cspell
 # https://megalinter.io/latest/descriptors/spell_cspell/
-SPELL_CSPELL_CONFIG_FILE: lint/prose/spell/cspell.megalinter.json
+SPELL_CSPELL_CONFIG_FILE: lint/config/prose/spell/cspell.megalinter.json
 SPELL_CSPELL_CLI_LINT_MODE: project
 SPELL_CSPELL_FILE_EXTENSIONS: ["*"]
 
@@ -471,7 +471,7 @@ SPELL_CSPELL_PRE_COMMANDS:
 # lychee: https://github.com/lycheeverse/lychee
 # https://megalinter.io/latest/descriptors/spell_lychee/
 SPELL_LYCHEE_CONFIG_FILE: lint/prose/spell/lychee.toml
-SPELL_LYCHEE_ARGUMENTS: "--exclude-path lint/prose/spell/.lycheeignore"
+SPELL_LYCHEE_ARGUMENTS: "--exclude-path lint/config/prose/spell/.lycheeignore"
 
 # proselint: https://github.com/amperser/proselint
 # https://megalinter.io/latest/descriptors/spell_proselint/
@@ -512,10 +512,12 @@ TERRAFORM_TFLINT_CONFIG_FILE: lint/terraform/.tflint.hcl
 # eslint: https://eslint.org/
 # https://megalinter.io/latest/descriptors/typescript_eslint/
 TSX_ESLINT_CONFIG_FILE: lint/javascript/eslint.config.mjs
+TSX_ESLINT_ARGUMENTS: "--cache-location .cache/tsx/eslintcache"
 
 # eslint: https://eslint.org/
 # https://megalinter.io/latest/descriptors/typescript_eslint/
-TYPESCRIPT_ES_CONFIG_FILE: lint/javascript/eslint.config.mjs
+TYPESCRIPT_ES_CONFIG_FILE: lint/config/javascript/eslint.config.mjs
+TYPESCRIPT_ES_ARGUMENTS: "--cache-location .cache/typescript/eslintcache "
 
 # prettier: https://prettier.io/
 # https://megalinter.io/latest/descriptors/typescript_prettier/

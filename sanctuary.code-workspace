@@ -17,6 +17,9 @@
       ".codespellrc": "ini",
       ".mailmap": "plaintext",
       "CHANGELOG": "markdown",
+      ".latexmkrc": "perl",
+      "latexmkrc": "perl",
+      "*.latexmkrc": "perl"
     },
 
     // --- Terminal ---
@@ -35,7 +38,8 @@
       "https://json.schemastore.org/github-issue-config.json": "**/.github/ISSUE_TEMPLATE/config.yml",
       "https://json.schemastore.org/github-workflow.json": "**/.github/workflows/*.yml",
       "https://json.schemastore.org/github-action.json": "**/.github/actions/*.yml",
-      "https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json": "**/.hadolint.yaml||**/.hadolint.yml"
+      "https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json": "**/.hadolint.yaml||**/.hadolint.yml",
+      "https://json.schemastore.org/latexindent-yaml-schema.json": "**/.latexindent.yaml||**/.latexindent.yml"
     },
 
     // --- HTMLHint ---
