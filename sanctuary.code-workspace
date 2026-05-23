@@ -22,6 +22,8 @@
       "*.latexmkrc": "perl",
       ".pnpmignore": "gitignore",
       ".dockerignore": "gitignore",
+      "shellcheckrc": "ini",
+      ".shellcheckrc": "ini"
     },
 
     // --- Terminal ---
