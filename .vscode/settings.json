@@ -309,7 +309,9 @@
         }
     ],
     "evenBetterToml.schema.associations": {
-        "pyproject.toml": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/pyproject.json"
+        "pyproject.toml": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/pyproject.json",
+        "typos.toml": "https://raw.githubusercontent.com/crate-ci/typos/master/config.schema.json",
+        ".typos.toml": "https://raw.githubusercontent.com/crate-ci/typos/master/config.schema.json"
     },
     "[javascript]": {
         "editor.defaultFormatter": "biomejs.biome"

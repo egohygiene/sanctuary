@@ -1,0 +1,98 @@
+# -----------------------------------------------------------------------------
+# typos configuration
+# -----------------------------------------------------------------------------
+#
+# Reference:
+#   https://github.com/crate-ci/typos/blob/master/docs/reference.md
+#
+# Purpose:
+#   Provides a universal baseline configuration for typo detection across
+#   repositories and technology stacks.
+#
+# Design Goals:
+#   - conservative defaults
+#   - cross-language compatibility
+#   - low false-positive rate
+#   - safe for monorepos and generated artifacts
+#
+# -----------------------------------------------------------------------------
+
+[default]
+
+# Extend the default dictionary with project-specific corrections.
+#
+# Example:
+# extend-words = { "teh" = "the" }
+#
+# NOTE:
+# Keep additions minimal and intentional.
+#
+# extend-words = {}
+
+# -----------------------------------------------------------------------------
+
+[files]
+
+# Ignore generated files, lockfiles, binaries, and dependency artifacts.
+#
+# These files are commonly machine-generated and tend to introduce noisy or
+# low-value typo reports.
+#
+extend-exclude = [
+    # Dependency lockfiles
+    "poetry.lock",
+    "Pipfile.lock",
+    "pnpm-lock.yaml",
+    "package-lock.json",
+    "yarn.lock",
+    "Cargo.lock",
+
+    # Minified assets
+    "*.min.js",
+    "*.min.css",
+
+    # Build and dependency directories
+    ".git/",
+    ".next/",
+    ".nuxt/",
+    ".turbo/",
+    ".venv/",
+    "node_modules/",
+    "vendor/",
+    "dist/",
+    "build/",
+    "coverage/",
+
+    # Cache directories
+    ".cache/",
+    ".pytest_cache/",
+    ".mypy_cache/",
+
+    # Binary and media assets
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.gif",
+    "*.webp",
+    "*.pdf",
+    "*.svg",
+    "*.mp3",
+    "*.mp4",
+    "*.woff",
+    "*.woff2",
+
+    # Compressed archives
+    "*.zip",
+    "*.tar",
+    "*.gz",
+]
+
+# -----------------------------------------------------------------------------
+
+[type.po]
+
+# Ignore gettext-style translation placeholders.
+#
+extend-ignore-re = [
+    "%[sd]",
+]

@@ -19,7 +19,9 @@
       "CHANGELOG": "markdown",
       ".latexmkrc": "perl",
       "latexmkrc": "perl",
-      "*.latexmkrc": "perl"
+      "*.latexmkrc": "perl",
+      ".pnpmignore": "gitignore",
+      ".dockerignore": "gitignore",
     },
 
     // --- Terminal ---
