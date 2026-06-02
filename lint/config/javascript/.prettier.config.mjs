@@ -1,55 +1,80 @@
 /**
- * Prettier configuration file.
+ * ----------------------------------------------------------------------------
+ * Prettier Configuration
+ * ----------------------------------------------------------------------------
  *
- * @type { import('prettier').Config }
- * @see https://prettier.io/docs/en/configuration.html
+ * Purpose:
+ *   Establish consistent formatting behavior across repositories,
+ *   languages, and tooling environments.
+ *
+ * Design Goals:
+ *   - conservative universal defaults
+ *   - cross-language compatibility
+ *   - minimal configuration noise
+ *   - predictable formatting behavior
+ *
+ * Reference:
+ *   https://prettier.io/docs/configuration
+ *
+ * ----------------------------------------------------------------------------
  */
-const config = {
+
+/**
+ * @type {import("prettier").Config}
+ */
+const prettierConfiguration = {
+    // -------------------------------------------------------------------------
+    // Core Formatting
+    // -------------------------------------------------------------------------
+
     semi: true,
     singleQuote: false,
-    jsxSingleQuote: false,
     trailingComma: "all",
-    bracketSpacing: true,
-    objectWrap: "preserve",
-    bracketSameLine: false,
-    rangeStart: 0,
-    rangeEnd: Number.POSITIVE_INFINITY,
-    requirePragma: false,
-    insertPragma: false,
-    proseWrap: "preserve",
+
+    // -------------------------------------------------------------------------
+    // Readability
+    // -------------------------------------------------------------------------
+
     arrowParens: "always",
-    plugins: ["prettier-plugin-sh", "prettier-plugin-pkg"],
-    htmlWhitespaceSensitivity: "css",
+    bracketSameLine: false,
+    objectWrap: "preserve",
+    proseWrap: "preserve",
+
+    // -------------------------------------------------------------------------
+    // Platform Consistency
+    // -------------------------------------------------------------------------
+
     endOfLine: "lf",
-    quoteProps: "as-needed",
-    vueIndentScriptAndStyle: false,
-    embeddedLanguageFormatting: "auto",
-    singleAttributePerLine: false,
-    experimentalOperatorPosition: "end",
-    experimentalTernaries: true,
+
+    // -------------------------------------------------------------------------
+    // Overrides
+    // -------------------------------------------------------------------------
+
     overrides: [
         {
             files: ["*.json", "*.json5"],
             options: {
-                parser: "json",
-                tabWidth: 4,
-                useTabs: false,
+                tabWidth: 2,
                 printWidth: 80,
                 trailingComma: "none",
-                bracketSpacing: true,
-                singleQuote: false,
             },
         },
+
         {
-            files: ["*.md", "*.markdown"],
+            files: ["*.md", "*.markdown", "*.mdx"],
             options: {
-                parser: "markdown",
                 proseWrap: "preserve",
                 tabWidth: 2,
-                useTabs: false,
+            },
+        },
+
+        {
+            files: ["*.yml", "*.yaml"],
+            options: {
+                tabWidth: 2,
             },
         },
     ],
 };
 
-export default config;
+export default prettierConfiguration;

@@ -51,7 +51,6 @@
         "wmaurer.change-case",
         "xaver.clang-format",
         "xyz.local-history",
-        "shopify.ruby-lsp",
-        "vira.vsc-vira-theme"
+        "shopify.ruby-lsp"
     ]
 }
