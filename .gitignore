@@ -20,3 +20,5 @@ coverage
 !reports/
 !reports/tree/
 !reports/tree/**
+
+.allcontributorsrc.tmp

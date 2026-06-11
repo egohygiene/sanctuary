@@ -1,0 +1,18 @@
+{
+    "$schema": "https://www.schemastore.org/all-contributors.json",
+    "files": [
+        "CONTRIBUTORS.md"
+    ],
+    "imageSize": 100,
+    "commit": false,
+    "commitConvention": "none",
+    "contributors": [],
+    "contributorsPerLine": 7,
+    "contributorsSortAlphabetically": true,
+    "linkToUsage": true,
+    "skipCi": true,
+    "repoType": "github",
+    "repoHost": "https://github.com",
+    "projectName": "__PROJECT_NAME__",
+    "projectOwner": "__PROJECT_OWNER__"
+}
