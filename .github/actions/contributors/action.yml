@@ -79,4 +79,11 @@ runs:
     - name: 📝 Generate Contributors File
       shell: bash
       run: |
+        cat .allcontributorsrc
+
         all-contributors generate
+
+        printf "\n\n"
+        printf "Generated CONTRIBUTORS.md:\n\n"
+
+        cat CONTRIBUTORS.md
