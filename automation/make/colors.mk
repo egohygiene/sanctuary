@@ -69,15 +69,15 @@ BG_LIGHT_CYAN := \033[106m
 BG_WHITE := \033[107m
 
 ## tput Colors ##
-tRED := $(shell tput setaf 1)
-tGREEN := $(shell tput setaf 2)
-tYELLOW := $(shell tput setaf 3)
-tBLUE := $(shell tput setaf 4)
-tMAGENTA := $(shell tput setaf 5)
-tCYAN := $(shell tput setaf 6)
-tWHITE := $(shell tput setaf 7)
-tBOLD := $(shell tput bold)
-tRESET := $(shell tput sgr0)
+tRED := $(shell TERM=$${TERM:-dumb} tput setaf 1 2>/dev/null || printf '')
+tGREEN := $(shell TERM=$${TERM:-dumb} tput setaf 2 2>/dev/null || printf '')
+tYELLOW := $(shell TERM=$${TERM:-dumb} tput setaf 3 2>/dev/null || printf '')
+tBLUE := $(shell TERM=$${TERM:-dumb} tput setaf 4 2>/dev/null || printf '')
+tMAGENTA := $(shell TERM=$${TERM:-dumb} tput setaf 5 2>/dev/null || printf '')
+tCYAN := $(shell TERM=$${TERM:-dumb} tput setaf 6 2>/dev/null || printf '')
+tWHITE := $(shell TERM=$${TERM:-dumb} tput setaf 7 2>/dev/null || printf '')
+tBOLD := $(shell TERM=$${TERM:-dumb} tput bold 2>/dev/null || printf '')
+tRESET := $(shell TERM=$${TERM:-dumb} tput sgr0 2>/dev/null || printf '')
 
 ## Functions ##
 define change_color
