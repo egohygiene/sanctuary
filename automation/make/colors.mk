@@ -69,15 +69,20 @@ BG_LIGHT_CYAN := \033[106m
 BG_WHITE := \033[107m
 
 ## tput Colors ##
-tRED := $(shell TERM=$${TERM:-dumb} tput setaf 1 2>/dev/null || printf '')
-tGREEN := $(shell TERM=$${TERM:-dumb} tput setaf 2 2>/dev/null || printf '')
-tYELLOW := $(shell TERM=$${TERM:-dumb} tput setaf 3 2>/dev/null || printf '')
-tBLUE := $(shell TERM=$${TERM:-dumb} tput setaf 4 2>/dev/null || printf '')
-tMAGENTA := $(shell TERM=$${TERM:-dumb} tput setaf 5 2>/dev/null || printf '')
-tCYAN := $(shell TERM=$${TERM:-dumb} tput setaf 6 2>/dev/null || printf '')
-tWHITE := $(shell TERM=$${TERM:-dumb} tput setaf 7 2>/dev/null || printf '')
-tBOLD := $(shell TERM=$${TERM:-dumb} tput bold 2>/dev/null || printf '')
-tRESET := $(shell TERM=$${TERM:-dumb} tput sgr0 2>/dev/null || printf '')
+# tput wrapper that degrades to an empty string when TERM is unset/unsupported
+# or when tput is unavailable.
+define tput_safe
+$(shell [ -n "$$TERM" ] && command -v tput >/dev/null 2>&1 && tput $(1) 2>/dev/null || printf '')
+endef
+tRED := $(call tput_safe,setaf 1)
+tGREEN := $(call tput_safe,setaf 2)
+tYELLOW := $(call tput_safe,setaf 3)
+tBLUE := $(call tput_safe,setaf 4)
+tMAGENTA := $(call tput_safe,setaf 5)
+tCYAN := $(call tput_safe,setaf 6)
+tWHITE := $(call tput_safe,setaf 7)
+tBOLD := $(call tput_safe,bold)
+tRESET := $(call tput_safe,sgr0)
 
 ## Functions ##
 define change_color

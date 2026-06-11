@@ -26,7 +26,7 @@ Selected functionality may be migrated into:
 - GitHub Actions
 - devcontainer tooling
 
-## Architecture Review (Current State)
+## Architecture Review
 
 The library is intentionally modular. `Makefile` is the user-facing entrypoint and
 imports `project.mk`, which imports `common.mk`. `common.mk` provides shared
@@ -79,7 +79,7 @@ the Make library for compatibility:
 
 - `utils.mk` and `variables.mk` are legacy placeholders and should be either:
   - consolidated into a single documented module, or
-  - removed once downstream usage is confirmed absent.
+  - removed after confirming no downstream usage.
 - `project.mk` still carries historical project-specific constants that should be
   split into repository-agnostic and project-local layers during migration.
 

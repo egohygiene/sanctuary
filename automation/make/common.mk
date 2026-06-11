@@ -10,6 +10,7 @@
 ### [8]: https://github.com/jgrahamc/gmsl
 ### [9]:
 #####
+# Resolve from this file as a fallback when the module is included standalone.
 MAKE_LIBRARY_DIR ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 include $(MAKE_LIBRARY_DIR)/os.mk
 include $(MAKE_LIBRARY_DIR)/gmsl.mk
