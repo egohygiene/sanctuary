@@ -1,7 +1,8 @@
 #!/usr/bin/make -f
 # -*- mode: Makefile; -*-
 ##### Makefile Targets #####
-include $(CURDIR)/scripts/project.mk
+MAKE_LIBRARY_DIR ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+include $(MAKE_LIBRARY_DIR)/project.mk
 
 .ONESHELL:
 

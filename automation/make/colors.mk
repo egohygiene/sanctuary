@@ -69,15 +69,20 @@ BG_LIGHT_CYAN := \033[106m
 BG_WHITE := \033[107m
 
 ## tput Colors ##
-tRED := $(shell tput setaf 1)
-tGREEN := $(shell tput setaf 2)
-tYELLOW := $(shell tput setaf 3)
-tBLUE := $(shell tput setaf 4)
-tMAGENTA := $(shell tput setaf 5)
-tCYAN := $(shell tput setaf 6)
-tWHITE := $(shell tput setaf 7)
-tBOLD := $(shell tput bold)
-tRESET := $(shell tput sgr0)
+# tput wrapper that degrades to an empty string when TERM is unset/unsupported
+# or when tput is unavailable.
+define tput_safe
+$(shell [ -n "$$TERM" ] && command -v tput >/dev/null 2>&1 && tput $(1) 2>/dev/null || printf '')
+endef
+tRED := $(call tput_safe,setaf 1)
+tGREEN := $(call tput_safe,setaf 2)
+tYELLOW := $(call tput_safe,setaf 3)
+tBLUE := $(call tput_safe,setaf 4)
+tMAGENTA := $(call tput_safe,setaf 5)
+tCYAN := $(call tput_safe,setaf 6)
+tWHITE := $(call tput_safe,setaf 7)
+tBOLD := $(call tput_safe,bold)
+tRESET := $(call tput_safe,sgr0)
 
 ## Functions ##
 define change_color

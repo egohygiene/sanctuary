@@ -1,5 +1,7 @@
 ##### Makefile Project Specific Variables and Functions #####
-include $(CURDIR)/scripts/common.mk
+# Resolve from this file as a fallback when the module is included standalone.
+MAKE_LIBRARY_DIR ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+include $(MAKE_LIBRARY_DIR)/common.mk
 
 ### Project Variables. ###
 NAME := cryptocurrency-trading-suite

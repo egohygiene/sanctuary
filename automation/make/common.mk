@@ -10,9 +10,11 @@
 ### [8]: https://github.com/jgrahamc/gmsl
 ### [9]:
 #####
-include $(CURDIR)/scripts/os.mk
-include $(CURDIR)/scripts/gmsl.mk
-include $(CURDIR)/scripts/colors.mk
+# Resolve from this file as a fallback when the module is included standalone.
+MAKE_LIBRARY_DIR ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+include $(MAKE_LIBRARY_DIR)/os.mk
+include $(MAKE_LIBRARY_DIR)/gmsl.mk
+include $(MAKE_LIBRARY_DIR)/colors.mk
 
 ### Verify that the GNU Make executable version is valid. ###
 MIN_MAKE_VERSION := 4.0
