@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="220" viewBox="0 0 960 220" role="img" aria-labelledby="title desc">
+  <title id="title">sanctuary repository visualization</title>
+  <desc id="desc">Fallback repository visualization generated locally. CI replaces this file with a repo-visualizer diagram.</desc>
+  <rect width="960" height="220" rx="16" ry="16" fill="#0f172a" />
+  <text x="32" y="64" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="30" font-weight="700">sanctuary</text>
+  <text x="32" y="104" fill="#94a3b8" font-family="Arial, sans-serif" font-size="20">Top-level entries: 32</text>
+  <text x="32" y="148" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="18">.devcontainer/ • .github/ • .idea/ • .taskfile/ • .vscode/ • assets/</text>
+  <text x="32" y="188" fill="#64748b" font-family="Arial, sans-serif" font-size="16">The repository intelligence workflow refreshes this file with githubocto/repo-visualizer.</text>
+</svg>
