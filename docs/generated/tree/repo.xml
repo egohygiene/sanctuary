@@ -2597,6 +2597,84 @@
   <directory name="scripts" path="scripts">
     <file name="megalinter.sh" path="scripts/megalinter.sh" />
   </directory>
+  <directory name="shell" path="shell">
+    <directory name=".vscode" path="shell/.vscode">
+      <directory name="dictionaries" path="shell/.vscode/dictionaries">
+        <file name="backend-terms.dictionary" path="shell/.vscode/dictionaries/backend-terms.dictionary" />
+        <file name="devops-cloud-terms.dictionary" path="shell/.vscode/dictionaries/devops-cloud-terms.dictionary" />
+        <file name="frontend-terms.dictionary" path="shell/.vscode/dictionaries/frontend-terms.dictionary" />
+        <file name="programming-terms.dictionary" path="shell/.vscode/dictionaries/programming-terms.dictionary" />
+        <file name="project-words.dictionary" path="shell/.vscode/dictionaries/project-words.dictionary" />
+        <file name="software-terms.dictionary" path="shell/.vscode/dictionaries/software-terms.dictionary" />
+      </directory>
+      <file name="extensions.json" path="shell/.vscode/extensions.json" />
+      <file name="launch.json" path="shell/.vscode/launch.json" />
+      <file name="settings.json" path="shell/.vscode/settings.json" />
+      <file name="tasks.json" path="shell/.vscode/tasks.json" />
+    </directory>
+    <directory name="bin" path="shell/bin">
+      <file name="cb" path="shell/bin/cb" />
+      <file name="convert-to-ico" path="shell/bin/convert-to-ico" />
+      <file name="generate-certs" path="shell/bin/generate-certs" />
+      <file name="generate-password" path="shell/bin/generate-password" />
+      <file name="generate-tree" path="shell/bin/generate-tree" />
+      <file name="ghignore" path="shell/bin/ghignore" />
+      <file name="ghprotect" path="shell/bin/ghprotect" />
+      <file name="git-remove-exec-no-shebang" path="shell/bin/git-remove-exec-no-shebang" />
+      <file name="sysinfo" path="shell/bin/sysinfo" />
+    </directory>
+    <directory name="init" path="shell/init">
+      <file name="bootstrap.sh" path="shell/init/bootstrap.sh" />
+      <file name="init.sh" path="shell/init/init.sh" />
+      <file name="load-core.sh" path="shell/init/load-core.sh" />
+      <file name="load-extensions.sh" path="shell/init/load-extensions.sh" />
+    </directory>
+    <directory name="lib" path="shell/lib">
+      <directory name="core" path="shell/lib/core">
+        <file name="bash.sh" path="shell/lib/core/bash.sh" />
+        <file name="colors.sh" path="shell/lib/core/colors.sh" />
+        <file name="core.sh" path="shell/lib/core/core.sh" />
+        <file name="guards.sh" path="shell/lib/core/guards.sh" />
+        <file name="logging.sh" path="shell/lib/core/logging.sh" />
+        <file name="os.sh" path="shell/lib/core/os.sh" />
+        <file name="time.sh" path="shell/lib/core/time.sh" />
+      </directory>
+      <directory name="extensions" path="shell/lib/extensions">
+        <file name="fonts.sh" path="shell/lib/extensions/fonts.sh" />
+        <file name="github.sh" path="shell/lib/extensions/github.sh" />
+      </directory>
+      <file name="modules.sh" path="shell/lib/modules.sh" />
+    </directory>
+    <directory name="modules" path="shell/modules">
+      <file name="cache.sh" path="shell/modules/cache.sh" />
+      <file name="environment.sh" path="shell/modules/environment.sh" />
+      <file name="history.sh" path="shell/modules/history.sh" />
+      <file name="privacy.sh" path="shell/modules/privacy.sh" />
+      <file name="tooling.sh" path="shell/modules/tooling.sh" />
+      <file name="xdg.sh" path="shell/modules/xdg.sh" />
+    </directory>
+    <directory name="tests" path="shell/tests">
+      <directory name="core" path="shell/tests/core">
+        <file name="bash.bats" path="shell/tests/core/bash.bats" />
+        <file name="time.bats" path="shell/tests/core/time.bats" />
+      </directory>
+      <directory name="extensions" path="shell/tests/extensions">
+        <file name="github.bats" path="shell/tests/extensions/github.bats" />
+      </directory>
+      <file name="bootstrap.bats" path="shell/tests/bootstrap.bats" />
+      <file name="cb.bats" path="shell/tests/cb.bats" />
+      <file name="convert-to-ico.bats" path="shell/tests/convert-to-ico.bats" />
+      <file name="environment.bats" path="shell/tests/environment.bats" />
+      <file name="git-remove-exec-no-shebang.bats" path="shell/tests/git-remove-exec-no-shebang.bats" />
+      <file name="test_helper.bash" path="shell/tests/test_helper.bash" />
+      <file name="xdg.bats" path="shell/tests/xdg.bats" />
+    </directory>
+    <file name=".gitignore" path="shell/.gitignore" />
+    <file name=".shellrc" path="shell/.shellrc" />
+    <file name="LICENSE" path="shell/LICENSE" />
+    <file name="README.md" path="shell/README.md" />
+    <file name="shell.code-workspace" path="shell/shell.code-workspace" />
+  </directory>
   <directory name="skills" path="skills">
     <directory name="threejs" path="skills/threejs">
       <directory name="threejs-animation" path="skills/threejs/threejs-animation">

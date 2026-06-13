@@ -12695,6 +12695,360 @@
       ]
     },
     {
+      "name": "shell",
+      "path": "shell",
+      "type": "directory",
+      "children": [
+        {
+          "name": ".vscode",
+          "path": "shell/.vscode",
+          "type": "directory",
+          "children": [
+            {
+              "name": "dictionaries",
+              "path": "shell/.vscode/dictionaries",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "backend-terms.dictionary",
+                  "path": "shell/.vscode/dictionaries/backend-terms.dictionary",
+                  "type": "file"
+                },
+                {
+                  "name": "devops-cloud-terms.dictionary",
+                  "path": "shell/.vscode/dictionaries/devops-cloud-terms.dictionary",
+                  "type": "file"
+                },
+                {
+                  "name": "frontend-terms.dictionary",
+                  "path": "shell/.vscode/dictionaries/frontend-terms.dictionary",
+                  "type": "file"
+                },
+                {
+                  "name": "programming-terms.dictionary",
+                  "path": "shell/.vscode/dictionaries/programming-terms.dictionary",
+                  "type": "file"
+                },
+                {
+                  "name": "project-words.dictionary",
+                  "path": "shell/.vscode/dictionaries/project-words.dictionary",
+                  "type": "file"
+                },
+                {
+                  "name": "software-terms.dictionary",
+                  "path": "shell/.vscode/dictionaries/software-terms.dictionary",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "extensions.json",
+              "path": "shell/.vscode/extensions.json",
+              "type": "file"
+            },
+            {
+              "name": "launch.json",
+              "path": "shell/.vscode/launch.json",
+              "type": "file"
+            },
+            {
+              "name": "settings.json",
+              "path": "shell/.vscode/settings.json",
+              "type": "file"
+            },
+            {
+              "name": "tasks.json",
+              "path": "shell/.vscode/tasks.json",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "bin",
+          "path": "shell/bin",
+          "type": "directory",
+          "children": [
+            {
+              "name": "cb",
+              "path": "shell/bin/cb",
+              "type": "file"
+            },
+            {
+              "name": "convert-to-ico",
+              "path": "shell/bin/convert-to-ico",
+              "type": "file"
+            },
+            {
+              "name": "generate-certs",
+              "path": "shell/bin/generate-certs",
+              "type": "file"
+            },
+            {
+              "name": "generate-password",
+              "path": "shell/bin/generate-password",
+              "type": "file"
+            },
+            {
+              "name": "generate-tree",
+              "path": "shell/bin/generate-tree",
+              "type": "file"
+            },
+            {
+              "name": "ghignore",
+              "path": "shell/bin/ghignore",
+              "type": "file"
+            },
+            {
+              "name": "ghprotect",
+              "path": "shell/bin/ghprotect",
+              "type": "file"
+            },
+            {
+              "name": "git-remove-exec-no-shebang",
+              "path": "shell/bin/git-remove-exec-no-shebang",
+              "type": "file"
+            },
+            {
+              "name": "sysinfo",
+              "path": "shell/bin/sysinfo",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "init",
+          "path": "shell/init",
+          "type": "directory",
+          "children": [
+            {
+              "name": "bootstrap.sh",
+              "path": "shell/init/bootstrap.sh",
+              "type": "file"
+            },
+            {
+              "name": "init.sh",
+              "path": "shell/init/init.sh",
+              "type": "file"
+            },
+            {
+              "name": "load-core.sh",
+              "path": "shell/init/load-core.sh",
+              "type": "file"
+            },
+            {
+              "name": "load-extensions.sh",
+              "path": "shell/init/load-extensions.sh",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "lib",
+          "path": "shell/lib",
+          "type": "directory",
+          "children": [
+            {
+              "name": "core",
+              "path": "shell/lib/core",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "bash.sh",
+                  "path": "shell/lib/core/bash.sh",
+                  "type": "file"
+                },
+                {
+                  "name": "colors.sh",
+                  "path": "shell/lib/core/colors.sh",
+                  "type": "file"
+                },
+                {
+                  "name": "core.sh",
+                  "path": "shell/lib/core/core.sh",
+                  "type": "file"
+                },
+                {
+                  "name": "guards.sh",
+                  "path": "shell/lib/core/guards.sh",
+                  "type": "file"
+                },
+                {
+                  "name": "logging.sh",
+                  "path": "shell/lib/core/logging.sh",
+                  "type": "file"
+                },
+                {
+                  "name": "os.sh",
+                  "path": "shell/lib/core/os.sh",
+                  "type": "file"
+                },
+                {
+                  "name": "time.sh",
+                  "path": "shell/lib/core/time.sh",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "extensions",
+              "path": "shell/lib/extensions",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "fonts.sh",
+                  "path": "shell/lib/extensions/fonts.sh",
+                  "type": "file"
+                },
+                {
+                  "name": "github.sh",
+                  "path": "shell/lib/extensions/github.sh",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "modules.sh",
+              "path": "shell/lib/modules.sh",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "modules",
+          "path": "shell/modules",
+          "type": "directory",
+          "children": [
+            {
+              "name": "cache.sh",
+              "path": "shell/modules/cache.sh",
+              "type": "file"
+            },
+            {
+              "name": "environment.sh",
+              "path": "shell/modules/environment.sh",
+              "type": "file"
+            },
+            {
+              "name": "history.sh",
+              "path": "shell/modules/history.sh",
+              "type": "file"
+            },
+            {
+              "name": "privacy.sh",
+              "path": "shell/modules/privacy.sh",
+              "type": "file"
+            },
+            {
+              "name": "tooling.sh",
+              "path": "shell/modules/tooling.sh",
+              "type": "file"
+            },
+            {
+              "name": "xdg.sh",
+              "path": "shell/modules/xdg.sh",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "tests",
+          "path": "shell/tests",
+          "type": "directory",
+          "children": [
+            {
+              "name": "core",
+              "path": "shell/tests/core",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "bash.bats",
+                  "path": "shell/tests/core/bash.bats",
+                  "type": "file"
+                },
+                {
+                  "name": "time.bats",
+                  "path": "shell/tests/core/time.bats",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "extensions",
+              "path": "shell/tests/extensions",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "github.bats",
+                  "path": "shell/tests/extensions/github.bats",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "bootstrap.bats",
+              "path": "shell/tests/bootstrap.bats",
+              "type": "file"
+            },
+            {
+              "name": "cb.bats",
+              "path": "shell/tests/cb.bats",
+              "type": "file"
+            },
+            {
+              "name": "convert-to-ico.bats",
+              "path": "shell/tests/convert-to-ico.bats",
+              "type": "file"
+            },
+            {
+              "name": "environment.bats",
+              "path": "shell/tests/environment.bats",
+              "type": "file"
+            },
+            {
+              "name": "git-remove-exec-no-shebang.bats",
+              "path": "shell/tests/git-remove-exec-no-shebang.bats",
+              "type": "file"
+            },
+            {
+              "name": "test_helper.bash",
+              "path": "shell/tests/test_helper.bash",
+              "type": "file"
+            },
+            {
+              "name": "xdg.bats",
+              "path": "shell/tests/xdg.bats",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": ".gitignore",
+          "path": "shell/.gitignore",
+          "type": "file"
+        },
+        {
+          "name": ".shellrc",
+          "path": "shell/.shellrc",
+          "type": "file"
+        },
+        {
+          "name": "LICENSE",
+          "path": "shell/LICENSE",
+          "type": "file"
+        },
+        {
+          "name": "README.md",
+          "path": "shell/README.md",
+          "type": "file"
+        },
+        {
+          "name": "shell.code-workspace",
+          "path": "shell/shell.code-workspace",
+          "type": "file"
+        }
+      ]
+    },
+    {
       "name": "skills",
       "path": "skills",
       "type": "directory",

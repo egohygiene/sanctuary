@@ -2498,6 +2498,72 @@ sanctuary/
 │   └── .megalinter.yml
 ├── scripts/
 │   └── megalinter.sh
+├── shell/
+│   ├── .vscode/
+│   │   ├── dictionaries/
+│   │   │   ├── backend-terms.dictionary
+│   │   │   ├── devops-cloud-terms.dictionary
+│   │   │   ├── frontend-terms.dictionary
+│   │   │   ├── programming-terms.dictionary
+│   │   │   ├── project-words.dictionary
+│   │   │   └── software-terms.dictionary
+│   │   ├── extensions.json
+│   │   ├── launch.json
+│   │   ├── settings.json
+│   │   └── tasks.json
+│   ├── bin/
+│   │   ├── cb
+│   │   ├── convert-to-ico
+│   │   ├── generate-certs
+│   │   ├── generate-password
+│   │   ├── generate-tree
+│   │   ├── ghignore
+│   │   ├── ghprotect
+│   │   ├── git-remove-exec-no-shebang
+│   │   └── sysinfo
+│   ├── init/
+│   │   ├── bootstrap.sh
+│   │   ├── init.sh
+│   │   ├── load-core.sh
+│   │   └── load-extensions.sh
+│   ├── lib/
+│   │   ├── core/
+│   │   │   ├── bash.sh
+│   │   │   ├── colors.sh
+│   │   │   ├── core.sh
+│   │   │   ├── guards.sh
+│   │   │   ├── logging.sh
+│   │   │   ├── os.sh
+│   │   │   └── time.sh
+│   │   ├── extensions/
+│   │   │   ├── fonts.sh
+│   │   │   └── github.sh
+│   │   └── modules.sh
+│   ├── modules/
+│   │   ├── cache.sh
+│   │   ├── environment.sh
+│   │   ├── history.sh
+│   │   ├── privacy.sh
+│   │   ├── tooling.sh
+│   │   └── xdg.sh
+│   ├── tests/
+│   │   ├── core/
+│   │   │   ├── bash.bats
+│   │   │   └── time.bats
+│   │   ├── extensions/
+│   │   │   └── github.bats
+│   │   ├── bootstrap.bats
+│   │   ├── cb.bats
+│   │   ├── convert-to-ico.bats
+│   │   ├── environment.bats
+│   │   ├── git-remove-exec-no-shebang.bats
+│   │   ├── test_helper.bash
+│   │   └── xdg.bats
+│   ├── .gitignore
+│   ├── .shellrc
+│   ├── LICENSE
+│   ├── README.md
+│   └── shell.code-workspace
 ├── skills/
 │   └── threejs/
 │       ├── threejs-animation/
