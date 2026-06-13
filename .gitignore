@@ -5,6 +5,8 @@ node_modules
 dist
 build
 coverage
+site
+__pycache__
 *.log
 
 
@@ -17,8 +19,8 @@ coverage
 # (override any broader ignore rules that might exclude them)
 # ==============================================================================
 
-!reports/
-!reports/tree/
-!reports/tree/**
+!docs/
+!docs/generated/
+!docs/generated/**
 
 .allcontributorsrc.tmp
