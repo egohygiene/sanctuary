@@ -1,0 +1,168 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[[ "${DEBUG:-0}" == "1" ]] && set -o xtrace
+
+VERSION="2.0.0"
+USE_COLOR=1
+
+# ------------------------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------------------------
+
+usage() {
+  cat <<'EOF'
+Usage:
+  sysinfo [options]
+
+Displays system information summary.
+
+Options:
+  --no-color      Disable color output
+  -h, --help      Show help
+  -v, --version   Show version
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --no-color) USE_COLOR=0 ;;
+    -h|--help) usage; exit 0 ;;
+    -v|--version)
+      printf "sysinfo v%s\n" "${VERSION}"
+      exit 0
+      ;;
+    *)
+      printf "[error] Unknown option: %s\n" "$1" >&2
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+# ------------------------------------------------------------------------------
+# Color
+# ------------------------------------------------------------------------------
+
+supports_color() {
+  [[ "${USE_COLOR}" -eq 1 ]] && [[ -t 1 ]] && [[ "${NO_COLOR:-0}" != "1" ]]
+}
+
+color() {
+  supports_color || return 0
+  case "$1" in
+    reset)  printf "\033[0m" ;;
+    bold)   printf "\033[1m" ;;
+    cyan)   printf "\033[36m" ;;
+    yellow) printf "\033[33m" ;;
+    green)  printf "\033[32m" ;;
+    blue)   printf "\033[34m" ;;
+    magenta)printf "\033[35m" ;;
+  esac
+}
+
+section() {
+  local title="$1"
+  printf "\n%b%s%b\n" "$(color bold)$(color cyan)" "$title" "$(color reset)"
+  printf "%b%s%b\n" "$(color cyan)" "$(printf '%*s' "${#title}" '' | tr ' ' '-')" "$(color reset)"
+}
+
+# ------------------------------------------------------------------------------
+# Platform detection
+# ------------------------------------------------------------------------------
+
+OS="$(uname -s)"
+
+# ------------------------------------------------------------------------------
+# Sections
+# ------------------------------------------------------------------------------
+
+show_hostname() {
+  section "🖥️ Hostname"
+  hostname || true
+}
+
+show_time() {
+  section "🕰️ System Time"
+  date
+}
+
+show_memory() {
+  section "🧠 Memory"
+
+  if [[ "${OS}" == "Linux" ]] && command -v free >/dev/null; then
+    free -h
+  elif [[ "${OS}" == "Darwin" ]]; then
+    vm_stat
+  else
+    echo "Memory info unavailable"
+  fi
+}
+
+show_cpu() {
+  section "🧮 CPU"
+
+  if [[ "${OS}" == "Linux" ]] && command -v lscpu >/dev/null; then
+    lscpu | grep -E 'Model name|CPU\(s\)'
+  elif [[ "${OS}" == "Darwin" ]]; then
+    sysctl -n machdep.cpu.brand_string
+    sysctl -n hw.ncpu
+  else
+    echo "CPU info unavailable"
+  fi
+}
+
+show_disk() {
+  section "📦 Disk Usage"
+  df -h /
+}
+
+show_ip() {
+  section "🌍 IP Address"
+
+  if command -v hostname >/dev/null && hostname -I >/dev/null 2>&1; then
+    hostname -I
+  elif command -v ip >/dev/null; then
+    ip addr | grep "inet "
+  elif command -v ifconfig >/dev/null; then
+    ifconfig | grep "inet "
+  else
+    echo "IP info unavailable"
+  fi
+}
+
+show_ports() {
+  section "🔒 Listening Ports"
+
+  if command -v ss >/dev/null; then
+    ss -lntu
+  elif command -v netstat >/dev/null; then
+    netstat -an
+  else
+    echo "No port tools available"
+  fi
+}
+
+show_environment() {
+  section "🌐 Environment Variables"
+  printenv | sort
+}
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+main() {
+  show_hostname
+  show_time
+  show_memory
+  show_cpu
+  show_disk
+  show_ip
+  show_ports
+  show_environment
+}
+
+main

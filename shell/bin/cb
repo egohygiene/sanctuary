@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[[ "${DEBUG:-0}" == "1" ]] && set -o xtrace
+
+VERSION="2.0.0"
+
+# ------------------------------------------------------------------------------
+# Logging (standalone, stderr-safe)
+# ------------------------------------------------------------------------------
+
+log()   { printf "%s\n" "$*" >&2; }
+error() { printf "[error] %s\n" "$*" >&2; }
+debug() { [[ "${DEBUG:-0}" == "1" ]] && printf "[debug] %s\n" "$*" >&2; }
+
+die() {
+  local exit_code="$1"; shift
+  error "$*"
+  exit "${exit_code}"
+}
+
+# ------------------------------------------------------------------------------
+# Platform Detection (standalone)
+# ------------------------------------------------------------------------------
+
+is_macos()   { [[ "$(uname -s)" == "Darwin" ]]; }
+is_linux()   { [[ "$(uname -s)" == "Linux" ]]; }
+is_wsl()     { grep -qi "microsoft" /proc/version 2>/dev/null || false; }
+is_windows() { [[ "$(uname -s)" =~ MINGW|MSYS|CYGWIN ]]; }
+
+has_command() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# ------------------------------------------------------------------------------
+# Clipboard Backend Detection
+# ------------------------------------------------------------------------------
+
+select_backend() {
+  if is_macos && has_command pbcopy; then
+    echo "pbcopy"; return 0
+  fi
+
+  if is_linux; then
+    if has_command wl-copy; then
+      echo "wl-copy"; return 0
+    fi
+    if has_command xclip; then
+      echo "xclip"; return 0
+    fi
+    if has_command xsel; then
+      echo "xsel"; return 0
+    fi
+    if is_wsl && has_command clip.exe; then
+      echo "clip.exe"; return 0
+    fi
+  fi
+
+  if is_windows && has_command powershell.exe; then
+    echo "powershell.exe"; return 0
+  fi
+
+  return 1
+}
+
+copy_with_backend() {
+  case "$1" in
+    pbcopy)           pbcopy ;;
+    wl-copy)          wl-copy ;;
+    xclip)            xclip -selection clipboard ;;
+    xsel)             xsel --input --clipboard ;;
+    clip.exe)         clip.exe ;;
+    powershell.exe)
+      powershell.exe -NoProfile -Command \
+        'Set-Clipboard -Value ([Console]::In.ReadToEnd())'
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+# ------------------------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------------------------
+
+usage() {
+  cat <<'EOF'
+Usage:
+  cb [--file <path>|-] [TEXT...]
+  cb --help | --version
+EOF
+}
+
+FROM_FILE=""
+INLINE_TEXT=()
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --file)
+      [[ $# -ge 2 ]] || die 1 "--file requires a path"
+      FROM_FILE="$2"
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -v|--version)
+      printf "cb v%s\n" "${VERSION}"
+      exit 0
+      ;;
+    -*)
+      die 1 "Unknown option: $1"
+      ;;
+    *)
+      INLINE_TEXT+=("$1")
+      ;;
+  esac
+  shift
+done
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+backend="$(select_backend)" || die 127 "No clipboard backend found"
+
+debug "Using backend: ${backend}"
+
+if [[ -n "${FROM_FILE}" ]]; then
+  if [[ "${FROM_FILE}" == "-" ]]; then
+    copy_with_backend "${backend}"
+  else
+    [[ -f "${FROM_FILE}" ]] || die 1 "File not found: ${FROM_FILE}"
+    < "${FROM_FILE}" copy_with_backend "${backend}"
+  fi
+elif [[ ${#INLINE_TEXT[@]} -gt 0 ]]; then
+  printf "%s" "${INLINE_TEXT[*]}" | copy_with_backend "${backend}"
+else
+  copy_with_backend "${backend}"
+fi
+
+log "Copied to clipboard."

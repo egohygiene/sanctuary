@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[[ "${DEBUG:-0}" == "1" ]] && set -o xtrace
+
+VERSION="2.0.0"
+DEFAULT_OUTPUT="docs/PROJECT_STRUCTURE.md"
+
+# ------------------------------------------------------------------------------
+# Logging
+# ------------------------------------------------------------------------------
+
+info()  { printf "[info] %s\n" "$*" >&2; }
+warn()  { printf "[warn] %s\n" "$*" >&2; }
+error() { printf "[error] %s\n" "$*" >&2; }
+ok()    { printf "[ok] %s\n" "$*" >&2; }
+
+die() {
+  local code="$1"; shift
+  error "$*"
+  exit "${code}"
+}
+
+# ------------------------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------------------------
+
+OUTPUT_PATH="${DEFAULT_OUTPUT}"
+
+usage() {
+  cat <<EOF
+Usage:
+  generate-tree [output-path]
+
+Generates a Markdown file containing the git-tracked directory structure.
+
+Arguments:
+  output-path    Optional path (default: ${DEFAULT_OUTPUT})
+
+Options:
+  -h, --help     Show help
+  -v, --version  Show version
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -v|--version)
+      printf "generate-tree v%s\n" "${VERSION}"
+      exit 0
+      ;;
+    -*)
+      die 1 "Unknown option: $1"
+      ;;
+    *)
+      OUTPUT_PATH="$1"
+      ;;
+  esac
+  shift
+done
+
+# ------------------------------------------------------------------------------
+# Preconditions
+# ------------------------------------------------------------------------------
+
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 \
+  || die 1 "Not inside a Git repository."
+
+# ------------------------------------------------------------------------------
+# Tree Generation (portable)
+# ------------------------------------------------------------------------------
+
+build_tree() {
+  git ls-files \
+    | grep -v '^reports/' \
+    | awk -F/ '
+{
+  path=""
+  for (i=1; i<=NF; i++) {
+    path = (path == "" ? $i : path "/" $i)
+    if (!seen[path]++) {
+      indent = ""
+      for (j=1; j<i; j++) indent = indent "  "
+      print indent $i
+    }
+  }
+}
+'
+}
+
+generate() {
+  local output="$1"
+
+  mkdir -p "$(dirname "${output}")"
+
+  info "Generating project structure → ${output}"
+
+  {
+    echo "# Project Structure"
+    echo
+    echo '```text'
+    build_tree
+    echo '```'
+  } > "${output}"
+
+  git add "${output}" 2>/dev/null || true
+
+  ok "Tree written to: ${output}"
+}
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+generate "${OUTPUT_PATH}"
+
+info "Preview:"
+head -n 10 "${OUTPUT_PATH}"

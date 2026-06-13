@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[[ "${DEBUG:-0}" == "1" ]] && set -o xtrace
+
+VERSION="2.0.0"
+QUIET=0
+
+# ------------------------------------------------------------------------------
+# Logging (standalone)
+# ------------------------------------------------------------------------------
+
+log()   { printf "%s\n" "$*" >&2; }
+info()  { printf "[info] %s\n" "$*" >&2; }
+warn()  { printf "[warn] %s\n" "$*" >&2; }
+ok()    { printf "[ok] %s\n" "$*" >&2; }
+error() { printf "[error] %s\n" "$*" >&2; }
+
+die() {
+  local code="$1"; shift
+  error "$*"
+  exit "${code}"
+}
+
+# ------------------------------------------------------------------------------
+# Helpers
+# ------------------------------------------------------------------------------
+
+has_shebang() {
+  local file_path="$1"
+
+  [[ -f "${file_path}" ]] || return 1
+
+  # Read first 2 bytes safely
+  local prefix
+  prefix="$(head -c 2 "${file_path}" 2>/dev/null || printf "")"
+
+  [[ "${prefix}" == "#!" ]]
+}
+
+# ------------------------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------------------------
+
+usage() {
+  cat <<'EOF'
+Usage:
+  git-remove-exec-no-shebang [options]
+
+Removes executable bit (+x) from git-tracked files that do not start with a shebang (#!).
+
+Options:
+  --quiet         Suppress per-file output
+  -h, --help      Show help message
+  -v, --version   Show version and exit
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --quiet)
+      QUIET=1
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -v|--version)
+      printf "git-remove-exec-no-shebang v%s\n" "${VERSION}"
+      exit 0
+      ;;
+    -*)
+      die 1 "Unknown option: $1"
+      ;;
+  esac
+  shift
+done
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+main() {
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 \
+    || die 1 "Not inside a Git repository."
+
+  info "Scanning git-visible files..."
+
+  local count=0
+
+  while IFS= read -r -d '' file; do
+    [[ -f "${file}" ]] || continue
+
+    if [[ -x "${file}" ]] && ! has_shebang "${file}"; then
+      chmod -x "${file}"
+      ((count++))
+
+      if [[ "${QUIET}" -ne 1 ]]; then
+        warn "Removed exec bit: ${file}"
+      fi
+    fi
+  done < <(git ls-files --cached --others --exclude-standard -z)
+
+  if [[ "${count}" -eq 0 ]]; then
+    ok "No invalid exec bits found."
+  else
+    ok "Stripped exec bit from ${count} file(s)."
+  fi
+}
+
+main "$@"

@@ -1,0 +1,200 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[[ "${DEBUG:-0}" == "1" ]] && set -o xtrace
+
+VERSION="2.0.0"
+
+CERTS_DIR="./certs"
+KEY_FILE="${CERTS_DIR}/cert.key"
+CRT_FILE="${CERTS_DIR}/cert.crt"
+CONF_FILE="${CERTS_DIR}/cert.conf"
+DAYS_VALID=825
+
+USE_COLOR=1
+FORCE_REGEN=0
+
+# ------------------------------------------------------------------------------
+# Logging
+# ------------------------------------------------------------------------------
+
+supports_color() {
+  [[ "${USE_COLOR}" -eq 1 ]] && [[ -t 2 ]] && [[ "${NO_COLOR:-0}" != "1" ]]
+}
+
+color() {
+  supports_color || return 0
+  case "$1" in
+    reset)  printf "\033[0m" ;;
+    green)  printf "\033[32m" ;;
+    red)    printf "\033[31m" ;;
+    yellow) printf "\033[33m" ;;
+    cyan)   printf "\033[36m" ;;
+  esac
+}
+
+log() {
+  local level="$1"; shift
+  local prefix
+
+  case "${level}" in
+    info)    prefix="👉" ;;
+    success) prefix="✅" ;;
+    warn)    prefix="⚠️" ;;
+    error)   prefix="❌" ;;
+    *)       prefix="" ;;
+  esac
+
+  printf "%b%s %s%b\n" \
+    "$(color "${level}")" \
+    "${prefix}" \
+    "$*" \
+    "$(color reset)" >&2
+}
+
+die() {
+  log error "$*"
+  exit 1
+}
+
+# ------------------------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------------------------
+
+usage() {
+  cat <<EOF
+Usage:
+  generate-certs [options]
+
+Generates a self-signed SSL certificate for:
+  - localhost
+  - 127.0.0.1
+  - ::1
+
+Options:
+  --force         Regenerate certificate
+  --no-color      Disable color output
+  --no-trust      Skip system trust step
+  -h, --help      Show help
+  -v, --version   Show version
+EOF
+}
+
+TRUST_CERT=1
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --force) FORCE_REGEN=1 ;;
+    --no-color) USE_COLOR=0 ;;
+    --no-trust) TRUST_CERT=0 ;;
+    -h|--help) usage; exit 0 ;;
+    -v|--version)
+      printf "generate-certs v%s\n" "${VERSION}"
+      exit 0
+      ;;
+    -*)
+      die "Unknown option: $1"
+      ;;
+    *)
+      die "Unexpected argument: $1"
+      ;;
+  esac
+  shift
+done
+
+# ------------------------------------------------------------------------------
+# Preconditions
+# ------------------------------------------------------------------------------
+
+command -v openssl >/dev/null 2>&1 || die "'openssl' is required"
+
+# ------------------------------------------------------------------------------
+# Core
+# ------------------------------------------------------------------------------
+
+create_dirs() {
+  mkdir -p "${CERTS_DIR}"
+}
+
+generate_config() {
+  cat > "${CONF_FILE}" <<EOF
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = dn
+x509_extensions = v3_req
+
+[dn]
+C = US
+ST = Local
+L = Localhost
+O = Dev
+CN = localhost
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = localhost
+IP.1 = 127.0.0.1
+IP.2 = ::1
+EOF
+}
+
+generate_cert() {
+  log info "Generating self-signed certificate..."
+
+  openssl req \
+    -x509 \
+    -nodes \
+    -newkey rsa:2048 \
+    -keyout "${KEY_FILE}" \
+    -out "${CRT_FILE}" \
+    -days "${DAYS_VALID}" \
+    -config "${CONF_FILE}" \
+    -extensions v3_req
+
+  log success "Certificate created:"
+  printf "  key : %s\n" "${KEY_FILE}"
+  printf "  cert: %s\n" "${CRT_FILE}"
+}
+
+trust_macos() {
+  [[ "${TRUST_CERT}" -eq 1 ]] || return 0
+
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    log info "Adding certificate to macOS keychain..."
+
+    if sudo security add-trusted-cert \
+      -d -r trustRoot \
+      -k /Library/Keychains/System.keychain \
+      "${CRT_FILE}"
+    then
+      log success "Certificate trusted by macOS"
+    else
+      log warn "Failed to trust certificate (permission issue?)"
+    fi
+  fi
+}
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+main() {
+  create_dirs
+
+  if [[ -f "${KEY_FILE}" && -f "${CRT_FILE}" && "${FORCE_REGEN}" -ne 1 ]]; then
+    log success "Certificate already exists (use --force to regenerate)"
+    exit 0
+  fi
+
+  generate_config
+  generate_cert
+  trust_macos
+}
+
+main "$@"

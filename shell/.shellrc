@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+#
+# ============================================
+# 🧠 EgoHygiene Shell — Root Entrypoint
+# ============================================
+#
+# This file is the single entrypoint for the EgoHygiene shell system.
+#
+# Responsibilities:
+# - Resolve project root directory
+# - Prevent duplicate initialization
+# - Export global environment variables
+# - Delegate to core initialization system
+#
+# This file is designed to be:
+# - sourced from any shell (bash, zsh)
+# - safe to re-source (idempotent)
+# - portable across environments (local, devcontainer, nixOS)
+#
+
+# --------------------------------------------
+# 🛑 Prevent duplicate loading
+# --------------------------------------------
+if [[ -n "${EGOHYGIENE_SHELL_ALREADY_INITIALIZED}" ]]; then
+  return 0
+fi
+
+export EGOHYGIENE_SHELL_ALREADY_INITIALIZED="true"
+
+# --------------------------------------------
+# 📁 Resolve shell root directory
+# --------------------------------------------
+#
+# Supports:
+# - bash (BASH_SOURCE)
+# - zsh (fallback via %x)
+#
+
+__egohygiene_shell_detect_root() {
+  # bash path resolution
+  if [[ -n "${BASH_SOURCE[0]}" ]]; then
+    cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd
+    return
+  fi
+
+  # zsh fallback
+  if [[ -n "${ZSH_VERSION}" ]]; then
+    # shellcheck disable=SC2296
+    cd "$(dirname "${(%):-%x}")" >/dev/null 2>&1 && pwd
+    return
+  fi
+
+  # final fallback (less reliable)
+  pwd
+}
+
+EGOHYGIENE_SHELL_ROOT="$(__egohygiene_shell_detect_root)"
+export EGOHYGIENE_SHELL_ROOT
+
+unset -f __egohygiene_shell_detect_root
+
+# --------------------------------------------
+# 🔧 Load core initialization
+# --------------------------------------------
+
+# shellcheck disable=SC1091
+source "${EGOHYGIENE_SHELL_ROOT}/init/init.sh"
+
+# --------------------------------------------
+# 🧹 Cleanup
+# --------------------------------------------
+
+unset EGOHYGIENE_SHELL_ALREADY_INITIALIZED

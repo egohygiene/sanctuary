@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[[ "${DEBUG:-0}" == "1" ]] && set -o xtrace
+
+VERSION="2.0.0"
+
+# ------------------------------------------------------------------------------
+# Constants
+# ------------------------------------------------------------------------------
+
+GITHUB_API_URL="https://api.github.com/repos/github/gitignore/contents"
+
+# ------------------------------------------------------------------------------
+# Logging
+# ------------------------------------------------------------------------------
+
+info()  { printf "[info] %s\n" "$*" >&2; }
+error() { printf "[error] %s\n" "$*" >&2; }
+
+die() {
+  local code="$1"; shift
+  error "$*"
+  exit "${code}"
+}
+
+# ------------------------------------------------------------------------------
+# Dependency Checks
+# ------------------------------------------------------------------------------
+
+require_command() {
+  command -v "$1" >/dev/null 2>&1 || die 127 "Missing dependency: $1"
+}
+
+check_dependencies() {
+  require_command curl
+  require_command jq
+}
+
+# ------------------------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------------------------
+
+FILTER=""
+SHOW_HELP=0
+
+usage() {
+  cat <<'EOF'
+Usage:
+  ghgitignore [FILTER]
+  ghgitignore --help
+  ghgitignore --version
+
+List available GitHub .gitignore templates.
+
+Arguments:
+  FILTER        Optional case-insensitive filter
+
+Options:
+  -h, --help    Show help
+  -v, --version Show version
+
+Examples:
+  ghgitignore
+  ghgitignore node
+  ghgitignore mac
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      SHOW_HELP=1
+      ;;
+    -v|--version)
+      printf "ghgitignore v%s\n" "${VERSION}"
+      exit 0
+      ;;
+    -*)
+      die 1 "Unknown option: $1"
+      ;;
+    *)
+      [[ -z "${FILTER}" ]] || die 1 "Too many arguments"
+      FILTER="$1"
+      ;;
+  esac
+  shift
+done
+
+if [[ "${SHOW_HELP}" -eq 1 ]]; then
+  usage
+  exit 0
+fi
+
+# ------------------------------------------------------------------------------
+# Fetch Templates
+# ------------------------------------------------------------------------------
+
+fetch_templates() {
+  local response
+
+  response="$(curl --silent --show-error --location "${GITHUB_API_URL}")" \
+    || die 1 "Failed to fetch templates from GitHub"
+
+  printf "%s\n" "${response}" \
+    | jq --raw-output '
+        .[]
+        | select(.name | endswith(".gitignore"))
+        | .name
+        | sub("\\.gitignore$"; "")
+      ' \
+    | sort
+}
+
+# ------------------------------------------------------------------------------
+# Filter
+# ------------------------------------------------------------------------------
+
+apply_filter() {
+  local filter_value="$1"
+
+  fetch_templates \
+    | grep --ignore-case --fixed-strings "${filter_value}" || true
+}
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+main() {
+  check_dependencies
+
+  if [[ -n "${FILTER}" ]]; then
+    apply_filter "${FILTER}"
+  else
+    fetch_templates
+  fi
+}
+
+main "$@"

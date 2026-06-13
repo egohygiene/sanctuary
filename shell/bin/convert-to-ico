@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+# ------------------------------------------------------------------------------
+# convert-to-ico — convert an image to .ico using ImageMagick
+# ------------------------------------------------------------------------------
+
+VERSION="1.1.0"
+
+# ------------------------------------------------------------------------------
+# Styling / Logging (standalone replacements for log::*)
+# ------------------------------------------------------------------------------
+
+COLOR_RESET="\033[0m"
+COLOR_RED="\033[31m"
+COLOR_GREEN="\033[32m"
+COLOR_BLUE="\033[34m"
+
+log_info() {
+  printf "%b[INFO]%b %s\n" "${COLOR_BLUE}" "${COLOR_RESET}" "$*"
+}
+
+log_error() {
+  printf "%b[ERROR]%b %s\n" "${COLOR_RED}" "${COLOR_RESET}" "$*" >&2
+}
+
+log_success() {
+  printf "%b[SUCCESS]%b %s\n" "${COLOR_GREEN}" "${COLOR_RESET}" "$*"
+}
+
+# ------------------------------------------------------------------------------
+# Guards (standalone replacements for guard::*)
+# ------------------------------------------------------------------------------
+
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+file_exists() {
+  [[ -f "$1" ]]
+}
+
+# ------------------------------------------------------------------------------
+# Helpers
+# ------------------------------------------------------------------------------
+
+die() {
+  local exit_code="$1"
+  shift || true
+  log_error "$*"
+  exit "${exit_code}"
+}
+
+usage() {
+  cat <<EOF
+Usage:
+  convert-to-ico <image_file>
+
+Converts an image file to .ico format using ImageMagick.
+
+Options:
+  --help       Show this help message
+  --version    Show version and exit
+EOF
+}
+
+detect_imagemagick() {
+  if command_exists "magick"; then
+    printf "magick"
+    return 0
+  fi
+
+  if command_exists "convert"; then
+    printf "convert"
+    return 0
+  fi
+
+  return 1
+}
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+main() {
+  case "${1:-}" in
+    --help)
+      usage
+      exit 0
+      ;;
+    --version)
+      printf "convert-to-ico v%s\n" "${VERSION}"
+      exit 0
+      ;;
+  esac
+
+  if [[ "$#" -ne 1 ]]; then
+    die 1 "Expected exactly one argument: <image_file>"
+  fi
+
+  local input_image="$1"
+
+  if ! file_exists "${input_image}"; then
+    die 2 "File not found: ${input_image}"
+  fi
+
+  local imagemagick_command
+  if ! imagemagick_command="$(detect_imagemagick)"; then
+    die 127 "ImageMagick not found (requires 'magick' or 'convert')."
+  fi
+
+  local output_image="${input_image%.*}.ico"
+
+  log_info "Using ImageMagick command: ${imagemagick_command}"
+  log_info "Converting '${input_image}' → '${output_image}'"
+
+  if [[ "${imagemagick_command}" == "magick" ]]; then
+    magick "${input_image}" -resize 256x256 "${output_image}"
+  else
+    convert "${input_image}" -resize 256x256 "${output_image}"
+  fi
+
+  log_success "Successfully created: ${output_image}"
+}
+
+main "$@"

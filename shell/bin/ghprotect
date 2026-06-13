@@ -1,0 +1,167 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[[ "${DEBUG:-0}" == "1" ]] && set -o xtrace
+
+VERSION="2.0.1"
+
+# ------------------------------------------------------------------------------
+# Logging
+# ------------------------------------------------------------------------------
+
+log()   { printf "%s\n" "$*" >&2; }
+info()  { printf "[info] %s\n" "$*" >&2; }
+warn()  { printf "[warn] %s\n" "$*" >&2; }
+error() { printf "[error] %s\n" "$*" >&2; }
+ok()    { printf "[ok] %s\n" "$*" >&2; }
+
+die() {
+  local code="$1"; shift
+  error "$*"
+  exit "${code}"
+}
+
+# ------------------------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------------------------
+
+REPO=""
+DRY_RUN=0
+
+usage() {
+  cat <<'EOF'
+Usage:
+  ghprotect [--repo owner/repo] [--dry-run]
+
+Apply sane branch protection rules to a repository.
+
+Options:
+  --repo <repo>   Target repository (defaults to current repo)
+  --dry-run       Print ruleset JSON without applying
+  -h, --help      Show help
+  -v, --version   Show version
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --repo)
+      [[ $# -ge 2 ]] || die 1 "--repo requires a value"
+      REPO="$2"
+      shift
+      ;;
+    --dry-run)
+      DRY_RUN=1
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -v|--version)
+      printf "ghprotect v%s\n" "${VERSION}"
+      exit 0
+      ;;
+    -*)
+      die 1 "Unknown option: $1"
+      ;;
+  esac
+  shift
+done
+
+# ------------------------------------------------------------------------------
+# Preconditions
+# ------------------------------------------------------------------------------
+
+command -v gh >/dev/null 2>&1 || die 127 "gh CLI not found"
+
+gh auth status >/dev/null 2>&1 || die 1 "gh is not authenticated"
+
+# ------------------------------------------------------------------------------
+# Repo detection
+# ------------------------------------------------------------------------------
+
+if [[ -z "${REPO}" ]]; then
+  REPO="$(gh repo view --json nameWithOwner --jq ".nameWithOwner")"
+fi
+
+[[ -n "${REPO}" ]] || die 1 "Failed to resolve repository"
+
+OWNER="${REPO%%/*}"
+REPO_NAME="${REPO##*/}"
+
+info "Repository: ${REPO}"
+
+# ------------------------------------------------------------------------------
+# Build ruleset JSON
+# ------------------------------------------------------------------------------
+
+RULESET_NAME="protected-default-branches"
+
+RULESET_JSON="$(jq -n \
+  --arg name "${RULESET_NAME}" \
+  '{
+    name: $name,
+    target: "branch",
+    enforcement: "active",
+    conditions: {
+      ref_name: {
+        include: ["refs/heads/main", "refs/heads/master"],
+        exclude: []
+      }
+    },
+    rules: [
+      {type: "deletion"},
+      {type: "non_fast_forward"},
+      {type: "required_linear_history"}
+    ],
+    bypass_actors: [
+      {
+        actor_id: 5,
+        actor_type: "RepositoryRole",
+        bypass_mode: "always"
+      }
+    ]
+  }'
+)"
+
+# ------------------------------------------------------------------------------
+# Detect existing ruleset
+# ------------------------------------------------------------------------------
+
+info "Checking existing rulesets..."
+
+EXISTING_ID="$(
+  gh api "repos/${OWNER}/${REPO_NAME}/rulesets" \
+    --jq ".[] | select(.name==\"${RULESET_NAME}\") | .id" \
+    || true
+)"
+
+# ------------------------------------------------------------------------------
+# Apply
+# ------------------------------------------------------------------------------
+
+if [[ "${DRY_RUN}" -eq 1 ]]; then
+  warn "Dry run mode — no changes applied"
+  printf "%s\n" "${RULESET_JSON}"
+  exit 0
+fi
+
+if [[ -z "${EXISTING_ID}" ]]; then
+  info "Creating ruleset..."
+
+  gh api \
+    --method POST \
+    "repos/${OWNER}/${REPO_NAME}/rulesets" \
+    --input - <<< "${RULESET_JSON}"
+else
+  info "Updating ruleset..."
+
+  gh api \
+    --method PUT \
+    "repos/${OWNER}/${REPO_NAME}/rulesets/${EXISTING_ID}" \
+    --input - <<< "${RULESET_JSON}"
+fi
+
+ok "Branch protection configured successfully."
