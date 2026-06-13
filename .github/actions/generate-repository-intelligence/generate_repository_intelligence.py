@@ -4,7 +4,7 @@ import argparse
 import html
 import json
 from pathlib import Path
-from typing import Iterable
+from typing import Any, Iterable
 import xml.etree.ElementTree as ET
 
 DEFAULT_EXCLUDED_PATHS = [
@@ -19,7 +19,7 @@ DEFAULT_EXCLUDED_PATHS = [
 ]
 
 
-Node = dict[str, object]
+Node = dict[str, Any]
 
 
 def parse_args() -> argparse.Namespace:

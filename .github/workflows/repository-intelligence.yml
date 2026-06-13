@@ -9,6 +9,8 @@ on:
     branches:
       - "main"
       - "master"
+    # The workflow commits only docs/generated, so ignoring that path prevents
+    # self-triggered update loops while still refreshing artifacts on source changes.
     paths-ignore:
       - "docs/generated/**"
 
