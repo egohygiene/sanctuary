@@ -11508,6 +11508,85 @@
       "type": "directory",
       "children": [
         {
+          "name": "awesome",
+          "path": "garden/awesome",
+          "type": "directory",
+          "children": [
+            {
+              "name": "templates",
+              "path": "garden/awesome/templates",
+              "type": "directory",
+              "children": [
+                {
+                  "name": ".gitkeep",
+                  "path": "garden/awesome/templates/.gitkeep",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "concepts",
+          "path": "garden/concepts",
+          "type": "directory",
+          "children": [
+            {
+              "name": ".gitkeep",
+              "path": "garden/concepts/.gitkeep",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "experiments",
+          "path": "garden/experiments",
+          "type": "directory",
+          "children": [
+            {
+              "name": ".gitkeep",
+              "path": "garden/experiments/.gitkeep",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "notes",
+          "path": "garden/notes",
+          "type": "directory",
+          "children": [
+            {
+              "name": ".gitkeep",
+              "path": "garden/notes/.gitkeep",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "reflections",
+          "path": "garden/reflections",
+          "type": "directory",
+          "children": [
+            {
+              "name": ".gitkeep",
+              "path": "garden/reflections/.gitkeep",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "research",
+          "path": "garden/research",
+          "type": "directory",
+          "children": [
+            {
+              "name": ".gitkeep",
+              "path": "garden/research/.gitkeep",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": ".gitkeep",
           "path": "garden/.gitkeep",
           "type": "file"
@@ -11911,6 +11990,11 @@
                 {
                   "name": ".markdownlint.json",
                   "path": "lint/config/markdown/.markdownlint.json",
+                  "type": "file"
+                },
+                {
+                  "name": ".markdownlint.yml",
+                  "path": "lint/config/markdown/.markdownlint.yml",
                   "type": "file"
                 },
                 {
@@ -13187,6 +13271,30 @@
       "path": "templates",
       "type": "directory",
       "children": [
+        {
+          "name": "changesets",
+          "path": "templates/changesets",
+          "type": "directory",
+          "children": [
+            {
+              "name": ".changeset",
+              "path": "templates/changesets/.changeset",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "config.json",
+                  "path": "templates/changesets/.changeset/config.json",
+                  "type": "file"
+                },
+                {
+                  "name": "README.md",
+                  "path": "templates/changesets/.changeset/README.md",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
         {
           "name": "poetry",
           "path": "templates/poetry",

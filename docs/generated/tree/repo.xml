@@ -2323,6 +2323,26 @@
     <file name="index.md" path="docs/index.md" />
   </directory>
   <directory name="garden" path="garden">
+    <directory name="awesome" path="garden/awesome">
+      <directory name="templates" path="garden/awesome/templates">
+        <file name=".gitkeep" path="garden/awesome/templates/.gitkeep" />
+      </directory>
+    </directory>
+    <directory name="concepts" path="garden/concepts">
+      <file name=".gitkeep" path="garden/concepts/.gitkeep" />
+    </directory>
+    <directory name="experiments" path="garden/experiments">
+      <file name=".gitkeep" path="garden/experiments/.gitkeep" />
+    </directory>
+    <directory name="notes" path="garden/notes">
+      <file name=".gitkeep" path="garden/notes/.gitkeep" />
+    </directory>
+    <directory name="reflections" path="garden/reflections">
+      <file name=".gitkeep" path="garden/reflections/.gitkeep" />
+    </directory>
+    <directory name="research" path="garden/research">
+      <file name=".gitkeep" path="garden/research/.gitkeep" />
+    </directory>
     <file name=".gitkeep" path="garden/.gitkeep" />
   </directory>
   <directory name="lint" path="lint">
@@ -2421,6 +2441,7 @@
       <directory name="markdown" path="lint/config/markdown">
         <file name=".markdown-link-check.json" path="lint/config/markdown/.markdown-link-check.json" />
         <file name=".markdownlint.json" path="lint/config/markdown/.markdownlint.json" />
+        <file name=".markdownlint.yml" path="lint/config/markdown/.markdownlint.yml" />
         <file name=".remarkrc.json" path="lint/config/markdown/.remarkrc.json" />
       </directory>
       <directory name="php" path="lint/config/php">
@@ -2710,6 +2731,12 @@
     </directory>
   </directory>
   <directory name="templates" path="templates">
+    <directory name="changesets" path="templates/changesets">
+      <directory name=".changeset" path="templates/changesets/.changeset">
+        <file name="config.json" path="templates/changesets/.changeset/config.json" />
+        <file name="README.md" path="templates/changesets/.changeset/README.md" />
+      </directory>
+    </directory>
     <directory name="poetry" path="templates/poetry">
       <file name="poetry.toml" path="templates/poetry/poetry.toml" />
     </directory>

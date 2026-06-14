@@ -2288,6 +2288,19 @@ sanctuary/
 │   │   └── extra.css
 │   └── index.md
 ├── garden/
+│   ├── awesome/
+│   │   └── templates/
+│   │       └── .gitkeep
+│   ├── concepts/
+│   │   └── .gitkeep
+│   ├── experiments/
+│   │   └── .gitkeep
+│   ├── notes/
+│   │   └── .gitkeep
+│   ├── reflections/
+│   │   └── .gitkeep
+│   ├── research/
+│   │   └── .gitkeep
 │   └── .gitkeep
 ├── lint/
 │   ├── config/
@@ -2358,6 +2371,7 @@ sanctuary/
 │   │   ├── markdown/
 │   │   │   ├── .markdown-link-check.json
 │   │   │   ├── .markdownlint.json
+│   │   │   ├── .markdownlint.yml
 │   │   │   └── .remarkrc.json
 │   │   ├── php/
 │   │   │   ├── .phplint.yml
@@ -2590,6 +2604,10 @@ sanctuary/
 │       └── threejs-textures/
 │           └── SKILL.md
 ├── templates/
+│   ├── changesets/
+│   │   └── .changeset/
+│   │       ├── config.json
+│   │       └── README.md
 │   └── poetry/
 │       └── poetry.toml
 ├── .actrc
