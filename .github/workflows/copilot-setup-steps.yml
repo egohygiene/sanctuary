@@ -1,0 +1,86 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: "🤖 Copilot Setup Steps"
+
+on:
+  workflow_dispatch:
+
+  push:
+    paths:
+      - ".github/workflows/copilot-setup-steps.yml"
+
+  pull_request:
+    paths:
+      - ".github/workflows/copilot-setup-steps.yml"
+
+permissions: {}
+
+jobs:
+  # Must be named exactly "copilot-setup-steps"
+  copilot-setup-steps:
+    name: "🤖 Prepare Copilot Environment"
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    timeout-minutes: 15
+
+    steps:
+      # ------------------------------------------------------------------
+      # Repository
+      # ------------------------------------------------------------------
+
+      - name: "📦 Checkout repository"
+        uses: actions/checkout@v6
+        with:
+          lfs: true
+
+      # ------------------------------------------------------------------
+      # GitHub CLI
+      # ------------------------------------------------------------------
+
+      - name: "🐙 Verify GitHub CLI authentication"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh auth status
+
+      # ------------------------------------------------------------------
+      # Git Metadata
+      # ------------------------------------------------------------------
+
+      - name: "🏷️ Fetch tags and history"
+        run: |
+          git fetch --unshallow || true
+          git fetch --tags
+
+      # ------------------------------------------------------------------
+      # Diagnostics
+      # ------------------------------------------------------------------
+
+      - name: "🔍 Environment diagnostics"
+        run: |
+          printf "Repository: %s\n" "${GITHUB_REPOSITORY}"
+          printf "Ref: %s\n" "${GITHUB_REF}"
+          printf "Actor: %s\n" "${GITHUB_ACTOR}"
+
+          printf "\nGit Version\n"
+          git --version
+
+          printf "\nGitHub CLI Version\n"
+          gh --version
+
+          printf "\nOperating System\n"
+          uname --all
+
+      # ------------------------------------------------------------------
+      # Future Extension Point
+      # ------------------------------------------------------------------
+
+      - name: "📚 Repository-specific setup"
+        run: |
+          printf "%s\n" \
+            "Add repository-specific dependency installation here."
