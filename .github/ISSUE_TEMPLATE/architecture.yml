@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://www.schemastore.org/github-issue-forms.json
+# yaml-language-server: $schema=https://json.schemastore.org/github-issue-forms.json
 name: "🧱 Architecture"
 description: "Propose architectural improvements, design decisions, or system-level changes."
 title: "[Arch]: "
