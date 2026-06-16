@@ -1,21 +1,61 @@
 /* TEAM */
+
 Name: Alan Szmyt
-Role: Software Engineer, Architect, and Project Manager
-Location: Boston, USA
-Site: https://github.com/szmyty
+Role: Founder, Software Engineer, Architect
+GitHub: https://github.com/szmyty
+Location: Massachusetts, USA
 
 /* CONTACT */
-Email: szmyty@gmail.com
-GitHub: https://github.com/szmyty
-LinkedIn: https://www.linkedin.com/in/alanszmyt
 
-/* SITE */
-Last updated: 2026-05-04
-Standards: HTML5, CSS3
-Tools: Visual Studio Code, Git, pnpm, Docker
+GitHub: https://github.com/egohygiene
+Issues: https://github.com/egohygiene/sanctuary/issues
+Discussions: https://github.com/egohygiene/sanctuary/discussions
+
+/* PROJECT */
+
+Name: Sanctuary
+
+Description:
+Canonical developer platform containing reusable standards,
+automation, templates, specifications, and tooling.
+
+Focus:
+- Developer Experience (DX)
+- Automation
+- Reproducibility
+- AI-Assisted Development
+- Open Source Infrastructure
+
+/* TECHNOLOGY */
+
+Languages:
+- Bash
+- JavaScript
+- TypeScript
+- YAML
+
+Tooling:
+- GitHub Actions
+- Task
+- Docker
+- pnpm
+
+Standards:
+- EditorConfig
+- ESLint
+- Prettier
+- Conventional Commits
 
 /* THANKS */
-Special thanks: [Leave blank or add names]
 
-/* CREDITS */
-Humans.txt inspired by: https://humanstxt.org
+Thanks to all contributors, maintainers, and open source projects
+that make this work possible.
+
+See CONTRIBUTORS.md for the complete contributor list.
+
+/* METADATA */
+
+Last Updated: 2026-06-11
+
+Humans TXT:
+https://humanstxt.org

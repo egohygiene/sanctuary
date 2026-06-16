@@ -1,6 +1,51 @@
 {
-  "dependencies": {
-    "@cspell/cspell-json-reporter": "^9.7.0",
-    "@cspell/dict-pokemon": "^1.0.3"
-  }
+    "name": "sanctuary",
+    "private": true,
+    "version": "0.0.1",
+    "description": "A collection of reusable tooling, templates, automation, workstation configuration, documentation, and knowledge assets.",
+    "keywords": [
+      "developer-experience",
+      "platform-engineering",
+      "automation",
+      "templates",
+      "documentation",
+      "knowledge-management",
+      "workstation",
+      "tooling",
+      "devops",
+      "github"
+    ],
+    "homepage": "https://egohygiene.io",
+    "bugs": {
+      "url": "https://github.com/egohygiene/sanctuary/issues",
+      "email": "szmyty@gmail.com"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/egohygiene/sanctuary.git"
+    },
+    "license": "Apache-2.0",
+    "author": {
+      "name": "Alan Szmyt",
+      "email": "szmyty@gmail.com",
+      "url": "https://egohygiene.io"
+    },
+    "contributors": [
+      {
+        "name": "Alan Szmyt",
+        "email": "szmyty@gmail.com",
+        "url": "https://egohygiene.io"
+      }
+    ],
+    "maintainers": [
+      {
+        "name": "Alan Szmyt",
+        "email": "szmyty@gmail.com",
+        "url": "https://egohygiene.io"
+      }
+    ],
+    "funding": {
+      "type": "github",
+      "url": "https://github.com/sponsors/szmyty"
+    }
 }
