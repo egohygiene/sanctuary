@@ -1341,6 +1341,18 @@ ssh = ["paramiko (>=2.4.3)"]
 websockets = ["websocket-client (>=1.3.0)"]
 
 [[package]]
+name = "docutils"
+version = "0.23"
+description = "Docutils -- Python Documentation Utilities"
+optional = false
+python-versions = ">=3.9"
+groups = ["docs"]
+files = [
+    {file = "docutils-0.23-py3-none-any.whl", hash = "sha256:25d013af9bf23bc1c7b2b093dff4208166c53a94786c9e447808335ef1185fea"},
+    {file = "docutils-0.23.tar.gz", hash = "sha256:746f5060322511280a1e50eb76846ed6bf2342984b2ac04dc42caa1a8d78799e"},
+]
+
+[[package]]
 name = "emoji"
 version = "2.15.0"
 description = "Emoji for Python"
@@ -2773,7 +2785,7 @@ version = "4.2.0"
 description = "Python port of markdown-it. Markdown parsing, done right!"
 optional = false
 python-versions = ">=3.10"
-groups = ["dev", "lint", "security"]
+groups = ["dev", "lint", "security", "test"]
 files = [
     {file = "markdown_it_py-4.2.0-py3-none-any.whl", hash = "sha256:9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a"},
     {file = "markdown_it_py-4.2.0.tar.gz", hash = "sha256:04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49"},
@@ -2979,7 +2991,7 @@ version = "0.1.2"
 description = "Markdown URL utilities"
 optional = false
 python-versions = ">=3.7"
-groups = ["dev", "lint", "security"]
+groups = ["dev", "lint", "security", "test"]
 files = [
     {file = "mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"},
     {file = "mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"},
@@ -4100,6 +4112,24 @@ files = [
 setuptools = "*"
 
 [[package]]
+name = "pdoc"
+version = "16.0.0"
+description = "API Documentation for Python Projects"
+optional = false
+python-versions = ">=3.10"
+groups = ["docs"]
+files = [
+    {file = "pdoc-16.0.0-py3-none-any.whl", hash = "sha256:070b51de2743b9b1a4e0ab193a06c9e6c12cf4151cf9137656eebb16e8556628"},
+    {file = "pdoc-16.0.0.tar.gz", hash = "sha256:fdadc40cc717ec53919e3cd720390d4e3bcd40405cb51c4918c119447f913514"},
+]
+
+[package.dependencies]
+Jinja2 = ">=2.11.0"
+markdown2 = ">=2.5.4"
+MarkupSafe = ">=1.1.1"
+pygments = ">=2.12.0"
+
+[[package]]
 name = "pexpect"
 version = "4.9.0"
 description = "Pexpect allows easy control of interactive console applications."
@@ -4331,6 +4361,18 @@ dev = ["pre-commit", "tox"]
 testing = ["coverage", "pytest", "pytest-benchmark"]
 
 [[package]]
+name = "pprintpp"
+version = "0.4.0"
+description = "A drop-in replacement for pprint that's actually pretty"
+optional = false
+python-versions = "*"
+groups = ["test"]
+files = [
+    {file = "pprintpp-0.4.0-py2.py3-none-any.whl", hash = "sha256:b6b4dcdd0c0c0d75e4d7b2f21a9e933e5b2ce62b26e1a54537f9651ae5a5c01d"},
+    {file = "pprintpp-0.4.0.tar.gz", hash = "sha256:ea826108e2c7f49dc6d66c752973c3fc9749142a798d6b254e1e301cfdbc6403"},
+]
+
+[[package]]
 name = "pre-commit"
 version = "4.6.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
@@ -4504,6 +4546,18 @@ files = [
 
 [package.extras]
 tests = ["pytest"]
+
+[[package]]
+name = "py"
+version = "1.11.0"
+description = "library with cross-python path, ini-parsing, io, code, log facilities"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+groups = ["test"]
+files = [
+    {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
+    {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
+]
 
 [[package]]
 name = "py-serializable"
@@ -5041,6 +5095,22 @@ pygments = ">=2.7.2"
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytest-clarity"
+version = "1.0.1"
+description = "A plugin providing an alternative, colourful diff output for failing assertions."
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+groups = ["test"]
+files = [
+    {file = "pytest-clarity-1.0.1.tar.gz", hash = "sha256:505fe345fad4fe11c6a4187fe683f2c7c52c077caa1e135f3e483fe112db7772"},
+]
+
+[package.dependencies]
+pprintpp = ">=0.4.0"
+pytest = ">=3.5.0"
+rich = ">=8.0.0"
+
+[[package]]
 name = "pytest-cov"
 version = "7.1.0"
 description = "Pytest plugin for measuring coverage."
@@ -5061,6 +5131,68 @@ pytest = ">=7"
 testing = ["process-tests", "pytest-xdist", "virtualenv"]
 
 [[package]]
+name = "pytest-deadfixtures"
+version = "3.1.0"
+description = "A simple plugin to list unused fixtures in pytest"
+optional = false
+python-versions = "*"
+groups = ["test"]
+files = [
+    {file = "pytest_deadfixtures-3.1.0-py2.py3-none-any.whl", hash = "sha256:898ba131c7472bd05551b73e2b99a51898fc3b8255c0589cf8b3c3c804e8f502"},
+    {file = "pytest_deadfixtures-3.1.0.tar.gz", hash = "sha256:a8010e771183176fa9d918c8c49293ca5568597c8e1453ed2bbd41bcee67bde5"},
+]
+
+[package.dependencies]
+pytest = ">=7.0.0"
+
+[[package]]
+name = "pytest-dotenv"
+version = "0.5.2"
+description = "A py.test plugin that parses environment files before running tests"
+optional = false
+python-versions = "*"
+groups = ["test"]
+files = [
+    {file = "pytest-dotenv-0.5.2.tar.gz", hash = "sha256:2dc6c3ac6d8764c71c6d2804e902d0ff810fa19692e95fe138aefc9b1aa73732"},
+    {file = "pytest_dotenv-0.5.2-py3-none-any.whl", hash = "sha256:40a2cece120a213898afaa5407673f6bd924b1fa7eafce6bda0e8abffe2f710f"},
+]
+
+[package.dependencies]
+pytest = ">=5.0.0"
+python-dotenv = ">=0.9.1"
+
+[[package]]
+name = "pytest-forked"
+version = "1.6.0"
+description = "run tests in isolated forked subprocesses"
+optional = false
+python-versions = ">=3.7"
+groups = ["test"]
+files = [
+    {file = "pytest-forked-1.6.0.tar.gz", hash = "sha256:4dafd46a9a600f65d822b8f605133ecf5b3e1941ebb3588e943b4e3eb71a5a3f"},
+    {file = "pytest_forked-1.6.0-py3-none-any.whl", hash = "sha256:810958f66a91afb1a1e2ae83089d8dc1cd2437ac96b12963042fbb9fb4d16af0"},
+]
+
+[package.dependencies]
+py = "*"
+pytest = ">=3.10"
+
+[[package]]
+name = "pytest-instafail"
+version = "0.5.0"
+description = "pytest plugin to show failures instantly"
+optional = false
+python-versions = ">=3.7"
+groups = ["test"]
+files = [
+    {file = "pytest-instafail-0.5.0.tar.gz", hash = "sha256:33a606f7e0c8e646dc3bfee0d5e3a4b7b78ef7c36168cfa1f3d93af7ca706c9e"},
+    {file = "pytest_instafail-0.5.0-py3-none-any.whl", hash = "sha256:6855414487e9e4bb76a118ce952c3c27d3866af15487506c4ded92eb72387819"},
+]
+
+[package.dependencies]
+pytest = ">=5"
+
+[[package]]
 name = "pytest-mock"
 version = "3.15.1"
 description = "Thin-wrapper around the mock package for easier use with pytest"
@@ -5077,6 +5209,41 @@ pytest = ">=6.2.5"
 
 [package.extras]
 dev = ["pre-commit", "pytest-asyncio", "tox"]
+
+[[package]]
+name = "pytest-rerunfailures"
+version = "16.3"
+description = "pytest plugin to re-run tests to eliminate flaky failures"
+optional = false
+python-versions = ">=3.10"
+groups = ["test"]
+files = [
+    {file = "pytest_rerunfailures-16.3-py3-none-any.whl", hash = "sha256:6bdfb8ffb46c46072e6c16bdedee38b6c13eac620d9415ed5b63152cbf283170"},
+    {file = "pytest_rerunfailures-16.3.tar.gz", hash = "sha256:37c9b1231c8083e9f4e724f50f7a21241822f9516c15c700ebbf218d6452355c"},
+]
+
+[package.dependencies]
+packaging = ">=17.1"
+pytest = ">=8.1,<8.2.2 || >8.2.2"
+
+[[package]]
+name = "pytest-sugar"
+version = "1.1.1"
+description = "pytest-sugar is a plugin for pytest that changes the default look and feel of pytest (e.g. progressbar, show tests that fail instantly)."
+optional = false
+python-versions = "*"
+groups = ["test"]
+files = [
+    {file = "pytest-sugar-1.1.1.tar.gz", hash = "sha256:73b8b65163ebf10f9f671efab9eed3d56f20d2ca68bda83fa64740a92c08f65d"},
+    {file = "pytest_sugar-1.1.1-py3-none-any.whl", hash = "sha256:2f8319b907548d5b9d03a171515c1d43d2e38e32bd8182a1781eb20b43344cc8"},
+]
+
+[package.dependencies]
+pytest = ">=6.2.0"
+termcolor = ">=2.1.0"
+
+[package.extras]
+dev = ["black", "flake8", "pre-commit"]
 
 [[package]]
 name = "pytest-xdist"
@@ -5865,7 +6032,7 @@ version = "15.0.0"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 optional = false
 python-versions = ">=3.9.0"
-groups = ["dev", "security"]
+groups = ["dev", "security", "test"]
 files = [
     {file = "rich-15.0.0-py3-none-any.whl", hash = "sha256:33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb"},
     {file = "rich-15.0.0.tar.gz", hash = "sha256:edd07a4824c6b40189fb7ac9bc4c52536e9780fbbfbddf6f1e2502c31b068c36"},
@@ -6399,7 +6566,7 @@ version = "3.3.0"
 description = "ANSI color formatting for output in terminal"
 optional = false
 python-versions = ">=3.10"
-groups = ["dev"]
+groups = ["dev", "test"]
 files = [
     {file = "termcolor-3.3.0-py3-none-any.whl", hash = "sha256:cf642efadaf0a8ebbbf4bc7a31cec2f9b5f21a9f726f4ccbb08192c9c26f43a5"},
     {file = "termcolor-3.3.0.tar.gz", hash = "sha256:348871ca648ec6a9a983a13ab626c0acce02f515b9e1983332b17af7979521c5"},
@@ -6666,6 +6833,21 @@ files = [
 [package.extras]
 docs = ["myst-parser", "pydata-sphinx-theme", "sphinx"]
 test = ["argcomplete (>=3.0.3)", "mypy (>=1.17.0,<1.19)", "pre-commit", "pytest (>=7.0,<8.2)", "pytest-mock", "pytest-mypy-testing"]
+
+[[package]]
+name = "typeguard"
+version = "4.5.2"
+description = "Run-time type checker for Python"
+optional = false
+python-versions = ">=3.9"
+groups = ["test"]
+files = [
+    {file = "typeguard-4.5.2-py3-none-any.whl", hash = "sha256:fcf9de18bd945cdb4c7b996e12b4c51ce83f92f191314a6d7cf1739586ec98cf"},
+    {file = "typeguard-4.5.2.tar.gz", hash = "sha256:5a16dcac23502039299c97c8941651bc33d7ea8cc4b2f7d6bbb1b528f6eea423"},
+]
+
+[package.dependencies]
+typing_extensions = ">=4.14.0"
 
 [[package]]
 name = "typer"
@@ -7041,4 +7223,4 @@ dev = ["pytest", "setuptools"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "13d9db424cb7978a4c01518aff593881a528cc1cd3a64e705720d1debe157252"
+content-hash = "b12e259c4254ce396a899524116c18a37f2ba00d1361d40ebbe629a31fbf35b0"
