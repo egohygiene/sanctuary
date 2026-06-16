@@ -4,6 +4,389 @@
   "type": "directory",
   "children": [
     {
+      "name": ".agents",
+      "path": ".agents",
+      "type": "directory",
+      "children": [
+        {
+          "name": "skills",
+          "path": ".agents/skills",
+          "type": "directory",
+          "children": [
+            {
+              "name": "acquire-codebase-knowledge",
+              "path": ".agents/skills/acquire-codebase-knowledge",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "assets",
+                  "path": ".agents/skills/acquire-codebase-knowledge/assets",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "templates",
+                      "path": ".agents/skills/acquire-codebase-knowledge/assets/templates",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "ARCHITECTURE.md",
+                          "path": ".agents/skills/acquire-codebase-knowledge/assets/templates/ARCHITECTURE.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "CONCERNS.md",
+                          "path": ".agents/skills/acquire-codebase-knowledge/assets/templates/CONCERNS.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "CONVENTIONS.md",
+                          "path": ".agents/skills/acquire-codebase-knowledge/assets/templates/CONVENTIONS.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "INTEGRATIONS.md",
+                          "path": ".agents/skills/acquire-codebase-knowledge/assets/templates/INTEGRATIONS.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "STACK.md",
+                          "path": ".agents/skills/acquire-codebase-knowledge/assets/templates/STACK.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "STRUCTURE.md",
+                          "path": ".agents/skills/acquire-codebase-knowledge/assets/templates/STRUCTURE.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "TESTING.md",
+                          "path": ".agents/skills/acquire-codebase-knowledge/assets/templates/TESTING.md",
+                          "type": "file"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "references",
+                  "path": ".agents/skills/acquire-codebase-knowledge/references",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "inquiry-checkpoints.md",
+                      "path": ".agents/skills/acquire-codebase-knowledge/references/inquiry-checkpoints.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "stack-detection.md",
+                      "path": ".agents/skills/acquire-codebase-knowledge/references/stack-detection.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "scripts",
+                  "path": ".agents/skills/acquire-codebase-knowledge/scripts",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "scan.py",
+                      "path": ".agents/skills/acquire-codebase-knowledge/scripts/scan.py",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "SKILL.md",
+                  "path": ".agents/skills/acquire-codebase-knowledge/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "add-educational-comments",
+              "path": ".agents/skills/add-educational-comments",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".agents/skills/add-educational-comments/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-governance",
+              "path": ".agents/skills/agent-governance",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".agents/skills/agent-governance/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-owasp-compliance",
+              "path": ".agents/skills/agent-owasp-compliance",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".agents/skills/agent-owasp-compliance/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-supply-chain",
+              "path": ".agents/skills/agent-supply-chain",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".agents/skills/agent-supply-chain/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "find-skills",
+              "path": ".agents/skills/find-skills",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".agents/skills/find-skills/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".claude",
+      "path": ".claude",
+      "type": "directory",
+      "children": [
+        {
+          "name": "skills",
+          "path": ".claude/skills",
+          "type": "directory",
+          "children": [
+            {
+              "name": "add-educational-comments",
+              "path": ".claude/skills/add-educational-comments",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".claude/skills/add-educational-comments/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-governance",
+              "path": ".claude/skills/agent-governance",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".claude/skills/agent-governance/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-owasp-compliance",
+              "path": ".claude/skills/agent-owasp-compliance",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".claude/skills/agent-owasp-compliance/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-supply-chain",
+              "path": ".claude/skills/agent-supply-chain",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".claude/skills/agent-supply-chain/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".continue",
+      "path": ".continue",
+      "type": "directory",
+      "children": [
+        {
+          "name": "skills",
+          "path": ".continue/skills",
+          "type": "directory",
+          "children": [
+            {
+              "name": "acquire-codebase-knowledge",
+              "path": ".continue/skills/acquire-codebase-knowledge",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "assets",
+                  "path": ".continue/skills/acquire-codebase-knowledge/assets",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "templates",
+                      "path": ".continue/skills/acquire-codebase-knowledge/assets/templates",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "ARCHITECTURE.md",
+                          "path": ".continue/skills/acquire-codebase-knowledge/assets/templates/ARCHITECTURE.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "CONCERNS.md",
+                          "path": ".continue/skills/acquire-codebase-knowledge/assets/templates/CONCERNS.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "CONVENTIONS.md",
+                          "path": ".continue/skills/acquire-codebase-knowledge/assets/templates/CONVENTIONS.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "INTEGRATIONS.md",
+                          "path": ".continue/skills/acquire-codebase-knowledge/assets/templates/INTEGRATIONS.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "STACK.md",
+                          "path": ".continue/skills/acquire-codebase-knowledge/assets/templates/STACK.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "STRUCTURE.md",
+                          "path": ".continue/skills/acquire-codebase-knowledge/assets/templates/STRUCTURE.md",
+                          "type": "file"
+                        },
+                        {
+                          "name": "TESTING.md",
+                          "path": ".continue/skills/acquire-codebase-knowledge/assets/templates/TESTING.md",
+                          "type": "file"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "references",
+                  "path": ".continue/skills/acquire-codebase-knowledge/references",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "inquiry-checkpoints.md",
+                      "path": ".continue/skills/acquire-codebase-knowledge/references/inquiry-checkpoints.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "stack-detection.md",
+                      "path": ".continue/skills/acquire-codebase-knowledge/references/stack-detection.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "scripts",
+                  "path": ".continue/skills/acquire-codebase-knowledge/scripts",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "scan.py",
+                      "path": ".continue/skills/acquire-codebase-knowledge/scripts/scan.py",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "SKILL.md",
+                  "path": ".continue/skills/acquire-codebase-knowledge/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "add-educational-comments",
+              "path": ".continue/skills/add-educational-comments",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".continue/skills/add-educational-comments/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-governance",
+              "path": ".continue/skills/agent-governance",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".continue/skills/agent-governance/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-owasp-compliance",
+              "path": ".continue/skills/agent-owasp-compliance",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".continue/skills/agent-owasp-compliance/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "agent-supply-chain",
+              "path": ".continue/skills/agent-supply-chain",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "SKILL.md",
+                  "path": ".continue/skills/agent-supply-chain/SKILL.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "find-skills",
+              "path": ".continue/skills/find-skills",
+              "type": "symlink"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": ".devcontainer",
       "path": ".devcontainer",
       "type": "directory",
@@ -104,8 +487,43 @@
               "type": "file"
             },
             {
+              "name": "ci.yml",
+              "path": ".github/ISSUE_TEMPLATE/ci.yml",
+              "type": "file"
+            },
+            {
               "name": "config.yml",
               "path": ".github/ISSUE_TEMPLATE/config.yml",
+              "type": "file"
+            },
+            {
+              "name": "documentation.yml",
+              "path": ".github/ISSUE_TEMPLATE/documentation.yml",
+              "type": "file"
+            },
+            {
+              "name": "dx.yml",
+              "path": ".github/ISSUE_TEMPLATE/dx.yml",
+              "type": "file"
+            },
+            {
+              "name": "feature.yml",
+              "path": ".github/ISSUE_TEMPLATE/feature.yml",
+              "type": "file"
+            },
+            {
+              "name": "research.yml",
+              "path": ".github/ISSUE_TEMPLATE/research.yml",
+              "type": "file"
+            },
+            {
+              "name": "task.yml",
+              "path": ".github/ISSUE_TEMPLATE/task.yml",
+              "type": "file"
+            },
+            {
+              "name": "tech-debt.yml",
+              "path": ".github/ISSUE_TEMPLATE/tech-debt.yml",
               "type": "file"
             }
           ]
@@ -123,6 +541,140 @@
           ]
         },
         {
+          "name": "skills",
+          "path": ".github/skills",
+          "type": "directory",
+          "children": [
+            {
+              "name": "threejs",
+              "path": ".github/skills/threejs",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "threejs-animation",
+                  "path": ".github/skills/threejs/threejs-animation",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-animation/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-fundamentals",
+                  "path": ".github/skills/threejs/threejs-fundamentals",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-fundamentals/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-geometry",
+                  "path": ".github/skills/threejs/threejs-geometry",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-geometry/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-interaction",
+                  "path": ".github/skills/threejs/threejs-interaction",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-interaction/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-lighting",
+                  "path": ".github/skills/threejs/threejs-lighting",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-lighting/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-loaders",
+                  "path": ".github/skills/threejs/threejs-loaders",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-loaders/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-materials",
+                  "path": ".github/skills/threejs/threejs-materials",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-materials/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-postprocessing",
+                  "path": ".github/skills/threejs/threejs-postprocessing",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-postprocessing/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-shaders",
+                  "path": ".github/skills/threejs/threejs-shaders",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-shaders/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "threejs-textures",
+                  "path": ".github/skills/threejs/threejs-textures",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "SKILL.md",
+                      "path": ".github/skills/threejs/threejs-textures/SKILL.md",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "workflows",
           "path": ".github/workflows",
           "type": "directory",
@@ -130,6 +682,16 @@
             {
               "name": "contributors.yml",
               "path": ".github/workflows/contributors.yml",
+              "type": "file"
+            },
+            {
+              "name": "copilot-setup-steps.yml",
+              "path": ".github/workflows/copilot-setup-steps.yml",
+              "type": "file"
+            },
+            {
+              "name": "dependency-review.yml",
+              "path": ".github/workflows/dependency-review.yml",
               "type": "file"
             },
             {
@@ -11521,8 +12083,43 @@
                   "name": ".gitkeep",
                   "path": "garden/awesome/templates/.gitkeep",
                   "type": "file"
+                },
+                {
+                  "name": "awesome-template.md",
+                  "path": "garden/awesome/templates/awesome-template.md",
+                  "type": "file"
                 }
               ]
+            },
+            {
+              "name": "awesome-ai.md",
+              "path": "garden/awesome/awesome-ai.md",
+              "type": "file"
+            },
+            {
+              "name": "awesome-devcontainers.md",
+              "path": "garden/awesome/awesome-devcontainers.md",
+              "type": "file"
+            },
+            {
+              "name": "awesome-flutter.md",
+              "path": "garden/awesome/awesome-flutter.md",
+              "type": "file"
+            },
+            {
+              "name": "awesome-nutrition.md",
+              "path": "garden/awesome/awesome-nutrition.md",
+              "type": "file"
+            },
+            {
+              "name": "awesome-python.md",
+              "path": "garden/awesome/awesome-python.md",
+              "type": "file"
+            },
+            {
+              "name": "README.md",
+              "path": "garden/awesome/README.md",
+              "type": "file"
             }
           ]
         },
@@ -11534,6 +12131,11 @@
             {
               "name": ".gitkeep",
               "path": "garden/concepts/.gitkeep",
+              "type": "file"
+            },
+            {
+              "name": "README.md",
+              "path": "garden/concepts/README.md",
               "type": "file"
             }
           ]
@@ -11547,6 +12149,11 @@
               "name": ".gitkeep",
               "path": "garden/experiments/.gitkeep",
               "type": "file"
+            },
+            {
+              "name": "README.md",
+              "path": "garden/experiments/README.md",
+              "type": "file"
             }
           ]
         },
@@ -11558,6 +12165,11 @@
             {
               "name": ".gitkeep",
               "path": "garden/notes/.gitkeep",
+              "type": "file"
+            },
+            {
+              "name": "README.md",
+              "path": "garden/notes/README.md",
               "type": "file"
             }
           ]
@@ -11571,6 +12183,11 @@
               "name": ".gitkeep",
               "path": "garden/reflections/.gitkeep",
               "type": "file"
+            },
+            {
+              "name": "README.md",
+              "path": "garden/reflections/README.md",
+              "type": "file"
             }
           ]
         },
@@ -11582,6 +12199,11 @@
             {
               "name": ".gitkeep",
               "path": "garden/research/.gitkeep",
+              "type": "file"
+            },
+            {
+              "name": "README.md",
+              "path": "garden/research/README.md",
               "type": "file"
             }
           ]
@@ -13138,131 +13760,147 @@
       "type": "directory",
       "children": [
         {
-          "name": "threejs",
-          "path": "skills/threejs",
+          "name": "acquire-codebase-knowledge",
+          "path": "skills/acquire-codebase-knowledge",
           "type": "directory",
           "children": [
             {
-              "name": "threejs-animation",
-              "path": "skills/threejs/threejs-animation",
+              "name": "assets",
+              "path": "skills/acquire-codebase-knowledge/assets",
               "type": "directory",
               "children": [
                 {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-animation/SKILL.md",
+                  "name": "templates",
+                  "path": "skills/acquire-codebase-knowledge/assets/templates",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "ARCHITECTURE.md",
+                      "path": "skills/acquire-codebase-knowledge/assets/templates/ARCHITECTURE.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "CONCERNS.md",
+                      "path": "skills/acquire-codebase-knowledge/assets/templates/CONCERNS.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "CONVENTIONS.md",
+                      "path": "skills/acquire-codebase-knowledge/assets/templates/CONVENTIONS.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "INTEGRATIONS.md",
+                      "path": "skills/acquire-codebase-knowledge/assets/templates/INTEGRATIONS.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "STACK.md",
+                      "path": "skills/acquire-codebase-knowledge/assets/templates/STACK.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "STRUCTURE.md",
+                      "path": "skills/acquire-codebase-knowledge/assets/templates/STRUCTURE.md",
+                      "type": "file"
+                    },
+                    {
+                      "name": "TESTING.md",
+                      "path": "skills/acquire-codebase-knowledge/assets/templates/TESTING.md",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "references",
+              "path": "skills/acquire-codebase-knowledge/references",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "inquiry-checkpoints.md",
+                  "path": "skills/acquire-codebase-knowledge/references/inquiry-checkpoints.md",
+                  "type": "file"
+                },
+                {
+                  "name": "stack-detection.md",
+                  "path": "skills/acquire-codebase-knowledge/references/stack-detection.md",
                   "type": "file"
                 }
               ]
             },
             {
-              "name": "threejs-fundamentals",
-              "path": "skills/threejs/threejs-fundamentals",
+              "name": "scripts",
+              "path": "skills/acquire-codebase-knowledge/scripts",
               "type": "directory",
               "children": [
                 {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-fundamentals/SKILL.md",
+                  "name": "scan.py",
+                  "path": "skills/acquire-codebase-knowledge/scripts/scan.py",
                   "type": "file"
                 }
               ]
             },
             {
-              "name": "threejs-geometry",
-              "path": "skills/threejs/threejs-geometry",
-              "type": "directory",
-              "children": [
-                {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-geometry/SKILL.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "name": "threejs-interaction",
-              "path": "skills/threejs/threejs-interaction",
-              "type": "directory",
-              "children": [
-                {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-interaction/SKILL.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "name": "threejs-lighting",
-              "path": "skills/threejs/threejs-lighting",
-              "type": "directory",
-              "children": [
-                {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-lighting/SKILL.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "name": "threejs-loaders",
-              "path": "skills/threejs/threejs-loaders",
-              "type": "directory",
-              "children": [
-                {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-loaders/SKILL.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "name": "threejs-materials",
-              "path": "skills/threejs/threejs-materials",
-              "type": "directory",
-              "children": [
-                {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-materials/SKILL.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "name": "threejs-postprocessing",
-              "path": "skills/threejs/threejs-postprocessing",
-              "type": "directory",
-              "children": [
-                {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-postprocessing/SKILL.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "name": "threejs-shaders",
-              "path": "skills/threejs/threejs-shaders",
-              "type": "directory",
-              "children": [
-                {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-shaders/SKILL.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "name": "threejs-textures",
-              "path": "skills/threejs/threejs-textures",
-              "type": "directory",
-              "children": [
-                {
-                  "name": "SKILL.md",
-                  "path": "skills/threejs/threejs-textures/SKILL.md",
-                  "type": "file"
-                }
-              ]
+              "name": "SKILL.md",
+              "path": "skills/acquire-codebase-knowledge/SKILL.md",
+              "type": "file"
             }
           ]
+        },
+        {
+          "name": "add-educational-comments",
+          "path": "skills/add-educational-comments",
+          "type": "directory",
+          "children": [
+            {
+              "name": "SKILL.md",
+              "path": "skills/add-educational-comments/SKILL.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "agent-governance",
+          "path": "skills/agent-governance",
+          "type": "directory",
+          "children": [
+            {
+              "name": "SKILL.md",
+              "path": "skills/agent-governance/SKILL.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "agent-owasp-compliance",
+          "path": "skills/agent-owasp-compliance",
+          "type": "directory",
+          "children": [
+            {
+              "name": "SKILL.md",
+              "path": "skills/agent-owasp-compliance/SKILL.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "agent-supply-chain",
+          "path": "skills/agent-supply-chain",
+          "type": "directory",
+          "children": [
+            {
+              "name": "SKILL.md",
+              "path": "skills/agent-supply-chain/SKILL.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "find-skills",
+          "path": "skills/find-skills",
+          "type": "symlink"
         }
       ]
     },
@@ -13271,6 +13909,18 @@
       "path": "templates",
       "type": "directory",
       "children": [
+        {
+          "name": "applications",
+          "path": "templates/applications",
+          "type": "directory",
+          "children": [
+            {
+              "name": "README.md",
+              "path": "templates/applications/README.md",
+              "type": "file"
+            }
+          ]
+        },
         {
           "name": "changesets",
           "path": "templates/changesets",
@@ -13292,6 +13942,18 @@
                   "type": "file"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "community",
+          "path": "templates/community",
+          "type": "directory",
+          "children": [
+            {
+              "name": "GOVERNANCE.md",
+              "path": "templates/community/GOVERNANCE.md",
+              "type": "file"
             }
           ]
         },
@@ -13390,6 +14052,21 @@
       "type": "file"
     },
     {
+      "name": "poetry.lock",
+      "path": "poetry.lock",
+      "type": "file"
+    },
+    {
+      "name": "poetry.toml",
+      "path": "poetry.toml",
+      "type": "file"
+    },
+    {
+      "name": "pyproject.toml",
+      "path": "pyproject.toml",
+      "type": "file"
+    },
+    {
       "name": "README.md",
       "path": "README.md",
       "type": "file"
@@ -13397,6 +14074,11 @@
     {
       "name": "sanctuary.code-workspace",
       "path": "sanctuary.code-workspace",
+      "type": "file"
+    },
+    {
+      "name": "skills-lock.json",
+      "path": "skills-lock.json",
       "type": "file"
     },
     {

@@ -1,5 +1,99 @@
 <?xml version='1.0' encoding='utf-8'?>
 <repository name="sanctuary" path=".">
+  <directory name=".agents" path=".agents">
+    <directory name="skills" path=".agents/skills">
+      <directory name="acquire-codebase-knowledge" path=".agents/skills/acquire-codebase-knowledge">
+        <directory name="assets" path=".agents/skills/acquire-codebase-knowledge/assets">
+          <directory name="templates" path=".agents/skills/acquire-codebase-knowledge/assets/templates">
+            <file name="ARCHITECTURE.md" path=".agents/skills/acquire-codebase-knowledge/assets/templates/ARCHITECTURE.md" />
+            <file name="CONCERNS.md" path=".agents/skills/acquire-codebase-knowledge/assets/templates/CONCERNS.md" />
+            <file name="CONVENTIONS.md" path=".agents/skills/acquire-codebase-knowledge/assets/templates/CONVENTIONS.md" />
+            <file name="INTEGRATIONS.md" path=".agents/skills/acquire-codebase-knowledge/assets/templates/INTEGRATIONS.md" />
+            <file name="STACK.md" path=".agents/skills/acquire-codebase-knowledge/assets/templates/STACK.md" />
+            <file name="STRUCTURE.md" path=".agents/skills/acquire-codebase-knowledge/assets/templates/STRUCTURE.md" />
+            <file name="TESTING.md" path=".agents/skills/acquire-codebase-knowledge/assets/templates/TESTING.md" />
+          </directory>
+        </directory>
+        <directory name="references" path=".agents/skills/acquire-codebase-knowledge/references">
+          <file name="inquiry-checkpoints.md" path=".agents/skills/acquire-codebase-knowledge/references/inquiry-checkpoints.md" />
+          <file name="stack-detection.md" path=".agents/skills/acquire-codebase-knowledge/references/stack-detection.md" />
+        </directory>
+        <directory name="scripts" path=".agents/skills/acquire-codebase-knowledge/scripts">
+          <file name="scan.py" path=".agents/skills/acquire-codebase-knowledge/scripts/scan.py" />
+        </directory>
+        <file name="SKILL.md" path=".agents/skills/acquire-codebase-knowledge/SKILL.md" />
+      </directory>
+      <directory name="add-educational-comments" path=".agents/skills/add-educational-comments">
+        <file name="SKILL.md" path=".agents/skills/add-educational-comments/SKILL.md" />
+      </directory>
+      <directory name="agent-governance" path=".agents/skills/agent-governance">
+        <file name="SKILL.md" path=".agents/skills/agent-governance/SKILL.md" />
+      </directory>
+      <directory name="agent-owasp-compliance" path=".agents/skills/agent-owasp-compliance">
+        <file name="SKILL.md" path=".agents/skills/agent-owasp-compliance/SKILL.md" />
+      </directory>
+      <directory name="agent-supply-chain" path=".agents/skills/agent-supply-chain">
+        <file name="SKILL.md" path=".agents/skills/agent-supply-chain/SKILL.md" />
+      </directory>
+      <directory name="find-skills" path=".agents/skills/find-skills">
+        <file name="SKILL.md" path=".agents/skills/find-skills/SKILL.md" />
+      </directory>
+    </directory>
+  </directory>
+  <directory name=".claude" path=".claude">
+    <directory name="skills" path=".claude/skills">
+      <directory name="add-educational-comments" path=".claude/skills/add-educational-comments">
+        <file name="SKILL.md" path=".claude/skills/add-educational-comments/SKILL.md" />
+      </directory>
+      <directory name="agent-governance" path=".claude/skills/agent-governance">
+        <file name="SKILL.md" path=".claude/skills/agent-governance/SKILL.md" />
+      </directory>
+      <directory name="agent-owasp-compliance" path=".claude/skills/agent-owasp-compliance">
+        <file name="SKILL.md" path=".claude/skills/agent-owasp-compliance/SKILL.md" />
+      </directory>
+      <directory name="agent-supply-chain" path=".claude/skills/agent-supply-chain">
+        <file name="SKILL.md" path=".claude/skills/agent-supply-chain/SKILL.md" />
+      </directory>
+    </directory>
+  </directory>
+  <directory name=".continue" path=".continue">
+    <directory name="skills" path=".continue/skills">
+      <directory name="acquire-codebase-knowledge" path=".continue/skills/acquire-codebase-knowledge">
+        <directory name="assets" path=".continue/skills/acquire-codebase-knowledge/assets">
+          <directory name="templates" path=".continue/skills/acquire-codebase-knowledge/assets/templates">
+            <file name="ARCHITECTURE.md" path=".continue/skills/acquire-codebase-knowledge/assets/templates/ARCHITECTURE.md" />
+            <file name="CONCERNS.md" path=".continue/skills/acquire-codebase-knowledge/assets/templates/CONCERNS.md" />
+            <file name="CONVENTIONS.md" path=".continue/skills/acquire-codebase-knowledge/assets/templates/CONVENTIONS.md" />
+            <file name="INTEGRATIONS.md" path=".continue/skills/acquire-codebase-knowledge/assets/templates/INTEGRATIONS.md" />
+            <file name="STACK.md" path=".continue/skills/acquire-codebase-knowledge/assets/templates/STACK.md" />
+            <file name="STRUCTURE.md" path=".continue/skills/acquire-codebase-knowledge/assets/templates/STRUCTURE.md" />
+            <file name="TESTING.md" path=".continue/skills/acquire-codebase-knowledge/assets/templates/TESTING.md" />
+          </directory>
+        </directory>
+        <directory name="references" path=".continue/skills/acquire-codebase-knowledge/references">
+          <file name="inquiry-checkpoints.md" path=".continue/skills/acquire-codebase-knowledge/references/inquiry-checkpoints.md" />
+          <file name="stack-detection.md" path=".continue/skills/acquire-codebase-knowledge/references/stack-detection.md" />
+        </directory>
+        <directory name="scripts" path=".continue/skills/acquire-codebase-knowledge/scripts">
+          <file name="scan.py" path=".continue/skills/acquire-codebase-knowledge/scripts/scan.py" />
+        </directory>
+        <file name="SKILL.md" path=".continue/skills/acquire-codebase-knowledge/SKILL.md" />
+      </directory>
+      <directory name="add-educational-comments" path=".continue/skills/add-educational-comments">
+        <file name="SKILL.md" path=".continue/skills/add-educational-comments/SKILL.md" />
+      </directory>
+      <directory name="agent-governance" path=".continue/skills/agent-governance">
+        <file name="SKILL.md" path=".continue/skills/agent-governance/SKILL.md" />
+      </directory>
+      <directory name="agent-owasp-compliance" path=".continue/skills/agent-owasp-compliance">
+        <file name="SKILL.md" path=".continue/skills/agent-owasp-compliance/SKILL.md" />
+      </directory>
+      <directory name="agent-supply-chain" path=".continue/skills/agent-supply-chain">
+        <file name="SKILL.md" path=".continue/skills/agent-supply-chain/SKILL.md" />
+      </directory>
+      <symlink name="find-skills" path=".continue/skills/find-skills" />
+    </directory>
+  </directory>
   <directory name=".devcontainer" path=".devcontainer">
     <directory name="scripts" path=".devcontainer/scripts">
       <file name="initialize.sh" path=".devcontainer/scripts/initialize.sh" />
@@ -23,13 +117,56 @@
     <directory name="ISSUE_TEMPLATE" path=".github/ISSUE_TEMPLATE">
       <file name="architecture.yml" path=".github/ISSUE_TEMPLATE/architecture.yml" />
       <file name="bug-report.yml" path=".github/ISSUE_TEMPLATE/bug-report.yml" />
+      <file name="ci.yml" path=".github/ISSUE_TEMPLATE/ci.yml" />
       <file name="config.yml" path=".github/ISSUE_TEMPLATE/config.yml" />
+      <file name="documentation.yml" path=".github/ISSUE_TEMPLATE/documentation.yml" />
+      <file name="dx.yml" path=".github/ISSUE_TEMPLATE/dx.yml" />
+      <file name="feature.yml" path=".github/ISSUE_TEMPLATE/feature.yml" />
+      <file name="research.yml" path=".github/ISSUE_TEMPLATE/research.yml" />
+      <file name="task.yml" path=".github/ISSUE_TEMPLATE/task.yml" />
+      <file name="tech-debt.yml" path=".github/ISSUE_TEMPLATE/tech-debt.yml" />
     </directory>
     <directory name="scripts" path=".github/scripts">
       <file name="vitality.rb" path=".github/scripts/vitality.rb" />
     </directory>
+    <directory name="skills" path=".github/skills">
+      <directory name="threejs" path=".github/skills/threejs">
+        <directory name="threejs-animation" path=".github/skills/threejs/threejs-animation">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-animation/SKILL.md" />
+        </directory>
+        <directory name="threejs-fundamentals" path=".github/skills/threejs/threejs-fundamentals">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-fundamentals/SKILL.md" />
+        </directory>
+        <directory name="threejs-geometry" path=".github/skills/threejs/threejs-geometry">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-geometry/SKILL.md" />
+        </directory>
+        <directory name="threejs-interaction" path=".github/skills/threejs/threejs-interaction">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-interaction/SKILL.md" />
+        </directory>
+        <directory name="threejs-lighting" path=".github/skills/threejs/threejs-lighting">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-lighting/SKILL.md" />
+        </directory>
+        <directory name="threejs-loaders" path=".github/skills/threejs/threejs-loaders">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-loaders/SKILL.md" />
+        </directory>
+        <directory name="threejs-materials" path=".github/skills/threejs/threejs-materials">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-materials/SKILL.md" />
+        </directory>
+        <directory name="threejs-postprocessing" path=".github/skills/threejs/threejs-postprocessing">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-postprocessing/SKILL.md" />
+        </directory>
+        <directory name="threejs-shaders" path=".github/skills/threejs/threejs-shaders">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-shaders/SKILL.md" />
+        </directory>
+        <directory name="threejs-textures" path=".github/skills/threejs/threejs-textures">
+          <file name="SKILL.md" path=".github/skills/threejs/threejs-textures/SKILL.md" />
+        </directory>
+      </directory>
+    </directory>
     <directory name="workflows" path=".github/workflows">
       <file name="contributors.yml" path=".github/workflows/contributors.yml" />
+      <file name="copilot-setup-steps.yml" path=".github/workflows/copilot-setup-steps.yml" />
+      <file name="dependency-review.yml" path=".github/workflows/dependency-review.yml" />
       <file name="github-pages.yml" path=".github/workflows/github-pages.yml" />
       <file name="repository-intelligence.yml" path=".github/workflows/repository-intelligence.yml" />
       <file name="sanity.yml" path=".github/workflows/sanity.yml" />
@@ -2326,22 +2463,34 @@
     <directory name="awesome" path="garden/awesome">
       <directory name="templates" path="garden/awesome/templates">
         <file name=".gitkeep" path="garden/awesome/templates/.gitkeep" />
+        <file name="awesome-template.md" path="garden/awesome/templates/awesome-template.md" />
       </directory>
+      <file name="awesome-ai.md" path="garden/awesome/awesome-ai.md" />
+      <file name="awesome-devcontainers.md" path="garden/awesome/awesome-devcontainers.md" />
+      <file name="awesome-flutter.md" path="garden/awesome/awesome-flutter.md" />
+      <file name="awesome-nutrition.md" path="garden/awesome/awesome-nutrition.md" />
+      <file name="awesome-python.md" path="garden/awesome/awesome-python.md" />
+      <file name="README.md" path="garden/awesome/README.md" />
     </directory>
     <directory name="concepts" path="garden/concepts">
       <file name=".gitkeep" path="garden/concepts/.gitkeep" />
+      <file name="README.md" path="garden/concepts/README.md" />
     </directory>
     <directory name="experiments" path="garden/experiments">
       <file name=".gitkeep" path="garden/experiments/.gitkeep" />
+      <file name="README.md" path="garden/experiments/README.md" />
     </directory>
     <directory name="notes" path="garden/notes">
       <file name=".gitkeep" path="garden/notes/.gitkeep" />
+      <file name="README.md" path="garden/notes/README.md" />
     </directory>
     <directory name="reflections" path="garden/reflections">
       <file name=".gitkeep" path="garden/reflections/.gitkeep" />
+      <file name="README.md" path="garden/reflections/README.md" />
     </directory>
     <directory name="research" path="garden/research">
       <file name=".gitkeep" path="garden/research/.gitkeep" />
+      <file name="README.md" path="garden/research/README.md" />
     </directory>
     <file name=".gitkeep" path="garden/.gitkeep" />
   </directory>
@@ -2697,45 +2846,53 @@
     <file name="shell.code-workspace" path="shell/shell.code-workspace" />
   </directory>
   <directory name="skills" path="skills">
-    <directory name="threejs" path="skills/threejs">
-      <directory name="threejs-animation" path="skills/threejs/threejs-animation">
-        <file name="SKILL.md" path="skills/threejs/threejs-animation/SKILL.md" />
+    <directory name="acquire-codebase-knowledge" path="skills/acquire-codebase-knowledge">
+      <directory name="assets" path="skills/acquire-codebase-knowledge/assets">
+        <directory name="templates" path="skills/acquire-codebase-knowledge/assets/templates">
+          <file name="ARCHITECTURE.md" path="skills/acquire-codebase-knowledge/assets/templates/ARCHITECTURE.md" />
+          <file name="CONCERNS.md" path="skills/acquire-codebase-knowledge/assets/templates/CONCERNS.md" />
+          <file name="CONVENTIONS.md" path="skills/acquire-codebase-knowledge/assets/templates/CONVENTIONS.md" />
+          <file name="INTEGRATIONS.md" path="skills/acquire-codebase-knowledge/assets/templates/INTEGRATIONS.md" />
+          <file name="STACK.md" path="skills/acquire-codebase-knowledge/assets/templates/STACK.md" />
+          <file name="STRUCTURE.md" path="skills/acquire-codebase-knowledge/assets/templates/STRUCTURE.md" />
+          <file name="TESTING.md" path="skills/acquire-codebase-knowledge/assets/templates/TESTING.md" />
+        </directory>
       </directory>
-      <directory name="threejs-fundamentals" path="skills/threejs/threejs-fundamentals">
-        <file name="SKILL.md" path="skills/threejs/threejs-fundamentals/SKILL.md" />
+      <directory name="references" path="skills/acquire-codebase-knowledge/references">
+        <file name="inquiry-checkpoints.md" path="skills/acquire-codebase-knowledge/references/inquiry-checkpoints.md" />
+        <file name="stack-detection.md" path="skills/acquire-codebase-knowledge/references/stack-detection.md" />
       </directory>
-      <directory name="threejs-geometry" path="skills/threejs/threejs-geometry">
-        <file name="SKILL.md" path="skills/threejs/threejs-geometry/SKILL.md" />
+      <directory name="scripts" path="skills/acquire-codebase-knowledge/scripts">
+        <file name="scan.py" path="skills/acquire-codebase-knowledge/scripts/scan.py" />
       </directory>
-      <directory name="threejs-interaction" path="skills/threejs/threejs-interaction">
-        <file name="SKILL.md" path="skills/threejs/threejs-interaction/SKILL.md" />
-      </directory>
-      <directory name="threejs-lighting" path="skills/threejs/threejs-lighting">
-        <file name="SKILL.md" path="skills/threejs/threejs-lighting/SKILL.md" />
-      </directory>
-      <directory name="threejs-loaders" path="skills/threejs/threejs-loaders">
-        <file name="SKILL.md" path="skills/threejs/threejs-loaders/SKILL.md" />
-      </directory>
-      <directory name="threejs-materials" path="skills/threejs/threejs-materials">
-        <file name="SKILL.md" path="skills/threejs/threejs-materials/SKILL.md" />
-      </directory>
-      <directory name="threejs-postprocessing" path="skills/threejs/threejs-postprocessing">
-        <file name="SKILL.md" path="skills/threejs/threejs-postprocessing/SKILL.md" />
-      </directory>
-      <directory name="threejs-shaders" path="skills/threejs/threejs-shaders">
-        <file name="SKILL.md" path="skills/threejs/threejs-shaders/SKILL.md" />
-      </directory>
-      <directory name="threejs-textures" path="skills/threejs/threejs-textures">
-        <file name="SKILL.md" path="skills/threejs/threejs-textures/SKILL.md" />
-      </directory>
+      <file name="SKILL.md" path="skills/acquire-codebase-knowledge/SKILL.md" />
     </directory>
+    <directory name="add-educational-comments" path="skills/add-educational-comments">
+      <file name="SKILL.md" path="skills/add-educational-comments/SKILL.md" />
+    </directory>
+    <directory name="agent-governance" path="skills/agent-governance">
+      <file name="SKILL.md" path="skills/agent-governance/SKILL.md" />
+    </directory>
+    <directory name="agent-owasp-compliance" path="skills/agent-owasp-compliance">
+      <file name="SKILL.md" path="skills/agent-owasp-compliance/SKILL.md" />
+    </directory>
+    <directory name="agent-supply-chain" path="skills/agent-supply-chain">
+      <file name="SKILL.md" path="skills/agent-supply-chain/SKILL.md" />
+    </directory>
+    <symlink name="find-skills" path="skills/find-skills" />
   </directory>
   <directory name="templates" path="templates">
+    <directory name="applications" path="templates/applications">
+      <file name="README.md" path="templates/applications/README.md" />
+    </directory>
     <directory name="changesets" path="templates/changesets">
       <directory name=".changeset" path="templates/changesets/.changeset">
         <file name="config.json" path="templates/changesets/.changeset/config.json" />
         <file name="README.md" path="templates/changesets/.changeset/README.md" />
       </directory>
+    </directory>
+    <directory name="community" path="templates/community">
+      <file name="GOVERNANCE.md" path="templates/community/GOVERNANCE.md" />
     </directory>
     <directory name="poetry" path="templates/poetry">
       <file name="poetry.toml" path="templates/poetry/poetry.toml" />
@@ -2757,7 +2914,11 @@
   <file name="LICENSE" path="LICENSE" />
   <file name="mkdocs.yml" path="mkdocs.yml" />
   <file name="package.json" path="package.json" />
+  <file name="poetry.lock" path="poetry.lock" />
+  <file name="poetry.toml" path="poetry.toml" />
+  <file name="pyproject.toml" path="pyproject.toml" />
   <file name="README.md" path="README.md" />
   <file name="sanctuary.code-workspace" path="sanctuary.code-workspace" />
+  <file name="skills-lock.json" path="skills-lock.json" />
   <file name="Taskfile.yml" path="Taskfile.yml" />
 </repository>

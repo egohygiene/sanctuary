@@ -2,6 +2,71 @@
 
 ```text
 sanctuary/
+├── .agents/
+│   └── skills/
+│       ├── acquire-codebase-knowledge/
+│       │   ├── assets/
+│       │   │   └── templates/
+│       │   │       ├── ARCHITECTURE.md
+│       │   │       ├── CONCERNS.md
+│       │   │       ├── CONVENTIONS.md
+│       │   │       ├── INTEGRATIONS.md
+│       │   │       ├── STACK.md
+│       │   │       ├── STRUCTURE.md
+│       │   │       └── TESTING.md
+│       │   ├── references/
+│       │   │   ├── inquiry-checkpoints.md
+│       │   │   └── stack-detection.md
+│       │   ├── scripts/
+│       │   │   └── scan.py
+│       │   └── SKILL.md
+│       ├── add-educational-comments/
+│       │   └── SKILL.md
+│       ├── agent-governance/
+│       │   └── SKILL.md
+│       ├── agent-owasp-compliance/
+│       │   └── SKILL.md
+│       ├── agent-supply-chain/
+│       │   └── SKILL.md
+│       └── find-skills/
+│           └── SKILL.md
+├── .claude/
+│   └── skills/
+│       ├── add-educational-comments/
+│       │   └── SKILL.md
+│       ├── agent-governance/
+│       │   └── SKILL.md
+│       ├── agent-owasp-compliance/
+│       │   └── SKILL.md
+│       └── agent-supply-chain/
+│           └── SKILL.md
+├── .continue/
+│   └── skills/
+│       ├── acquire-codebase-knowledge/
+│       │   ├── assets/
+│       │   │   └── templates/
+│       │   │       ├── ARCHITECTURE.md
+│       │   │       ├── CONCERNS.md
+│       │   │       ├── CONVENTIONS.md
+│       │   │       ├── INTEGRATIONS.md
+│       │   │       ├── STACK.md
+│       │   │       ├── STRUCTURE.md
+│       │   │       └── TESTING.md
+│       │   ├── references/
+│       │   │   ├── inquiry-checkpoints.md
+│       │   │   └── stack-detection.md
+│       │   ├── scripts/
+│       │   │   └── scan.py
+│       │   └── SKILL.md
+│       ├── add-educational-comments/
+│       │   └── SKILL.md
+│       ├── agent-governance/
+│       │   └── SKILL.md
+│       ├── agent-owasp-compliance/
+│       │   └── SKILL.md
+│       ├── agent-supply-chain/
+│       │   └── SKILL.md
+│       └── find-skills
 ├── .devcontainer/
 │   ├── scripts/
 │   │   ├── initialize.sh
@@ -20,11 +85,42 @@ sanctuary/
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── architecture.yml
 │   │   ├── bug-report.yml
-│   │   └── config.yml
+│   │   ├── ci.yml
+│   │   ├── config.yml
+│   │   ├── documentation.yml
+│   │   ├── dx.yml
+│   │   ├── feature.yml
+│   │   ├── research.yml
+│   │   ├── task.yml
+│   │   └── tech-debt.yml
 │   ├── scripts/
 │   │   └── vitality.rb
+│   ├── skills/
+│   │   └── threejs/
+│   │       ├── threejs-animation/
+│   │       │   └── SKILL.md
+│   │       ├── threejs-fundamentals/
+│   │       │   └── SKILL.md
+│   │       ├── threejs-geometry/
+│   │       │   └── SKILL.md
+│   │       ├── threejs-interaction/
+│   │       │   └── SKILL.md
+│   │       ├── threejs-lighting/
+│   │       │   └── SKILL.md
+│   │       ├── threejs-loaders/
+│   │       │   └── SKILL.md
+│   │       ├── threejs-materials/
+│   │       │   └── SKILL.md
+│   │       ├── threejs-postprocessing/
+│   │       │   └── SKILL.md
+│   │       ├── threejs-shaders/
+│   │       │   └── SKILL.md
+│   │       └── threejs-textures/
+│   │           └── SKILL.md
 │   ├── workflows/
 │   │   ├── contributors.yml
+│   │   ├── copilot-setup-steps.yml
+│   │   ├── dependency-review.yml
 │   │   ├── github-pages.yml
 │   │   ├── repository-intelligence.yml
 │   │   ├── sanity.yml
@@ -2289,18 +2385,30 @@ sanctuary/
 │   └── index.md
 ├── garden/
 │   ├── awesome/
-│   │   └── templates/
-│   │       └── .gitkeep
+│   │   ├── templates/
+│   │   │   ├── .gitkeep
+│   │   │   └── awesome-template.md
+│   │   ├── awesome-ai.md
+│   │   ├── awesome-devcontainers.md
+│   │   ├── awesome-flutter.md
+│   │   ├── awesome-nutrition.md
+│   │   ├── awesome-python.md
+│   │   └── README.md
 │   ├── concepts/
-│   │   └── .gitkeep
+│   │   ├── .gitkeep
+│   │   └── README.md
 │   ├── experiments/
-│   │   └── .gitkeep
+│   │   ├── .gitkeep
+│   │   └── README.md
 │   ├── notes/
-│   │   └── .gitkeep
+│   │   ├── .gitkeep
+│   │   └── README.md
 │   ├── reflections/
-│   │   └── .gitkeep
+│   │   ├── .gitkeep
+│   │   └── README.md
 │   ├── research/
-│   │   └── .gitkeep
+│   │   ├── .gitkeep
+│   │   └── README.md
 │   └── .gitkeep
 ├── lint/
 │   ├── config/
@@ -2582,32 +2690,40 @@ sanctuary/
 │   ├── README.md
 │   └── shell.code-workspace
 ├── skills/
-│   └── threejs/
-│       ├── threejs-animation/
-│       │   └── SKILL.md
-│       ├── threejs-fundamentals/
-│       │   └── SKILL.md
-│       ├── threejs-geometry/
-│       │   └── SKILL.md
-│       ├── threejs-interaction/
-│       │   └── SKILL.md
-│       ├── threejs-lighting/
-│       │   └── SKILL.md
-│       ├── threejs-loaders/
-│       │   └── SKILL.md
-│       ├── threejs-materials/
-│       │   └── SKILL.md
-│       ├── threejs-postprocessing/
-│       │   └── SKILL.md
-│       ├── threejs-shaders/
-│       │   └── SKILL.md
-│       └── threejs-textures/
-│           └── SKILL.md
+│   ├── acquire-codebase-knowledge/
+│   │   ├── assets/
+│   │   │   └── templates/
+│   │   │       ├── ARCHITECTURE.md
+│   │   │       ├── CONCERNS.md
+│   │   │       ├── CONVENTIONS.md
+│   │   │       ├── INTEGRATIONS.md
+│   │   │       ├── STACK.md
+│   │   │       ├── STRUCTURE.md
+│   │   │       └── TESTING.md
+│   │   ├── references/
+│   │   │   ├── inquiry-checkpoints.md
+│   │   │   └── stack-detection.md
+│   │   ├── scripts/
+│   │   │   └── scan.py
+│   │   └── SKILL.md
+│   ├── add-educational-comments/
+│   │   └── SKILL.md
+│   ├── agent-governance/
+│   │   └── SKILL.md
+│   ├── agent-owasp-compliance/
+│   │   └── SKILL.md
+│   ├── agent-supply-chain/
+│   │   └── SKILL.md
+│   └── find-skills
 ├── templates/
+│   ├── applications/
+│   │   └── README.md
 │   ├── changesets/
 │   │   └── .changeset/
 │   │       ├── config.json
 │   │       └── README.md
+│   ├── community/
+│   │   └── GOVERNANCE.md
 │   └── poetry/
 │       └── poetry.toml
 ├── .actrc
@@ -2626,7 +2742,11 @@ sanctuary/
 ├── LICENSE
 ├── mkdocs.yml
 ├── package.json
+├── poetry.lock
+├── poetry.toml
+├── pyproject.toml
 ├── README.md
 ├── sanctuary.code-workspace
+├── skills-lock.json
 └── Taskfile.yml
 ```
