@@ -24,3 +24,5 @@ __pycache__
 !docs/generated/**
 
 .allcontributorsrc.tmp
+
+temp.sh
