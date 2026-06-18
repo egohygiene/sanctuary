@@ -51,6 +51,7 @@
         "wmaurer.change-case",
         "xaver.clang-format",
         "xyz.local-history",
-        "shopify.ruby-lsp"
+        "shopify.ruby-lsp",
+        "vsls-contrib.codetour"
     ]
 }
