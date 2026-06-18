@@ -1,0 +1,53 @@
+# SPDX-FileCopyrightText: 2026 Ego Hygiene
+# SPDX-License-Identifier: MIT
+# ==============================================================================
+# Markdownlint Ignore Specification
+# Comprehensive configuration for monolithic and modular repository layouts
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Package Managers & Runtime Virtual Environments
+# ------------------------------------------------------------------------------
+node_modules/
+**/node_modules/
+.pnpm-store/
+.yarn/
+.venv/
+**/venv/
+**/.venv/
+__pycache__/
+
+# ------------------------------------------------------------------------------
+# 2. Local IDE & Tooling State Artifacts
+# ------------------------------------------------------------------------------
+.git/
+.idea/
+.vscode/
+.history/
+.task/
+.terraform/
+
+# ------------------------------------------------------------------------------
+# 3. Automated Compilations, Releases & Testing Artifacts
+# ------------------------------------------------------------------------------
+build/
+dist/
+release/
+out/
+target/
+coverage/
+**/reports/
+.nyc_output/
+.storybook/
+
+# ------------------------------------------------------------------------------
+# 4. Strict Binary Asset Isolation (Locks down media, allows markdown specs)
+# ------------------------------------------------------------------------------
+assets/emojis/
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.webp
+**/*.ico
+**/*.svg
