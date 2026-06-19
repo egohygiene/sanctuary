@@ -23,7 +23,8 @@
       ".pnpmignore": "gitignore",
       ".dockerignore": "gitignore",
       "shellcheckrc": "ini",
-      ".shellcheckrc": "ini"
+      ".shellcheckrc": "ini",
+      ".hushlogin": "plaintext"
     },
 
     // --- Terminal ---
