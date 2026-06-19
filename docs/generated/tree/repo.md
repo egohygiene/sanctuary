@@ -28,7 +28,465 @@ sanctuary/
 │       │   └── SKILL.md
 │       ├── agent-supply-chain/
 │       │   └── SKILL.md
-│       └── find-skills/
+│       ├── agentic-eval/
+│       │   └── SKILL.md
+│       ├── ai-prompt-engineering-safety-review/
+│       │   └── SKILL.md
+│       ├── ai-ready/
+│       │   └── SKILL.md
+│       ├── ai-team-orchestration/
+│       │   ├── references/
+│       │   │   ├── anti-patterns.md
+│       │   │   ├── brainstorm-format.md
+│       │   │   ├── project-brief-template.md
+│       │   │   └── sprint-plan-template.md
+│       │   └── SKILL.md
+│       ├── architecture-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── brag-sheet/
+│       │   └── SKILL.md
+│       ├── breakdown-epic-arch/
+│       │   └── SKILL.md
+│       ├── breakdown-epic-pm/
+│       │   └── SKILL.md
+│       ├── breakdown-feature-implementation/
+│       │   └── SKILL.md
+│       ├── breakdown-feature-prd/
+│       │   └── SKILL.md
+│       ├── breakdown-plan/
+│       │   └── SKILL.md
+│       ├── breakdown-test/
+│       │   └── SKILL.md
+│       ├── chrome-devtools/
+│       │   └── SKILL.md
+│       ├── cli-mastery/
+│       │   ├── references/
+│       │   │   ├── final-exam.md
+│       │   │   ├── module-1-slash-commands.md
+│       │   │   ├── module-2-keyboard-shortcuts.md
+│       │   │   ├── module-3-modes.md
+│       │   │   ├── module-4-agents.md
+│       │   │   ├── module-5-skills.md
+│       │   │   ├── module-6-mcp.md
+│       │   │   ├── module-7-advanced.md
+│       │   │   ├── module-8-configuration.md
+│       │   │   └── scenarios.md
+│       │   └── SKILL.md
+│       ├── cloud-design-patterns/
+│       │   ├── references/
+│       │   │   ├── architecture-design.md
+│       │   │   ├── azure-service-mappings.md
+│       │   │   ├── best-practices.md
+│       │   │   ├── deployment-operational.md
+│       │   │   ├── event-driven.md
+│       │   │   ├── messaging-integration.md
+│       │   │   ├── performance.md
+│       │   │   ├── reliability-resilience.md
+│       │   │   └── security.md
+│       │   └── SKILL.md
+│       ├── code-exemplars-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── codeql/
+│       │   ├── references/
+│       │   │   ├── alert-management.md
+│       │   │   ├── cli-commands.md
+│       │   │   ├── compiled-languages.md
+│       │   │   ├── sarif-output.md
+│       │   │   ├── troubleshooting.md
+│       │   │   └── workflow-configuration.md
+│       │   └── SKILL.md
+│       ├── context-map/
+│       │   └── SKILL.md
+│       ├── conventional-branch/
+│       │   └── SKILL.md
+│       ├── conventional-commit/
+│       │   └── SKILL.md
+│       ├── convert-plaintext-to-md/
+│       │   └── SKILL.md
+│       ├── copilot-cli-quickstart/
+│       │   └── SKILL.md
+│       ├── copilot-instructions-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── copilot-sdk/
+│       │   └── SKILL.md
+│       ├── copilot-usage-metrics/
+│       │   ├── get-enterprise-metrics.sh
+│       │   ├── get-enterprise-user-metrics.sh
+│       │   ├── get-org-metrics.sh
+│       │   ├── get-org-user-metrics.sh
+│       │   └── SKILL.md
+│       ├── create-agentsmd/
+│       │   └── SKILL.md
+│       ├── create-architectural-decision-record/
+│       │   └── SKILL.md
+│       ├── create-github-action-workflow-specification/
+│       │   └── SKILL.md
+│       ├── create-github-issue-feature-from-specification/
+│       │   └── SKILL.md
+│       ├── create-github-issues-feature-from-implementation-plan/
+│       │   └── SKILL.md
+│       ├── create-github-issues-for-unmet-specification-requirements/
+│       │   └── SKILL.md
+│       ├── create-implementation-plan/
+│       │   └── SKILL.md
+│       ├── create-llms/
+│       │   └── SKILL.md
+│       ├── create-readme/
+│       │   └── SKILL.md
+│       ├── create-specification/
+│       │   └── SKILL.md
+│       ├── create-technical-spike/
+│       │   └── SKILL.md
+│       ├── create-tldr-page/
+│       │   └── SKILL.md
+│       ├── dependabot/
+│       │   ├── references/
+│       │   │   ├── dependabot-yml-reference.md
+│       │   │   ├── example-configs.md
+│       │   │   └── pr-commands.md
+│       │   └── SKILL.md
+│       ├── devops-rollout-plan/
+│       │   └── SKILL.md
+│       ├── diagnose/
+│       │   └── SKILL.md
+│       ├── documentation-writer/
+│       │   └── SKILL.md
+│       ├── doublecheck/
+│       │   ├── assets/
+│       │   │   └── verification-report-template.md
+│       │   └── SKILL.md
+│       ├── draw-io-diagram-generator/
+│       │   ├── assets/
+│       │   │   └── templates/
+│       │   │       ├── architecture.drawio
+│       │   │       ├── er-diagram.drawio
+│       │   │       ├── flowchart.drawio
+│       │   │       ├── sequence.drawio
+│       │   │       └── uml-class.drawio
+│       │   ├── references/
+│       │   │   ├── drawio-xml-schema.md
+│       │   │   ├── shape-libraries.md
+│       │   │   └── style-reference.md
+│       │   ├── scripts/
+│       │   │   ├── .gitignore
+│       │   │   ├── add-shape.py
+│       │   │   ├── README.md
+│       │   │   └── validate-drawio.py
+│       │   └── SKILL.md
+│       ├── editorconfig/
+│       │   └── SKILL.md
+│       ├── email-drafter/
+│       │   └── SKILL.md
+│       ├── eval-driven-dev/
+│       │   ├── references/
+│       │   │   ├── runnable-examples/
+│       │   │   │   ├── cli-app.md
+│       │   │   │   ├── fastapi-web-server.md
+│       │   │   │   └── standalone-function.md
+│       │   │   ├── 1-a-project-analysis.md
+│       │   │   ├── 1-b-entry-point.md
+│       │   │   ├── 1-c-eval-criteria.md
+│       │   │   ├── 2a-instrumentation.md
+│       │   │   ├── 2b-implement-runnable.md
+│       │   │   ├── 2c-capture-and-verify-trace.md
+│       │   │   ├── 3-define-evaluators.md
+│       │   │   ├── 4-build-dataset.md
+│       │   │   ├── 5-run-tests.md
+│       │   │   ├── 6-analyze-outcomes.md
+│       │   │   ├── evaluators.md
+│       │   │   ├── testing-api.md
+│       │   │   └── wrap-api.md
+│       │   ├── resources/
+│       │   │   ├── setup.sh
+│       │   │   └── verify_step6_completion.py
+│       │   └── SKILL.md
+│       ├── excalidraw-diagram-generator/
+│       │   ├── references/
+│       │   │   ├── element-types.md
+│       │   │   └── excalidraw-schema.md
+│       │   ├── scripts/
+│       │   │   ├── .gitignore
+│       │   │   ├── add-arrow.py
+│       │   │   ├── add-icon-to-diagram.py
+│       │   │   ├── README.md
+│       │   │   └── split-excalidraw-library.py
+│       │   ├── templates/
+│       │   │   ├── business-flow-swimlane-template.excalidraw
+│       │   │   ├── class-diagram-template.excalidraw
+│       │   │   ├── data-flow-diagram-template.excalidraw
+│       │   │   ├── er-diagram-template.excalidraw
+│       │   │   ├── flowchart-template.excalidraw
+│       │   │   ├── mindmap-template.excalidraw
+│       │   │   ├── relationship-template.excalidraw
+│       │   │   └── sequence-diagram-template.excalidraw
+│       │   └── SKILL.md
+│       ├── finalize-agent-prompt/
+│       │   └── SKILL.md
+│       ├── find-skills/
+│       │   └── SKILL.md
+│       ├── folder-structure-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── freecad-scripts/
+│       │   ├── references/
+│       │   │   ├── geometry-and-shapes.md
+│       │   │   ├── gui-and-interface.md
+│       │   │   ├── parametric-objects.md
+│       │   │   ├── scripting-fundamentals.md
+│       │   │   └── workbenches-and-advanced.md
+│       │   └── SKILL.md
+│       ├── gdpr-compliant/
+│       │   ├── references/
+│       │   │   ├── data-rights.md
+│       │   │   └── Security.md
+│       │   └── SKILL.md
+│       ├── gen-specs-as-issues/
+│       │   └── SKILL.md
+│       ├── generate-custom-instructions-from-codebase/
+│       │   └── SKILL.md
+│       ├── generate-image/
+│       │   └── SKILL.md
+│       ├── git-commit/
+│       │   └── SKILL.md
+│       ├── github-actions-efficiency/
+│       │   ├── references/
+│       │   │   ├── actions.md
+│       │   │   ├── patterns.md
+│       │   │   ├── reporting.md
+│       │   │   └── review-rubric.md
+│       │   └── SKILL.md
+│       ├── github-actions-hardening/
+│       │   ├── references/
+│       │   │   ├── injection.md
+│       │   │   ├── permissions-and-tokens.md
+│       │   │   ├── report-format.md
+│       │   │   ├── supply-chain.md
+│       │   │   └── triggers-and-privilege.md
+│       │   └── SKILL.md
+│       ├── github-copilot-starter/
+│       │   └── SKILL.md
+│       ├── github-issues/
+│       │   ├── references/
+│       │   │   ├── dependencies.md
+│       │   │   ├── images.md
+│       │   │   ├── issue-fields.md
+│       │   │   ├── issue-types.md
+│       │   │   ├── projects.md
+│       │   │   ├── search.md
+│       │   │   ├── sub-issues.md
+│       │   │   └── templates.md
+│       │   └── SKILL.md
+│       ├── github-release/
+│       │   ├── references/
+│       │   │   ├── commit-classification.md
+│       │   │   └── semver-rules.md
+│       │   └── SKILL.md
+│       ├── gsap-framer-scroll-animation/
+│       │   ├── references/
+│       │   │   ├── framer.md
+│       │   │   └── gsap.md
+│       │   └── SKILL.md
+│       ├── harness-engineering/
+│       │   └── SKILL.md
+│       ├── image-annotations/
+│       │   └── SKILL.md
+│       ├── image-manipulation-image-magick/
+│       │   └── SKILL.md
+│       ├── impediment-prioritization/
+│       │   ├── references/
+│       │   │   └── scoring-rubric.md
+│       │   └── SKILL.md
+│       ├── linkedin-post-formatter/
+│       │   ├── references/
+│       │   │   └── unicode-charmap.md
+│       │   └── SKILL.md
+│       ├── lsp-setup/
+│       │   ├── references/
+│       │   │   └── lsp-servers.md
+│       │   └── SKILL.md
+│       ├── mcp-cli/
+│       │   └── SKILL.md
+│       ├── md-to-docx/
+│       │   ├── scripts/
+│       │   │   ├── md-to-docx.mjs
+│       │   │   └── package.json
+│       │   └── SKILL.md
+│       ├── meeting-minutes/
+│       │   └── SKILL.md
+│       ├── mini-context-graph/
+│       │   ├── references/
+│       │   │   ├── ingestion.md
+│       │   │   ├── lint.md
+│       │   │   ├── ontology.md
+│       │   │   └── retrieval.md
+│       │   ├── scripts/
+│       │   │   ├── tools/
+│       │   │   │   ├── __init__.py
+│       │   │   │   ├── documents_store.py
+│       │   │   │   ├── graph_store.py
+│       │   │   │   ├── index_store.py
+│       │   │   │   ├── ontology_store.py
+│       │   │   │   ├── retrieval_engine.py
+│       │   │   │   └── wiki_store.py
+│       │   │   ├── config.py
+│       │   │   ├── contextgraph.py
+│       │   │   └── template_agent_workflow.py
+│       │   └── SKILL.md
+│       ├── mkdocs-translations/
+│       │   └── SKILL.md
+│       ├── multi-stage-dockerfile/
+│       │   └── SKILL.md
+│       ├── performance-review-writer/
+│       │   └── SKILL.md
+│       ├── plantuml-ascii/
+│       │   └── SKILL.md
+│       ├── playwright-explore-website/
+│       │   └── SKILL.md
+│       ├── pr-dashboard/
+│       │   ├── assets/
+│       │   │   └── dashboard.html
+│       │   ├── scripts/
+│       │   │   ├── lib/
+│       │   │   │   └── utils.mjs
+│       │   │   └── pr-dashboard-cli.mjs
+│       │   └── SKILL.md
+│       ├── pr-screenshots/
+│       │   └── SKILL.md
+│       ├── prd/
+│       │   └── SKILL.md
+│       ├── premium-frontend-ui/
+│       │   └── SKILL.md
+│       ├── project-workflow-analysis-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── prompt-optimizer/
+│       │   └── SKILL.md
+│       ├── publish-to-pages/
+│       │   ├── scripts/
+│       │   │   ├── convert-pdf.py
+│       │   │   ├── convert-pptx.py
+│       │   │   └── publish.sh
+│       │   └── SKILL.md
+│       ├── pytest-coverage/
+│       │   └── SKILL.md
+│       ├── python-pypi-package-builder/
+│       │   ├── references/
+│       │   │   ├── architecture-patterns.md
+│       │   │   ├── ci-publishing.md
+│       │   │   ├── community-docs.md
+│       │   │   ├── library-patterns.md
+│       │   │   ├── pyproject-toml.md
+│       │   │   ├── release-governance.md
+│       │   │   ├── testing-quality.md
+│       │   │   ├── tooling-ruff.md
+│       │   │   └── versioning-strategy.md
+│       │   ├── scripts/
+│       │   │   └── scaffold.py
+│       │   └── SKILL.md
+│       ├── quality-playbook/
+│       │   ├── agents/
+│       │   │   ├── calibration_orchestrator.md
+│       │   │   ├── quality-playbook-claude.agent.md
+│       │   │   └── quality-playbook.agent.md
+│       │   ├── phase_prompts/
+│       │   │   ├── iteration.md
+│       │   │   ├── phase1.md
+│       │   │   ├── phase2.md
+│       │   │   ├── phase3.md
+│       │   │   ├── phase4.md
+│       │   │   ├── phase5.md
+│       │   │   ├── phase6.md
+│       │   │   ├── README.md
+│       │   │   └── single_pass.md
+│       │   ├── references/
+│       │   │   ├── challenge_gate.md
+│       │   │   ├── code-only-mode.md
+│       │   │   ├── constitution.md
+│       │   │   ├── defensive_patterns.md
+│       │   │   ├── exploration_patterns.md
+│       │   │   ├── functional_tests.md
+│       │   │   ├── iteration.md
+│       │   │   ├── orchestrator_protocol.md
+│       │   │   ├── requirements_pipeline.md
+│       │   │   ├── requirements_refinement.md
+│       │   │   ├── requirements_review.md
+│       │   │   ├── review_protocols.md
+│       │   │   ├── run_state_schema.md
+│       │   │   ├── schema_mapping.md
+│       │   │   ├── spec_audit.md
+│       │   │   └── verification.md
+│       │   ├── LICENSE.txt
+│       │   ├── quality_gate.py
+│       │   └── SKILL.md
+│       ├── readme-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── refactor/
+│       │   └── SKILL.md
+│       ├── refactor-plan/
+│       │   └── SKILL.md
+│       ├── remember/
+│       │   └── SKILL.md
+│       ├── resemble-detect/
+│       │   ├── references/
+│       │   │   └── api-reference.md
+│       │   ├── LICENSE
+│       │   └── SKILL.md
+│       ├── review-and-refactor/
+│       │   └── SKILL.md
+│       ├── screen-recording/
+│       │   └── SKILL.md
+│       ├── secret-scanning/
+│       │   ├── references/
+│       │   │   ├── alerts-and-remediation.md
+│       │   │   ├── custom-patterns.md
+│       │   │   └── push-protection.md
+│       │   └── SKILL.md
+│       ├── security-review/
+│       │   ├── references/
+│       │   │   ├── language-patterns.md
+│       │   │   ├── report-format.md
+│       │   │   ├── secret-patterns.md
+│       │   │   ├── vuln-categories.md
+│       │   │   └── vulnerable-packages.md
+│       │   └── SKILL.md
+│       ├── sql-code-review/
+│       │   └── SKILL.md
+│       ├── sql-optimization/
+│       │   └── SKILL.md
+│       ├── structured-autonomy-implement/
+│       │   └── SKILL.md
+│       ├── structured-autonomy-plan/
+│       │   └── SKILL.md
+│       ├── threat-model-analyst/
+│       │   ├── references/
+│       │   │   ├── skeletons/
+│       │   │   │   ├── skeleton-architecture.md
+│       │   │   │   ├── skeleton-assessment.md
+│       │   │   │   ├── skeleton-dfd.md
+│       │   │   │   ├── skeleton-findings.md
+│       │   │   │   ├── skeleton-incremental-html.md
+│       │   │   │   ├── skeleton-inventory.md
+│       │   │   │   ├── skeleton-stride-analysis.md
+│       │   │   │   ├── skeleton-summary-dfd.md
+│       │   │   │   └── skeleton-threatmodel.md
+│       │   │   ├── analysis-principles.md
+│       │   │   ├── diagram-conventions.md
+│       │   │   ├── incremental-orchestrator.md
+│       │   │   ├── orchestrator.md
+│       │   │   ├── output-formats.md
+│       │   │   ├── tmt-element-taxonomy.md
+│       │   │   └── verification-checklist.md
+│       │   └── SKILL.md
+│       ├── tldr-prompt/
+│       │   └── SKILL.md
+│       ├── ui-screenshots/
+│       │   └── SKILL.md
+│       ├── web-design-reviewer/
+│       │   ├── references/
+│       │   │   ├── framework-fixes.md
+│       │   │   └── visual-checklist.md
+│       │   └── SKILL.md
+│       ├── what-context-needed/
+│       │   └── SKILL.md
+│       └── write-coding-standards-from-file/
 │           └── SKILL.md
 ├── .claude/
 │   └── skills/
@@ -38,7 +496,498 @@ sanctuary/
 │       │   └── SKILL.md
 │       ├── agent-owasp-compliance/
 │       │   └── SKILL.md
-│       └── agent-supply-chain/
+│       ├── agent-supply-chain/
+│       │   └── SKILL.md
+│       ├── agentic-eval/
+│       │   └── SKILL.md
+│       ├── ai-prompt-engineering-safety-review/
+│       │   └── SKILL.md
+│       ├── ai-ready/
+│       │   └── SKILL.md
+│       ├── brag-sheet/
+│       │   └── SKILL.md
+│       ├── breakdown-epic-arch/
+│       │   └── SKILL.md
+│       ├── breakdown-epic-pm/
+│       │   └── SKILL.md
+│       ├── breakdown-feature-implementation/
+│       │   └── SKILL.md
+│       ├── breakdown-feature-prd/
+│       │   └── SKILL.md
+│       ├── breakdown-plan/
+│       │   └── SKILL.md
+│       ├── breakdown-test/
+│       │   └── SKILL.md
+│       ├── chrome-devtools/
+│       │   └── SKILL.md
+│       ├── cli-mastery/
+│       │   ├── references/
+│       │   │   ├── final-exam.md
+│       │   │   ├── module-1-slash-commands.md
+│       │   │   ├── module-2-keyboard-shortcuts.md
+│       │   │   ├── module-3-modes.md
+│       │   │   ├── module-4-agents.md
+│       │   │   ├── module-5-skills.md
+│       │   │   ├── module-6-mcp.md
+│       │   │   ├── module-7-advanced.md
+│       │   │   ├── module-8-configuration.md
+│       │   │   └── scenarios.md
+│       │   └── SKILL.md
+│       ├── cloud-design-patterns/
+│       │   ├── references/
+│       │   │   ├── architecture-design.md
+│       │   │   ├── azure-service-mappings.md
+│       │   │   ├── best-practices.md
+│       │   │   ├── deployment-operational.md
+│       │   │   ├── event-driven.md
+│       │   │   ├── messaging-integration.md
+│       │   │   ├── performance.md
+│       │   │   ├── reliability-resilience.md
+│       │   │   └── security.md
+│       │   └── SKILL.md
+│       ├── code-exemplars-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── code-review-skill/
+│       │   ├── assets/
+│       │   │   ├── pr-review-template.md
+│       │   │   └── review-checklist.md
+│       │   ├── reference/
+│       │   │   ├── angular.md
+│       │   │   ├── architecture-review-guide.md
+│       │   │   ├── c.md
+│       │   │   ├── code-quality-universal.md
+│       │   │   ├── code-review-best-practices.md
+│       │   │   ├── common-bugs-checklist.md
+│       │   │   ├── cpp.md
+│       │   │   ├── csharp.md
+│       │   │   ├── css-less-sass.md
+│       │   │   ├── django.md
+│       │   │   ├── fastapi.md
+│       │   │   ├── go.md
+│       │   │   ├── java.md
+│       │   │   ├── kotlin.md
+│       │   │   ├── nestjs.md
+│       │   │   ├── performance-review-guide.md
+│       │   │   ├── php.md
+│       │   │   ├── python.md
+│       │   │   ├── qt.md
+│       │   │   ├── react.md
+│       │   │   ├── rust.md
+│       │   │   ├── security-review-guide.md
+│       │   │   ├── svelte.md
+│       │   │   ├── swift.md
+│       │   │   ├── typescript.md
+│       │   │   └── vue.md
+│       │   ├── scripts/
+│       │   │   ├── pr-analyzer.py
+│       │   │   └── test_pr_analyzer.py
+│       │   ├── .gitignore
+│       │   ├── .nojekyll
+│       │   ├── CONTRIBUTING.md
+│       │   ├── index.en.html
+│       │   ├── index.html
+│       │   ├── LICENSE
+│       │   ├── README.md
+│       │   └── SKILL.md
+│       ├── codeql/
+│       │   ├── references/
+│       │   │   ├── alert-management.md
+│       │   │   ├── cli-commands.md
+│       │   │   ├── compiled-languages.md
+│       │   │   ├── sarif-output.md
+│       │   │   ├── troubleshooting.md
+│       │   │   └── workflow-configuration.md
+│       │   └── SKILL.md
+│       ├── context-map/
+│       │   └── SKILL.md
+│       ├── conventional-branch/
+│       │   └── SKILL.md
+│       ├── conventional-commit/
+│       │   └── SKILL.md
+│       ├── convert-plaintext-to-md/
+│       │   └── SKILL.md
+│       ├── copilot-cli-quickstart/
+│       │   └── SKILL.md
+│       ├── copilot-instructions-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── copilot-sdk/
+│       │   └── SKILL.md
+│       ├── copilot-usage-metrics/
+│       │   ├── get-enterprise-metrics.sh
+│       │   ├── get-enterprise-user-metrics.sh
+│       │   ├── get-org-metrics.sh
+│       │   ├── get-org-user-metrics.sh
+│       │   └── SKILL.md
+│       ├── create-agentsmd/
+│       │   └── SKILL.md
+│       ├── create-architectural-decision-record/
+│       │   └── SKILL.md
+│       ├── create-github-action-workflow-specification/
+│       │   └── SKILL.md
+│       ├── create-github-issue-feature-from-specification/
+│       │   └── SKILL.md
+│       ├── create-github-issues-feature-from-implementation-plan/
+│       │   └── SKILL.md
+│       ├── create-github-issues-for-unmet-specification-requirements/
+│       │   └── SKILL.md
+│       ├── create-implementation-plan/
+│       │   └── SKILL.md
+│       ├── create-llms/
+│       │   └── SKILL.md
+│       ├── create-readme/
+│       │   └── SKILL.md
+│       ├── create-specification/
+│       │   └── SKILL.md
+│       ├── create-technical-spike/
+│       │   └── SKILL.md
+│       ├── create-tldr-page/
+│       │   └── SKILL.md
+│       ├── dependabot/
+│       │   ├── references/
+│       │   │   ├── dependabot-yml-reference.md
+│       │   │   ├── example-configs.md
+│       │   │   └── pr-commands.md
+│       │   └── SKILL.md
+│       ├── devops-rollout-plan/
+│       │   └── SKILL.md
+│       ├── diagnose/
+│       │   └── SKILL.md
+│       ├── documentation-writer/
+│       │   └── SKILL.md
+│       ├── doublecheck/
+│       │   ├── assets/
+│       │   │   └── verification-report-template.md
+│       │   └── SKILL.md
+│       ├── draw-io-diagram-generator/
+│       │   ├── assets/
+│       │   │   └── templates/
+│       │   │       ├── architecture.drawio
+│       │   │       ├── er-diagram.drawio
+│       │   │       ├── flowchart.drawio
+│       │   │       ├── sequence.drawio
+│       │   │       └── uml-class.drawio
+│       │   ├── references/
+│       │   │   ├── drawio-xml-schema.md
+│       │   │   ├── shape-libraries.md
+│       │   │   └── style-reference.md
+│       │   ├── scripts/
+│       │   │   ├── .gitignore
+│       │   │   ├── add-shape.py
+│       │   │   ├── README.md
+│       │   │   └── validate-drawio.py
+│       │   └── SKILL.md
+│       ├── editorconfig/
+│       │   └── SKILL.md
+│       ├── email-drafter/
+│       │   └── SKILL.md
+│       ├── eval-driven-dev/
+│       │   ├── references/
+│       │   │   ├── runnable-examples/
+│       │   │   │   ├── cli-app.md
+│       │   │   │   ├── fastapi-web-server.md
+│       │   │   │   └── standalone-function.md
+│       │   │   ├── 1-a-project-analysis.md
+│       │   │   ├── 1-b-entry-point.md
+│       │   │   ├── 1-c-eval-criteria.md
+│       │   │   ├── 2a-instrumentation.md
+│       │   │   ├── 2b-implement-runnable.md
+│       │   │   ├── 2c-capture-and-verify-trace.md
+│       │   │   ├── 3-define-evaluators.md
+│       │   │   ├── 4-build-dataset.md
+│       │   │   ├── 5-run-tests.md
+│       │   │   ├── 6-analyze-outcomes.md
+│       │   │   ├── evaluators.md
+│       │   │   ├── testing-api.md
+│       │   │   └── wrap-api.md
+│       │   ├── resources/
+│       │   │   ├── setup.sh
+│       │   │   └── verify_step6_completion.py
+│       │   └── SKILL.md
+│       ├── excalidraw-diagram-generator/
+│       │   ├── references/
+│       │   │   ├── element-types.md
+│       │   │   └── excalidraw-schema.md
+│       │   ├── scripts/
+│       │   │   ├── .gitignore
+│       │   │   ├── add-arrow.py
+│       │   │   ├── add-icon-to-diagram.py
+│       │   │   ├── README.md
+│       │   │   └── split-excalidraw-library.py
+│       │   ├── templates/
+│       │   │   ├── business-flow-swimlane-template.excalidraw
+│       │   │   ├── class-diagram-template.excalidraw
+│       │   │   ├── data-flow-diagram-template.excalidraw
+│       │   │   ├── er-diagram-template.excalidraw
+│       │   │   ├── flowchart-template.excalidraw
+│       │   │   ├── mindmap-template.excalidraw
+│       │   │   ├── relationship-template.excalidraw
+│       │   │   └── sequence-diagram-template.excalidraw
+│       │   └── SKILL.md
+│       ├── finalize-agent-prompt/
+│       │   └── SKILL.md
+│       ├── folder-structure-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── freecad-scripts/
+│       │   ├── references/
+│       │   │   ├── geometry-and-shapes.md
+│       │   │   ├── gui-and-interface.md
+│       │   │   ├── parametric-objects.md
+│       │   │   ├── scripting-fundamentals.md
+│       │   │   └── workbenches-and-advanced.md
+│       │   └── SKILL.md
+│       ├── gdpr-compliant/
+│       │   ├── references/
+│       │   │   ├── data-rights.md
+│       │   │   └── Security.md
+│       │   └── SKILL.md
+│       ├── gen-specs-as-issues/
+│       │   └── SKILL.md
+│       ├── generate-custom-instructions-from-codebase/
+│       │   └── SKILL.md
+│       ├── generate-image/
+│       │   └── SKILL.md
+│       ├── git-commit/
+│       │   └── SKILL.md
+│       ├── github-actions-efficiency/
+│       │   ├── references/
+│       │   │   ├── actions.md
+│       │   │   ├── patterns.md
+│       │   │   ├── reporting.md
+│       │   │   └── review-rubric.md
+│       │   └── SKILL.md
+│       ├── github-actions-hardening/
+│       │   ├── references/
+│       │   │   ├── injection.md
+│       │   │   ├── permissions-and-tokens.md
+│       │   │   ├── report-format.md
+│       │   │   ├── supply-chain.md
+│       │   │   └── triggers-and-privilege.md
+│       │   └── SKILL.md
+│       ├── github-copilot-starter/
+│       │   └── SKILL.md
+│       ├── github-issues/
+│       │   ├── references/
+│       │   │   ├── dependencies.md
+│       │   │   ├── images.md
+│       │   │   ├── issue-fields.md
+│       │   │   ├── issue-types.md
+│       │   │   ├── projects.md
+│       │   │   ├── search.md
+│       │   │   ├── sub-issues.md
+│       │   │   └── templates.md
+│       │   └── SKILL.md
+│       ├── github-release/
+│       │   ├── references/
+│       │   │   ├── commit-classification.md
+│       │   │   └── semver-rules.md
+│       │   └── SKILL.md
+│       ├── gsap-framer-scroll-animation/
+│       │   ├── references/
+│       │   │   ├── framer.md
+│       │   │   └── gsap.md
+│       │   └── SKILL.md
+│       ├── harness-engineering/
+│       │   └── SKILL.md
+│       ├── image-annotations/
+│       │   └── SKILL.md
+│       ├── image-manipulation-image-magick/
+│       │   └── SKILL.md
+│       ├── impediment-prioritization/
+│       │   ├── references/
+│       │   │   └── scoring-rubric.md
+│       │   └── SKILL.md
+│       ├── linkedin-post-formatter/
+│       │   ├── references/
+│       │   │   └── unicode-charmap.md
+│       │   └── SKILL.md
+│       ├── lsp-setup/
+│       │   ├── references/
+│       │   │   └── lsp-servers.md
+│       │   └── SKILL.md
+│       ├── mcp-cli/
+│       │   └── SKILL.md
+│       ├── md-to-docx/
+│       │   ├── scripts/
+│       │   │   ├── md-to-docx.mjs
+│       │   │   └── package.json
+│       │   └── SKILL.md
+│       ├── meeting-minutes/
+│       │   └── SKILL.md
+│       ├── mini-context-graph/
+│       │   ├── references/
+│       │   │   ├── ingestion.md
+│       │   │   ├── lint.md
+│       │   │   ├── ontology.md
+│       │   │   └── retrieval.md
+│       │   ├── scripts/
+│       │   │   ├── tools/
+│       │   │   │   ├── __init__.py
+│       │   │   │   ├── documents_store.py
+│       │   │   │   ├── graph_store.py
+│       │   │   │   ├── index_store.py
+│       │   │   │   ├── ontology_store.py
+│       │   │   │   ├── retrieval_engine.py
+│       │   │   │   └── wiki_store.py
+│       │   │   ├── config.py
+│       │   │   ├── contextgraph.py
+│       │   │   └── template_agent_workflow.py
+│       │   └── SKILL.md
+│       ├── mkdocs-translations/
+│       │   └── SKILL.md
+│       ├── multi-stage-dockerfile/
+│       │   └── SKILL.md
+│       ├── performance-review-writer/
+│       │   └── SKILL.md
+│       ├── plantuml-ascii/
+│       │   └── SKILL.md
+│       ├── playwright-explore-website/
+│       │   └── SKILL.md
+│       ├── pr-dashboard/
+│       │   ├── assets/
+│       │   │   └── dashboard.html
+│       │   ├── scripts/
+│       │   │   ├── lib/
+│       │   │   │   └── utils.mjs
+│       │   │   └── pr-dashboard-cli.mjs
+│       │   └── SKILL.md
+│       ├── pr-screenshots/
+│       │   └── SKILL.md
+│       ├── prd/
+│       │   └── SKILL.md
+│       ├── premium-frontend-ui/
+│       │   └── SKILL.md
+│       ├── project-workflow-analysis-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── prompt-optimizer/
+│       │   └── SKILL.md
+│       ├── publish-to-pages/
+│       │   ├── scripts/
+│       │   │   ├── convert-pdf.py
+│       │   │   ├── convert-pptx.py
+│       │   │   └── publish.sh
+│       │   └── SKILL.md
+│       ├── pytest-coverage/
+│       │   └── SKILL.md
+│       ├── python-pypi-package-builder/
+│       │   ├── references/
+│       │   │   ├── architecture-patterns.md
+│       │   │   ├── ci-publishing.md
+│       │   │   ├── community-docs.md
+│       │   │   ├── library-patterns.md
+│       │   │   ├── pyproject-toml.md
+│       │   │   ├── release-governance.md
+│       │   │   ├── testing-quality.md
+│       │   │   ├── tooling-ruff.md
+│       │   │   └── versioning-strategy.md
+│       │   ├── scripts/
+│       │   │   └── scaffold.py
+│       │   └── SKILL.md
+│       ├── quality-playbook/
+│       │   ├── agents/
+│       │   │   ├── calibration_orchestrator.md
+│       │   │   ├── quality-playbook-claude.agent.md
+│       │   │   └── quality-playbook.agent.md
+│       │   ├── phase_prompts/
+│       │   │   ├── iteration.md
+│       │   │   ├── phase1.md
+│       │   │   ├── phase2.md
+│       │   │   ├── phase3.md
+│       │   │   ├── phase4.md
+│       │   │   ├── phase5.md
+│       │   │   ├── phase6.md
+│       │   │   ├── README.md
+│       │   │   └── single_pass.md
+│       │   ├── references/
+│       │   │   ├── challenge_gate.md
+│       │   │   ├── code-only-mode.md
+│       │   │   ├── constitution.md
+│       │   │   ├── defensive_patterns.md
+│       │   │   ├── exploration_patterns.md
+│       │   │   ├── functional_tests.md
+│       │   │   ├── iteration.md
+│       │   │   ├── orchestrator_protocol.md
+│       │   │   ├── requirements_pipeline.md
+│       │   │   ├── requirements_refinement.md
+│       │   │   ├── requirements_review.md
+│       │   │   ├── review_protocols.md
+│       │   │   ├── run_state_schema.md
+│       │   │   ├── schema_mapping.md
+│       │   │   ├── spec_audit.md
+│       │   │   └── verification.md
+│       │   ├── LICENSE.txt
+│       │   ├── quality_gate.py
+│       │   └── SKILL.md
+│       ├── readme-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── refactor/
+│       │   └── SKILL.md
+│       ├── refactor-plan/
+│       │   └── SKILL.md
+│       ├── remember/
+│       │   └── SKILL.md
+│       ├── resemble-detect/
+│       │   ├── references/
+│       │   │   └── api-reference.md
+│       │   ├── LICENSE
+│       │   └── SKILL.md
+│       ├── review-and-refactor/
+│       │   └── SKILL.md
+│       ├── screen-recording/
+│       │   └── SKILL.md
+│       ├── secret-scanning/
+│       │   ├── references/
+│       │   │   ├── alerts-and-remediation.md
+│       │   │   ├── custom-patterns.md
+│       │   │   └── push-protection.md
+│       │   └── SKILL.md
+│       ├── security-review/
+│       │   ├── references/
+│       │   │   ├── language-patterns.md
+│       │   │   ├── report-format.md
+│       │   │   ├── secret-patterns.md
+│       │   │   ├── vuln-categories.md
+│       │   │   └── vulnerable-packages.md
+│       │   └── SKILL.md
+│       ├── sql-code-review/
+│       │   └── SKILL.md
+│       ├── sql-optimization/
+│       │   └── SKILL.md
+│       ├── structured-autonomy-implement/
+│       │   └── SKILL.md
+│       ├── structured-autonomy-plan/
+│       │   └── SKILL.md
+│       ├── threat-model-analyst/
+│       │   ├── references/
+│       │   │   ├── skeletons/
+│       │   │   │   ├── skeleton-architecture.md
+│       │   │   │   ├── skeleton-assessment.md
+│       │   │   │   ├── skeleton-dfd.md
+│       │   │   │   ├── skeleton-findings.md
+│       │   │   │   ├── skeleton-incremental-html.md
+│       │   │   │   ├── skeleton-inventory.md
+│       │   │   │   ├── skeleton-stride-analysis.md
+│       │   │   │   ├── skeleton-summary-dfd.md
+│       │   │   │   └── skeleton-threatmodel.md
+│       │   │   ├── analysis-principles.md
+│       │   │   ├── diagram-conventions.md
+│       │   │   ├── incremental-orchestrator.md
+│       │   │   ├── orchestrator.md
+│       │   │   ├── output-formats.md
+│       │   │   ├── tmt-element-taxonomy.md
+│       │   │   └── verification-checklist.md
+│       │   └── SKILL.md
+│       ├── tldr-prompt/
+│       │   └── SKILL.md
+│       ├── ui-screenshots/
+│       │   └── SKILL.md
+│       ├── web-design-reviewer/
+│       │   ├── references/
+│       │   │   ├── framework-fixes.md
+│       │   │   └── visual-checklist.md
+│       │   └── SKILL.md
+│       ├── what-context-needed/
+│       │   └── SKILL.md
+│       └── write-coding-standards-from-file/
 │           └── SKILL.md
 ├── .continue/
 │   └── skills/
@@ -66,7 +1015,465 @@ sanctuary/
 │       │   └── SKILL.md
 │       ├── agent-supply-chain/
 │       │   └── SKILL.md
-│       └── find-skills
+│       ├── agentic-eval/
+│       │   └── SKILL.md
+│       ├── ai-prompt-engineering-safety-review/
+│       │   └── SKILL.md
+│       ├── ai-ready/
+│       │   └── SKILL.md
+│       ├── ai-team-orchestration/
+│       │   ├── references/
+│       │   │   ├── anti-patterns.md
+│       │   │   ├── brainstorm-format.md
+│       │   │   ├── project-brief-template.md
+│       │   │   └── sprint-plan-template.md
+│       │   └── SKILL.md
+│       ├── architecture-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── brag-sheet/
+│       │   └── SKILL.md
+│       ├── breakdown-epic-arch/
+│       │   └── SKILL.md
+│       ├── breakdown-epic-pm/
+│       │   └── SKILL.md
+│       ├── breakdown-feature-implementation/
+│       │   └── SKILL.md
+│       ├── breakdown-feature-prd/
+│       │   └── SKILL.md
+│       ├── breakdown-plan/
+│       │   └── SKILL.md
+│       ├── breakdown-test/
+│       │   └── SKILL.md
+│       ├── chrome-devtools/
+│       │   └── SKILL.md
+│       ├── cli-mastery/
+│       │   ├── references/
+│       │   │   ├── final-exam.md
+│       │   │   ├── module-1-slash-commands.md
+│       │   │   ├── module-2-keyboard-shortcuts.md
+│       │   │   ├── module-3-modes.md
+│       │   │   ├── module-4-agents.md
+│       │   │   ├── module-5-skills.md
+│       │   │   ├── module-6-mcp.md
+│       │   │   ├── module-7-advanced.md
+│       │   │   ├── module-8-configuration.md
+│       │   │   └── scenarios.md
+│       │   └── SKILL.md
+│       ├── cloud-design-patterns/
+│       │   ├── references/
+│       │   │   ├── architecture-design.md
+│       │   │   ├── azure-service-mappings.md
+│       │   │   ├── best-practices.md
+│       │   │   ├── deployment-operational.md
+│       │   │   ├── event-driven.md
+│       │   │   ├── messaging-integration.md
+│       │   │   ├── performance.md
+│       │   │   ├── reliability-resilience.md
+│       │   │   └── security.md
+│       │   └── SKILL.md
+│       ├── code-exemplars-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── codeql/
+│       │   ├── references/
+│       │   │   ├── alert-management.md
+│       │   │   ├── cli-commands.md
+│       │   │   ├── compiled-languages.md
+│       │   │   ├── sarif-output.md
+│       │   │   ├── troubleshooting.md
+│       │   │   └── workflow-configuration.md
+│       │   └── SKILL.md
+│       ├── context-map/
+│       │   └── SKILL.md
+│       ├── conventional-branch/
+│       │   └── SKILL.md
+│       ├── conventional-commit/
+│       │   └── SKILL.md
+│       ├── convert-plaintext-to-md/
+│       │   └── SKILL.md
+│       ├── copilot-cli-quickstart/
+│       │   └── SKILL.md
+│       ├── copilot-instructions-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── copilot-sdk/
+│       │   └── SKILL.md
+│       ├── copilot-usage-metrics/
+│       │   ├── get-enterprise-metrics.sh
+│       │   ├── get-enterprise-user-metrics.sh
+│       │   ├── get-org-metrics.sh
+│       │   ├── get-org-user-metrics.sh
+│       │   └── SKILL.md
+│       ├── create-agentsmd/
+│       │   └── SKILL.md
+│       ├── create-architectural-decision-record/
+│       │   └── SKILL.md
+│       ├── create-github-action-workflow-specification/
+│       │   └── SKILL.md
+│       ├── create-github-issue-feature-from-specification/
+│       │   └── SKILL.md
+│       ├── create-github-issues-feature-from-implementation-plan/
+│       │   └── SKILL.md
+│       ├── create-github-issues-for-unmet-specification-requirements/
+│       │   └── SKILL.md
+│       ├── create-implementation-plan/
+│       │   └── SKILL.md
+│       ├── create-llms/
+│       │   └── SKILL.md
+│       ├── create-readme/
+│       │   └── SKILL.md
+│       ├── create-specification/
+│       │   └── SKILL.md
+│       ├── create-technical-spike/
+│       │   └── SKILL.md
+│       ├── create-tldr-page/
+│       │   └── SKILL.md
+│       ├── dependabot/
+│       │   ├── references/
+│       │   │   ├── dependabot-yml-reference.md
+│       │   │   ├── example-configs.md
+│       │   │   └── pr-commands.md
+│       │   └── SKILL.md
+│       ├── devops-rollout-plan/
+│       │   └── SKILL.md
+│       ├── diagnose/
+│       │   └── SKILL.md
+│       ├── documentation-writer/
+│       │   └── SKILL.md
+│       ├── doublecheck/
+│       │   ├── assets/
+│       │   │   └── verification-report-template.md
+│       │   └── SKILL.md
+│       ├── draw-io-diagram-generator/
+│       │   ├── assets/
+│       │   │   └── templates/
+│       │   │       ├── architecture.drawio
+│       │   │       ├── er-diagram.drawio
+│       │   │       ├── flowchart.drawio
+│       │   │       ├── sequence.drawio
+│       │   │       └── uml-class.drawio
+│       │   ├── references/
+│       │   │   ├── drawio-xml-schema.md
+│       │   │   ├── shape-libraries.md
+│       │   │   └── style-reference.md
+│       │   ├── scripts/
+│       │   │   ├── .gitignore
+│       │   │   ├── add-shape.py
+│       │   │   ├── README.md
+│       │   │   └── validate-drawio.py
+│       │   └── SKILL.md
+│       ├── editorconfig/
+│       │   └── SKILL.md
+│       ├── email-drafter/
+│       │   └── SKILL.md
+│       ├── eval-driven-dev/
+│       │   ├── references/
+│       │   │   ├── runnable-examples/
+│       │   │   │   ├── cli-app.md
+│       │   │   │   ├── fastapi-web-server.md
+│       │   │   │   └── standalone-function.md
+│       │   │   ├── 1-a-project-analysis.md
+│       │   │   ├── 1-b-entry-point.md
+│       │   │   ├── 1-c-eval-criteria.md
+│       │   │   ├── 2a-instrumentation.md
+│       │   │   ├── 2b-implement-runnable.md
+│       │   │   ├── 2c-capture-and-verify-trace.md
+│       │   │   ├── 3-define-evaluators.md
+│       │   │   ├── 4-build-dataset.md
+│       │   │   ├── 5-run-tests.md
+│       │   │   ├── 6-analyze-outcomes.md
+│       │   │   ├── evaluators.md
+│       │   │   ├── testing-api.md
+│       │   │   └── wrap-api.md
+│       │   ├── resources/
+│       │   │   ├── setup.sh
+│       │   │   └── verify_step6_completion.py
+│       │   └── SKILL.md
+│       ├── excalidraw-diagram-generator/
+│       │   ├── references/
+│       │   │   ├── element-types.md
+│       │   │   └── excalidraw-schema.md
+│       │   ├── scripts/
+│       │   │   ├── .gitignore
+│       │   │   ├── add-arrow.py
+│       │   │   ├── add-icon-to-diagram.py
+│       │   │   ├── README.md
+│       │   │   └── split-excalidraw-library.py
+│       │   ├── templates/
+│       │   │   ├── business-flow-swimlane-template.excalidraw
+│       │   │   ├── class-diagram-template.excalidraw
+│       │   │   ├── data-flow-diagram-template.excalidraw
+│       │   │   ├── er-diagram-template.excalidraw
+│       │   │   ├── flowchart-template.excalidraw
+│       │   │   ├── mindmap-template.excalidraw
+│       │   │   ├── relationship-template.excalidraw
+│       │   │   └── sequence-diagram-template.excalidraw
+│       │   └── SKILL.md
+│       ├── finalize-agent-prompt/
+│       │   └── SKILL.md
+│       ├── find-skills
+│       ├── folder-structure-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── freecad-scripts/
+│       │   ├── references/
+│       │   │   ├── geometry-and-shapes.md
+│       │   │   ├── gui-and-interface.md
+│       │   │   ├── parametric-objects.md
+│       │   │   ├── scripting-fundamentals.md
+│       │   │   └── workbenches-and-advanced.md
+│       │   └── SKILL.md
+│       ├── gdpr-compliant/
+│       │   ├── references/
+│       │   │   ├── data-rights.md
+│       │   │   └── Security.md
+│       │   └── SKILL.md
+│       ├── gen-specs-as-issues/
+│       │   └── SKILL.md
+│       ├── generate-custom-instructions-from-codebase/
+│       │   └── SKILL.md
+│       ├── generate-image/
+│       │   └── SKILL.md
+│       ├── git-commit/
+│       │   └── SKILL.md
+│       ├── github-actions-efficiency/
+│       │   ├── references/
+│       │   │   ├── actions.md
+│       │   │   ├── patterns.md
+│       │   │   ├── reporting.md
+│       │   │   └── review-rubric.md
+│       │   └── SKILL.md
+│       ├── github-actions-hardening/
+│       │   ├── references/
+│       │   │   ├── injection.md
+│       │   │   ├── permissions-and-tokens.md
+│       │   │   ├── report-format.md
+│       │   │   ├── supply-chain.md
+│       │   │   └── triggers-and-privilege.md
+│       │   └── SKILL.md
+│       ├── github-copilot-starter/
+│       │   └── SKILL.md
+│       ├── github-issues/
+│       │   ├── references/
+│       │   │   ├── dependencies.md
+│       │   │   ├── images.md
+│       │   │   ├── issue-fields.md
+│       │   │   ├── issue-types.md
+│       │   │   ├── projects.md
+│       │   │   ├── search.md
+│       │   │   ├── sub-issues.md
+│       │   │   └── templates.md
+│       │   └── SKILL.md
+│       ├── github-release/
+│       │   ├── references/
+│       │   │   ├── commit-classification.md
+│       │   │   └── semver-rules.md
+│       │   └── SKILL.md
+│       ├── gsap-framer-scroll-animation/
+│       │   ├── references/
+│       │   │   ├── framer.md
+│       │   │   └── gsap.md
+│       │   └── SKILL.md
+│       ├── harness-engineering/
+│       │   └── SKILL.md
+│       ├── image-annotations/
+│       │   └── SKILL.md
+│       ├── image-manipulation-image-magick/
+│       │   └── SKILL.md
+│       ├── impediment-prioritization/
+│       │   ├── references/
+│       │   │   └── scoring-rubric.md
+│       │   └── SKILL.md
+│       ├── linkedin-post-formatter/
+│       │   ├── references/
+│       │   │   └── unicode-charmap.md
+│       │   └── SKILL.md
+│       ├── lsp-setup/
+│       │   ├── references/
+│       │   │   └── lsp-servers.md
+│       │   └── SKILL.md
+│       ├── mcp-cli/
+│       │   └── SKILL.md
+│       ├── md-to-docx/
+│       │   ├── scripts/
+│       │   │   ├── md-to-docx.mjs
+│       │   │   └── package.json
+│       │   └── SKILL.md
+│       ├── meeting-minutes/
+│       │   └── SKILL.md
+│       ├── mini-context-graph/
+│       │   ├── references/
+│       │   │   ├── ingestion.md
+│       │   │   ├── lint.md
+│       │   │   ├── ontology.md
+│       │   │   └── retrieval.md
+│       │   ├── scripts/
+│       │   │   ├── tools/
+│       │   │   │   ├── __init__.py
+│       │   │   │   ├── documents_store.py
+│       │   │   │   ├── graph_store.py
+│       │   │   │   ├── index_store.py
+│       │   │   │   ├── ontology_store.py
+│       │   │   │   ├── retrieval_engine.py
+│       │   │   │   └── wiki_store.py
+│       │   │   ├── config.py
+│       │   │   ├── contextgraph.py
+│       │   │   └── template_agent_workflow.py
+│       │   └── SKILL.md
+│       ├── mkdocs-translations/
+│       │   └── SKILL.md
+│       ├── multi-stage-dockerfile/
+│       │   └── SKILL.md
+│       ├── performance-review-writer/
+│       │   └── SKILL.md
+│       ├── plantuml-ascii/
+│       │   └── SKILL.md
+│       ├── playwright-explore-website/
+│       │   └── SKILL.md
+│       ├── pr-dashboard/
+│       │   ├── assets/
+│       │   │   └── dashboard.html
+│       │   ├── scripts/
+│       │   │   ├── lib/
+│       │   │   │   └── utils.mjs
+│       │   │   └── pr-dashboard-cli.mjs
+│       │   └── SKILL.md
+│       ├── pr-screenshots/
+│       │   └── SKILL.md
+│       ├── prd/
+│       │   └── SKILL.md
+│       ├── premium-frontend-ui/
+│       │   └── SKILL.md
+│       ├── project-workflow-analysis-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── prompt-optimizer/
+│       │   └── SKILL.md
+│       ├── publish-to-pages/
+│       │   ├── scripts/
+│       │   │   ├── convert-pdf.py
+│       │   │   ├── convert-pptx.py
+│       │   │   └── publish.sh
+│       │   └── SKILL.md
+│       ├── pytest-coverage/
+│       │   └── SKILL.md
+│       ├── python-pypi-package-builder/
+│       │   ├── references/
+│       │   │   ├── architecture-patterns.md
+│       │   │   ├── ci-publishing.md
+│       │   │   ├── community-docs.md
+│       │   │   ├── library-patterns.md
+│       │   │   ├── pyproject-toml.md
+│       │   │   ├── release-governance.md
+│       │   │   ├── testing-quality.md
+│       │   │   ├── tooling-ruff.md
+│       │   │   └── versioning-strategy.md
+│       │   ├── scripts/
+│       │   │   └── scaffold.py
+│       │   └── SKILL.md
+│       ├── quality-playbook/
+│       │   ├── agents/
+│       │   │   ├── calibration_orchestrator.md
+│       │   │   ├── quality-playbook-claude.agent.md
+│       │   │   └── quality-playbook.agent.md
+│       │   ├── phase_prompts/
+│       │   │   ├── iteration.md
+│       │   │   ├── phase1.md
+│       │   │   ├── phase2.md
+│       │   │   ├── phase3.md
+│       │   │   ├── phase4.md
+│       │   │   ├── phase5.md
+│       │   │   ├── phase6.md
+│       │   │   ├── README.md
+│       │   │   └── single_pass.md
+│       │   ├── references/
+│       │   │   ├── challenge_gate.md
+│       │   │   ├── code-only-mode.md
+│       │   │   ├── constitution.md
+│       │   │   ├── defensive_patterns.md
+│       │   │   ├── exploration_patterns.md
+│       │   │   ├── functional_tests.md
+│       │   │   ├── iteration.md
+│       │   │   ├── orchestrator_protocol.md
+│       │   │   ├── requirements_pipeline.md
+│       │   │   ├── requirements_refinement.md
+│       │   │   ├── requirements_review.md
+│       │   │   ├── review_protocols.md
+│       │   │   ├── run_state_schema.md
+│       │   │   ├── schema_mapping.md
+│       │   │   ├── spec_audit.md
+│       │   │   └── verification.md
+│       │   ├── LICENSE.txt
+│       │   ├── quality_gate.py
+│       │   └── SKILL.md
+│       ├── readme-blueprint-generator/
+│       │   └── SKILL.md
+│       ├── refactor/
+│       │   └── SKILL.md
+│       ├── refactor-plan/
+│       │   └── SKILL.md
+│       ├── remember/
+│       │   └── SKILL.md
+│       ├── resemble-detect/
+│       │   ├── references/
+│       │   │   └── api-reference.md
+│       │   ├── LICENSE
+│       │   └── SKILL.md
+│       ├── review-and-refactor/
+│       │   └── SKILL.md
+│       ├── screen-recording/
+│       │   └── SKILL.md
+│       ├── secret-scanning/
+│       │   ├── references/
+│       │   │   ├── alerts-and-remediation.md
+│       │   │   ├── custom-patterns.md
+│       │   │   └── push-protection.md
+│       │   └── SKILL.md
+│       ├── security-review/
+│       │   ├── references/
+│       │   │   ├── language-patterns.md
+│       │   │   ├── report-format.md
+│       │   │   ├── secret-patterns.md
+│       │   │   ├── vuln-categories.md
+│       │   │   └── vulnerable-packages.md
+│       │   └── SKILL.md
+│       ├── sql-code-review/
+│       │   └── SKILL.md
+│       ├── sql-optimization/
+│       │   └── SKILL.md
+│       ├── structured-autonomy-implement/
+│       │   └── SKILL.md
+│       ├── structured-autonomy-plan/
+│       │   └── SKILL.md
+│       ├── threat-model-analyst/
+│       │   ├── references/
+│       │   │   ├── skeletons/
+│       │   │   │   ├── skeleton-architecture.md
+│       │   │   │   ├── skeleton-assessment.md
+│       │   │   │   ├── skeleton-dfd.md
+│       │   │   │   ├── skeleton-findings.md
+│       │   │   │   ├── skeleton-incremental-html.md
+│       │   │   │   ├── skeleton-inventory.md
+│       │   │   │   ├── skeleton-stride-analysis.md
+│       │   │   │   ├── skeleton-summary-dfd.md
+│       │   │   │   └── skeleton-threatmodel.md
+│       │   │   ├── analysis-principles.md
+│       │   │   ├── diagram-conventions.md
+│       │   │   ├── incremental-orchestrator.md
+│       │   │   ├── orchestrator.md
+│       │   │   ├── output-formats.md
+│       │   │   ├── tmt-element-taxonomy.md
+│       │   │   └── verification-checklist.md
+│       │   └── SKILL.md
+│       ├── tldr-prompt/
+│       │   └── SKILL.md
+│       ├── ui-screenshots/
+│       │   └── SKILL.md
+│       ├── web-design-reviewer/
+│       │   ├── references/
+│       │   │   ├── framework-fixes.md
+│       │   │   └── visual-checklist.md
+│       │   └── SKILL.md
+│       ├── what-context-needed/
+│       │   └── SKILL.md
+│       └── write-coding-standards-from-file/
+│           └── SKILL.md
 ├── .devcontainer/
 │   ├── scripts/
 │   │   ├── initialize.sh
@@ -2480,6 +3887,7 @@ sanctuary/
 │   │   │   ├── .markdown-link-check.json
 │   │   │   ├── .markdownlint.json
 │   │   │   ├── .markdownlint.yml
+│   │   │   ├── .markdownlintignore
 │   │   │   └── .remarkrc.json
 │   │   ├── php/
 │   │   │   ├── .phplint.yml
@@ -2714,7 +4122,465 @@ sanctuary/
 │   │   └── SKILL.md
 │   ├── agent-supply-chain/
 │   │   └── SKILL.md
-│   └── find-skills
+│   ├── agentic-eval/
+│   │   └── SKILL.md
+│   ├── ai-prompt-engineering-safety-review/
+│   │   └── SKILL.md
+│   ├── ai-ready/
+│   │   └── SKILL.md
+│   ├── ai-team-orchestration/
+│   │   ├── references/
+│   │   │   ├── anti-patterns.md
+│   │   │   ├── brainstorm-format.md
+│   │   │   ├── project-brief-template.md
+│   │   │   └── sprint-plan-template.md
+│   │   └── SKILL.md
+│   ├── architecture-blueprint-generator/
+│   │   └── SKILL.md
+│   ├── brag-sheet/
+│   │   └── SKILL.md
+│   ├── breakdown-epic-arch/
+│   │   └── SKILL.md
+│   ├── breakdown-epic-pm/
+│   │   └── SKILL.md
+│   ├── breakdown-feature-implementation/
+│   │   └── SKILL.md
+│   ├── breakdown-feature-prd/
+│   │   └── SKILL.md
+│   ├── breakdown-plan/
+│   │   └── SKILL.md
+│   ├── breakdown-test/
+│   │   └── SKILL.md
+│   ├── chrome-devtools/
+│   │   └── SKILL.md
+│   ├── cli-mastery/
+│   │   ├── references/
+│   │   │   ├── final-exam.md
+│   │   │   ├── module-1-slash-commands.md
+│   │   │   ├── module-2-keyboard-shortcuts.md
+│   │   │   ├── module-3-modes.md
+│   │   │   ├── module-4-agents.md
+│   │   │   ├── module-5-skills.md
+│   │   │   ├── module-6-mcp.md
+│   │   │   ├── module-7-advanced.md
+│   │   │   ├── module-8-configuration.md
+│   │   │   └── scenarios.md
+│   │   └── SKILL.md
+│   ├── cloud-design-patterns/
+│   │   ├── references/
+│   │   │   ├── architecture-design.md
+│   │   │   ├── azure-service-mappings.md
+│   │   │   ├── best-practices.md
+│   │   │   ├── deployment-operational.md
+│   │   │   ├── event-driven.md
+│   │   │   ├── messaging-integration.md
+│   │   │   ├── performance.md
+│   │   │   ├── reliability-resilience.md
+│   │   │   └── security.md
+│   │   └── SKILL.md
+│   ├── code-exemplars-blueprint-generator/
+│   │   └── SKILL.md
+│   ├── codeql/
+│   │   ├── references/
+│   │   │   ├── alert-management.md
+│   │   │   ├── cli-commands.md
+│   │   │   ├── compiled-languages.md
+│   │   │   ├── sarif-output.md
+│   │   │   ├── troubleshooting.md
+│   │   │   └── workflow-configuration.md
+│   │   └── SKILL.md
+│   ├── context-map/
+│   │   └── SKILL.md
+│   ├── conventional-branch/
+│   │   └── SKILL.md
+│   ├── conventional-commit/
+│   │   └── SKILL.md
+│   ├── convert-plaintext-to-md/
+│   │   └── SKILL.md
+│   ├── copilot-cli-quickstart/
+│   │   └── SKILL.md
+│   ├── copilot-instructions-blueprint-generator/
+│   │   └── SKILL.md
+│   ├── copilot-sdk/
+│   │   └── SKILL.md
+│   ├── copilot-usage-metrics/
+│   │   ├── get-enterprise-metrics.sh
+│   │   ├── get-enterprise-user-metrics.sh
+│   │   ├── get-org-metrics.sh
+│   │   ├── get-org-user-metrics.sh
+│   │   └── SKILL.md
+│   ├── create-agentsmd/
+│   │   └── SKILL.md
+│   ├── create-architectural-decision-record/
+│   │   └── SKILL.md
+│   ├── create-github-action-workflow-specification/
+│   │   └── SKILL.md
+│   ├── create-github-issue-feature-from-specification/
+│   │   └── SKILL.md
+│   ├── create-github-issues-feature-from-implementation-plan/
+│   │   └── SKILL.md
+│   ├── create-github-issues-for-unmet-specification-requirements/
+│   │   └── SKILL.md
+│   ├── create-implementation-plan/
+│   │   └── SKILL.md
+│   ├── create-llms/
+│   │   └── SKILL.md
+│   ├── create-readme/
+│   │   └── SKILL.md
+│   ├── create-specification/
+│   │   └── SKILL.md
+│   ├── create-technical-spike/
+│   │   └── SKILL.md
+│   ├── create-tldr-page/
+│   │   └── SKILL.md
+│   ├── dependabot/
+│   │   ├── references/
+│   │   │   ├── dependabot-yml-reference.md
+│   │   │   ├── example-configs.md
+│   │   │   └── pr-commands.md
+│   │   └── SKILL.md
+│   ├── devops-rollout-plan/
+│   │   └── SKILL.md
+│   ├── diagnose/
+│   │   └── SKILL.md
+│   ├── documentation-writer/
+│   │   └── SKILL.md
+│   ├── doublecheck/
+│   │   ├── assets/
+│   │   │   └── verification-report-template.md
+│   │   └── SKILL.md
+│   ├── draw-io-diagram-generator/
+│   │   ├── assets/
+│   │   │   └── templates/
+│   │   │       ├── architecture.drawio
+│   │   │       ├── er-diagram.drawio
+│   │   │       ├── flowchart.drawio
+│   │   │       ├── sequence.drawio
+│   │   │       └── uml-class.drawio
+│   │   ├── references/
+│   │   │   ├── drawio-xml-schema.md
+│   │   │   ├── shape-libraries.md
+│   │   │   └── style-reference.md
+│   │   ├── scripts/
+│   │   │   ├── .gitignore
+│   │   │   ├── add-shape.py
+│   │   │   ├── README.md
+│   │   │   └── validate-drawio.py
+│   │   └── SKILL.md
+│   ├── editorconfig/
+│   │   └── SKILL.md
+│   ├── email-drafter/
+│   │   └── SKILL.md
+│   ├── eval-driven-dev/
+│   │   ├── references/
+│   │   │   ├── runnable-examples/
+│   │   │   │   ├── cli-app.md
+│   │   │   │   ├── fastapi-web-server.md
+│   │   │   │   └── standalone-function.md
+│   │   │   ├── 1-a-project-analysis.md
+│   │   │   ├── 1-b-entry-point.md
+│   │   │   ├── 1-c-eval-criteria.md
+│   │   │   ├── 2a-instrumentation.md
+│   │   │   ├── 2b-implement-runnable.md
+│   │   │   ├── 2c-capture-and-verify-trace.md
+│   │   │   ├── 3-define-evaluators.md
+│   │   │   ├── 4-build-dataset.md
+│   │   │   ├── 5-run-tests.md
+│   │   │   ├── 6-analyze-outcomes.md
+│   │   │   ├── evaluators.md
+│   │   │   ├── testing-api.md
+│   │   │   └── wrap-api.md
+│   │   ├── resources/
+│   │   │   ├── setup.sh
+│   │   │   └── verify_step6_completion.py
+│   │   └── SKILL.md
+│   ├── excalidraw-diagram-generator/
+│   │   ├── references/
+│   │   │   ├── element-types.md
+│   │   │   └── excalidraw-schema.md
+│   │   ├── scripts/
+│   │   │   ├── .gitignore
+│   │   │   ├── add-arrow.py
+│   │   │   ├── add-icon-to-diagram.py
+│   │   │   ├── README.md
+│   │   │   └── split-excalidraw-library.py
+│   │   ├── templates/
+│   │   │   ├── business-flow-swimlane-template.excalidraw
+│   │   │   ├── class-diagram-template.excalidraw
+│   │   │   ├── data-flow-diagram-template.excalidraw
+│   │   │   ├── er-diagram-template.excalidraw
+│   │   │   ├── flowchart-template.excalidraw
+│   │   │   ├── mindmap-template.excalidraw
+│   │   │   ├── relationship-template.excalidraw
+│   │   │   └── sequence-diagram-template.excalidraw
+│   │   └── SKILL.md
+│   ├── finalize-agent-prompt/
+│   │   └── SKILL.md
+│   ├── find-skills
+│   ├── folder-structure-blueprint-generator/
+│   │   └── SKILL.md
+│   ├── freecad-scripts/
+│   │   ├── references/
+│   │   │   ├── geometry-and-shapes.md
+│   │   │   ├── gui-and-interface.md
+│   │   │   ├── parametric-objects.md
+│   │   │   ├── scripting-fundamentals.md
+│   │   │   └── workbenches-and-advanced.md
+│   │   └── SKILL.md
+│   ├── gdpr-compliant/
+│   │   ├── references/
+│   │   │   ├── data-rights.md
+│   │   │   └── Security.md
+│   │   └── SKILL.md
+│   ├── gen-specs-as-issues/
+│   │   └── SKILL.md
+│   ├── generate-custom-instructions-from-codebase/
+│   │   └── SKILL.md
+│   ├── generate-image/
+│   │   └── SKILL.md
+│   ├── git-commit/
+│   │   └── SKILL.md
+│   ├── github-actions-efficiency/
+│   │   ├── references/
+│   │   │   ├── actions.md
+│   │   │   ├── patterns.md
+│   │   │   ├── reporting.md
+│   │   │   └── review-rubric.md
+│   │   └── SKILL.md
+│   ├── github-actions-hardening/
+│   │   ├── references/
+│   │   │   ├── injection.md
+│   │   │   ├── permissions-and-tokens.md
+│   │   │   ├── report-format.md
+│   │   │   ├── supply-chain.md
+│   │   │   └── triggers-and-privilege.md
+│   │   └── SKILL.md
+│   ├── github-copilot-starter/
+│   │   └── SKILL.md
+│   ├── github-issues/
+│   │   ├── references/
+│   │   │   ├── dependencies.md
+│   │   │   ├── images.md
+│   │   │   ├── issue-fields.md
+│   │   │   ├── issue-types.md
+│   │   │   ├── projects.md
+│   │   │   ├── search.md
+│   │   │   ├── sub-issues.md
+│   │   │   └── templates.md
+│   │   └── SKILL.md
+│   ├── github-release/
+│   │   ├── references/
+│   │   │   ├── commit-classification.md
+│   │   │   └── semver-rules.md
+│   │   └── SKILL.md
+│   ├── gsap-framer-scroll-animation/
+│   │   ├── references/
+│   │   │   ├── framer.md
+│   │   │   └── gsap.md
+│   │   └── SKILL.md
+│   ├── harness-engineering/
+│   │   └── SKILL.md
+│   ├── image-annotations/
+│   │   └── SKILL.md
+│   ├── image-manipulation-image-magick/
+│   │   └── SKILL.md
+│   ├── impediment-prioritization/
+│   │   ├── references/
+│   │   │   └── scoring-rubric.md
+│   │   └── SKILL.md
+│   ├── linkedin-post-formatter/
+│   │   ├── references/
+│   │   │   └── unicode-charmap.md
+│   │   └── SKILL.md
+│   ├── lsp-setup/
+│   │   ├── references/
+│   │   │   └── lsp-servers.md
+│   │   └── SKILL.md
+│   ├── mcp-cli/
+│   │   └── SKILL.md
+│   ├── md-to-docx/
+│   │   ├── scripts/
+│   │   │   ├── md-to-docx.mjs
+│   │   │   └── package.json
+│   │   └── SKILL.md
+│   ├── meeting-minutes/
+│   │   └── SKILL.md
+│   ├── mini-context-graph/
+│   │   ├── references/
+│   │   │   ├── ingestion.md
+│   │   │   ├── lint.md
+│   │   │   ├── ontology.md
+│   │   │   └── retrieval.md
+│   │   ├── scripts/
+│   │   │   ├── tools/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── documents_store.py
+│   │   │   │   ├── graph_store.py
+│   │   │   │   ├── index_store.py
+│   │   │   │   ├── ontology_store.py
+│   │   │   │   ├── retrieval_engine.py
+│   │   │   │   └── wiki_store.py
+│   │   │   ├── config.py
+│   │   │   ├── contextgraph.py
+│   │   │   └── template_agent_workflow.py
+│   │   └── SKILL.md
+│   ├── mkdocs-translations/
+│   │   └── SKILL.md
+│   ├── multi-stage-dockerfile/
+│   │   └── SKILL.md
+│   ├── performance-review-writer/
+│   │   └── SKILL.md
+│   ├── plantuml-ascii/
+│   │   └── SKILL.md
+│   ├── playwright-explore-website/
+│   │   └── SKILL.md
+│   ├── pr-dashboard/
+│   │   ├── assets/
+│   │   │   └── dashboard.html
+│   │   ├── scripts/
+│   │   │   ├── lib/
+│   │   │   │   └── utils.mjs
+│   │   │   └── pr-dashboard-cli.mjs
+│   │   └── SKILL.md
+│   ├── pr-screenshots/
+│   │   └── SKILL.md
+│   ├── prd/
+│   │   └── SKILL.md
+│   ├── premium-frontend-ui/
+│   │   └── SKILL.md
+│   ├── project-workflow-analysis-blueprint-generator/
+│   │   └── SKILL.md
+│   ├── prompt-optimizer/
+│   │   └── SKILL.md
+│   ├── publish-to-pages/
+│   │   ├── scripts/
+│   │   │   ├── convert-pdf.py
+│   │   │   ├── convert-pptx.py
+│   │   │   └── publish.sh
+│   │   └── SKILL.md
+│   ├── pytest-coverage/
+│   │   └── SKILL.md
+│   ├── python-pypi-package-builder/
+│   │   ├── references/
+│   │   │   ├── architecture-patterns.md
+│   │   │   ├── ci-publishing.md
+│   │   │   ├── community-docs.md
+│   │   │   ├── library-patterns.md
+│   │   │   ├── pyproject-toml.md
+│   │   │   ├── release-governance.md
+│   │   │   ├── testing-quality.md
+│   │   │   ├── tooling-ruff.md
+│   │   │   └── versioning-strategy.md
+│   │   ├── scripts/
+│   │   │   └── scaffold.py
+│   │   └── SKILL.md
+│   ├── quality-playbook/
+│   │   ├── agents/
+│   │   │   ├── calibration_orchestrator.md
+│   │   │   ├── quality-playbook-claude.agent.md
+│   │   │   └── quality-playbook.agent.md
+│   │   ├── phase_prompts/
+│   │   │   ├── iteration.md
+│   │   │   ├── phase1.md
+│   │   │   ├── phase2.md
+│   │   │   ├── phase3.md
+│   │   │   ├── phase4.md
+│   │   │   ├── phase5.md
+│   │   │   ├── phase6.md
+│   │   │   ├── README.md
+│   │   │   └── single_pass.md
+│   │   ├── references/
+│   │   │   ├── challenge_gate.md
+│   │   │   ├── code-only-mode.md
+│   │   │   ├── constitution.md
+│   │   │   ├── defensive_patterns.md
+│   │   │   ├── exploration_patterns.md
+│   │   │   ├── functional_tests.md
+│   │   │   ├── iteration.md
+│   │   │   ├── orchestrator_protocol.md
+│   │   │   ├── requirements_pipeline.md
+│   │   │   ├── requirements_refinement.md
+│   │   │   ├── requirements_review.md
+│   │   │   ├── review_protocols.md
+│   │   │   ├── run_state_schema.md
+│   │   │   ├── schema_mapping.md
+│   │   │   ├── spec_audit.md
+│   │   │   └── verification.md
+│   │   ├── LICENSE.txt
+│   │   ├── quality_gate.py
+│   │   └── SKILL.md
+│   ├── readme-blueprint-generator/
+│   │   └── SKILL.md
+│   ├── refactor/
+│   │   └── SKILL.md
+│   ├── refactor-plan/
+│   │   └── SKILL.md
+│   ├── remember/
+│   │   └── SKILL.md
+│   ├── resemble-detect/
+│   │   ├── references/
+│   │   │   └── api-reference.md
+│   │   ├── LICENSE
+│   │   └── SKILL.md
+│   ├── review-and-refactor/
+│   │   └── SKILL.md
+│   ├── screen-recording/
+│   │   └── SKILL.md
+│   ├── secret-scanning/
+│   │   ├── references/
+│   │   │   ├── alerts-and-remediation.md
+│   │   │   ├── custom-patterns.md
+│   │   │   └── push-protection.md
+│   │   └── SKILL.md
+│   ├── security-review/
+│   │   ├── references/
+│   │   │   ├── language-patterns.md
+│   │   │   ├── report-format.md
+│   │   │   ├── secret-patterns.md
+│   │   │   ├── vuln-categories.md
+│   │   │   └── vulnerable-packages.md
+│   │   └── SKILL.md
+│   ├── sql-code-review/
+│   │   └── SKILL.md
+│   ├── sql-optimization/
+│   │   └── SKILL.md
+│   ├── structured-autonomy-implement/
+│   │   └── SKILL.md
+│   ├── structured-autonomy-plan/
+│   │   └── SKILL.md
+│   ├── threat-model-analyst/
+│   │   ├── references/
+│   │   │   ├── skeletons/
+│   │   │   │   ├── skeleton-architecture.md
+│   │   │   │   ├── skeleton-assessment.md
+│   │   │   │   ├── skeleton-dfd.md
+│   │   │   │   ├── skeleton-findings.md
+│   │   │   │   ├── skeleton-incremental-html.md
+│   │   │   │   ├── skeleton-inventory.md
+│   │   │   │   ├── skeleton-stride-analysis.md
+│   │   │   │   ├── skeleton-summary-dfd.md
+│   │   │   │   └── skeleton-threatmodel.md
+│   │   │   ├── analysis-principles.md
+│   │   │   ├── diagram-conventions.md
+│   │   │   ├── incremental-orchestrator.md
+│   │   │   ├── orchestrator.md
+│   │   │   ├── output-formats.md
+│   │   │   ├── tmt-element-taxonomy.md
+│   │   │   └── verification-checklist.md
+│   │   └── SKILL.md
+│   ├── tldr-prompt/
+│   │   └── SKILL.md
+│   ├── ui-screenshots/
+│   │   └── SKILL.md
+│   ├── web-design-reviewer/
+│   │   ├── references/
+│   │   │   ├── framework-fixes.md
+│   │   │   └── visual-checklist.md
+│   │   └── SKILL.md
+│   ├── what-context-needed/
+│   │   └── SKILL.md
+│   └── write-coding-standards-from-file/
+│       └── SKILL.md
 ├── templates/
 │   ├── applications/
 │   │   └── README.md
@@ -2746,6 +4612,7 @@ sanctuary/
 ├── poetry.toml
 ├── pyproject.toml
 ├── README.md
+├── REUSE.toml
 ├── sanctuary.code-workspace
 ├── skills-lock.json
 └── Taskfile.yml
