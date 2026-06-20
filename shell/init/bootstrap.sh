@@ -48,12 +48,18 @@ egohygiene_load_module "cache"
 # 🖥️ Shell-Specific Module
 # --------------------------------------------
 #
-# CURRENT_SHELL should be set by detection logic
-# (we'll formalize this in os.sh later)
+# Load a shell-specific module only when one exists for
+# the detected runtime.
 #
 
-if [[ -n "${CURRENT_SHELL:-}" ]]; then
-  egohygiene_load_module "${CURRENT_SHELL}"
+if [[ -n "${EGOHYGIENE_SHELL_NAME:-}" ]]; then
+  shell_module_path="${EGOHYGIENE_SHELL_ROOT}/modules/${EGOHYGIENE_SHELL_NAME}.sh"
+
+  if [[ -f "${shell_module_path}" && -r "${shell_module_path}" ]]; then
+    egohygiene_load_module "${EGOHYGIENE_SHELL_NAME}"
+  fi
+
+  unset shell_module_path
 fi
 
 # --------------------------------------------

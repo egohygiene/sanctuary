@@ -28,16 +28,22 @@ if [[ -z "${XDG_CACHE_HOME:-}" ]]; then
   return 0
 fi
 
+history_state_home="${XDG_STATE_HOME:-${HOME}/.local/state}"
+
 # --------------------------------------------
 # 🧠 Shell History
 # --------------------------------------------
 
-# Bash
-export HISTFILE="${XDG_CACHE_HOME}/bash_history"
-export HISTSIZE="10000"
-
-# Zsh compatibility (safe even if unused)
-export SAVEHIST="10000"
+if shell::is_bash; then
+  mkdir -p "${history_state_home}/bash"
+  export HISTFILE="${history_state_home}/bash/history"
+  export HISTSIZE="10000"
+elif shell::is_zsh; then
+  mkdir -p "${history_state_home}/zsh"
+  export HISTFILE="${history_state_home}/zsh/history"
+  export HISTSIZE="10000"
+  export SAVEHIST="10000"
+fi
 
 # --------------------------------------------
 # 🧪 Language REPLs & Runtimes
@@ -69,3 +75,5 @@ export LESSHISTSIZE="10000"
 export GDBHISTFILE="${XDG_CACHE_HOME}/gdb_history"
 export UNITS_HISTORY_FILE="${XDG_CACHE_HOME}/units_history"
 export RLWRAP_HOME="${XDG_CACHE_HOME}/rlwrap"
+
+unset history_state_home
