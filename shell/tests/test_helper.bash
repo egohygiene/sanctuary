@@ -21,6 +21,21 @@ run_in_clean_shell() {
     /bin/bash --noprofile --norc -lc "${shell_command}"
 }
 
+run_in_clean_zsh() {
+  local test_home="$1"
+  local shell_command="$2"
+
+  if ! command -v zsh >/dev/null 2>&1; then
+    skip "zsh is not installed"
+  fi
+
+  run env -i \
+    HOME="${test_home}" \
+    PATH="${PATH}" \
+    TMPDIR="${TMPDIR:-/tmp}" \
+    zsh -fc "${shell_command}"
+}
+
 assert_line() {
   local expected_line="$1"
 

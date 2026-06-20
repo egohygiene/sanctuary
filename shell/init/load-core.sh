@@ -31,8 +31,8 @@ fi
 # --------------------------------------------
 #
 # Order is intentional:
-# 1. os       → environment detection
-# 2. bash     → bash runtime introspection
+# 1. shell    → active shell detection
+# 2. os       → environment detection
 # 3. colors   → terminal formatting
 # 4. logging  → structured output
 # 5. guards   → safety + assertions
@@ -41,8 +41,8 @@ fi
 #
 
 core_library_file_list=(
+  "shell.sh"
   "os.sh"
-  "bash.sh"
   "colors.sh"
   "logging.sh"
   "guards.sh"
@@ -63,6 +63,17 @@ for core_library_file in "${core_library_file_list[@]}"; do
     printf "[warn] load-core.sh: missing core library: %s\n" "${core_library_file}" >&2
   fi
 done
+
+if shell::is_bash; then
+  core_library_path="${EGOHYGIENE_SHELL_ROOT}/lib/core/bash.sh"
+
+  if [[ -f "${core_library_path}" && -r "${core_library_path}" ]]; then
+    # shellcheck disable=SC1090
+    source "${core_library_path}"
+  else
+    printf "[warn] load-core.sh: missing bash library: bash.sh\n" >&2
+  fi
+fi
 
 # --------------------------------------------
 # 🧹 Cleanup
