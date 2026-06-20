@@ -28,16 +28,36 @@ if [[ -z "${XDG_CACHE_HOME:-}" ]]; then
   return 0
 fi
 
+if [[ -n "${XDG_STATE_HOME:-}" ]]; then
+  history_state_home="${XDG_STATE_HOME}"
+elif [[ -n "${HOME:-}" ]]; then
+  history_state_home="${HOME}/.local/state"
+else
+  return 0
+fi
+
 # --------------------------------------------
 # 🧠 Shell History
 # --------------------------------------------
 
-# Bash
-export HISTFILE="${XDG_CACHE_HOME}/bash_history"
-export HISTSIZE="10000"
+if shell::is_bash; then
+  if ! mkdir -p "${history_state_home}/bash"; then
+    printf "[warn] history: unable to create history directory: %s\n" "${history_state_home}/bash" >&2
+    return 0
+  fi
 
-# Zsh compatibility (safe even if unused)
-export SAVEHIST="10000"
+  export HISTFILE="${history_state_home}/bash/history"
+  export HISTSIZE="10000"
+elif shell::is_zsh; then
+  if ! mkdir -p "${history_state_home}/zsh"; then
+    printf "[warn] history: unable to create history directory: %s\n" "${history_state_home}/zsh" >&2
+    return 0
+  fi
+
+  export HISTFILE="${history_state_home}/zsh/history"
+  export HISTSIZE="10000"
+  export SAVEHIST="10000"
+fi
 
 # --------------------------------------------
 # 🧪 Language REPLs & Runtimes
@@ -69,3 +89,5 @@ export LESSHISTSIZE="10000"
 export GDBHISTFILE="${XDG_CACHE_HOME}/gdb_history"
 export UNITS_HISTORY_FILE="${XDG_CACHE_HOME}/units_history"
 export RLWRAP_HOME="${XDG_CACHE_HOME}/rlwrap"
+
+unset history_state_home
