@@ -56,6 +56,7 @@ if [[ -n "${EGOHYGIENE_SHELL_NAME:-}" ]]; then
   shell_module_path="${EGOHYGIENE_SHELL_ROOT}/modules/${EGOHYGIENE_SHELL_NAME}.sh"
 
   if [[ -f "${shell_module_path}" && -r "${shell_module_path}" ]]; then
+    # Keep the public loader API module-name based even though we preflight the path here.
     egohygiene_load_module "${EGOHYGIENE_SHELL_NAME}"
   fi
 
