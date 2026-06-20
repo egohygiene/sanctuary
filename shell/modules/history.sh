@@ -42,7 +42,7 @@ fi
 
 if shell::is_bash; then
   if ! mkdir -p "${history_state_home}/bash"; then
-    printf "[warn] history.sh: unable to create history directory: %s\n" "${history_state_home}/bash" >&2
+    printf "[warn] history: unable to create history directory: %s\n" "${history_state_home}/bash" >&2
     return 0
   fi
 
@@ -50,7 +50,7 @@ if shell::is_bash; then
   export HISTSIZE="10000"
 elif shell::is_zsh; then
   if ! mkdir -p "${history_state_home}/zsh"; then
-    printf "[warn] history.sh: unable to create history directory: %s\n" "${history_state_home}/zsh" >&2
+    printf "[warn] history: unable to create history directory: %s\n" "${history_state_home}/zsh" >&2
     return 0
   fi
 
