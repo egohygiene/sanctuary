@@ -21365,6 +21365,223 @@
       "type": "directory",
       "children": [
         {
+          "name": ".staging",
+          "path": "shell/.staging",
+          "type": "directory",
+          "children": [
+            {
+              "name": "apps-bin-path.sh",
+              "path": "shell/.staging/apps-bin-path.sh",
+              "type": "file"
+            },
+            {
+              "name": "backup-container.sh",
+              "path": "shell/.staging/backup-container.sh",
+              "type": "file"
+            },
+            {
+              "name": "backup.sh",
+              "path": "shell/.staging/backup.sh",
+              "type": "file"
+            },
+            {
+              "name": "cb",
+              "path": "shell/.staging/cb",
+              "type": "file"
+            },
+            {
+              "name": "check_health.sh",
+              "path": "shell/.staging/check_health.sh",
+              "type": "file"
+            },
+            {
+              "name": "colors.sh",
+              "path": "shell/.staging/colors.sh",
+              "type": "file"
+            },
+            {
+              "name": "devcontainer.sh",
+              "path": "shell/.staging/devcontainer.sh",
+              "type": "file"
+            },
+            {
+              "name": "devtools.sh",
+              "path": "shell/.staging/devtools.sh",
+              "type": "file"
+            },
+            {
+              "name": "encrypt_volume.sh",
+              "path": "shell/.staging/encrypt_volume.sh",
+              "type": "file"
+            },
+            {
+              "name": "environment.sh",
+              "path": "shell/.staging/environment.sh",
+              "type": "file"
+            },
+            {
+              "name": "freeze-apt",
+              "path": "shell/.staging/freeze-apt",
+              "type": "file"
+            },
+            {
+              "name": "freeze-github-release",
+              "path": "shell/.staging/freeze-github-release",
+              "type": "file"
+            },
+            {
+              "name": "generate-password",
+              "path": "shell/.staging/generate-password",
+              "type": "file"
+            },
+            {
+              "name": "generate-pwa-icons",
+              "path": "shell/.staging/generate-pwa-icons",
+              "type": "file"
+            },
+            {
+              "name": "get_pdf_title.py",
+              "path": "shell/.staging/get_pdf_title.py",
+              "type": "file"
+            },
+            {
+              "name": "ghlabels",
+              "path": "shell/.staging/ghlabels",
+              "type": "file"
+            },
+            {
+              "name": "git-summary.sh",
+              "path": "shell/.staging/git-summary.sh",
+              "type": "file"
+            },
+            {
+              "name": "github-latest-release",
+              "path": "shell/.staging/github-latest-release",
+              "type": "file"
+            },
+            {
+              "name": "is-executable",
+              "path": "shell/.staging/is-executable",
+              "type": "file"
+            },
+            {
+              "name": "is-macos",
+              "path": "shell/.staging/is-macos",
+              "type": "file"
+            },
+            {
+              "name": "json-pretty",
+              "path": "shell/.staging/json-pretty",
+              "type": "file"
+            },
+            {
+              "name": "list-fonts",
+              "path": "shell/.staging/list-fonts",
+              "type": "file"
+            },
+            {
+              "name": "list-packages",
+              "path": "shell/.staging/list-packages",
+              "type": "file"
+            },
+            {
+              "name": "megalinter.sh",
+              "path": "shell/.staging/megalinter.sh",
+              "type": "file"
+            },
+            {
+              "name": "nuke-docker",
+              "path": "shell/.staging/nuke-docker",
+              "type": "file"
+            },
+            {
+              "name": "os.sh",
+              "path": "shell/.staging/os.sh",
+              "type": "file"
+            },
+            {
+              "name": "pandoc_emoji_filter.py",
+              "path": "shell/.staging/pandoc_emoji_filter.py",
+              "type": "file"
+            },
+            {
+              "name": "pipes",
+              "path": "shell/.staging/pipes",
+              "type": "file"
+            },
+            {
+              "name": "pre-shutdown",
+              "path": "shell/.staging/pre-shutdown",
+              "type": "file"
+            },
+            {
+              "name": "process_files.py",
+              "path": "shell/.staging/process_files.py",
+              "type": "file"
+            },
+            {
+              "name": "record-audio",
+              "path": "shell/.staging/record-audio",
+              "type": "file"
+            },
+            {
+              "name": "reinstall_google_drive.sh",
+              "path": "shell/.staging/reinstall_google_drive.sh",
+              "type": "file"
+            },
+            {
+              "name": "remove_password_pdf",
+              "path": "shell/.staging/remove_password_pdf",
+              "type": "file"
+            },
+            {
+              "name": "run_discovery",
+              "path": "shell/.staging/run_discovery",
+              "type": "file"
+            },
+            {
+              "name": "set-sys-uid-max",
+              "path": "shell/.staging/set-sys-uid-max",
+              "type": "file"
+            },
+            {
+              "name": "setup-asdf",
+              "path": "shell/.staging/setup-asdf",
+              "type": "file"
+            },
+            {
+              "name": "setup-git-aliases.sh",
+              "path": "shell/.staging/setup-git-aliases.sh",
+              "type": "file"
+            },
+            {
+              "name": "storybook.sh",
+              "path": "shell/.staging/storybook.sh",
+              "type": "file"
+            },
+            {
+              "name": "sysinfo",
+              "path": "shell/.staging/sysinfo",
+              "type": "file"
+            },
+            {
+              "name": "system_os",
+              "path": "shell/.staging/system_os",
+              "type": "file"
+            },
+            {
+              "name": "tailwind-config-viewer.sh",
+              "path": "shell/.staging/tailwind-config-viewer.sh",
+              "type": "file"
+            },
+            {
+              "name": "uninstall_google_drive.sh",
+              "path": "shell/.staging/uninstall_google_drive.sh",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": ".vscode",
           "path": "shell/.vscode",
           "type": "directory",
