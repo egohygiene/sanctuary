@@ -9,10 +9,12 @@ on:
   push:
     paths:
       - ".github/workflows/copilot-setup-steps.yml"
+      - "docs/copilot/COPILOT_ALLOWLIST.md"
 
   pull_request:
     paths:
       - ".github/workflows/copilot-setup-steps.yml"
+      - "docs/copilot/COPILOT_ALLOWLIST.md"
 
 permissions: {}
 
@@ -20,46 +22,49 @@ jobs:
   # Must be named exactly "copilot-setup-steps"
   copilot-setup-steps:
     name: "🤖 Prepare Copilot Environment"
-
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     permissions:
       contents: read
 
-    timeout-minutes: 15
-
     steps:
-      # ------------------------------------------------------------------
-      # Repository
-      # ------------------------------------------------------------------
-
       - name: "📦 Checkout repository"
         uses: actions/checkout@v6
         with:
           lfs: true
 
-      # ------------------------------------------------------------------
-      # GitHub CLI
-      # ------------------------------------------------------------------
-
-      - name: "🐙 Verify GitHub CLI authentication"
+      - name: "🐙 Verify GitHub CLI"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh auth status
-
-      # ------------------------------------------------------------------
-      # Git Metadata
-      # ------------------------------------------------------------------
 
       - name: "🏷️ Fetch tags and history"
         run: |
           git fetch --unshallow || true
           git fetch --tags
 
-      # ------------------------------------------------------------------
-      # Diagnostics
-      # ------------------------------------------------------------------
+      - name: "🧰 Install baseline tools"
+        run: |
+          sudo apt-get update
+
+          sudo apt-get install \
+            --yes \
+            jq \
+            curl \
+            git \
+            make \
+            shellcheck
+
+      - name: "📦 Verify package tooling"
+        run: |
+          node --version || true
+          npm --version || true
+          python3 --version || true
+          pip3 --version || true
+          jq --version
+          shellcheck --version
 
       - name: "🔍 Environment diagnostics"
         run: |
@@ -75,10 +80,6 @@ jobs:
 
           printf "\nOperating System\n"
           uname --all
-
-      # ------------------------------------------------------------------
-      # Future Extension Point
-      # ------------------------------------------------------------------
 
       - name: "📚 Repository-specific setup"
         run: |
