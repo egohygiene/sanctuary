@@ -38,7 +38,6 @@ source "${EGOHYGIENE_SHELL_ROOT}/init/bootstrap.sh"
 if [[ "${EGOHYGIENE_SHELL_DEBUG:-0}" == "1" ]]; then
   if [[ -f "${EGOHYGIENE_SHELL_ROOT}/init/debug.sh" && -r "${EGOHYGIENE_SHELL_ROOT}/init/debug.sh" ]]; then
     # shellcheck disable=SC1091
-    # shellcheck disable=SC1090
     source "${EGOHYGIENE_SHELL_ROOT}/init/debug.sh"
   else
     printf "[warn] init.sh: debug requested but script missing: %s\n" "${EGOHYGIENE_SHELL_ROOT}/init/debug.sh" >&2

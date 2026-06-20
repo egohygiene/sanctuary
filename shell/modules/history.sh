@@ -32,8 +32,6 @@ if [[ -n "${XDG_STATE_HOME:-}" ]]; then
   history_state_home="${XDG_STATE_HOME}"
 elif [[ -n "${HOME:-}" ]]; then
   history_state_home="${HOME}/.local/state"
-elif [[ -n "${XDG_CACHE_HOME:-}" ]]; then
-  history_state_home="${XDG_CACHE_HOME}/state"
 else
   return 0
 fi

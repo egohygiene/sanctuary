@@ -29,7 +29,7 @@ shell/
 
 - The bootstrap is intended to be sourced from Bash or Zsh.
 - XDG directories default under `$HOME` and are created on demand.
-- `XDG_RUNTIME_DIR` falls back to `/run/user/<uid>`, `TMPDIR`, or `/tmp`, which keeps local Linux, macOS, and devcontainer sessions working with the same entrypoint.
+- The existing XDG module keeps runtime, config, data, cache, and state directories portable across local shells and devcontainer sessions.
 - Container-aware behavior is exposed through `os::is_container`, so devcontainers can share the canonical bootstrap without requiring a separate shell tree.
 
 ## Validation
