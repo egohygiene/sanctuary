@@ -33,7 +33,7 @@ if [[ -n "${XDG_STATE_HOME:-}" ]]; then
 elif [[ -n "${HOME:-}" ]]; then
   history_state_home="${HOME}/.local/state"
 else
-  history_state_home="${XDG_CACHE_HOME}/state"
+  history_state_home="/tmp/egohygiene-state"
 fi
 
 # --------------------------------------------

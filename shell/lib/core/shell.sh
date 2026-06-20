@@ -27,7 +27,7 @@ else
 fi
 
 shell::name() {
-  printf "%s\n" "${EGOHYGIENE_SHELL_NAME:-unknown}"
+  printf "%s\n" "${EGOHYGIENE_SHELL_NAME}"
 }
 
 shell::is_bash() {

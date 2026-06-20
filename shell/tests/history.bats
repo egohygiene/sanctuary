@@ -30,7 +30,7 @@ teardown() {
   run_in_clean_zsh "${TEST_HOME}" "
     source '${REPO_ROOT}/.shellrc'
     printf 'shell=%s\n' \"\${EGOHYGIENE_SHELL_NAME}\"
-    if whence -w bash::version >/dev/null 2>&1; then
+    if [[ -n \"\${EGOHYGIENE_LIB_BASH_LOADED:-}\" ]]; then
       printf 'bash_helpers=yes\n'
     else
       printf 'bash_helpers=no\n'
