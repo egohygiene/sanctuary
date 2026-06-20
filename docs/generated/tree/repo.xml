@@ -4670,6 +4670,7 @@
         <file name="guards.sh" path="shell/lib/core/guards.sh" />
         <file name="logging.sh" path="shell/lib/core/logging.sh" />
         <file name="os.sh" path="shell/lib/core/os.sh" />
+        <file name="shell.sh" path="shell/lib/core/shell.sh" />
         <file name="time.sh" path="shell/lib/core/time.sh" />
       </directory>
       <directory name="extensions" path="shell/lib/extensions">
@@ -4699,6 +4700,7 @@
       <file name="convert-to-ico.bats" path="shell/tests/convert-to-ico.bats" />
       <file name="environment.bats" path="shell/tests/environment.bats" />
       <file name="git-remove-exec-no-shebang.bats" path="shell/tests/git-remove-exec-no-shebang.bats" />
+      <file name="history.bats" path="shell/tests/history.bats" />
       <file name="test_helper.bash" path="shell/tests/test_helper.bash" />
       <file name="xdg.bats" path="shell/tests/xdg.bats" />
     </directory>

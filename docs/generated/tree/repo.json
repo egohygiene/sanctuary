@@ -21548,6 +21548,11 @@
                   "type": "file"
                 },
                 {
+                  "name": "shell.sh",
+                  "path": "shell/lib/core/shell.sh",
+                  "type": "file"
+                },
+                {
                   "name": "time.sh",
                   "path": "shell/lib/core/time.sh",
                   "type": "file"
@@ -21672,6 +21677,11 @@
             {
               "name": "git-remove-exec-no-shebang.bats",
               "path": "shell/tests/git-remove-exec-no-shebang.bats",
+              "type": "file"
+            },
+            {
+              "name": "history.bats",
+              "path": "shell/tests/history.bats",
               "type": "file"
             },
             {

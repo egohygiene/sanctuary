@@ -4070,6 +4070,7 @@ sanctuary/
 │   │   │   ├── guards.sh
 │   │   │   ├── logging.sh
 │   │   │   ├── os.sh
+│   │   │   ├── shell.sh
 │   │   │   └── time.sh
 │   │   ├── extensions/
 │   │   │   ├── fonts.sh
@@ -4093,6 +4094,7 @@ sanctuary/
 │   │   ├── convert-to-ico.bats
 │   │   ├── environment.bats
 │   │   ├── git-remove-exec-no-shebang.bats
+│   │   ├── history.bats
 │   │   ├── test_helper.bash
 │   │   └── xdg.bats
 │   ├── .gitignore
