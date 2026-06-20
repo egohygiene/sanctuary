@@ -2033,6 +2033,7 @@
     <file name="actionlint.yaml" path=".github/actionlint.yaml" />
     <file name="CODEOWNERS" path=".github/CODEOWNERS" />
     <file name="copilot-instructions.md" path=".github/copilot-instructions.md" />
+    <file name="dependabot.yml" path=".github/dependabot.yml" />
     <file name="FUNDING.yml" path=".github/FUNDING.yml" />
     <file name="PULL_REQUEST_TEMPLATE.md" path=".github/PULL_REQUEST_TEMPLATE.md" />
   </directory>
@@ -4309,6 +4310,9 @@
     </directory>
   </directory>
   <directory name="docs" path="docs">
+    <directory name="copilot" path="docs/copilot">
+      <file name="COPILOT_ALLOWLIST.md" path="docs/copilot/COPILOT_ALLOWLIST.md" />
+    </directory>
     <directory name="javascripts" path="docs/javascripts">
       <file name="extra.js" path="docs/javascripts/extra.js" />
     </directory>
@@ -5388,5 +5392,6 @@
   <file name="REUSE.toml" path="REUSE.toml" />
   <file name="sanctuary.code-workspace" path="sanctuary.code-workspace" />
   <file name="skills-lock.json" path="skills-lock.json" />
+  <file name="SUPPORT.md" path="SUPPORT.md" />
   <file name="Taskfile.yml" path="Taskfile.yml" />
 </repository>

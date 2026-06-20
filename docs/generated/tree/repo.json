@@ -8669,6 +8669,11 @@
           "type": "file"
         },
         {
+          "name": "dependabot.yml",
+          "path": ".github/dependabot.yml",
+          "type": "file"
+        },
+        {
           "name": "FUNDING.yml",
           "path": ".github/FUNDING.yml",
           "type": "file"
@@ -19971,6 +19976,18 @@
       "type": "directory",
       "children": [
         {
+          "name": "copilot",
+          "path": "docs/copilot",
+          "type": "directory",
+          "children": [
+            {
+              "name": "COPILOT_ALLOWLIST.md",
+              "path": "docs/copilot/COPILOT_ALLOWLIST.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "javascripts",
           "path": "docs/javascripts",
           "type": "directory",
@@ -24616,6 +24633,11 @@
     {
       "name": "skills-lock.json",
       "path": "skills-lock.json",
+      "type": "file"
+    },
+    {
+      "name": "SUPPORT.md",
+      "path": "SUPPORT.md",
       "type": "file"
     },
     {

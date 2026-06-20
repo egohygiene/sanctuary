@@ -1535,6 +1535,7 @@ sanctuary/
 │   ├── actionlint.yaml
 │   ├── CODEOWNERS
 │   ├── copilot-instructions.md
+│   ├── dependabot.yml
 │   ├── FUNDING.yml
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── .idea/
@@ -3785,6 +3786,8 @@ sanctuary/
 │       ├── utils.mk
 │       └── variables.mk
 ├── docs/
+│   ├── copilot/
+│   │   └── COPILOT_ALLOWLIST.md
 │   ├── javascripts/
 │   │   └── extra.js
 │   ├── stylesheets/
@@ -4615,5 +4618,6 @@ sanctuary/
 ├── REUSE.toml
 ├── sanctuary.code-workspace
 ├── skills-lock.json
+├── SUPPORT.md
 └── Taskfile.yml
 ```
