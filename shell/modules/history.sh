@@ -32,8 +32,10 @@ if [[ -n "${XDG_STATE_HOME:-}" ]]; then
   history_state_home="${XDG_STATE_HOME}"
 elif [[ -n "${HOME:-}" ]]; then
   history_state_home="${HOME}/.local/state"
-else
+elif [[ -n "${XDG_CACHE_HOME:-}" ]]; then
   history_state_home="${XDG_CACHE_HOME}/state"
+else
+  return 0
 fi
 
 # --------------------------------------------
@@ -41,11 +43,19 @@ fi
 # --------------------------------------------
 
 if shell::is_bash; then
-  mkdir -p "${history_state_home}/bash"
+  if ! mkdir -p "${history_state_home}/bash"; then
+    printf "[warn] history.sh: unable to create history directory: %s\n" "${history_state_home}/bash" >&2
+    return 0
+  fi
+
   export HISTFILE="${history_state_home}/bash/history"
   export HISTSIZE="10000"
 elif shell::is_zsh; then
-  mkdir -p "${history_state_home}/zsh"
+  if ! mkdir -p "${history_state_home}/zsh"; then
+    printf "[warn] history.sh: unable to create history directory: %s\n" "${history_state_home}/zsh" >&2
+    return 0
+  fi
+
   export HISTFILE="${history_state_home}/zsh/history"
   export HISTSIZE="10000"
   export SAVEHIST="10000"
