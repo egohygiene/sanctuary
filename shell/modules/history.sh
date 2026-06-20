@@ -28,7 +28,13 @@ if [[ -z "${XDG_CACHE_HOME:-}" ]]; then
   return 0
 fi
 
-history_state_home="${XDG_STATE_HOME:-${HOME}/.local/state}"
+if [[ -n "${XDG_STATE_HOME:-}" ]]; then
+  history_state_home="${XDG_STATE_HOME}"
+elif [[ -n "${HOME:-}" ]]; then
+  history_state_home="${HOME}/.local/state"
+else
+  history_state_home="${XDG_CACHE_HOME}/state"
+fi
 
 # --------------------------------------------
 # 🧠 Shell History
