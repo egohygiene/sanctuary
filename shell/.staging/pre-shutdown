@@ -1,0 +1,7 @@
+#!/bin/sh
+
+touch /home/alan/Desktop/shutdown-success
+
+# Kills all Google Chrome processes, so that sessions don't need to be restored.
+# killall chrome --wait > /dev/null 2> /dev/null
+

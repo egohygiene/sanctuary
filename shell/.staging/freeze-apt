@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# freeze-apt
+# Generate reproducible APT install state for Docker builds using Ubuntu snapshot service
+
+set -euo pipefail
+
+LOCKFILE="packages.lock"
+TIMESTAMP_FILE="snapshot.timestamp"
+PIN_DIR="shell/apt/preferences.d"
+PIN_PRIORITY="1001"
+
+mkdir -p "$(dirname "${LOCKFILE}")" "${PIN_DIR}"
+
+echo "🔐 Freezing APT install state..."
+
+# 0. Capture snapshot timestamp before any installation
+FREEZE_DATE="$(date -u +%Y%m%dT000000Z)"
+echo "${FREEZE_DATE}" > "${TIMESTAMP_FILE}"
+echo "📅 Snapshot timestamp saved: ${FREEZE_DATE}"
+
+# 1. Generate full version lockfile (for optional audit/debug)
+dpkg-query -W -f='${Package}=${Version}\n' | sort > "${LOCKFILE}"
+echo "✅ Saved package version list to: ${LOCKFILE}"
+
+# 2. Generate .pref pin files for manually installed packages
+echo "📦 Generating pin files for manually installed packages..."
+
+manual_packages=$(apt-mark showmanual | grep -vE '^(bash|coreutils|libc6|gcc|perl|python|linux-|grub|init|login|util-linux)' | sort)
+
+for pkg in ${manual_packages}; do
+    version=$(dpkg-query --show --showformat='${Version}' "${pkg}" 2>/dev/null || true)
+    [[ -n "${version}" ]] || continue
+
+    cat >"${PIN_DIR}/${pkg}.pref" <<EOF
+Package: ${pkg}
+Pin: version ${version}
+Pin-Priority: ${PIN_PRIORITY}
+EOF
+
+    echo "📌 Pinned ${pkg}=${version}"
+done
+
+echo "✅ Finished generating APT freeze files."

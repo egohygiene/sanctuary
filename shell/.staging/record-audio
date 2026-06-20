@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""
+Audio Recorder CLI (macOS Compatible)
+"""
+
+import sys
+import subprocess
+import time
+import os
+import argparse
+
+__version__ = "1.0.0"
+
+
+def install_dependencies():
+    """Prompts the user to install missing dependencies."""
+    required = ["sounddevice", "soundfile"]
+    print(f"Missing libraries: {', '.join(required)}")
+    if input("Install now? (y/n): ").lower() == 'y':
+        # On Mac, ensure we use the correct python path
+        subprocess.check_call([sys.executable, "-m", "pip", "install", *required])
+        return True
+    return False
+
+
+def ensure_dependencies():
+    """Import audio libraries, prompting to install if missing."""
+    global sd, sf  # noqa: PLW0603
+    try:
+        import sounddevice as _sd
+        import soundfile as _sf
+        sd = _sd
+        sf = _sf
+    except ImportError:
+        if install_dependencies():
+            import sounddevice as _sd
+            import soundfile as _sf
+            sd = _sd
+            sf = _sf
+        else:
+            sys.exit(1)
+
+
+def record_audio(filename="recording.wav", duration=5, fs=44100):
+    ensure_dependencies()
+    try:
+        # Check for macOS specifically to warn about microphone permissions
+        if sys.platform == 'darwin':
+            print("Note: Ensure your Terminal has Microphone permissions in System Settings.")
+
+        print(f"--- Recording: {duration}s ---")
+        
+        # Using float32 for high-fidelity production-ready files
+        recording = sd.rec(int(duration * fs), samplerate=fs, channels=2, dtype='float32')
+        
+        for i in range(duration, 0, -1):
+            print(f"Remaining: {i}s...", end="\r")
+            time.sleep(1)
+            
+        sd.wait()
+        sf.write(filename, recording, fs)
+        print(f"\nDone! Saved to {os.path.abspath(filename)}")
+        
+    except Exception as e:
+        print(f"\nError: {e}")
+        # Hint for Mac users
+        if "PortAudio" in str(e) and sys.platform == 'darwin':
+            print("Try: brew install portaudio")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="record-audio",
+        description="Record audio to a WAV file.",
+    )
+    parser.add_argument(
+        "--version", "-v",
+        action="version",
+        version=f"record-audio {__version__}",
+    )
+    parser.add_argument(
+        "filename",
+        nargs="?",
+        default="output.wav",
+        help="Output WAV file (default: output.wav)",
+    )
+    parser.add_argument(
+        "duration",
+        nargs="?",
+        type=int,
+        default=5,
+        help="Recording duration in seconds (default: 5)",
+    )
+    args = parser.parse_args()
+    record_audio(args.filename, args.duration)
+
+
+if __name__ == "__main__":
+    main()

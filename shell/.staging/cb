@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo "Usage: cb <path>"
+    echo "Help: cb copies a file contents to the clipboard."
+    exit 0
+fi
+
+if command -v pbcopy > /dev/null; then
+    pbcopy < "$1"
+elif command -v xclip > /dev/null; then
+    xclip -selection clipboard < "$1"
+elif command -v xsel > /dev/null; then
+    xsel -ib < "$1"
+elif command -v clipboard > /dev/null; then
+    clipboard < "$1"
+elif command -v clip > /dev/null; then
+    clip < "$1"
+elif command -v powershell > /dev/null; then
+    powershell -NoProfile -Command "Set-Clipboard"
+fi

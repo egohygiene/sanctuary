@@ -1,0 +1,271 @@
+#!/usr/bin/env bash
+
+###############################################################################
+# ghlabels
+#
+# Manage GitHub labels using a canonical JSON file.
+#
+# Commands
+#
+#   ghlabels export [owner/repo] [file]
+#   ghlabels apply  owner/repo [file]
+#   ghlabels sync   owner/repo [file]
+#
+# Flags
+#
+#   --purge-defaults
+#       Remove GitHub default labels
+#
+#   --delete-extra
+#       Remove labels not present in the canonical label file
+#
+###############################################################################
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+
+###############################################################################
+# defaults
+###############################################################################
+
+DEFAULT_SOURCE_REPOSITORY="incomprisllc/audiora"
+DEFAULT_LABEL_FILE="github-labels.json"
+
+
+###############################################################################
+# helpers
+###############################################################################
+
+function log() {
+    echo "$@"
+}
+
+
+function label_exists() {
+
+    local repo="$1"
+    local name="$2"
+
+    gh api \
+        --method GET \
+        "repos/${repo}/labels/${name}" \
+        >/dev/null 2>&1
+}
+
+
+###############################################################################
+# export
+###############################################################################
+
+function export_labels() {
+
+    local repo="${1:-$DEFAULT_SOURCE_REPOSITORY}"
+    local file="${2:-$DEFAULT_LABEL_FILE}"
+
+    log "Exporting labels from ${repo}"
+
+    gh api \
+        --method GET \
+        "repos/${repo}/labels" \
+        --paginate \
+        | jq 'map({
+            name: .name,
+            color: .color,
+            description: .description
+        })' \
+        > "${file}"
+
+    log "Saved to ${file}"
+}
+
+
+###############################################################################
+# apply / sync logic
+###############################################################################
+
+function apply_labels() {
+
+    local repo="$1"
+    local file="$2"
+
+    jq -c ".[]" "${file}" | while read -r label; do
+
+        name=$(echo "${label}" | jq -r ".name")
+        color=$(echo "${label}" | jq -r ".color")
+        description=$(echo "${label}" | jq -r ".description")
+
+        log "Syncing label: ${name}"
+
+        if label_exists "${repo}" "${name}"
+        then
+
+            log "  Updating existing label"
+
+            gh api \
+                --method PATCH \
+                "repos/${repo}/labels/${name}" \
+                --raw-field "new_name=${name}" \
+                --raw-field "color=${color}" \
+                --raw-field "description=${description}"
+
+        else
+
+            log "  Creating label"
+
+            gh api \
+                --method POST \
+                "repos/${repo}/labels" \
+                --raw-field "name=${name}" \
+                --raw-field "color=${color}" \
+                --raw-field "description=${description}"
+
+        fi
+
+    done
+}
+
+
+###############################################################################
+# delete labels
+###############################################################################
+
+function delete_label() {
+
+    local repo="$1"
+    local name="$2"
+
+    log "Deleting label: ${name}"
+
+    gh api \
+        --method DELETE \
+        "repos/${repo}/labels/${name}" \
+        >/dev/null
+}
+
+
+###############################################################################
+# purge default labels
+###############################################################################
+
+function purge_default_labels() {
+
+    local repo="$1"
+
+    log "Removing GitHub default labels"
+
+    gh api \
+        "repos/${repo}/labels" \
+        | jq -r '.[] | select(.default==true) | .name' \
+        | while read -r label
+        do
+            delete_label "${repo}" "${label}"
+        done
+}
+
+
+###############################################################################
+# delete extra labels
+###############################################################################
+
+function delete_extra_labels() {
+
+    local repo="$1"
+    local file="$2"
+
+    log "Removing labels not in canonical set"
+
+    gh api "repos/${repo}/labels" \
+        | jq -r ".[].name" \
+        | while read -r label
+        do
+
+            if ! jq -e --arg name "${label}" \
+                '.[] | select(.name==$name)' "${file}" >/dev/null
+            then
+
+                delete_label "${repo}" "${label}"
+
+            fi
+
+        done
+}
+
+
+###############################################################################
+# command routing
+###############################################################################
+
+COMMAND="${1:-}"
+REPO="${2:-}"
+FILE="${3:-$DEFAULT_LABEL_FILE}"
+
+PURGE_DEFAULTS=false
+DELETE_EXTRA=false
+
+for arg in "$@"
+do
+    case "${arg}" in
+        --purge-defaults)
+            PURGE_DEFAULTS=true
+            ;;
+        --delete-extra)
+            DELETE_EXTRA=true
+            ;;
+    esac
+done
+
+
+case "${COMMAND}" in
+
+    export)
+
+        export_labels "${REPO:-$DEFAULT_SOURCE_REPOSITORY}" "${FILE}"
+
+        ;;
+
+
+    apply)
+
+        apply_labels "${REPO}" "${FILE}"
+
+        ;;
+
+
+    sync)
+
+        if "${PURGE_DEFAULTS}"
+        then
+            purge_default_labels "${REPO}"
+        fi
+
+        apply_labels "${REPO}" "${FILE}"
+
+        if "${DELETE_EXTRA}"
+        then
+            delete_extra_labels "${REPO}" "${FILE}"
+        fi
+
+        ;;
+
+
+    *)
+
+        echo ""
+        echo "Usage:"
+        echo ""
+        echo "  ghlabels export [repo] [file]"
+        echo "  ghlabels apply  repo [file]"
+        echo "  ghlabels sync   repo [file]"
+        echo ""
+        echo "Flags:"
+        echo ""
+        echo "  --purge-defaults"
+        echo "  --delete-extra"
+        echo ""
+        exit 1
+
+        ;;
+
+esac

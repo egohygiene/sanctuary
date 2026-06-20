@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Update /etc/login.defs to set high SYS_UID_MAX and SYS_GID_MAX values
+
+main() {
+  printf "🔧 Updating /etc/login.defs...\n"
+
+  # Remove any existing SYS_UID_MAX (commented or not)
+  sed -i '/^#\?SYS_UID_MAX/ d' /etc/login.defs
+  echo 'SYS_UID_MAX 99999' >> /etc/login.defs
+
+  # Remove any existing SYS_GID_MAX (commented or not)
+  sed -i '/^#\?SYS_GID_MAX/ d' /etc/login.defs
+  echo 'SYS_GID_MAX 99999' >> /etc/login.defs
+
+  printf "✅ SYS_UID_MAX and SYS_GID_MAX set to 99999.\n"
+}
+
+main "$@"

@@ -1,0 +1,311 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+# ======================================================================
+# nuke-docker
+# Safely remove Docker resources by label, or everything with --all.
+# Compatible with macOS (BSD utils) & Linux (GNU).
+# ======================================================================
+
+set -Eeuo pipefail
+
+VERSION="1.0.0"
+
+# -- shdoc ----------------------------------------------------------------
+## @file nuke-docker
+## @brief Safely remove Docker resources by label or (optionally) everything.
+## @description
+##   Defaults to cleaning containers only (safer). Opt-in flags add networks,
+##   volumes, images, and full system prune. Supports dry-run and labels.
+##
+## @usage
+##   nuke-docker --label-name app.name=foo --label-scope app.scope=dev [options]
+##   nuke-docker --all --volumes --networks --dangerous --force
+##
+## @option  --label-name <k=v>   Label filter 1 (required unless --all)
+## @option  --label-scope <k=v>  Label filter 2 (required unless --all)
+## @flag    --all                Ignore labels; operate on ALL resources
+## @flag    --volumes            Remove volumes (off by default)
+## @flag    --networks           Remove networks (off by default)
+## @flag    --only-containers    Only containers (disables volumes/networks)
+## @flag    --only-volumes       Only volumes (disables containers/networks)
+## @flag    --only-networks      Only networks (disables containers/volumes)
+## @flag    --dangerous          Also remove images & run system prune
+## @flag    --dry-run            Show actions without executing
+## @flag    --force              Skip confirmation prompt
+## @flag    --no-color           Disable colored output
+## @flag    -h, --help           Show help
+## @flag    -v, --version        Show version and exit
+##
+## @stdout Status messages indicating progress and actions taken.
+## @exitcode 0 on success; >0 on error or cancellation.
+# ------------------------------------------------------------------------
+
+# Defaults (readonly after parse for safety)
+USE_COLOR=true
+FORCE=false
+USE_LABELS=true
+DANGEROUS=false
+NUKE_ALL=false
+DRY_RUN=false
+CLEAN_CONTAINERS=true
+CLEAN_VOLUMES=false
+CLEAN_NETWORKS=false
+LABEL_NAME=""
+LABEL_SCOPE=""
+
+# --- Color / Logging -----------------------------------------------------
+_color() {
+  [[ "${USE_COLOR}" == true ]] || { printf "%s" ""; return 0; }
+  case "${1:-}" in
+    reset)  printf "\033[0m"  ;;
+    cyan)   printf "\033[36m" ;;
+    green)  printf "\033[32m" ;;
+    yellow) printf "\033[33m" ;;
+    red)    printf "\033[31m" ;;
+    *)      printf ""         ;;
+  esac
+}
+
+_log() {
+  # _log <level> <msg...>
+  local level="${1:-info}"; shift || true
+  local prefix color_code
+  case "${level}" in
+    info)    prefix="👉"; color_code="$(_color cyan)"   ;;
+    success) prefix="✅"; color_code="$(_color green)"  ;;
+    warn)    prefix="⚠️ "; color_code="$(_color yellow)";;
+    error)   prefix="❌"; color_code="$(_color red)"    ;;
+    *)       prefix="";   color_code="$(_color reset)"  ;;
+  esac
+  printf "%b%s %s%b\n" "${color_code}" "${prefix}" "$*" "$(_color reset)"
+  [[ "${level}" == "error" ]] && exit 1
+}
+
+_confirm() {
+  # _confirm <message>
+  local msg="${1:-Proceed?}"
+  if [[ "${FORCE}" == true ]]; then return 0; fi
+  printf "%s [y/N]: " "${msg}"
+  local ans; IFS= read -r ans || true
+  [[ "${ans}" =~ ^[Yy]$ ]]
+}
+
+_require_arg() {
+  # _require_arg <flag> <value>
+  local flag="$1" val="${2:-}"
+  [[ -n "${val}" ]] || _log error "Missing value for ${flag}"
+}
+
+_have() { command -v "$1" >/dev/null 2>&1; }
+
+_guard_prereqs() {
+  _have docker || _log error "Docker CLI not found. Install Docker Desktop or Docker Engine."
+  # Ping the daemon early; fail fast
+  if ! docker system info >/dev/null 2>&1; then
+    _log error "Docker daemon not reachable. Is Docker Desktop running?"
+  fi
+}
+
+# --- Docker helpers -------------------------------------------------------
+_filter_labels() {
+  # _filter_labels <docker-subcommand...>  (appends --filter options when enabled)
+  if [[ "${USE_LABELS}" == true ]]; then
+    docker "$@" --filter "label=${LABEL_NAME}" --filter "label=${LABEL_SCOPE}"
+  else
+    docker "$@"
+  fi
+}
+
+_each_line() {
+  # Portable "xargs -r -n1" across BSD/GNU (no-op on empty input)
+  # Reads stdin and calls the given command with one arg per line.
+  local cmd="$1"; shift || true
+  local line
+  while IFS= read -r line; do
+    [[ -n "${line}" ]] || continue
+    "${cmd}" "${line}" "$@"
+  done
+}
+
+_stop_container() {
+  local cid="$1"
+  _log info "Stopping container: ${cid}"
+  [[ "${DRY_RUN}" == false ]] && docker stop "${cid}" >/dev/null 2>&1 || true
+}
+
+_rm_container() {
+  local cid="$1"
+  _log info "Removing container: ${cid}"
+  [[ "${DRY_RUN}" == false ]] && docker rm --force "${cid}" >/dev/null 2>&1 || true
+}
+
+_rm_network() {
+  local nid="$1"
+  local name
+  name="$(docker network inspect --format '{{ .Name }}' "${nid}" 2>/dev/null || echo "${nid}")"
+  # Avoid built-ins if not using labels:
+  if [[ "${USE_LABELS}" != true ]] && [[ "${name}" =~ ^(bridge|host|none)$ ]]; then
+    return 0
+  fi
+  _log info "Removing network: ${name} (${nid})"
+  [[ "${DRY_RUN}" == false ]] && docker network rm "${nid}" >/dev/null 2>&1 || true
+}
+
+_rm_volume() {
+  local vid="$1"
+  _log info "Removing volume: ${vid}"
+  [[ "${DRY_RUN}" == false ]] && docker volume rm "${vid}" >/dev/null 2>&1 || true
+}
+
+_rm_image() {
+  local iid="$1"
+  _log info "Removing image: ${iid}"
+  [[ "${DRY_RUN}" == false ]] && docker rmi --force "${iid}" >/dev/null 2>&1 || true
+}
+
+# --- Actions --------------------------------------------------------------
+stop_containers() {
+  [[ "${CLEAN_CONTAINERS}" == true ]] || return 0
+  _log info "Stopping containers…"
+  _filter_labels ps -aq | _each_line _stop_container
+}
+
+remove_containers() {
+  [[ "${CLEAN_CONTAINERS}" == true ]] || return 0
+  _log info "Removing containers…"
+  _filter_labels ps -aq | _each_line _rm_container
+}
+
+remove_networks() {
+  if [[ "${CLEAN_NETWORKS}" != true && "${NUKE_ALL}" != true ]]; then
+    _log info "Skipping networks (use --networks to enable)"
+    return 0
+  fi
+  _log info "Removing networks…"
+  if [[ "${USE_LABELS}" == true ]]; then
+    docker network ls --filter "label=${LABEL_NAME}" --filter "label=${LABEL_SCOPE}" -q | _each_line _rm_network
+  else
+    docker network ls -q | _each_line _rm_network
+  fi
+}
+
+remove_volumes() {
+  if [[ "${CLEAN_VOLUMES}" != true && "${NUKE_ALL}" != true ]]; then
+    _log info "Skipping volumes (use --volumes to enable)"
+    return 0
+  fi
+  _log info "Removing volumes…"
+  if [[ "${USE_LABELS}" == true ]]; then
+    docker volume ls --filter "label=${LABEL_NAME}" --filter "label=${LABEL_SCOPE}" -q | _each_line _rm_volume
+  else
+    docker volume ls -q | _each_line _rm_volume
+  fi
+}
+
+remove_images() {
+  if [[ "${DANGEROUS}" == true ]]; then
+    _log warn "Removing images…"
+    docker images -aq | _each_line _rm_image
+  else
+    _log info "Skipping image removal (use --dangerous to enable)"
+  fi
+}
+
+clean_build_cache() {
+  _log info "Cleaning Docker build cache…"
+  if [[ "${DRY_RUN}" == false ]]; then
+    docker builder prune --all --force >/dev/null 2>&1 || true
+  else
+    _log info "(dry-run) Would run: docker builder prune --all --force"
+  fi
+}
+
+system_prune() {
+  if [[ "${DANGEROUS}" == true ]]; then
+    _log warn "Performing system prune…"
+    if [[ "${DRY_RUN}" == false ]]; then
+      docker system prune --all --volumes --force >/dev/null 2>&1 || true
+    else
+      _log info "(dry-run) Would run: docker system prune --all --volumes --force"
+    fi
+  fi
+}
+
+# --- Usage / Arg parsing --------------------------------------------------
+usage() {
+  cat <<'EOF'
+Usage: nuke-docker [options]
+
+Options:
+  --label-name VALUE       Docker app.name label (k=v) (required unless --all)
+  --label-scope VALUE      Docker app.scope label (k=v) (required unless --all)
+  --all                    Ignore labels and operate on ALL resources
+  --volumes                Also remove volumes
+  --networks               Also remove networks
+  --only-containers        Only containers (disables volumes/networks)
+  --only-volumes           Only volumes (disables containers/networks)
+  --only-networks          Only networks (disables containers/volumes)
+  --dangerous              Also remove images and run system prune
+  --dry-run                Show actions without executing
+  --force                  Skip confirmation prompt
+  --no-color               Disable colored output
+  -h, --help               Show this help
+  -v, --version            Show version and exit
+EOF
+}
+
+main() {
+  _guard_prereqs
+
+  # Preview summary
+  _log warn "You are about to remove Docker resources…"
+  [[ "${NUKE_ALL}" == true      ]] && _log warn "☢️  --all: ignoring labels; affects EVERYTHING."
+  [[ "${DANGEROUS}" == true     ]] && _log warn "🔥 --dangerous: will remove images & run system prune."
+  [[ "${USE_LABELS}" == true    ]] && _log info "Label filters: ${LABEL_NAME} , ${LABEL_SCOPE}"
+  [[ "${CLEAN_VOLUMES}" == true ]] && _log info "Volumes: enabled"
+  [[ "${CLEAN_NETWORKS}" == true ]] && _log info "Networks: enabled"
+  [[ "${DRY_RUN}" == true       ]] && _log warn "🔍 Dry-run: showing actions only."
+
+  _confirm "Proceed with cleanup?" || _log error "Cancelled."
+
+  stop_containers
+  remove_containers
+  remove_networks
+  remove_volumes
+  remove_images
+  clean_build_cache
+  system_prune
+
+  _log success "Docker cleanup complete."
+}
+
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --label-name)   _require_arg "$1" "${2-}"; LABEL_NAME="$2"; shift ;;
+      --label-scope)  _require_arg "$1" "${2-}"; LABEL_SCOPE="$2"; shift ;;
+      --all)          USE_LABELS=false; NUKE_ALL=true ;;
+      --dangerous)    DANGEROUS=true ;;
+      --volumes)      CLEAN_VOLUMES=true ;;
+      --networks)     CLEAN_NETWORKS=true ;;
+      --only-containers) CLEAN_CONTAINERS=true; CLEAN_VOLUMES=false; CLEAN_NETWORKS=false ;;
+      --only-volumes)    CLEAN_CONTAINERS=false; CLEAN_VOLUMES=true; CLEAN_NETWORKS=false ;;
+      --only-networks)   CLEAN_CONTAINERS=false; CLEAN_VOLUMES=false; CLEAN_NETWORKS=true ;;
+      --dry-run)      DRY_RUN=true ;;
+      --force)        FORCE=true ;;
+      --no-color)     USE_COLOR=false ;;
+      -h|--help)      usage; exit 0 ;;
+      -v|--version)   printf 'nuke-docker v%s\n' "${VERSION}"; exit 0 ;;
+      *)              _log error "Unknown argument: $1" ;;
+    esac
+    shift || true
+  done
+
+  if [[ "${USE_LABELS}" == true ]]; then
+    [[ -n "${LABEL_NAME}" && -n "${LABEL_SCOPE}" ]] \
+      || _log error "--label-name and --label-scope are required unless --all is used."
+  fi
+}
+
+parse_args "$@"
+main
