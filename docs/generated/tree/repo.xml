@@ -4635,33 +4635,27 @@
       <file name="apps-bin-path.sh" path="shell/.staging/apps-bin-path.sh" />
       <file name="backup-container.sh" path="shell/.staging/backup-container.sh" />
       <file name="backup.sh" path="shell/.staging/backup.sh" />
-      <file name="cb" path="shell/.staging/cb" />
       <file name="check_health.sh" path="shell/.staging/check_health.sh" />
-      <file name="colors.sh" path="shell/.staging/colors.sh" />
       <file name="devcontainer.sh" path="shell/.staging/devcontainer.sh" />
       <file name="devtools.sh" path="shell/.staging/devtools.sh" />
       <file name="encrypt_volume.sh" path="shell/.staging/encrypt_volume.sh" />
-      <file name="environment.sh" path="shell/.staging/environment.sh" />
       <file name="freeze-apt" path="shell/.staging/freeze-apt" />
       <file name="freeze-github-release" path="shell/.staging/freeze-github-release" />
-      <file name="generate-password" path="shell/.staging/generate-password" />
       <file name="generate-pwa-icons" path="shell/.staging/generate-pwa-icons" />
       <file name="get_pdf_title.py" path="shell/.staging/get_pdf_title.py" />
       <file name="ghlabels" path="shell/.staging/ghlabels" />
       <file name="git-summary.sh" path="shell/.staging/git-summary.sh" />
       <file name="github-latest-release" path="shell/.staging/github-latest-release" />
-      <file name="is-executable" path="shell/.staging/is-executable" />
-      <file name="is-macos" path="shell/.staging/is-macos" />
       <file name="json-pretty" path="shell/.staging/json-pretty" />
       <file name="list-fonts" path="shell/.staging/list-fonts" />
       <file name="list-packages" path="shell/.staging/list-packages" />
       <file name="megalinter.sh" path="shell/.staging/megalinter.sh" />
       <file name="nuke-docker" path="shell/.staging/nuke-docker" />
-      <file name="os.sh" path="shell/.staging/os.sh" />
       <file name="pandoc_emoji_filter.py" path="shell/.staging/pandoc_emoji_filter.py" />
       <file name="pipes" path="shell/.staging/pipes" />
       <file name="pre-shutdown" path="shell/.staging/pre-shutdown" />
       <file name="process_files.py" path="shell/.staging/process_files.py" />
+      <file name="README.md" path="shell/.staging/README.md" />
       <file name="record-audio" path="shell/.staging/record-audio" />
       <file name="reinstall_google_drive.sh" path="shell/.staging/reinstall_google_drive.sh" />
       <file name="remove_password_pdf" path="shell/.staging/remove_password_pdf" />
@@ -4670,8 +4664,6 @@
       <file name="setup-asdf" path="shell/.staging/setup-asdf" />
       <file name="setup-git-aliases.sh" path="shell/.staging/setup-git-aliases.sh" />
       <file name="storybook.sh" path="shell/.staging/storybook.sh" />
-      <file name="sysinfo" path="shell/.staging/sysinfo" />
-      <file name="system_os" path="shell/.staging/system_os" />
       <file name="tailwind-config-viewer.sh" path="shell/.staging/tailwind-config-viewer.sh" />
       <file name="uninstall_google_drive.sh" path="shell/.staging/uninstall_google_drive.sh" />
     </directory>
@@ -4698,6 +4690,7 @@
       <file name="ghignore" path="shell/bin/ghignore" />
       <file name="ghprotect" path="shell/bin/ghprotect" />
       <file name="git-remove-exec-no-shebang" path="shell/bin/git-remove-exec-no-shebang" />
+      <file name="is-executable" path="shell/bin/is-executable" />
       <file name="sysinfo" path="shell/bin/sysinfo" />
     </directory>
     <directory name="init" path="shell/init">
@@ -4745,6 +4738,7 @@
       <file name="environment.bats" path="shell/tests/environment.bats" />
       <file name="git-remove-exec-no-shebang.bats" path="shell/tests/git-remove-exec-no-shebang.bats" />
       <file name="history.bats" path="shell/tests/history.bats" />
+      <file name="is-executable.bats" path="shell/tests/is-executable.bats" />
       <file name="test_helper.bash" path="shell/tests/test_helper.bash" />
       <file name="xdg.bats" path="shell/tests/xdg.bats" />
     </directory>

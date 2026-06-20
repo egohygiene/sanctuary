@@ -4036,33 +4036,27 @@ sanctuary/
 │   │   ├── apps-bin-path.sh
 │   │   ├── backup-container.sh
 │   │   ├── backup.sh
-│   │   ├── cb
 │   │   ├── check_health.sh
-│   │   ├── colors.sh
 │   │   ├── devcontainer.sh
 │   │   ├── devtools.sh
 │   │   ├── encrypt_volume.sh
-│   │   ├── environment.sh
 │   │   ├── freeze-apt
 │   │   ├── freeze-github-release
-│   │   ├── generate-password
 │   │   ├── generate-pwa-icons
 │   │   ├── get_pdf_title.py
 │   │   ├── ghlabels
 │   │   ├── git-summary.sh
 │   │   ├── github-latest-release
-│   │   ├── is-executable
-│   │   ├── is-macos
 │   │   ├── json-pretty
 │   │   ├── list-fonts
 │   │   ├── list-packages
 │   │   ├── megalinter.sh
 │   │   ├── nuke-docker
-│   │   ├── os.sh
 │   │   ├── pandoc_emoji_filter.py
 │   │   ├── pipes
 │   │   ├── pre-shutdown
 │   │   ├── process_files.py
+│   │   ├── README.md
 │   │   ├── record-audio
 │   │   ├── reinstall_google_drive.sh
 │   │   ├── remove_password_pdf
@@ -4071,8 +4065,6 @@ sanctuary/
 │   │   ├── setup-asdf
 │   │   ├── setup-git-aliases.sh
 │   │   ├── storybook.sh
-│   │   ├── sysinfo
-│   │   ├── system_os
 │   │   ├── tailwind-config-viewer.sh
 │   │   └── uninstall_google_drive.sh
 │   ├── .vscode/
@@ -4096,6 +4088,7 @@ sanctuary/
 │   │   ├── ghignore
 │   │   ├── ghprotect
 │   │   ├── git-remove-exec-no-shebang
+│   │   ├── is-executable
 │   │   └── sysinfo
 │   ├── init/
 │   │   ├── bootstrap.sh
@@ -4135,6 +4128,7 @@ sanctuary/
 │   │   ├── environment.bats
 │   │   ├── git-remove-exec-no-shebang.bats
 │   │   ├── history.bats
+│   │   ├── is-executable.bats
 │   │   ├── test_helper.bash
 │   │   └── xdg.bats
 │   ├── .gitignore

@@ -21385,18 +21385,8 @@
               "type": "file"
             },
             {
-              "name": "cb",
-              "path": "shell/.staging/cb",
-              "type": "file"
-            },
-            {
               "name": "check_health.sh",
               "path": "shell/.staging/check_health.sh",
-              "type": "file"
-            },
-            {
-              "name": "colors.sh",
-              "path": "shell/.staging/colors.sh",
               "type": "file"
             },
             {
@@ -21415,11 +21405,6 @@
               "type": "file"
             },
             {
-              "name": "environment.sh",
-              "path": "shell/.staging/environment.sh",
-              "type": "file"
-            },
-            {
               "name": "freeze-apt",
               "path": "shell/.staging/freeze-apt",
               "type": "file"
@@ -21427,11 +21412,6 @@
             {
               "name": "freeze-github-release",
               "path": "shell/.staging/freeze-github-release",
-              "type": "file"
-            },
-            {
-              "name": "generate-password",
-              "path": "shell/.staging/generate-password",
               "type": "file"
             },
             {
@@ -21460,16 +21440,6 @@
               "type": "file"
             },
             {
-              "name": "is-executable",
-              "path": "shell/.staging/is-executable",
-              "type": "file"
-            },
-            {
-              "name": "is-macos",
-              "path": "shell/.staging/is-macos",
-              "type": "file"
-            },
-            {
               "name": "json-pretty",
               "path": "shell/.staging/json-pretty",
               "type": "file"
@@ -21495,11 +21465,6 @@
               "type": "file"
             },
             {
-              "name": "os.sh",
-              "path": "shell/.staging/os.sh",
-              "type": "file"
-            },
-            {
               "name": "pandoc_emoji_filter.py",
               "path": "shell/.staging/pandoc_emoji_filter.py",
               "type": "file"
@@ -21517,6 +21482,11 @@
             {
               "name": "process_files.py",
               "path": "shell/.staging/process_files.py",
+              "type": "file"
+            },
+            {
+              "name": "README.md",
+              "path": "shell/.staging/README.md",
               "type": "file"
             },
             {
@@ -21557,16 +21527,6 @@
             {
               "name": "storybook.sh",
               "path": "shell/.staging/storybook.sh",
-              "type": "file"
-            },
-            {
-              "name": "sysinfo",
-              "path": "shell/.staging/sysinfo",
-              "type": "file"
-            },
-            {
-              "name": "system_os",
-              "path": "shell/.staging/system_os",
               "type": "file"
             },
             {
@@ -21688,6 +21648,11 @@
             {
               "name": "git-remove-exec-no-shebang",
               "path": "shell/bin/git-remove-exec-no-shebang",
+              "type": "file"
+            },
+            {
+              "name": "is-executable",
+              "path": "shell/bin/is-executable",
               "type": "file"
             },
             {
@@ -21899,6 +21864,11 @@
             {
               "name": "history.bats",
               "path": "shell/tests/history.bats",
+              "type": "file"
+            },
+            {
+              "name": "is-executable.bats",
+              "path": "shell/tests/is-executable.bats",
               "type": "file"
             },
             {
