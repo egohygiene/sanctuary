@@ -23,7 +23,7 @@ if [[ -n "${BASH_VERSION:-}" ]]; then
 elif [[ -n "${ZSH_VERSION:-}" ]]; then
   export EGOHYGIENE_SHELL_NAME="zsh"
 else
-  export EGOHYGIENE_SHELL_NAME="${EGOHYGIENE_SHELL_NAME:-unknown}"
+  export EGOHYGIENE_SHELL_NAME="unknown"
 fi
 
 shell::name() {

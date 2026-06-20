@@ -30,6 +30,7 @@ teardown() {
   run_in_clean_zsh "${TEST_HOME}" "
     source '${REPO_ROOT}/.shellrc'
     printf 'shell=%s\n' \"\${EGOHYGIENE_SHELL_NAME}\"
+    # Zsh should not pull in the Bash-only helper library.
     if [[ -n \"\${EGOHYGIENE_LIB_BASH_LOADED:-}\" ]]; then
       printf 'bash_helpers=yes\n'
     else
