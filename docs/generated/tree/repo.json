@@ -8612,6 +8612,18 @@
           ]
         },
         {
+          "name": "specs",
+          "path": ".github/specs",
+          "type": "directory",
+          "children": [
+            {
+              "name": "specfile.spec.md",
+              "path": ".github/specs/specfile.spec.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "workflows",
           "path": ".github/workflows",
           "type": "directory",
