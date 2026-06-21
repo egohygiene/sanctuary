@@ -1526,6 +1526,9 @@ sanctuary/
 │   ├── specs/
 │   │   └── specfile.spec.md
 │   ├── workflows/
+│   │   ├── future/
+│   │   │   ├── ossf-scorecard.yml
+│   │   │   └── scancode.yml
 │   │   ├── codeql.yml
 │   │   ├── contributors.yml
 │   │   ├── copilot-setup-steps.yml
