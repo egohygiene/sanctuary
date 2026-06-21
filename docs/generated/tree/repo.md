@@ -1489,6 +1489,8 @@ sanctuary/
 │   │   └── generate-repository-intelligence/
 │   │       ├── action.yml
 │   │       └── generate_repository_intelligence.py
+│   ├── agents/
+│   │   └── specfile-creator.agent.md
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── architecture.yml
 │   │   ├── bug-report.yml
@@ -1524,6 +1526,8 @@ sanctuary/
 │   │       │   └── SKILL.md
 │   │       └── threejs-textures/
 │   │           └── SKILL.md
+│   ├── specs/
+│   │   └── specfile.spec.md
 │   ├── workflows/
 │   │   ├── contributors.yml
 │   │   ├── copilot-setup-steps.yml

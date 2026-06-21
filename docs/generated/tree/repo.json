@@ -8409,6 +8409,18 @@
           ]
         },
         {
+          "name": "agents",
+          "path": ".github/agents",
+          "type": "directory",
+          "children": [
+            {
+              "name": "specfile-creator.agent.md",
+              "path": ".github/agents/specfile-creator.agent.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "ISSUE_TEMPLATE",
           "path": ".github/ISSUE_TEMPLATE",
           "type": "directory",
@@ -8608,6 +8620,18 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "specs",
+          "path": ".github/specs",
+          "type": "directory",
+          "children": [
+            {
+              "name": "specfile.spec.md",
+              "path": ".github/specs/specfile.spec.md",
+              "type": "file"
             }
           ]
         },
