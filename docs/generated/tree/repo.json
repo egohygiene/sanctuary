@@ -8409,6 +8409,18 @@
           ]
         },
         {
+          "name": "agents",
+          "path": ".github/agents",
+          "type": "directory",
+          "children": [
+            {
+              "name": "specfile-creator.agent.md",
+              "path": ".github/agents/specfile-creator.agent.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "ISSUE_TEMPLATE",
           "path": ".github/ISSUE_TEMPLATE",
           "type": "directory",

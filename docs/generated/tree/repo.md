@@ -1489,6 +1489,8 @@ sanctuary/
 │   │   └── generate-repository-intelligence/
 │   │       ├── action.yml
 │   │       └── generate_repository_intelligence.py
+│   ├── agents/
+│   │   └── specfile-creator.agent.md
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── architecture.yml
 │   │   ├── bug-report.yml

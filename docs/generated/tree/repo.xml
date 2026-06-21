@@ -1972,6 +1972,9 @@
         <file name="generate_repository_intelligence.py" path=".github/actions/generate-repository-intelligence/generate_repository_intelligence.py" />
       </directory>
     </directory>
+    <directory name="agents" path=".github/agents">
+      <file name="specfile-creator.agent.md" path=".github/agents/specfile-creator.agent.md" />
+    </directory>
     <directory name="ISSUE_TEMPLATE" path=".github/ISSUE_TEMPLATE">
       <file name="architecture.yml" path=".github/ISSUE_TEMPLATE/architecture.yml" />
       <file name="bug-report.yml" path=".github/ISSUE_TEMPLATE/bug-report.yml" />
