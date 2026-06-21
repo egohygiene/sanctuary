@@ -8641,6 +8641,11 @@
           "type": "directory",
           "children": [
             {
+              "name": "codeql.yml",
+              "path": ".github/workflows/codeql.yml",
+              "type": "file"
+            },
+            {
               "name": "contributors.yml",
               "path": ".github/workflows/contributors.yml",
               "type": "file"

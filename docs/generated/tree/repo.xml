@@ -2028,6 +2028,7 @@
       <file name="specfile.spec.md" path=".github/specs/specfile.spec.md" />
     </directory>
     <directory name="workflows" path=".github/workflows">
+      <file name="codeql.yml" path=".github/workflows/codeql.yml" />
       <file name="contributors.yml" path=".github/workflows/contributors.yml" />
       <file name="copilot-setup-steps.yml" path=".github/workflows/copilot-setup-steps.yml" />
       <file name="dependency-review.yml" path=".github/workflows/dependency-review.yml" />

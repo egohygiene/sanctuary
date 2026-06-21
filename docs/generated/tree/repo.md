@@ -1529,6 +1529,7 @@ sanctuary/
 │   ├── specs/
 │   │   └── specfile.spec.md
 │   ├── workflows/
+│   │   ├── codeql.yml
 │   │   ├── contributors.yml
 │   │   ├── copilot-setup-steps.yml
 │   │   ├── dependency-review.yml
