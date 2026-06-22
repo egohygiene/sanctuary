@@ -40,7 +40,8 @@
         "sysctl.d/*": "ini",
         "sudoers.d/*": "ini",
         "aide.conf.d/*": "ini",
-        "*.prf": "properties"
+        "*.prf": "properties",
+        "*.shutdown": "shellscript"
     },
 
     // --- Terminal ---
