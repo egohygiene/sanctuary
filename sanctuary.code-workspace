@@ -41,7 +41,8 @@
         "sudoers.d/*": "ini",
         "aide.conf.d/*": "ini",
         "*.prf": "properties",
-        "*.shutdown": "shellscript"
+        "*.shutdown": "shellscript",
+        "*.rules": "udev"
     },
 
     // --- Terminal ---
