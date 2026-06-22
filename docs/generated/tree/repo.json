@@ -8641,6 +8641,28 @@
           "type": "directory",
           "children": [
             {
+              "name": "future",
+              "path": ".github/workflows/future",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "ossf-scorecard.yml",
+                  "path": ".github/workflows/future/ossf-scorecard.yml",
+                  "type": "file"
+                },
+                {
+                  "name": "scancode.yml",
+                  "path": ".github/workflows/future/scancode.yml",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "codeql.yml",
+              "path": ".github/workflows/codeql.yml",
+              "type": "file"
+            },
+            {
               "name": "contributors.yml",
               "path": ".github/workflows/contributors.yml",
               "type": "file"
