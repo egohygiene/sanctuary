@@ -8414,6 +8414,11 @@
           "type": "directory",
           "children": [
             {
+              "name": "arxiv-publisher.agent.md",
+              "path": ".github/agents/arxiv-publisher.agent.md",
+              "type": "file"
+            },
+            {
               "name": "specfile-creator.agent.md",
               "path": ".github/agents/specfile-creator.agent.md",
               "type": "file"
@@ -8646,8 +8651,28 @@
               "type": "directory",
               "children": [
                 {
+                  "name": "clearlydefined.yml",
+                  "path": ".github/workflows/future/clearlydefined.yml",
+                  "type": "file"
+                },
+                {
+                  "name": "dco.yml",
+                  "path": ".github/workflows/future/dco.yml",
+                  "type": "file"
+                },
+                {
+                  "name": "gitleaks.yml",
+                  "path": ".github/workflows/future/gitleaks.yml",
+                  "type": "file"
+                },
+                {
                   "name": "ossf-scorecard.yml",
                   "path": ".github/workflows/future/ossf-scorecard.yml",
+                  "type": "file"
+                },
+                {
+                  "name": "sbom.yml",
+                  "path": ".github/workflows/future/sbom.yml",
                   "type": "file"
                 },
                 {
@@ -8685,6 +8710,11 @@
             {
               "name": "repository-intelligence.yml",
               "path": ".github/workflows/repository-intelligence.yml",
+              "type": "file"
+            },
+            {
+              "name": "reuse.yml",
+              "path": ".github/workflows/reuse.yml",
               "type": "file"
             },
             {
@@ -20380,6 +20410,11 @@
               "type": "directory",
               "children": [
                 {
+                  "name": ".stylelintignore",
+                  "path": "lint/config/css/.stylelintignore",
+                  "type": "file"
+                },
+                {
                   "name": ".stylelintrc.json",
                   "path": "lint/config/css/.stylelintrc.json",
                   "type": "file"
@@ -24707,6 +24742,18 @@
           "type": "directory",
           "children": [
             {
+              "name": "react-vite",
+              "path": "templates/applications/react-vite",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "package.json",
+                  "path": "templates/applications/react-vite/package.json",
+                  "type": "file"
+                }
+              ]
+            },
+            {
               "name": "README.md",
               "path": "templates/applications/README.md",
               "type": "file"
@@ -24750,6 +24797,140 @@
           ]
         },
         {
+          "name": "paper",
+          "path": "templates/paper",
+          "type": "directory",
+          "children": [
+            {
+              "name": "assets",
+              "path": "templates/paper/assets",
+              "type": "directory",
+              "children": [
+                {
+                  "name": ".gitkeep",
+                  "path": "templates/paper/assets/.gitkeep",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "diagrams",
+              "path": "templates/paper/diagrams",
+              "type": "directory",
+              "children": [
+                {
+                  "name": ".gitkeep",
+                  "path": "templates/paper/diagrams/.gitkeep",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "examples",
+              "path": "templates/paper/examples",
+              "type": "directory",
+              "children": [
+                {
+                  "name": ".gitkeep",
+                  "path": "templates/paper/examples/.gitkeep",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "figures",
+              "path": "templates/paper/figures",
+              "type": "directory",
+              "children": [
+                {
+                  "name": ".gitkeep",
+                  "path": "templates/paper/figures/.gitkeep",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "references",
+              "path": "templates/paper/references",
+              "type": "directory",
+              "children": [
+                {
+                  "name": ".gitkeep",
+                  "path": "templates/paper/references/.gitkeep",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "sections",
+              "path": "templates/paper/sections",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "abstract.tex",
+                  "path": "templates/paper/sections/abstract.tex",
+                  "type": "file"
+                },
+                {
+                  "name": "conclusion.tex",
+                  "path": "templates/paper/sections/conclusion.tex",
+                  "type": "file"
+                },
+                {
+                  "name": "future_work.tex",
+                  "path": "templates/paper/sections/future_work.tex",
+                  "type": "file"
+                },
+                {
+                  "name": "introduction.tex",
+                  "path": "templates/paper/sections/introduction.tex",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": ".latexmkrc",
+              "path": "templates/paper/.latexmkrc",
+              "type": "file"
+            },
+            {
+              "name": "abstract.md",
+              "path": "templates/paper/abstract.md",
+              "type": "file"
+            },
+            {
+              "name": "notes.md",
+              "path": "templates/paper/notes.md",
+              "type": "file"
+            },
+            {
+              "name": "outline.md",
+              "path": "templates/paper/outline.md",
+              "type": "file"
+            },
+            {
+              "name": "paper.tex",
+              "path": "templates/paper/paper.tex",
+              "type": "file"
+            },
+            {
+              "name": "README.md",
+              "path": "templates/paper/README.md",
+              "type": "file"
+            },
+            {
+              "name": "references.bib",
+              "path": "templates/paper/references.bib",
+              "type": "file"
+            },
+            {
+              "name": "roadmap.md",
+              "path": "templates/paper/roadmap.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "poetry",
           "path": "templates/poetry",
           "type": "directory",
@@ -24760,6 +24941,1237 @@
               "type": "file"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "workstation",
+      "path": "workstation",
+      "type": "directory",
+      "children": [
+        {
+          "name": "linux",
+          "path": "workstation/linux",
+          "type": "directory",
+          "children": [
+            {
+              "name": "aide",
+              "path": "workstation/linux/aide",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "aide.conf.d",
+                  "path": "workstation/linux/aide/aide.conf.d",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "70_aide_docker.conf",
+                      "path": "workstation/linux/aide/aide.conf.d/70_aide_docker.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "70_aide_lxcfs.conf",
+                      "path": "workstation/linux/aide/aide.conf.d/70_aide_lxcfs.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "aide.conf",
+                  "path": "workstation/linux/aide/aide.conf",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "android",
+              "path": "workstation/linux/android",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "sysusers.d",
+                  "path": "workstation/linux/android/sysusers.d",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "android-udev.conf",
+                      "path": "workstation/linux/android/sysusers.d/android-udev.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "udev",
+                  "path": "workstation/linux/android/udev",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "51-android.rules",
+                      "path": "workstation/linux/android/udev/51-android.rules",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/android/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "apt",
+              "path": "workstation/linux/apt",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "apt.conf.d",
+                  "path": "workstation/linux/apt/apt.conf.d",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "00-global.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/00-global.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "01-assumptions.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/01-assumptions.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "02-recommends.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/02-recommends.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "03-cleanup.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/03-cleanup.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "04-quiet.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/04-quiet.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "05-acquire.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/05-acquire.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "06-security.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/06-security.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "07-https.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/07-https.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "08-keep-cache.conf",
+                      "path": "workstation/linux/apt/apt.conf.d/08-keep-cache.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/apt/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "authentication",
+              "path": "workstation/linux/authentication",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "login.defs",
+                  "path": "workstation/linux/authentication/login.defs",
+                  "type": "file"
+                },
+                {
+                  "name": "pwquality.conf",
+                  "path": "workstation/linux/authentication/pwquality.conf",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "bluetooth",
+              "path": "workstation/linux/bluetooth",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "main.conf",
+                  "path": "workstation/linux/bluetooth/main.conf",
+                  "type": "file"
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/bluetooth/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "dpkg",
+              "path": "workstation/linux/dpkg",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "dpkg.cfg.d",
+                  "path": "workstation/linux/dpkg/dpkg.cfg.d",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "01-logging.conf",
+                      "path": "workstation/linux/dpkg/dpkg.cfg.d/01-logging.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "10-noninteractive.conf",
+                      "path": "workstation/linux/dpkg/dpkg.cfg.d/10-noninteractive.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "20-size-reduction.conf",
+                      "path": "workstation/linux/dpkg/dpkg.cfg.d/20-size-reduction.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "30-security.conf",
+                      "path": "workstation/linux/dpkg/dpkg.cfg.d/30-security.conf",
+                      "type": "file"
+                    },
+                    {
+                      "name": "40-performance.conf",
+                      "path": "workstation/linux/dpkg/dpkg.cfg.d/40-performance.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/dpkg/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "grub",
+              "path": "workstation/linux/grub",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "themes",
+                  "path": "workstation/linux/grub/themes",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "boot",
+                      "path": "workstation/linux/grub/themes/boot",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "grub",
+                          "path": "workstation/linux/grub/themes/boot/grub",
+                          "type": "directory",
+                          "children": [
+                            {
+                              "name": "themes",
+                              "path": "workstation/linux/grub/themes/boot/grub/themes",
+                              "type": "directory",
+                              "children": [
+                                {
+                                  "name": "bigsur",
+                                  "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur",
+                                  "type": "directory",
+                                  "children": [
+                                    {
+                                      "name": "icons",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons",
+                                      "type": "directory",
+                                      "children": [
+                                        {
+                                          "name": "antergos.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/antergos.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "arch.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/arch.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "archlinux.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/archlinux.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "arcolinux.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/arcolinux.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "bsd.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/bsd.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "cancel.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/cancel.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "chakra.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/chakra.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "crunchbang.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/crunchbang.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "debian.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/debian.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "deepin.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/deepin.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "devuan.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/devuan.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "driver.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/driver.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "edit.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/edit.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "edubuntu.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/edubuntu.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "efi.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/efi.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "elementary.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/elementary.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "endeavouros.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/endeavouros.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "fedora.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/fedora.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "find.efi.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/find.efi.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "find.none.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/find.none.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "frugalware.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/frugalware.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "gentoo.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/gentoo.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "gnu-linux.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/gnu-linux.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "help.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/help.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "iso.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/iso.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "kali.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/kali.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "kaos.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/kaos.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "kbd.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/kbd.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "korora.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/korora.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "kubuntu.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/kubuntu.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "lang.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/lang.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "lfs.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/lfs.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "linux.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/linux.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "linuxmint.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/linuxmint.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "lubuntu.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/lubuntu.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "macosx.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/macosx.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "mageia.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/mageia.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "Manjaro.i686.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/Manjaro.i686.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "manjaro.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/manjaro.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "Manjaro.x86_64.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/Manjaro.x86_64.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "memtest.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/memtest.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "opensuse.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/opensuse.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "pop-os.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/pop-os.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "recovery.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/recovery.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "restart.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/restart.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "sabayon.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/sabayon.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "shutdown.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/shutdown.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "siduction.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/siduction.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "solus.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/solus.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "steamos.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/steamos.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "type.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/type.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "tz.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/tz.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "ubuntu.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/ubuntu.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "unknown.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/unknown.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "unset.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/unset.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "void.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/void.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "windows.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/windows.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "xubuntu.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/xubuntu.png",
+                                          "type": "file"
+                                        },
+                                        {
+                                          "name": "zorin-os.png",
+                                          "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/zorin-os.png",
+                                          "type": "file"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "background.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/background.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_c.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_c.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_e.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_e.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_n.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_n.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_ne.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_ne.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_nw.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_nw.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_s.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_s.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_se.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_se.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_sw.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_sw.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "boot_menu_w.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_w.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "DejaVuSans-48.pf2",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/DejaVuSans-48.pf2",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "DejaVuSans-Regular-14.pf2",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/DejaVuSans-Regular-14.pf2",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_c.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_c.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_e.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_e.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_n.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_n.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_ne.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_ne.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_nw.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_nw.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_s.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_s.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_se.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_se.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_sw.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_sw.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "item_w.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/item_w.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "password_field.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/password_field.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_c.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_c.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_e.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_e.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_n.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_n.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_ne.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_ne.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_nw.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_nw.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_s.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_s.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_se.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_se.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_sw.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_sw.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "select_w.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/select_w.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "slider_c.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/slider_c.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "slider_n.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/slider_n.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "slider_s.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/slider_s.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_c.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_c.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_e.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_e.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_n.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_n.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_ne.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_ne.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_nw.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_nw.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_s.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_s.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_se.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_se.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_sw.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_sw.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminal_w.png",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_w.png",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminus-12.pf2",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminus-12.pf2",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminus-14.pf2",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminus-14.pf2",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "terminus-16.pf2",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/terminus-16.pf2",
+                                      "type": "file"
+                                    },
+                                    {
+                                      "name": "theme.txt",
+                                      "path": "workstation/linux/grub/themes/boot/grub/themes/bigsur/theme.txt",
+                                      "type": "file"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/grub/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "hardware",
+              "path": "workstation/linux/hardware",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "amd",
+                  "path": "workstation/linux/hardware/amd",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "README.md",
+                      "path": "workstation/linux/hardware/amd/README.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "audio",
+                  "path": "workstation/linux/hardware/audio",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "README.md",
+                      "path": "workstation/linux/hardware/audio/README.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "firewire",
+                  "path": "workstation/linux/hardware/firewire",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "blacklist-firewire.conf",
+                      "path": "workstation/linux/hardware/firewire/blacklist-firewire.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "nvidia",
+                  "path": "workstation/linux/hardware/nvidia",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "modprobe.d",
+                      "path": "workstation/linux/hardware/nvidia/modprobe.d",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "name": "nvidia-graphics-drivers-kms.conf",
+                          "path": "workstation/linux/hardware/nvidia/modprobe.d/nvidia-graphics-drivers-kms.conf",
+                          "type": "file"
+                        },
+                        {
+                          "name": "nvidia-s2idle.conf",
+                          "path": "workstation/linux/hardware/nvidia/modprobe.d/nvidia-s2idle.conf",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "README.md",
+                      "path": "workstation/linux/hardware/nvidia/README.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "razer",
+                  "path": "workstation/linux/hardware/razer",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "acpi-wake-andy.service",
+                      "path": "workstation/linux/hardware/razer/acpi-wake-andy.service",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "wifi",
+                  "path": "workstation/linux/hardware/wifi",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "blacklist-ath_pci.conf",
+                      "path": "workstation/linux/hardware/wifi/blacklist-ath_pci.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/hardware/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "imagemagick",
+              "path": "workstation/linux/imagemagick",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "policy.xml",
+                  "path": "workstation/linux/imagemagick/policy.xml",
+                  "type": "file"
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/imagemagick/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "lynis",
+              "path": "workstation/linux/lynis",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "default.prf",
+                  "path": "workstation/linux/lynis/default.prf",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "modprobe.d",
+              "path": "workstation/linux/modprobe.d",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "archive",
+                  "path": "workstation/linux/modprobe.d/archive",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "blacklist-oss.conf",
+                      "path": "workstation/linux/modprobe.d/archive/blacklist-oss.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "amd64-microcode-blacklist.conf",
+                  "path": "workstation/linux/modprobe.d/amd64-microcode-blacklist.conf",
+                  "type": "file"
+                },
+                {
+                  "name": "blacklist-framebuffer.conf",
+                  "path": "workstation/linux/modprobe.d/blacklist-framebuffer.conf",
+                  "type": "file"
+                },
+                {
+                  "name": "blacklist-modem.conf",
+                  "path": "workstation/linux/modprobe.d/blacklist-modem.conf",
+                  "type": "file"
+                },
+                {
+                  "name": "blacklist.conf",
+                  "path": "workstation/linux/modprobe.d/blacklist.conf",
+                  "type": "file"
+                },
+                {
+                  "name": "intel-microcode-blacklist.conf",
+                  "path": "workstation/linux/modprobe.d/intel-microcode-blacklist.conf",
+                  "type": "file"
+                },
+                {
+                  "name": "iwlwifi.conf",
+                  "path": "workstation/linux/modprobe.d/iwlwifi.conf",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "modules-load.d",
+              "path": "workstation/linux/modules-load.d",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "fuse.conf",
+                  "path": "workstation/linux/modules-load.d/fuse.conf",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "nvidia",
+              "path": "workstation/linux/nvidia",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "udev",
+                  "path": "workstation/linux/nvidia/udev",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "80-nvidia-pm.rules",
+                      "path": "workstation/linux/nvidia/udev/80-nvidia-pm.rules",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/nvidia/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "security",
+              "path": "workstation/linux/security",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "limits.d",
+                  "path": "workstation/linux/security/limits.d",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "dind.conf",
+                      "path": "workstation/linux/security/limits.d/dind.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "modprobe.d",
+                  "path": "workstation/linux/security/modprobe.d",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "blacklist-rare-network.conf",
+                      "path": "workstation/linux/security/modprobe.d/blacklist-rare-network.conf",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/security/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "sudoers.d",
+              "path": "workstation/linux/sudoers.d",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "base",
+                  "path": "workstation/linux/sudoers.d/base",
+                  "type": "file"
+                },
+                {
+                  "name": "devcontainer",
+                  "path": "workstation/linux/sudoers.d/devcontainer",
+                  "type": "file"
+                },
+                {
+                  "name": "production",
+                  "path": "workstation/linux/sudoers.d/production",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "sysctl.d",
+              "path": "workstation/linux/sysctl.d",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "40-max-user-watches.conf",
+                  "path": "workstation/linux/sysctl.d/40-max-user-watches.conf",
+                  "type": "file"
+                },
+                {
+                  "name": "80-hardening.conf",
+                  "path": "workstation/linux/sysctl.d/80-hardening.conf",
+                  "type": "file"
+                },
+                {
+                  "name": "99-udp-buffer-sizes.conf",
+                  "path": "workstation/linux/sysctl.d/99-udp-buffer-sizes.conf",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "systemd",
+              "path": "workstation/linux/systemd",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "examples",
+                  "path": "workstation/linux/systemd/examples",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "before.shutdown",
+                      "path": "workstation/linux/systemd/examples/before.shutdown",
+                      "type": "file"
+                    },
+                    {
+                      "name": "pre-shutdown.service",
+                      "path": "workstation/linux/systemd/examples/pre-shutdown.service",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "system",
+                  "path": "workstation/linux/systemd/system",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "aidecheck.service",
+                      "path": "workstation/linux/systemd/system/aidecheck.service",
+                      "type": "file"
+                    },
+                    {
+                      "name": "aidecheck.timer",
+                      "path": "workstation/linux/systemd/system/aidecheck.timer",
+                      "type": "file"
+                    },
+                    {
+                      "name": "lynis.service",
+                      "path": "workstation/linux/systemd/system/lynis.service",
+                      "type": "file"
+                    },
+                    {
+                      "name": "lynis.timer",
+                      "path": "workstation/linux/systemd/system/lynis.timer",
+                      "type": "file"
+                    },
+                    {
+                      "name": "tmp.mount",
+                      "path": "workstation/linux/systemd/system/tmp.mount",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/systemd/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "vmware",
+              "path": "workstation/linux/vmware",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "systemd",
+                  "path": "workstation/linux/vmware/systemd",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "mnt-hgfs.mount",
+                      "path": "workstation/linux/vmware/systemd/mnt-hgfs.mount",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "path": "workstation/linux/vmware/README.md",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "README.md",
+              "path": "workstation/linux/README.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "shared",
+          "path": "workstation/shared",
+          "type": "directory",
+          "children": [
+            {
+              "name": "alacritty",
+              "path": "workstation/shared/alacritty",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "archive",
+                  "path": "workstation/shared/alacritty/archive",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "name": "alacritty-reference.yml",
+                      "path": "workstation/shared/alacritty/archive/alacritty-reference.yml",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "alacritty.toml",
+                  "path": "workstation/shared/alacritty/alacritty.toml",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "README.md",
+              "path": "workstation/shared/README.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "README.md",
+          "path": "workstation/README.md",
+          "type": "file"
         }
       ]
     },
@@ -24841,6 +26253,16 @@
     {
       "name": "package.json",
       "path": "package.json",
+      "type": "file"
+    },
+    {
+      "name": "pnpm-lock.yaml",
+      "path": "pnpm-lock.yaml",
+      "type": "file"
+    },
+    {
+      "name": "pnpm-workspace.yaml",
+      "path": "pnpm-workspace.yaml",
       "type": "file"
     },
     {
