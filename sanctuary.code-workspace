@@ -42,7 +42,9 @@
         "aide.conf.d/*": "ini",
         "*.prf": "properties",
         "*.shutdown": "shellscript",
-        "*.rules": "udev"
+        "*.rules": "udev",
+        ".inputrc": "properties",
+        ".ackrc": "plaintext"
     },
 
     // --- Terminal ---
