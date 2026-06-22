@@ -1973,6 +1973,7 @@
       </directory>
     </directory>
     <directory name="agents" path=".github/agents">
+      <file name="arxiv-publisher.agent.md" path=".github/agents/arxiv-publisher.agent.md" />
       <file name="specfile-creator.agent.md" path=".github/agents/specfile-creator.agent.md" />
     </directory>
     <directory name="ISSUE_TEMPLATE" path=".github/ISSUE_TEMPLATE">
@@ -2029,7 +2030,11 @@
     </directory>
     <directory name="workflows" path=".github/workflows">
       <directory name="future" path=".github/workflows/future">
+        <file name="clearlydefined.yml" path=".github/workflows/future/clearlydefined.yml" />
+        <file name="dco.yml" path=".github/workflows/future/dco.yml" />
+        <file name="gitleaks.yml" path=".github/workflows/future/gitleaks.yml" />
         <file name="ossf-scorecard.yml" path=".github/workflows/future/ossf-scorecard.yml" />
+        <file name="sbom.yml" path=".github/workflows/future/sbom.yml" />
         <file name="scancode.yml" path=".github/workflows/future/scancode.yml" />
       </directory>
       <file name="codeql.yml" path=".github/workflows/codeql.yml" />
@@ -2038,6 +2043,7 @@
       <file name="dependency-review.yml" path=".github/workflows/dependency-review.yml" />
       <file name="github-pages.yml" path=".github/workflows/github-pages.yml" />
       <file name="repository-intelligence.yml" path=".github/workflows/repository-intelligence.yml" />
+      <file name="reuse.yml" path=".github/workflows/reuse.yml" />
       <file name="sanity.yml" path=".github/workflows/sanity.yml" />
       <file name="vitality.yml" path=".github/workflows/vitality.yml" />
     </directory>
@@ -4407,6 +4413,7 @@
         <file name=".clang-format" path="lint/config/cpp/.clang-format" />
       </directory>
       <directory name="css" path="lint/config/css">
+        <file name=".stylelintignore" path="lint/config/css/.stylelintignore" />
         <file name=".stylelintrc.json" path="lint/config/css/.stylelintrc.json" />
       </directory>
       <directory name="dart" path="lint/config/dart">
@@ -5405,6 +5412,9 @@
   </directory>
   <directory name="templates" path="templates">
     <directory name="applications" path="templates/applications">
+      <directory name="react-vite" path="templates/applications/react-vite">
+        <file name="package.json" path="templates/applications/react-vite/package.json" />
+      </directory>
       <file name="README.md" path="templates/applications/README.md" />
     </directory>
     <directory name="changesets" path="templates/changesets">
@@ -5416,9 +5426,315 @@
     <directory name="community" path="templates/community">
       <file name="GOVERNANCE.md" path="templates/community/GOVERNANCE.md" />
     </directory>
+    <directory name="paper" path="templates/paper">
+      <directory name="assets" path="templates/paper/assets">
+        <file name=".gitkeep" path="templates/paper/assets/.gitkeep" />
+      </directory>
+      <directory name="diagrams" path="templates/paper/diagrams">
+        <file name=".gitkeep" path="templates/paper/diagrams/.gitkeep" />
+      </directory>
+      <directory name="examples" path="templates/paper/examples">
+        <file name=".gitkeep" path="templates/paper/examples/.gitkeep" />
+      </directory>
+      <directory name="figures" path="templates/paper/figures">
+        <file name=".gitkeep" path="templates/paper/figures/.gitkeep" />
+      </directory>
+      <directory name="references" path="templates/paper/references">
+        <file name=".gitkeep" path="templates/paper/references/.gitkeep" />
+      </directory>
+      <directory name="sections" path="templates/paper/sections">
+        <file name="abstract.tex" path="templates/paper/sections/abstract.tex" />
+        <file name="conclusion.tex" path="templates/paper/sections/conclusion.tex" />
+        <file name="future_work.tex" path="templates/paper/sections/future_work.tex" />
+        <file name="introduction.tex" path="templates/paper/sections/introduction.tex" />
+      </directory>
+      <file name=".latexmkrc" path="templates/paper/.latexmkrc" />
+      <file name="abstract.md" path="templates/paper/abstract.md" />
+      <file name="notes.md" path="templates/paper/notes.md" />
+      <file name="outline.md" path="templates/paper/outline.md" />
+      <file name="paper.tex" path="templates/paper/paper.tex" />
+      <file name="README.md" path="templates/paper/README.md" />
+      <file name="references.bib" path="templates/paper/references.bib" />
+      <file name="roadmap.md" path="templates/paper/roadmap.md" />
+    </directory>
     <directory name="poetry" path="templates/poetry">
       <file name="poetry.toml" path="templates/poetry/poetry.toml" />
     </directory>
+  </directory>
+  <directory name="workstation" path="workstation">
+    <directory name="linux" path="workstation/linux">
+      <directory name="aide" path="workstation/linux/aide">
+        <directory name="aide.conf.d" path="workstation/linux/aide/aide.conf.d">
+          <file name="70_aide_docker.conf" path="workstation/linux/aide/aide.conf.d/70_aide_docker.conf" />
+          <file name="70_aide_lxcfs.conf" path="workstation/linux/aide/aide.conf.d/70_aide_lxcfs.conf" />
+        </directory>
+        <file name="aide.conf" path="workstation/linux/aide/aide.conf" />
+      </directory>
+      <directory name="android" path="workstation/linux/android">
+        <directory name="sysusers.d" path="workstation/linux/android/sysusers.d">
+          <file name="android-udev.conf" path="workstation/linux/android/sysusers.d/android-udev.conf" />
+        </directory>
+        <directory name="udev" path="workstation/linux/android/udev">
+          <file name="51-android.rules" path="workstation/linux/android/udev/51-android.rules" />
+        </directory>
+        <file name="README.md" path="workstation/linux/android/README.md" />
+      </directory>
+      <directory name="apt" path="workstation/linux/apt">
+        <directory name="apt.conf.d" path="workstation/linux/apt/apt.conf.d">
+          <file name="00-global.conf" path="workstation/linux/apt/apt.conf.d/00-global.conf" />
+          <file name="01-assumptions.conf" path="workstation/linux/apt/apt.conf.d/01-assumptions.conf" />
+          <file name="02-recommends.conf" path="workstation/linux/apt/apt.conf.d/02-recommends.conf" />
+          <file name="03-cleanup.conf" path="workstation/linux/apt/apt.conf.d/03-cleanup.conf" />
+          <file name="04-quiet.conf" path="workstation/linux/apt/apt.conf.d/04-quiet.conf" />
+          <file name="05-acquire.conf" path="workstation/linux/apt/apt.conf.d/05-acquire.conf" />
+          <file name="06-security.conf" path="workstation/linux/apt/apt.conf.d/06-security.conf" />
+          <file name="07-https.conf" path="workstation/linux/apt/apt.conf.d/07-https.conf" />
+          <file name="08-keep-cache.conf" path="workstation/linux/apt/apt.conf.d/08-keep-cache.conf" />
+        </directory>
+        <file name="README.md" path="workstation/linux/apt/README.md" />
+      </directory>
+      <directory name="authentication" path="workstation/linux/authentication">
+        <file name="login.defs" path="workstation/linux/authentication/login.defs" />
+        <file name="pwquality.conf" path="workstation/linux/authentication/pwquality.conf" />
+      </directory>
+      <directory name="bluetooth" path="workstation/linux/bluetooth">
+        <file name="main.conf" path="workstation/linux/bluetooth/main.conf" />
+        <file name="README.md" path="workstation/linux/bluetooth/README.md" />
+      </directory>
+      <directory name="dpkg" path="workstation/linux/dpkg">
+        <directory name="dpkg.cfg.d" path="workstation/linux/dpkg/dpkg.cfg.d">
+          <file name="01-logging.conf" path="workstation/linux/dpkg/dpkg.cfg.d/01-logging.conf" />
+          <file name="10-noninteractive.conf" path="workstation/linux/dpkg/dpkg.cfg.d/10-noninteractive.conf" />
+          <file name="20-size-reduction.conf" path="workstation/linux/dpkg/dpkg.cfg.d/20-size-reduction.conf" />
+          <file name="30-security.conf" path="workstation/linux/dpkg/dpkg.cfg.d/30-security.conf" />
+          <file name="40-performance.conf" path="workstation/linux/dpkg/dpkg.cfg.d/40-performance.conf" />
+        </directory>
+        <file name="README.md" path="workstation/linux/dpkg/README.md" />
+      </directory>
+      <directory name="grub" path="workstation/linux/grub">
+        <directory name="themes" path="workstation/linux/grub/themes">
+          <directory name="boot" path="workstation/linux/grub/themes/boot">
+            <directory name="grub" path="workstation/linux/grub/themes/boot/grub">
+              <directory name="themes" path="workstation/linux/grub/themes/boot/grub/themes">
+                <directory name="bigsur" path="workstation/linux/grub/themes/boot/grub/themes/bigsur">
+                  <directory name="icons" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons">
+                    <file name="antergos.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/antergos.png" />
+                    <file name="arch.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/arch.png" />
+                    <file name="archlinux.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/archlinux.png" />
+                    <file name="arcolinux.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/arcolinux.png" />
+                    <file name="bsd.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/bsd.png" />
+                    <file name="cancel.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/cancel.png" />
+                    <file name="chakra.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/chakra.png" />
+                    <file name="crunchbang.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/crunchbang.png" />
+                    <file name="debian.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/debian.png" />
+                    <file name="deepin.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/deepin.png" />
+                    <file name="devuan.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/devuan.png" />
+                    <file name="driver.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/driver.png" />
+                    <file name="edit.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/edit.png" />
+                    <file name="edubuntu.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/edubuntu.png" />
+                    <file name="efi.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/efi.png" />
+                    <file name="elementary.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/elementary.png" />
+                    <file name="endeavouros.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/endeavouros.png" />
+                    <file name="fedora.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/fedora.png" />
+                    <file name="find.efi.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/find.efi.png" />
+                    <file name="find.none.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/find.none.png" />
+                    <file name="frugalware.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/frugalware.png" />
+                    <file name="gentoo.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/gentoo.png" />
+                    <file name="gnu-linux.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/gnu-linux.png" />
+                    <file name="help.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/help.png" />
+                    <file name="iso.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/iso.png" />
+                    <file name="kali.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/kali.png" />
+                    <file name="kaos.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/kaos.png" />
+                    <file name="kbd.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/kbd.png" />
+                    <file name="korora.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/korora.png" />
+                    <file name="kubuntu.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/kubuntu.png" />
+                    <file name="lang.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/lang.png" />
+                    <file name="lfs.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/lfs.png" />
+                    <file name="linux.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/linux.png" />
+                    <file name="linuxmint.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/linuxmint.png" />
+                    <file name="lubuntu.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/lubuntu.png" />
+                    <file name="macosx.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/macosx.png" />
+                    <file name="mageia.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/mageia.png" />
+                    <file name="Manjaro.i686.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/Manjaro.i686.png" />
+                    <file name="manjaro.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/manjaro.png" />
+                    <file name="Manjaro.x86_64.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/Manjaro.x86_64.png" />
+                    <file name="memtest.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/memtest.png" />
+                    <file name="opensuse.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/opensuse.png" />
+                    <file name="pop-os.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/pop-os.png" />
+                    <file name="recovery.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/recovery.png" />
+                    <file name="restart.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/restart.png" />
+                    <file name="sabayon.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/sabayon.png" />
+                    <file name="shutdown.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/shutdown.png" />
+                    <file name="siduction.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/siduction.png" />
+                    <file name="solus.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/solus.png" />
+                    <file name="steamos.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/steamos.png" />
+                    <file name="type.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/type.png" />
+                    <file name="tz.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/tz.png" />
+                    <file name="ubuntu.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/ubuntu.png" />
+                    <file name="unknown.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/unknown.png" />
+                    <file name="unset.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/unset.png" />
+                    <file name="void.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/void.png" />
+                    <file name="windows.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/windows.png" />
+                    <file name="xubuntu.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/xubuntu.png" />
+                    <file name="zorin-os.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/icons/zorin-os.png" />
+                  </directory>
+                  <file name="background.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/background.png" />
+                  <file name="boot_menu_c.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_c.png" />
+                  <file name="boot_menu_e.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_e.png" />
+                  <file name="boot_menu_n.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_n.png" />
+                  <file name="boot_menu_ne.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_ne.png" />
+                  <file name="boot_menu_nw.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_nw.png" />
+                  <file name="boot_menu_s.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_s.png" />
+                  <file name="boot_menu_se.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_se.png" />
+                  <file name="boot_menu_sw.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_sw.png" />
+                  <file name="boot_menu_w.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/boot_menu_w.png" />
+                  <file name="DejaVuSans-48.pf2" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/DejaVuSans-48.pf2" />
+                  <file name="DejaVuSans-Regular-14.pf2" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/DejaVuSans-Regular-14.pf2" />
+                  <file name="item_c.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_c.png" />
+                  <file name="item_e.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_e.png" />
+                  <file name="item_n.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_n.png" />
+                  <file name="item_ne.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_ne.png" />
+                  <file name="item_nw.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_nw.png" />
+                  <file name="item_s.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_s.png" />
+                  <file name="item_se.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_se.png" />
+                  <file name="item_sw.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_sw.png" />
+                  <file name="item_w.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/item_w.png" />
+                  <file name="password_field.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/password_field.png" />
+                  <file name="select_c.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_c.png" />
+                  <file name="select_e.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_e.png" />
+                  <file name="select_n.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_n.png" />
+                  <file name="select_ne.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_ne.png" />
+                  <file name="select_nw.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_nw.png" />
+                  <file name="select_s.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_s.png" />
+                  <file name="select_se.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_se.png" />
+                  <file name="select_sw.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_sw.png" />
+                  <file name="select_w.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/select_w.png" />
+                  <file name="slider_c.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/slider_c.png" />
+                  <file name="slider_n.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/slider_n.png" />
+                  <file name="slider_s.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/slider_s.png" />
+                  <file name="terminal_c.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_c.png" />
+                  <file name="terminal_e.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_e.png" />
+                  <file name="terminal_n.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_n.png" />
+                  <file name="terminal_ne.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_ne.png" />
+                  <file name="terminal_nw.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_nw.png" />
+                  <file name="terminal_s.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_s.png" />
+                  <file name="terminal_se.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_se.png" />
+                  <file name="terminal_sw.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_sw.png" />
+                  <file name="terminal_w.png" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminal_w.png" />
+                  <file name="terminus-12.pf2" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminus-12.pf2" />
+                  <file name="terminus-14.pf2" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminus-14.pf2" />
+                  <file name="terminus-16.pf2" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/terminus-16.pf2" />
+                  <file name="theme.txt" path="workstation/linux/grub/themes/boot/grub/themes/bigsur/theme.txt" />
+                </directory>
+              </directory>
+            </directory>
+          </directory>
+        </directory>
+        <file name="README.md" path="workstation/linux/grub/README.md" />
+      </directory>
+      <directory name="hardware" path="workstation/linux/hardware">
+        <directory name="amd" path="workstation/linux/hardware/amd">
+          <file name="README.md" path="workstation/linux/hardware/amd/README.md" />
+        </directory>
+        <directory name="audio" path="workstation/linux/hardware/audio">
+          <file name="README.md" path="workstation/linux/hardware/audio/README.md" />
+        </directory>
+        <directory name="firewire" path="workstation/linux/hardware/firewire">
+          <file name="blacklist-firewire.conf" path="workstation/linux/hardware/firewire/blacklist-firewire.conf" />
+        </directory>
+        <directory name="nvidia" path="workstation/linux/hardware/nvidia">
+          <directory name="modprobe.d" path="workstation/linux/hardware/nvidia/modprobe.d">
+            <file name="nvidia-graphics-drivers-kms.conf" path="workstation/linux/hardware/nvidia/modprobe.d/nvidia-graphics-drivers-kms.conf" />
+            <file name="nvidia-s2idle.conf" path="workstation/linux/hardware/nvidia/modprobe.d/nvidia-s2idle.conf" />
+          </directory>
+          <file name="README.md" path="workstation/linux/hardware/nvidia/README.md" />
+        </directory>
+        <directory name="razer" path="workstation/linux/hardware/razer">
+          <file name="acpi-wake-andy.service" path="workstation/linux/hardware/razer/acpi-wake-andy.service" />
+        </directory>
+        <directory name="wifi" path="workstation/linux/hardware/wifi">
+          <file name="blacklist-ath_pci.conf" path="workstation/linux/hardware/wifi/blacklist-ath_pci.conf" />
+        </directory>
+        <file name="README.md" path="workstation/linux/hardware/README.md" />
+      </directory>
+      <directory name="imagemagick" path="workstation/linux/imagemagick">
+        <file name="policy.xml" path="workstation/linux/imagemagick/policy.xml" />
+        <file name="README.md" path="workstation/linux/imagemagick/README.md" />
+      </directory>
+      <directory name="lynis" path="workstation/linux/lynis">
+        <file name="default.prf" path="workstation/linux/lynis/default.prf" />
+      </directory>
+      <directory name="modprobe.d" path="workstation/linux/modprobe.d">
+        <directory name="archive" path="workstation/linux/modprobe.d/archive">
+          <file name="blacklist-oss.conf" path="workstation/linux/modprobe.d/archive/blacklist-oss.conf" />
+        </directory>
+        <file name="amd64-microcode-blacklist.conf" path="workstation/linux/modprobe.d/amd64-microcode-blacklist.conf" />
+        <file name="blacklist-framebuffer.conf" path="workstation/linux/modprobe.d/blacklist-framebuffer.conf" />
+        <file name="blacklist-modem.conf" path="workstation/linux/modprobe.d/blacklist-modem.conf" />
+        <file name="blacklist.conf" path="workstation/linux/modprobe.d/blacklist.conf" />
+        <file name="intel-microcode-blacklist.conf" path="workstation/linux/modprobe.d/intel-microcode-blacklist.conf" />
+        <file name="iwlwifi.conf" path="workstation/linux/modprobe.d/iwlwifi.conf" />
+      </directory>
+      <directory name="modules-load.d" path="workstation/linux/modules-load.d">
+        <file name="fuse.conf" path="workstation/linux/modules-load.d/fuse.conf" />
+      </directory>
+      <directory name="nvidia" path="workstation/linux/nvidia">
+        <directory name="udev" path="workstation/linux/nvidia/udev">
+          <file name="80-nvidia-pm.rules" path="workstation/linux/nvidia/udev/80-nvidia-pm.rules" />
+        </directory>
+        <file name="README.md" path="workstation/linux/nvidia/README.md" />
+      </directory>
+      <directory name="security" path="workstation/linux/security">
+        <directory name="limits.d" path="workstation/linux/security/limits.d">
+          <file name="dind.conf" path="workstation/linux/security/limits.d/dind.conf" />
+        </directory>
+        <directory name="modprobe.d" path="workstation/linux/security/modprobe.d">
+          <file name="blacklist-rare-network.conf" path="workstation/linux/security/modprobe.d/blacklist-rare-network.conf" />
+        </directory>
+        <file name="README.md" path="workstation/linux/security/README.md" />
+      </directory>
+      <directory name="sudoers.d" path="workstation/linux/sudoers.d">
+        <file name="base" path="workstation/linux/sudoers.d/base" />
+        <file name="devcontainer" path="workstation/linux/sudoers.d/devcontainer" />
+        <file name="production" path="workstation/linux/sudoers.d/production" />
+      </directory>
+      <directory name="sysctl.d" path="workstation/linux/sysctl.d">
+        <file name="40-max-user-watches.conf" path="workstation/linux/sysctl.d/40-max-user-watches.conf" />
+        <file name="80-hardening.conf" path="workstation/linux/sysctl.d/80-hardening.conf" />
+        <file name="99-udp-buffer-sizes.conf" path="workstation/linux/sysctl.d/99-udp-buffer-sizes.conf" />
+      </directory>
+      <directory name="systemd" path="workstation/linux/systemd">
+        <directory name="examples" path="workstation/linux/systemd/examples">
+          <file name="before.shutdown" path="workstation/linux/systemd/examples/before.shutdown" />
+          <file name="pre-shutdown.service" path="workstation/linux/systemd/examples/pre-shutdown.service" />
+        </directory>
+        <directory name="system" path="workstation/linux/systemd/system">
+          <file name="aidecheck.service" path="workstation/linux/systemd/system/aidecheck.service" />
+          <file name="aidecheck.timer" path="workstation/linux/systemd/system/aidecheck.timer" />
+          <file name="lynis.service" path="workstation/linux/systemd/system/lynis.service" />
+          <file name="lynis.timer" path="workstation/linux/systemd/system/lynis.timer" />
+          <file name="tmp.mount" path="workstation/linux/systemd/system/tmp.mount" />
+        </directory>
+        <file name="README.md" path="workstation/linux/systemd/README.md" />
+      </directory>
+      <directory name="vmware" path="workstation/linux/vmware">
+        <directory name="systemd" path="workstation/linux/vmware/systemd">
+          <file name="mnt-hgfs.mount" path="workstation/linux/vmware/systemd/mnt-hgfs.mount" />
+        </directory>
+        <file name="README.md" path="workstation/linux/vmware/README.md" />
+      </directory>
+      <file name="README.md" path="workstation/linux/README.md" />
+    </directory>
+    <directory name="shared" path="workstation/shared">
+      <directory name="alacritty" path="workstation/shared/alacritty">
+        <directory name="archive" path="workstation/shared/alacritty/archive">
+          <file name="alacritty-reference.yml" path="workstation/shared/alacritty/archive/alacritty-reference.yml" />
+        </directory>
+        <file name="alacritty.toml" path="workstation/shared/alacritty/alacritty.toml" />
+      </directory>
+      <file name="README.md" path="workstation/shared/README.md" />
+    </directory>
+    <file name="README.md" path="workstation/README.md" />
   </directory>
   <file name=".actrc" path=".actrc" />
   <file name=".allcontributorsrc" path=".allcontributorsrc" />
@@ -5436,6 +5752,8 @@
   <file name="LICENSE" path="LICENSE" />
   <file name="mkdocs.yml" path="mkdocs.yml" />
   <file name="package.json" path="package.json" />
+  <file name="pnpm-lock.yaml" path="pnpm-lock.yaml" />
+  <file name="pnpm-workspace.yaml" path="pnpm-workspace.yaml" />
   <file name="poetry.lock" path="poetry.lock" />
   <file name="poetry.toml" path="poetry.toml" />
   <file name="pyproject.toml" path="pyproject.toml" />

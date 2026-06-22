@@ -1490,6 +1490,7 @@ sanctuary/
 │   │       ├── action.yml
 │   │       └── generate_repository_intelligence.py
 │   ├── agents/
+│   │   ├── arxiv-publisher.agent.md
 │   │   └── specfile-creator.agent.md
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── architecture.yml
@@ -1530,7 +1531,11 @@ sanctuary/
 │   │   └── specfile.spec.md
 │   ├── workflows/
 │   │   ├── future/
+│   │   │   ├── clearlydefined.yml
+│   │   │   ├── dco.yml
+│   │   │   ├── gitleaks.yml
 │   │   │   ├── ossf-scorecard.yml
+│   │   │   ├── sbom.yml
 │   │   │   └── scancode.yml
 │   │   ├── codeql.yml
 │   │   ├── contributors.yml
@@ -1538,6 +1543,7 @@ sanctuary/
 │   │   ├── dependency-review.yml
 │   │   ├── github-pages.yml
 │   │   ├── repository-intelligence.yml
+│   │   ├── reuse.yml
 │   │   ├── sanity.yml
 │   │   └── vitality.yml
 │   ├── actionlint.yaml
@@ -3856,6 +3862,7 @@ sanctuary/
 │   │   ├── cpp/
 │   │   │   └── .clang-format
 │   │   ├── css/
+│   │   │   ├── .stylelintignore
 │   │   │   └── .stylelintrc.json
 │   │   ├── dart/
 │   │   │   └── analysis_options.yml
@@ -4633,6 +4640,8 @@ sanctuary/
 │       └── SKILL.md
 ├── templates/
 │   ├── applications/
+│   │   ├── react-vite/
+│   │   │   └── package.json
 │   │   └── README.md
 │   ├── changesets/
 │   │   └── .changeset/
@@ -4640,8 +4649,259 @@ sanctuary/
 │   │       └── README.md
 │   ├── community/
 │   │   └── GOVERNANCE.md
+│   ├── paper/
+│   │   ├── assets/
+│   │   │   └── .gitkeep
+│   │   ├── diagrams/
+│   │   │   └── .gitkeep
+│   │   ├── examples/
+│   │   │   └── .gitkeep
+│   │   ├── figures/
+│   │   │   └── .gitkeep
+│   │   ├── references/
+│   │   │   └── .gitkeep
+│   │   ├── sections/
+│   │   │   ├── abstract.tex
+│   │   │   ├── conclusion.tex
+│   │   │   ├── future_work.tex
+│   │   │   └── introduction.tex
+│   │   ├── .latexmkrc
+│   │   ├── abstract.md
+│   │   ├── notes.md
+│   │   ├── outline.md
+│   │   ├── paper.tex
+│   │   ├── README.md
+│   │   ├── references.bib
+│   │   └── roadmap.md
 │   └── poetry/
 │       └── poetry.toml
+├── workstation/
+│   ├── linux/
+│   │   ├── aide/
+│   │   │   ├── aide.conf.d/
+│   │   │   │   ├── 70_aide_docker.conf
+│   │   │   │   └── 70_aide_lxcfs.conf
+│   │   │   └── aide.conf
+│   │   ├── android/
+│   │   │   ├── sysusers.d/
+│   │   │   │   └── android-udev.conf
+│   │   │   ├── udev/
+│   │   │   │   └── 51-android.rules
+│   │   │   └── README.md
+│   │   ├── apt/
+│   │   │   ├── apt.conf.d/
+│   │   │   │   ├── 00-global.conf
+│   │   │   │   ├── 01-assumptions.conf
+│   │   │   │   ├── 02-recommends.conf
+│   │   │   │   ├── 03-cleanup.conf
+│   │   │   │   ├── 04-quiet.conf
+│   │   │   │   ├── 05-acquire.conf
+│   │   │   │   ├── 06-security.conf
+│   │   │   │   ├── 07-https.conf
+│   │   │   │   └── 08-keep-cache.conf
+│   │   │   └── README.md
+│   │   ├── authentication/
+│   │   │   ├── login.defs
+│   │   │   └── pwquality.conf
+│   │   ├── bluetooth/
+│   │   │   ├── main.conf
+│   │   │   └── README.md
+│   │   ├── dpkg/
+│   │   │   ├── dpkg.cfg.d/
+│   │   │   │   ├── 01-logging.conf
+│   │   │   │   ├── 10-noninteractive.conf
+│   │   │   │   ├── 20-size-reduction.conf
+│   │   │   │   ├── 30-security.conf
+│   │   │   │   └── 40-performance.conf
+│   │   │   └── README.md
+│   │   ├── grub/
+│   │   │   ├── themes/
+│   │   │   │   └── boot/
+│   │   │   │       └── grub/
+│   │   │   │           └── themes/
+│   │   │   │               └── bigsur/
+│   │   │   │                   ├── icons/
+│   │   │   │                   │   ├── antergos.png
+│   │   │   │                   │   ├── arch.png
+│   │   │   │                   │   ├── archlinux.png
+│   │   │   │                   │   ├── arcolinux.png
+│   │   │   │                   │   ├── bsd.png
+│   │   │   │                   │   ├── cancel.png
+│   │   │   │                   │   ├── chakra.png
+│   │   │   │                   │   ├── crunchbang.png
+│   │   │   │                   │   ├── debian.png
+│   │   │   │                   │   ├── deepin.png
+│   │   │   │                   │   ├── devuan.png
+│   │   │   │                   │   ├── driver.png
+│   │   │   │                   │   ├── edit.png
+│   │   │   │                   │   ├── edubuntu.png
+│   │   │   │                   │   ├── efi.png
+│   │   │   │                   │   ├── elementary.png
+│   │   │   │                   │   ├── endeavouros.png
+│   │   │   │                   │   ├── fedora.png
+│   │   │   │                   │   ├── find.efi.png
+│   │   │   │                   │   ├── find.none.png
+│   │   │   │                   │   ├── frugalware.png
+│   │   │   │                   │   ├── gentoo.png
+│   │   │   │                   │   ├── gnu-linux.png
+│   │   │   │                   │   ├── help.png
+│   │   │   │                   │   ├── iso.png
+│   │   │   │                   │   ├── kali.png
+│   │   │   │                   │   ├── kaos.png
+│   │   │   │                   │   ├── kbd.png
+│   │   │   │                   │   ├── korora.png
+│   │   │   │                   │   ├── kubuntu.png
+│   │   │   │                   │   ├── lang.png
+│   │   │   │                   │   ├── lfs.png
+│   │   │   │                   │   ├── linux.png
+│   │   │   │                   │   ├── linuxmint.png
+│   │   │   │                   │   ├── lubuntu.png
+│   │   │   │                   │   ├── macosx.png
+│   │   │   │                   │   ├── mageia.png
+│   │   │   │                   │   ├── Manjaro.i686.png
+│   │   │   │                   │   ├── manjaro.png
+│   │   │   │                   │   ├── Manjaro.x86_64.png
+│   │   │   │                   │   ├── memtest.png
+│   │   │   │                   │   ├── opensuse.png
+│   │   │   │                   │   ├── pop-os.png
+│   │   │   │                   │   ├── recovery.png
+│   │   │   │                   │   ├── restart.png
+│   │   │   │                   │   ├── sabayon.png
+│   │   │   │                   │   ├── shutdown.png
+│   │   │   │                   │   ├── siduction.png
+│   │   │   │                   │   ├── solus.png
+│   │   │   │                   │   ├── steamos.png
+│   │   │   │                   │   ├── type.png
+│   │   │   │                   │   ├── tz.png
+│   │   │   │                   │   ├── ubuntu.png
+│   │   │   │                   │   ├── unknown.png
+│   │   │   │                   │   ├── unset.png
+│   │   │   │                   │   ├── void.png
+│   │   │   │                   │   ├── windows.png
+│   │   │   │                   │   ├── xubuntu.png
+│   │   │   │                   │   └── zorin-os.png
+│   │   │   │                   ├── background.png
+│   │   │   │                   ├── boot_menu_c.png
+│   │   │   │                   ├── boot_menu_e.png
+│   │   │   │                   ├── boot_menu_n.png
+│   │   │   │                   ├── boot_menu_ne.png
+│   │   │   │                   ├── boot_menu_nw.png
+│   │   │   │                   ├── boot_menu_s.png
+│   │   │   │                   ├── boot_menu_se.png
+│   │   │   │                   ├── boot_menu_sw.png
+│   │   │   │                   ├── boot_menu_w.png
+│   │   │   │                   ├── DejaVuSans-48.pf2
+│   │   │   │                   ├── DejaVuSans-Regular-14.pf2
+│   │   │   │                   ├── item_c.png
+│   │   │   │                   ├── item_e.png
+│   │   │   │                   ├── item_n.png
+│   │   │   │                   ├── item_ne.png
+│   │   │   │                   ├── item_nw.png
+│   │   │   │                   ├── item_s.png
+│   │   │   │                   ├── item_se.png
+│   │   │   │                   ├── item_sw.png
+│   │   │   │                   ├── item_w.png
+│   │   │   │                   ├── password_field.png
+│   │   │   │                   ├── select_c.png
+│   │   │   │                   ├── select_e.png
+│   │   │   │                   ├── select_n.png
+│   │   │   │                   ├── select_ne.png
+│   │   │   │                   ├── select_nw.png
+│   │   │   │                   ├── select_s.png
+│   │   │   │                   ├── select_se.png
+│   │   │   │                   ├── select_sw.png
+│   │   │   │                   ├── select_w.png
+│   │   │   │                   ├── slider_c.png
+│   │   │   │                   ├── slider_n.png
+│   │   │   │                   ├── slider_s.png
+│   │   │   │                   ├── terminal_c.png
+│   │   │   │                   ├── terminal_e.png
+│   │   │   │                   ├── terminal_n.png
+│   │   │   │                   ├── terminal_ne.png
+│   │   │   │                   ├── terminal_nw.png
+│   │   │   │                   ├── terminal_s.png
+│   │   │   │                   ├── terminal_se.png
+│   │   │   │                   ├── terminal_sw.png
+│   │   │   │                   ├── terminal_w.png
+│   │   │   │                   ├── terminus-12.pf2
+│   │   │   │                   ├── terminus-14.pf2
+│   │   │   │                   ├── terminus-16.pf2
+│   │   │   │                   └── theme.txt
+│   │   │   └── README.md
+│   │   ├── hardware/
+│   │   │   ├── amd/
+│   │   │   │   └── README.md
+│   │   │   ├── audio/
+│   │   │   │   └── README.md
+│   │   │   ├── firewire/
+│   │   │   │   └── blacklist-firewire.conf
+│   │   │   ├── nvidia/
+│   │   │   │   ├── modprobe.d/
+│   │   │   │   │   ├── nvidia-graphics-drivers-kms.conf
+│   │   │   │   │   └── nvidia-s2idle.conf
+│   │   │   │   └── README.md
+│   │   │   ├── razer/
+│   │   │   │   └── acpi-wake-andy.service
+│   │   │   ├── wifi/
+│   │   │   │   └── blacklist-ath_pci.conf
+│   │   │   └── README.md
+│   │   ├── imagemagick/
+│   │   │   ├── policy.xml
+│   │   │   └── README.md
+│   │   ├── lynis/
+│   │   │   └── default.prf
+│   │   ├── modprobe.d/
+│   │   │   ├── archive/
+│   │   │   │   └── blacklist-oss.conf
+│   │   │   ├── amd64-microcode-blacklist.conf
+│   │   │   ├── blacklist-framebuffer.conf
+│   │   │   ├── blacklist-modem.conf
+│   │   │   ├── blacklist.conf
+│   │   │   ├── intel-microcode-blacklist.conf
+│   │   │   └── iwlwifi.conf
+│   │   ├── modules-load.d/
+│   │   │   └── fuse.conf
+│   │   ├── nvidia/
+│   │   │   ├── udev/
+│   │   │   │   └── 80-nvidia-pm.rules
+│   │   │   └── README.md
+│   │   ├── security/
+│   │   │   ├── limits.d/
+│   │   │   │   └── dind.conf
+│   │   │   ├── modprobe.d/
+│   │   │   │   └── blacklist-rare-network.conf
+│   │   │   └── README.md
+│   │   ├── sudoers.d/
+│   │   │   ├── base
+│   │   │   ├── devcontainer
+│   │   │   └── production
+│   │   ├── sysctl.d/
+│   │   │   ├── 40-max-user-watches.conf
+│   │   │   ├── 80-hardening.conf
+│   │   │   └── 99-udp-buffer-sizes.conf
+│   │   ├── systemd/
+│   │   │   ├── examples/
+│   │   │   │   ├── before.shutdown
+│   │   │   │   └── pre-shutdown.service
+│   │   │   ├── system/
+│   │   │   │   ├── aidecheck.service
+│   │   │   │   ├── aidecheck.timer
+│   │   │   │   ├── lynis.service
+│   │   │   │   ├── lynis.timer
+│   │   │   │   └── tmp.mount
+│   │   │   └── README.md
+│   │   ├── vmware/
+│   │   │   ├── systemd/
+│   │   │   │   └── mnt-hgfs.mount
+│   │   │   └── README.md
+│   │   └── README.md
+│   ├── shared/
+│   │   ├── alacritty/
+│   │   │   ├── archive/
+│   │   │   │   └── alacritty-reference.yml
+│   │   │   └── alacritty.toml
+│   │   └── README.md
+│   └── README.md
 ├── .actrc
 ├── .allcontributorsrc
 ├── .czrc
@@ -4658,6 +4918,8 @@ sanctuary/
 ├── LICENSE
 ├── mkdocs.yml
 ├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
 ├── poetry.lock
 ├── poetry.toml
 ├── pyproject.toml
