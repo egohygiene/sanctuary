@@ -44,7 +44,8 @@
         "*.shutdown": "shellscript",
         "*.rules": "udev",
         ".inputrc": "properties",
-        ".ackrc": "plaintext"
+        ".ackrc": "plaintext",
+        "tmux.conf": "tmux"
     },
 
     // --- Terminal ---

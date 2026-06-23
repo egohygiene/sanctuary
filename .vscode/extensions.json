@@ -52,6 +52,7 @@
         "xaver.clang-format",
         "xyz.local-history",
         "shopify.ruby-lsp",
-        "vsls-contrib.codetour"
+        "vsls-contrib.codetour",
+        "malmaud.tmux"
     ]
 }
