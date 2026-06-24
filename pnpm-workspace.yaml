@@ -1,2 +1,5 @@
 allowBuilds:
   secp256k1: true
+
+requiredScripts:
+  - build
