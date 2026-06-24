@@ -45,7 +45,10 @@
         "*.rules": "udev",
         ".inputrc": "properties",
         ".ackrc": "plaintext",
-        "tmux.conf": "tmux"
+        "tmux.conf": "tmux",
+        "Brewfile": "ruby",
+        "Brewfile.ai": "ruby",
+        "Brewfile.*": "ruby"
     },
 
     // --- Terminal ---
