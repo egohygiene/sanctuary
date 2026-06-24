@@ -14,9 +14,6 @@
 
 Defaults !requiretty
 Defaults !admin_flag
-
 Defaults lecture=never
-
 Defaults mail_badpass
-
 Defaults env_keep += "PATH LANG LC_ALL"
