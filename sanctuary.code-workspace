@@ -48,7 +48,11 @@
         "tmux.conf": "tmux",
         "Brewfile": "ruby",
         "Brewfile.ai": "ruby",
-        "Brewfile.*": "ruby"
+        "Brewfile.*": "ruby",
+        "grub": "shellscript",
+        "grub.conf": "shellscript",
+        "grub.cfg": "shellscript",
+        "**/etc/default/grub": "shellscript"
     },
 
     // --- Terminal ---
