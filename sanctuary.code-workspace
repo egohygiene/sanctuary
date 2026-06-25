@@ -52,7 +52,13 @@
         "grub": "shellscript",
         "grub.conf": "shellscript",
         "grub.cfg": "shellscript",
-        "**/etc/default/grub": "shellscript"
+        "**/etc/default/grub": "shellscript",
+        ".asoundrc": "properties",
+        "asoundrc": "properties",
+        "apvlvrc": "properties",
+        ".apvlvrc": "properties",
+        "aria2.conf": "properties",
+        ".aria2.conf": "properties",
     },
 
     // --- Terminal ---
