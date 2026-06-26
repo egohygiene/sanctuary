@@ -59,6 +59,7 @@
         ".apvlvrc": "properties",
         "aria2.conf": "properties",
         ".aria2.conf": "properties",
+        "devcontainer.json": "jsonc"
     },
 
     // --- Terminal ---
