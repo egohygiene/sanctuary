@@ -2279,6 +2279,11 @@
           </directory>
         </directory>
       </directory>
+      <directory name="latex" path=".staging/realignment/latex">
+        <file name="structure.tex" path=".staging/realignment/latex/structure.tex" />
+        <file name="student_template.tex" path=".staging/realignment/latex/student_template.tex" />
+        <file name="teacher_template.tex" path=".staging/realignment/latex/teacher_template.tex" />
+      </directory>
       <directory name="linux" path=".staging/realignment/linux">
         <directory name="home" path=".staging/realignment/linux/home">
           <directory name="linuxbrew" path=".staging/realignment/linux/home/linuxbrew">
@@ -10299,6 +10304,134 @@
         <file name="tailwind.config.ts" path=".staging/realignment/misc/tailwind.config.ts" />
         <file name="vite2.config.ts" path=".staging/realignment/misc/vite2.config.ts" />
       </directory>
+      <directory name="obsidian" path=".staging/realignment/obsidian">
+        <directory name="PARA_Starter_Kit_v2" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2">
+          <directory name=".obsidian" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian">
+            <directory name="themes" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian/themes">
+              <file name="Yin and Yang.css" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian/themes/Yin and Yang.css" />
+            </directory>
+            <file name="app.json" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian/app.json" />
+            <file name="appearance.json" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian/appearance.json" />
+            <file name="core-plugins.json" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian/core-plugins.json" />
+            <file name="graph.json" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian/graph.json" />
+            <file name="hotkeys.json" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian/hotkeys.json" />
+            <file name="workspace" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/.obsidian/workspace" />
+          </directory>
+          <directory name="1. Projects" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/1. Projects">
+            <directory name="Obsidian Theme" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/1. Projects/Obsidian Theme">
+              <file name="obsidian.css.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/1. Projects/Obsidian Theme/obsidian.css.md" />
+              <file name="Things to look into.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/1. Projects/Obsidian Theme/Things to look into.md" />
+            </directory>
+            <directory name="PARA Starter Kit" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/1. Projects/PARA Starter Kit">
+              <file name="Methodology.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/1. Projects/PARA Starter Kit/Methodology.md" />
+              <file name="Outline.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/1. Projects/PARA Starter Kit/Outline.md" />
+              <file name="Workflows.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/1. Projects/PARA Starter Kit/Workflows.md" />
+            </directory>
+          </directory>
+          <directory name="2. Areas" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas">
+            <directory name="Blog" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Blog">
+              <file name="=Draft= Project Manager for solo person.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Blog/=Draft= Project Manager for solo person.md" />
+              <file name="Blog.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Blog/Blog.md" />
+              <file name="Feedback sessions.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Blog/Feedback sessions.md" />
+              <file name="Hugo Version Change.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Blog/Hugo Version Change.md" />
+              <file name="Writing cheatsheet.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Blog/Writing cheatsheet.md" />
+            </directory>
+            <directory name="Finance" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Finance">
+              <file name="Annual Salary to Weekly.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Finance/Annual Salary to Weekly.md" />
+              <file name="Finance.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Finance/Finance.md" />
+              <file name="YNAB Reminder.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Finance/YNAB Reminder.md" />
+            </directory>
+            <directory name="Health" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Health">
+              <file name="Garmin Venu 2S.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Health/Garmin Venu 2S.md" />
+              <file name="Health.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Health/Health.md" />
+            </directory>
+            <directory name="House" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/House">
+              <file name="Apartment.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/House/Apartment.md" />
+              <file name="Brand and models.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/House/Brand and models.md" />
+              <file name="House.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/House/House.md" />
+              <file name="Moving tip.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/House/Moving tip.md" />
+            </directory>
+            <directory name="Job" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Job">
+              <file name="block sudo to specific command.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Job/block sudo to specific command.md" />
+              <file name="curl POST examples.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Job/curl POST examples.md" />
+              <file name="Filesystem limitation.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Job/Filesystem limitation.md" />
+              <file name="Gradle cheatsheet.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Job/Gradle cheatsheet.md" />
+              <file name="The Omnipresence of Work - More to That.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Job/The Omnipresence of Work - More to That.md" />
+            </directory>
+            <directory name="Personal Development" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Personal Development">
+              <file name="Design Your Habits.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Personal Development/Design Your Habits.md" />
+              <file name="Excitement map.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Personal Development/Excitement map.md" />
+              <file name="Personal Development.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Personal Development/Personal Development.md" />
+            </directory>
+            <directory name="Productivity" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Productivity">
+              <file name="Daily Productive Hours.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Productivity/Daily Productive Hours.md" />
+              <file name="Productivity.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Productivity/Productivity.md" />
+              <file name="Task triage.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Productivity/Task triage.md" />
+              <file name="Timesheet.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/2. Areas/Productivity/Timesheet.md" />
+            </directory>
+          </directory>
+          <directory name="3. Resouces" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces">
+            <directory name="Community" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Community">
+              <file name="Audience is a super power.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Community/Audience is a super power.md" />
+              <file name="Community.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Community/Community.md" />
+              <file name="How to build community around your publication.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Community/How to build community around your publication.md" />
+            </directory>
+            <directory name="Cooking" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Cooking">
+              <file name="7 Low-Sodium Lunches Under 400 Calories.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Cooking/7 Low-Sodium Lunches Under 400 Calories.md" />
+              <file name="Cooking.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Cooking/Cooking.md" />
+              <file name="Easy Mini Quiche Recipe.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Cooking/Easy Mini Quiche Recipe.md" />
+            </directory>
+            <directory name="Development" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Development">
+              <file name="better developers computers are cheap people are expensive.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Development/better developers computers are cheap people are expensive.md" />
+              <file name="Better developers Using from X import Y in Python.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Development/Better developers Using from X import Y in Python.md" />
+              <file name="Development.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Development/Development.md" />
+              <file name="Mock Patching.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Development/Mock Patching.md" />
+            </directory>
+            <directory name="Drawing" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Drawing">
+              <file name="Drawing.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Drawing/Drawing.md" />
+              <file name="Improving guide.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Drawing/Improving guide.md" />
+            </directory>
+            <directory name="Gaming" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Gaming">
+              <file name="Gaming.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Gaming/Gaming.md" />
+              <file name="Interesting games.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Gaming/Interesting games.md" />
+            </directory>
+            <directory name="Marketing" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Marketing">
+              <file name="Beginners Guide to Product Qualified Leads (PQL).md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Marketing/Beginners Guide to Product Qualified Leads (PQL).md" />
+              <file name="Clusters.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Marketing/Clusters.md" />
+              <file name="Consumers Are Hungry For An Experience-Based Connection With Your Brand.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Marketing/Consumers Are Hungry For An Experience-Based Connection With Your Brand.md" />
+              <file name="Marketing.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Marketing/Marketing.md" />
+              <file name="Validation is backwards.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Marketing/Validation is backwards.md" />
+            </directory>
+            <directory name="Personal Knowledge Management" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management">
+              <file name="BASB - Cohort 10 - Class 7.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management/BASB - Cohort 10 - Class 7.md" />
+              <file name="BASB - Cohort 10 - Class 8.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management/BASB - Cohort 10 - Class 8.md" />
+              <file name="Dickens deep work.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management/Dickens deep work.md" />
+              <file name="Images.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management/Images.md" />
+              <file name="PARA Notes from class.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management/PARA Notes from class.md" />
+              <file name="PARA Notes.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management/PARA Notes.md" />
+              <file name="Personal Knowledge Management.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management/Personal Knowledge Management.md" />
+              <file name="Why I Keep a Research Blog by Gregory Gundersen.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Personal Knowledge Management/Why I Keep a Research Blog by Gregory Gundersen.md" />
+            </directory>
+            <directory name="Productivity" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Productivity">
+              <file name="Busy is a choice productive is a skill.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Productivity/Busy is a choice productive is a skill.md" />
+              <file name="Craftsmanship – The Alternative to the Four Hour Work Week Mindset.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Productivity/Craftsmanship – The Alternative to the Four Hour Work Week Mindset.md" />
+              <file name="How to Be a Productive Powerhouse Using Time Blocking.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Productivity/How to Be a Productive Powerhouse Using Time Blocking.md" />
+              <file name="Productivity.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Productivity/Productivity.md" />
+              <file name="The language of SMART goals 5 ways to fix your bad goal-setting habits.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Productivity/The language of SMART goals 5 ways to fix your bad goal-setting habits.md" />
+            </directory>
+            <directory name="Travel" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Travel">
+              <file name="Travel.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Travel/Travel.md" />
+            </directory>
+            <directory name="Writing" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Writing">
+              <file name="Create suspense.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Writing/Create suspense.md" />
+              <file name="James clear on writing.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Writing/James clear on writing.md" />
+              <file name="Opinion How Not to Be Alone by Jonathan Safran Foer.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Writing/Opinion How Not to Be Alone by Jonathan Safran Foer.md" />
+              <file name="Writing.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/3. Resouces/Writing/Writing.md" />
+            </directory>
+          </directory>
+          <file name="START HERE.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/START HERE.md" />
+        </directory>
+      </directory>
       <directory name="papers" path=".staging/realignment/papers" />
       <directory name="scripts" path=".staging/realignment/scripts">
         <directory name="bash" path=".staging/realignment/scripts/bash">
@@ -10937,8 +11070,244 @@
         <file name="Taskfile.yml" path=".staging/realignment/universal/Taskfile.yml" />
         <file name="universal.base.yml" path=".staging/realignment/universal/universal.base.yml" />
       </directory>
+      <directory name="website" path=".staging/realignment/website">
+        <directory name=".github" path=".staging/realignment/website/.github">
+          <directory name="workflows" path=".staging/realignment/website/.github/workflows">
+            <file name="deploy.yml" path=".staging/realignment/website/.github/workflows/deploy.yml" />
+          </directory>
+          <file name="FUNDING.yml" path=".staging/realignment/website/.github/FUNDING.yml" />
+        </directory>
+        <directory name=".vscode" path=".staging/realignment/website/.vscode">
+          <file name="extensions.json" path=".staging/realignment/website/.vscode/extensions.json" />
+          <file name="settings.json" path=".staging/realignment/website/.vscode/settings.json" />
+        </directory>
+        <directory name="egohygiene.io" path=".staging/realignment/website/egohygiene.io">
+          <directory name=".storybook" path=".staging/realignment/website/egohygiene.io/.storybook">
+            <file name="main.ts" path=".staging/realignment/website/egohygiene.io/.storybook/main.ts" />
+            <file name="manager-head.html" path=".staging/realignment/website/egohygiene.io/.storybook/manager-head.html" />
+            <file name="manager.ts" path=".staging/realignment/website/egohygiene.io/.storybook/manager.ts" />
+            <file name="preview-head.html" path=".staging/realignment/website/egohygiene.io/.storybook/preview-head.html" />
+            <file name="preview.ts" path=".staging/realignment/website/egohygiene.io/.storybook/preview.ts" />
+          </directory>
+          <directory name=".vscode" path=".staging/realignment/website/egohygiene.io/.vscode">
+            <file name="extensions.json" path=".staging/realignment/website/egohygiene.io/.vscode/extensions.json" />
+            <file name="launch.json" path=".staging/realignment/website/egohygiene.io/.vscode/launch.json" />
+            <file name="settings.json" path=".staging/realignment/website/egohygiene.io/.vscode/settings.json" />
+          </directory>
+          <directory name="config" path=".staging/realignment/website/egohygiene.io/config">
+            <file name="typedoc.json" path=".staging/realignment/website/egohygiene.io/config/typedoc.json" />
+          </directory>
+          <directory name="db" path=".staging/realignment/website/egohygiene.io/db">
+            <file name="config.ts" path=".staging/realignment/website/egohygiene.io/db/config.ts" />
+            <file name="seed.ts" path=".staging/realignment/website/egohygiene.io/db/seed.ts" />
+          </directory>
+          <directory name="docs" path=".staging/realignment/website/egohygiene.io/docs">
+            <file name="TSCONFIG.md" path=".staging/realignment/website/egohygiene.io/docs/TSCONFIG.md" />
+          </directory>
+          <directory name="generated" path=".staging/realignment/website/egohygiene.io/generated">
+            <file name="tsconfig.tsbuildinfo" path=".staging/realignment/website/egohygiene.io/generated/tsconfig.tsbuildinfo" />
+          </directory>
+          <directory name="public" path=".staging/realignment/website/egohygiene.io/public">
+            <directory name="assets" path=".staging/realignment/website/egohygiene.io/public/assets">
+              <directory name="categories" path=".staging/realignment/website/egohygiene.io/public/assets/categories">
+                <file name="psychology.png" path=".staging/realignment/website/egohygiene.io/public/assets/categories/psychology.png" />
+              </directory>
+              <directory name="textures" path=".staging/realignment/website/egohygiene.io/public/assets/textures">
+                <directory name="planets" path=".staging/realignment/website/egohygiene.io/public/assets/textures/planets">
+                  <file name="physical-health-bump.png" path=".staging/realignment/website/egohygiene.io/public/assets/textures/planets/physical-health-bump.png" />
+                  <file name="physical-health-normal.png" path=".staging/realignment/website/egohygiene.io/public/assets/textures/planets/physical-health-normal.png" />
+                  <file name="physical-health-roughness.png" path=".staging/realignment/website/egohygiene.io/public/assets/textures/planets/physical-health-roughness.png" />
+                  <file name="physical-health.png" path=".staging/realignment/website/egohygiene.io/public/assets/textures/planets/physical-health.png" />
+                </directory>
+              </directory>
+            </directory>
+            <directory name="fonts" path=".staging/realignment/website/egohygiene.io/public/fonts">
+              <file name="atkinson-bold.woff" path=".staging/realignment/website/egohygiene.io/public/fonts/atkinson-bold.woff" />
+              <file name="atkinson-regular.woff" path=".staging/realignment/website/egohygiene.io/public/fonts/atkinson-regular.woff" />
+            </directory>
+            <file name="CNAME" path=".staging/realignment/website/egohygiene.io/public/CNAME" />
+            <file name="favicon.svg" path=".staging/realignment/website/egohygiene.io/public/favicon.svg" />
+          </directory>
+          <directory name="src" path=".staging/realignment/website/egohygiene.io/src">
+            <directory name="assets" path=".staging/realignment/website/egohygiene.io/src/assets">
+              <file name="blog-placeholder-1.jpg" path=".staging/realignment/website/egohygiene.io/src/assets/blog-placeholder-1.jpg" />
+              <file name="blog-placeholder-2.jpg" path=".staging/realignment/website/egohygiene.io/src/assets/blog-placeholder-2.jpg" />
+              <file name="blog-placeholder-3.jpg" path=".staging/realignment/website/egohygiene.io/src/assets/blog-placeholder-3.jpg" />
+              <file name="blog-placeholder-4.jpg" path=".staging/realignment/website/egohygiene.io/src/assets/blog-placeholder-4.jpg" />
+              <file name="blog-placeholder-5.jpg" path=".staging/realignment/website/egohygiene.io/src/assets/blog-placeholder-5.jpg" />
+              <file name="blog-placeholder-about.jpg" path=".staging/realignment/website/egohygiene.io/src/assets/blog-placeholder-about.jpg" />
+              <file name="cradling_emotions_like_liquid_soul.png" path=".staging/realignment/website/egohygiene.io/src/assets/cradling_emotions_like_liquid_soul.png" />
+            </directory>
+            <directory name="components" path=".staging/realignment/website/egohygiene.io/src/components">
+              <directory name="3d" path=".staging/realignment/website/egohygiene.io/src/components/3d">
+                <file name="BackgroundAudio.tsx" path=".staging/realignment/website/egohygiene.io/src/components/3d/BackgroundAudio.tsx" />
+                <file name="EgoCore.tsx" path=".staging/realignment/website/egohygiene.io/src/components/3d/EgoCore.tsx" />
+                <file name="HUDOverlay.tsx" path=".staging/realignment/website/egohygiene.io/src/components/3d/HUDOverlay.tsx" />
+                <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/components/3d/index.ts" />
+                <file name="LandingScene.tsx" path=".staging/realignment/website/egohygiene.io/src/components/3d/LandingScene.tsx" />
+                <file name="Planet.tsx" path=".staging/realignment/website/egohygiene.io/src/components/3d/Planet.tsx" />
+              </directory>
+              <directory name="landing" path=".staging/realignment/website/egohygiene.io/src/components/landing">
+                <file name="AboutEgoHygiene.astro" path=".staging/realignment/website/egohygiene.io/src/components/landing/AboutEgoHygiene.astro" />
+                <file name="CategoryCarousel.astro" path=".staging/realignment/website/egohygiene.io/src/components/landing/CategoryCarousel.astro" />
+                <file name="ExplorePillars.astro" path=".staging/realignment/website/egohygiene.io/src/components/landing/ExplorePillars.astro" />
+                <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/components/landing/index.ts" />
+              </directory>
+              <directory name="synapse" path=".staging/realignment/website/egohygiene.io/src/components/synapse">
+                <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/components/synapse/index.ts" />
+                <file name="Pagination.astro" path=".staging/realignment/website/egohygiene.io/src/components/synapse/Pagination.astro" />
+                <file name="SynapseLayout.astro" path=".staging/realignment/website/egohygiene.io/src/components/synapse/SynapseLayout.astro" />
+                <file name="SynapseList.astro" path=".staging/realignment/website/egohygiene.io/src/components/synapse/SynapseList.astro" />
+              </directory>
+              <directory name="SynapseCard" path=".staging/realignment/website/egohygiene.io/src/components/SynapseCard">
+                <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/components/SynapseCard/index.ts" />
+                <file name="SynapseCard.astro" path=".staging/realignment/website/egohygiene.io/src/components/SynapseCard/SynapseCard.astro" />
+                <file name="SynapseCard.stories.tsx" path=".staging/realignment/website/egohygiene.io/src/components/SynapseCard/SynapseCard.stories.tsx" />
+                <file name="SynapseCard.styles.css" path=".staging/realignment/website/egohygiene.io/src/components/SynapseCard/SynapseCard.styles.css" />
+                <file name="SynapseCard.test.tsx" path=".staging/realignment/website/egohygiene.io/src/components/SynapseCard/SynapseCard.test.tsx" />
+                <file name="SynapseCard.types.ts" path=".staging/realignment/website/egohygiene.io/src/components/SynapseCard/SynapseCard.types.ts" />
+              </directory>
+              <directory name="term" path=".staging/realignment/website/egohygiene.io/src/components/term">
+                <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/components/term/index.ts" />
+                <file name="TermCard.astro" path=".staging/realignment/website/egohygiene.io/src/components/term/TermCard.astro" />
+                <file name="TermLayout.astro" path=".staging/realignment/website/egohygiene.io/src/components/term/TermLayout.astro" />
+                <file name="TermList.astro" path=".staging/realignment/website/egohygiene.io/src/components/term/TermList.astro" />
+              </directory>
+              <file name="BaseHead.astro" path=".staging/realignment/website/egohygiene.io/src/components/BaseHead.astro" />
+              <file name="CategoryCarousel.astro" path=".staging/realignment/website/egohygiene.io/src/components/CategoryCarousel.astro" />
+              <file name="Footer.astro" path=".staging/realignment/website/egohygiene.io/src/components/Footer.astro" />
+              <file name="FormattedDate.astro" path=".staging/realignment/website/egohygiene.io/src/components/FormattedDate.astro" />
+              <file name="Header.astro" path=".staging/realignment/website/egohygiene.io/src/components/Header.astro" />
+              <file name="HeaderLink.astro" path=".staging/realignment/website/egohygiene.io/src/components/HeaderLink.astro" />
+              <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/components/index.ts" />
+            </directory>
+            <directory name="content" path=".staging/realignment/website/egohygiene.io/src/content">
+              <directory name="blog" path=".staging/realignment/website/egohygiene.io/src/content/blog">
+                <file name="first-post.md" path=".staging/realignment/website/egohygiene.io/src/content/blog/first-post.md" />
+                <file name="markdown-style-guide.md" path=".staging/realignment/website/egohygiene.io/src/content/blog/markdown-style-guide.md" />
+                <file name="second-post.md" path=".staging/realignment/website/egohygiene.io/src/content/blog/second-post.md" />
+                <file name="third-post.md" path=".staging/realignment/website/egohygiene.io/src/content/blog/third-post.md" />
+                <file name="using-mdx.mdx" path=".staging/realignment/website/egohygiene.io/src/content/blog/using-mdx.mdx" />
+              </directory>
+            </directory>
+            <directory name="data" path=".staging/realignment/website/egohygiene.io/src/data">
+              <directory name="schemas" path=".staging/realignment/website/egohygiene.io/src/data/schemas">
+                <file name="manifest.json" path=".staging/realignment/website/egohygiene.io/src/data/schemas/manifest.json" />
+                <file name="ontology.json" path=".staging/realignment/website/egohygiene.io/src/data/schemas/ontology.json" />
+                <file name="pillars.schema.json" path=".staging/realignment/website/egohygiene.io/src/data/schemas/pillars.schema.json" />
+                <file name="relationships.schema.json" path=".staging/realignment/website/egohygiene.io/src/data/schemas/relationships.schema.json" />
+                <file name="synapse.schema.json" path=".staging/realignment/website/egohygiene.io/src/data/schemas/synapse.schema.json" />
+                <file name="systems.schema.json" path=".staging/realignment/website/egohygiene.io/src/data/schemas/systems.schema.json" />
+                <file name="tags.schema.json" path=".staging/realignment/website/egohygiene.io/src/data/schemas/tags.schema.json" />
+                <file name="terms.schema.json" path=".staging/realignment/website/egohygiene.io/src/data/schemas/terms.schema.json" />
+              </directory>
+              <file name="categories.ts" path=".staging/realignment/website/egohygiene.io/src/data/categories.ts" />
+              <file name="pillars.json" path=".staging/realignment/website/egohygiene.io/src/data/pillars.json" />
+              <file name="relationships.json" path=".staging/realignment/website/egohygiene.io/src/data/relationships.json" />
+              <file name="synapses.json" path=".staging/realignment/website/egohygiene.io/src/data/synapses.json" />
+              <file name="systems.json" path=".staging/realignment/website/egohygiene.io/src/data/systems.json" />
+              <file name="tags.json" path=".staging/realignment/website/egohygiene.io/src/data/tags.json" />
+              <file name="terms.json" path=".staging/realignment/website/egohygiene.io/src/data/terms.json" />
+            </directory>
+            <directory name="db" path=".staging/realignment/website/egohygiene.io/src/db">
+              <file name="db.ts" path=".staging/realignment/website/egohygiene.io/src/db/db.ts" />
+              <file name="schema.sql" path=".staging/realignment/website/egohygiene.io/src/db/schema.sql" />
+              <file name="seed.json" path=".staging/realignment/website/egohygiene.io/src/db/seed.json" />
+              <file name="seed.ts" path=".staging/realignment/website/egohygiene.io/src/db/seed.ts" />
+            </directory>
+            <directory name="layouts" path=".staging/realignment/website/egohygiene.io/src/layouts">
+              <file name="BlogPost.astro" path=".staging/realignment/website/egohygiene.io/src/layouts/BlogPost.astro" />
+              <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/layouts/index.ts" />
+            </directory>
+            <directory name="lib" path=".staging/realignment/website/egohygiene.io/src/lib">
+              <file name="getSynapseBySlug.ts" path=".staging/realignment/website/egohygiene.io/src/lib/getSynapseBySlug.ts" />
+              <file name="getSynapses.ts" path=".staging/realignment/website/egohygiene.io/src/lib/getSynapses.ts" />
+            </directory>
+            <directory name="models" path=".staging/realignment/website/egohygiene.io/src/models">
+              <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/models/index.ts" />
+              <file name="Pillar.ts" path=".staging/realignment/website/egohygiene.io/src/models/Pillar.ts" />
+              <file name="Relationship.ts" path=".staging/realignment/website/egohygiene.io/src/models/Relationship.ts" />
+              <file name="Synapse.ts" path=".staging/realignment/website/egohygiene.io/src/models/Synapse.ts" />
+              <file name="System.ts" path=".staging/realignment/website/egohygiene.io/src/models/System.ts" />
+              <file name="Tag.ts" path=".staging/realignment/website/egohygiene.io/src/models/Tag.ts" />
+              <file name="Term.ts" path=".staging/realignment/website/egohygiene.io/src/models/Term.ts" />
+            </directory>
+            <directory name="pages" path=".staging/realignment/website/egohygiene.io/src/pages">
+              <directory name="synapse" path=".staging/realignment/website/egohygiene.io/src/pages/synapse">
+                <file name="[slug].astro" path=".staging/realignment/website/egohygiene.io/src/pages/synapse/[slug].astro" />
+              </directory>
+              <directory name="terms" path=".staging/realignment/website/egohygiene.io/src/pages/terms">
+                <file name="[slug].astro" path=".staging/realignment/website/egohygiene.io/src/pages/terms/[slug].astro" />
+                <file name="index.astro" path=".staging/realignment/website/egohygiene.io/src/pages/terms/index.astro" />
+              </directory>
+              <file name="about.astro" path=".staging/realignment/website/egohygiene.io/src/pages/about.astro" />
+              <file name="index.astro" path=".staging/realignment/website/egohygiene.io/src/pages/index.astro" />
+              <file name="rss.xml.ts" path=".staging/realignment/website/egohygiene.io/src/pages/rss.xml.ts" />
+            </directory>
+            <directory name="plugins" path=".staging/realignment/website/egohygiene.io/src/plugins">
+              <file name="index.ts" path=".staging/realignment/website/egohygiene.io/src/plugins/index.ts" />
+              <file name="remark-modified-time.ts" path=".staging/realignment/website/egohygiene.io/src/plugins/remark-modified-time.ts" />
+              <file name="remark-reading-time.ts" path=".staging/realignment/website/egohygiene.io/src/plugins/remark-reading-time.ts" />
+            </directory>
+            <directory name="styles" path=".staging/realignment/website/egohygiene.io/src/styles">
+              <file name="global.css" path=".staging/realignment/website/egohygiene.io/src/styles/global.css" />
+            </directory>
+            <file name="astro-shim.d.ts" path=".staging/realignment/website/egohygiene.io/src/astro-shim.d.ts" />
+            <file name="consts.ts" path=".staging/realignment/website/egohygiene.io/src/consts.ts" />
+            <file name="content.config.ts" path=".staging/realignment/website/egohygiene.io/src/content.config.ts" />
+            <file name="env.d.ts" path=".staging/realignment/website/egohygiene.io/src/env.d.ts" />
+            <file name="globals.d.ts" path=".staging/realignment/website/egohygiene.io/src/globals.d.ts" />
+          </directory>
+          <directory name="types" path=".staging/realignment/website/egohygiene.io/types">
+            <file name="astro.ts" path=".staging/realignment/website/egohygiene.io/types/astro.ts" />
+            <file name="vfile.d.ts" path=".staging/realignment/website/egohygiene.io/types/vfile.d.ts" />
+          </directory>
+          <file name=".gitignore" path=".staging/realignment/website/egohygiene.io/.gitignore" />
+          <file name=".prettierrc" path=".staging/realignment/website/egohygiene.io/.prettierrc" />
+          <file name="astro.config.mts" path=".staging/realignment/website/egohygiene.io/astro.config.mts" />
+          <file name="eslint.config.mjs" path=".staging/realignment/website/egohygiene.io/eslint.config.mjs" />
+          <file name="package.json" path=".staging/realignment/website/egohygiene.io/package.json" />
+          <file name="README.md" path=".staging/realignment/website/egohygiene.io/README.md" />
+          <file name="tsconfig.app.json" path=".staging/realignment/website/egohygiene.io/tsconfig.app.json" />
+          <file name="tsconfig.base.json" path=".staging/realignment/website/egohygiene.io/tsconfig.base.json" />
+          <file name="tsconfig.build.json" path=".staging/realignment/website/egohygiene.io/tsconfig.build.json" />
+          <file name="tsconfig.cli.json" path=".staging/realignment/website/egohygiene.io/tsconfig.cli.json" />
+          <file name="tsconfig.docs.json" path=".staging/realignment/website/egohygiene.io/tsconfig.docs.json" />
+          <file name="tsconfig.eslint.json" path=".staging/realignment/website/egohygiene.io/tsconfig.eslint.json" />
+          <file name="tsconfig.json" path=".staging/realignment/website/egohygiene.io/tsconfig.json" />
+          <file name="tsconfig.node.json" path=".staging/realignment/website/egohygiene.io/tsconfig.node.json" />
+          <file name="tsconfig.package.json" path=".staging/realignment/website/egohygiene.io/tsconfig.package.json" />
+          <file name="tsconfig.playground.json" path=".staging/realignment/website/egohygiene.io/tsconfig.playground.json" />
+          <file name="tsconfig.storybook.json" path=".staging/realignment/website/egohygiene.io/tsconfig.storybook.json" />
+          <file name="tsconfig.typecheck.json" path=".staging/realignment/website/egohygiene.io/tsconfig.typecheck.json" />
+          <file name="tsconfig.types.json" path=".staging/realignment/website/egohygiene.io/tsconfig.types.json" />
+          <file name="tsconfig.vitest.json" path=".staging/realignment/website/egohygiene.io/tsconfig.vitest.json" />
+        </directory>
+        <directory name="scripts" path=".staging/realignment/website/scripts">
+          <file name="clean_html.py" path=".staging/realignment/website/scripts/clean_html.py" />
+          <file name="generate_map.py" path=".staging/realignment/website/scripts/generate_map.py" />
+          <file name="validate-data.ts" path=".staging/realignment/website/scripts/validate-data.ts" />
+        </directory>
+        <file name=".editorconfig" path=".staging/realignment/website/.editorconfig" />
+        <file name=".gitattributes" path=".staging/realignment/website/.gitattributes" />
+        <file name=".gitignore" path=".staging/realignment/website/.gitignore" />
+        <file name=".npmrc" path=".staging/realignment/website/.npmrc" />
+        <file name=".tool-versions" path=".staging/realignment/website/.tool-versions" />
+        <file name="init-schemas.sh" path=".staging/realignment/website/init-schemas.sh" />
+        <file name="LICENSE" path=".staging/realignment/website/LICENSE" />
+        <file name="package.json" path=".staging/realignment/website/package.json" />
+        <file name="pnpm-lock.yaml" path=".staging/realignment/website/pnpm-lock.yaml" />
+        <file name="pnpm-workspace.yaml" path=".staging/realignment/website/pnpm-workspace.yaml" />
+        <file name="poetry.lock" path=".staging/realignment/website/poetry.lock" />
+        <file name="poetry.toml" path=".staging/realignment/website/poetry.toml" />
+        <file name="pyproject.toml" path=".staging/realignment/website/pyproject.toml" />
+        <file name="README.md" path=".staging/realignment/website/README.md" />
+        <file name="tsconfig.json" path=".staging/realignment/website/tsconfig.json" />
+        <file name="website.code-workspace" path=".staging/realignment/website/website.code-workspace" />
+      </directory>
       <file name=".gitattributes" path=".staging/realignment/.gitattributes" />
       <file name="temp.json" path=".staging/realignment/temp.json" />
+      <file name="The _llms.txt file – llms-txt.pdf" path=".staging/realignment/The _llms.txt file – llms-txt.pdf" />
     </directory>
   </directory>
   <directory name=".taskfile" path=".taskfile">
