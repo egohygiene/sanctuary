@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-calibre
+## @brief Install Calibre e-book manager via the official Linux installer.
+## @version 1.0.0
+## @description
+##   Installs Calibre using the official Linux installer script from
+##   https://download.calibre-ebook.com/linux-installer.sh.
+##   Calibre is a powerful e-book manager with conversion and library tools.
+##   Reference: https://github.com/kovidgoyal/calibre
+##
+## @usage
+##   install-calibre [--version <version>] [--install-dir <dir>] [--debug] [--no-color]
+##
+## @options
+##   --version <v>       Calibre version to install (default: latest).
+##   --install-dir <d>   Installation directory (default: /opt/calibre).
+##   --debug             Extra logging.
+##   --no-color          Disable ANSI colors in logs.
+##   -h, --help          Show help and exit.
+##
+## @env CALIBRE_VERSION      Version to install (default: latest).
+## @env CALIBRE_INSTALL_DIR  Installation directory (default: /opt/calibre).
+## @env DEBUG                Verbose logs when "true".
+## @env USE_COLOR            ANSI color (default true).
+
+# ---------------- defaults ----------------
+CALIBRE_VERSION="${CALIBRE_VERSION:-}"
+CALIBRE_INSTALL_DIR="${CALIBRE_INSTALL_DIR:-/opt/calibre}"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+
+# ---------------- logging ----------------
+color() { [[ "${USE_COLOR}" == true ]] || { printf ''; return; }
+  case "${1:-}" in red) printf '\033[31m';; green) printf '\033[32m';;
+    yellow) printf '\033[33m';; cyan) printf '\033[36m';; reset) printf '\033[0m';; esac; }
+log() { local t="$1"; shift || true; local p c;
+  case "$t" in info) p='👉'; c=$(color cyan);;
+    ok) p='✅'; c=$(color green);;
+    warn) p='⚠️ '; c=$(color yellow);;
+    err) p='❌'; c=$(color red);;
+    dbg) [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan);;
+    *) p=''; c=$(color reset);; esac
+  printf '%s%s %s%s\n' "$c" "$p" "$*" "$(color reset)" >&2; }
+die() { local c="$1"; shift || true; log err "$*"; exit "$c"; }
+[[ -t 2 ]] || USE_COLOR=false
+have() { command -v "$1" >/dev/null 2>&1; }
+
+usage() { sed -n '2,120p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'; }
+
+# ---------------- args ----------------
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --version)    CALIBRE_VERSION="$2"; shift ;;
+    --install-dir) CALIBRE_INSTALL_DIR="$2"; shift ;;
+    --debug)      DEBUG=true ;;
+    --no-color)   USE_COLOR=false ;;
+    -h|--help)    usage; exit 0 ;;
+    *) die 1 "Unknown option: $1" ;;
+  esac; shift
+done
+
+# ---------------- install ----------------
+install_calibre() {
+  have curl || die 127 "curl is required but not found"
+
+  log info "Downloading Calibre installer…"
+  local installer
+  installer="$(mktemp)"
+  curl -fsSL "https://download.calibre-ebook.com/linux-installer.sh" -o "${installer}"
+  chmod +x "${installer}"
+
+  local install_args="install_dir=${CALIBRE_INSTALL_DIR}"
+  if [[ -n "${CALIBRE_VERSION}" ]]; then
+    install_args="${install_args} version=${CALIBRE_VERSION}"
+  fi
+
+  log info "Installing Calibre to ${CALIBRE_INSTALL_DIR}…"
+  log dbg "Installer args: headless=y ${install_args}"
+  sh "${installer}" headless=y ${install_args}
+
+  rm -f "${installer}"
+}
+
+# ---------------- verify ----------------
+verify() {
+  log info "Verifying Calibre installation…"
+  if have calibredb; then
+    calibredb --version 2>/dev/null || true
+    log ok "calibredb installed: $(command -v calibredb)"
+  else
+    die 1 "calibredb not found after install"
+  fi
+  if have ebook-convert; then
+    log ok "ebook-convert installed: $(command -v ebook-convert)"
+  fi
+}
+
+main() {
+  install_calibre
+  verify
+  log ok "Done."
+}
+
+main "$@"

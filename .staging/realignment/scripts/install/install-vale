@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ============================================
+# install-vale.sh
+# Install Vale from GitHub release archive
+# Supports: latest, specific version, or specific SHA256
+# Author: Alan Szmyt
+# ============================================
+
+# -----------------------------
+# Config
+# -----------------------------
+OWNER="errata-ai"
+REPO="vale"
+INSTALL_DIR="/usr/local/bin"
+
+# Detect platform
+OS="$(uname -s)"
+ARCH="$(uname -m)"
+
+case "$OS" in
+  Linux)   PLATFORM="Linux" ;;
+  Darwin)  PLATFORM="macOS" ;;
+  *) echo "❌ Unsupported OS: $OS"; exit 1 ;;
+esac
+
+case "$ARCH" in
+  x86_64) ARCH_LABEL="64-bit" ;;
+  arm64|aarch64) ARCH_LABEL="arm64" ;;
+  *) echo "❌ Unsupported architecture: $ARCH"; exit 1 ;;
+esac
+
+# -----------------------------
+# Functions
+# -----------------------------
+
+get_latest_release() {
+  curl -s "https://api.github.com/repos/$OWNER/$REPO/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/'
+}
+
+download_and_install() {
+  local version="$1"
+
+  FILENAME="vale_${version}_${PLATFORM}_${ARCH_LABEL}.tar.gz"
+  DOWNLOAD_URL="https://github.com/${OWNER}/${REPO}/releases/download/v${version}/${FILENAME}"
+
+  echo "📦 Downloading Vale v${version} from ${DOWNLOAD_URL}..."
+  curl -fsSL "$DOWNLOAD_URL" -o "/tmp/$FILENAME"
+
+  echo "📂 Extracting and installing to $INSTALL_DIR..."
+  tar -xzf "/tmp/$FILENAME" -C /tmp
+  sudo mv "/tmp/vale" "$INSTALL_DIR/vale"
+  sudo chmod +x "$INSTALL_DIR/vale"
+
+  echo "✅ Installed Vale v${version} at $(which vale)"
+  vale --version
+}
+
+# -----------------------------
+# Main
+# -----------------------------
+usage() {
+  echo "Usage: $0 [--version x.y.z] [--sha SHA256] [--help]"
+  exit 1
+}
+
+VERSION=""
+SHA=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --version)
+      VERSION="$2"
+      shift 2
+      ;;
+    --sha)
+      SHA="$2"
+      shift 2
+      ;;
+    --help|-h)
+      usage
+      ;;
+    *)
+      echo "❌ Unknown argument: $1"
+      usage
+      ;;
+  esac
+done
+
+# If SHA is provided, we skip version resolution and raw download
+if [[ -n "$SHA" ]]; then
+  echo "🔐 SHA256 direct download not yet implemented in this script (future support)"
+  exit 1
+fi
+
+# If no version provided, get latest
+if [[ -z "$VERSION" ]]; then
+  echo "🔍 Fetching latest Vale release..."
+  VERSION=$(get_latest_release)
+fi
+
+download_and_install "$VERSION"

@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-java
+## @brief Install Eclipse Temurin JDK via the Adoptium apt repository.
+## @version 1.0.0
+## @description
+##   Installs Eclipse Temurin (OpenJDK) from the Adoptium apt repository
+##   and verifies the installation. Sets JAVA_HOME if not already set.
+##   Reference: https://adoptium.net/installation/linux/
+##
+## @usage
+##   install-java [--version <major>] [--java-home <path>] [--debug] [--no-color]
+##
+## @options
+##   --version <n>        JDK major version to install (default: 21).
+##   --java-home <path>   Override JAVA_HOME path after install.
+##   --debug              Extra logging.
+##   --no-color           Disable ANSI colors in logs.
+##   -h, --help           Show help and exit.
+##
+## @env JAVA_VERSION    JDK major version (default: 21).
+## @env JAVA_HOME       JDK home directory (default: auto-detected).
+## @env DEBUG           Verbose logs when "true".
+## @env USE_COLOR       ANSI color (default true).
+
+# ---------------- defaults ----------------
+JAVA_VERSION="${JAVA_VERSION:-21}"
+JAVA_HOME_OVERRIDE="${JAVA_HOME_OVERRIDE:-}"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+
+# ---------------- logging ----------------
+color() { [[ "${USE_COLOR}" == true ]] || { printf ''; return; }
+  case "${1:-}" in red) printf '\033[31m';; green) printf '\033[32m';;
+    yellow) printf '\033[33m';; cyan) printf '\033[36m';; reset) printf '\033[0m';; esac; }
+log() { local t="$1"; shift || true; local p c;
+  case "$t" in info) p='👉'; c=$(color cyan);;
+    ok) p='✅'; c=$(color green);;
+    warn) p='⚠️ '; c=$(color yellow);;
+    err) p='❌'; c=$(color red);;
+    dbg) [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan);;
+    *) p=''; c=$(color reset);; esac
+  printf '%s%s %s%s\n' "$c" "$p" "$*" "$(color reset)" >&2; }
+die() { local c="$1"; shift || true; log err "$*"; exit "$c"; }
+[[ -t 2 ]] || USE_COLOR=false
+have() { command -v "$1" >/dev/null 2>&1; }
+
+usage() { sed -n '2,120p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'; }
+
+# ---------------- args ----------------
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --version)    JAVA_VERSION="$2"; shift ;;
+    --java-home)  JAVA_HOME_OVERRIDE="$2"; shift ;;
+    --debug)      DEBUG=true ;;
+    --no-color)   USE_COLOR=false ;;
+    -h|--help)    usage; exit 0 ;;
+    *) die 1 "Unknown option: $1" ;;
+  esac; shift
+done
+
+# ---------------- install ----------------
+add_adoptium_repo() {
+  have wget || die 127 "wget is required but not found"
+  have gpg  || die 127 "gpg is required but not found"
+
+  log info "Adding Adoptium GPG key…"
+  mkdir -p /etc/apt/trusted.gpg.d
+  wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public \
+    | gpg --dearmor \
+    | tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null
+
+  local codename
+  codename="$(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release)"
+  log info "Detected Ubuntu codename: ${codename}"
+
+  log info "Adding Adoptium apt repository…"
+  echo "deb https://packages.adoptium.net/artifactory/deb ${codename} main" \
+    | tee /etc/apt/sources.list.d/adoptium.list > /dev/null
+
+  log info "Updating apt package index…"
+  apt-get update -qq
+}
+
+install_java() {
+  local package="temurin-${JAVA_VERSION}-jdk"
+  log info "Installing ${package}…"
+  apt-get install --yes --no-install-recommends "${package}"
+}
+
+# ---------------- verify ----------------
+verify() {
+  log info "Verifying java on PATH…"
+  if have java; then
+    java -version 2>&1 | head -1 || true
+    log ok "java installed: $(command -v java)"
+  else
+    die 1 "java not found after install"
+  fi
+
+  if have javac; then
+    javac -version 2>&1 || true
+    log ok "javac installed: $(command -v javac)"
+  else
+    die 1 "javac not found after install"
+  fi
+}
+
+# ---------------- main ----------------
+main() {
+  log info "Installing Eclipse Temurin JDK ${JAVA_VERSION}…"
+
+  if have java; then
+    log ok "Java already installed: $(java -version 2>&1 | head -1)"
+    return 0
+  fi
+
+  add_adoptium_repo
+  install_java
+  verify
+  log ok "Done — Eclipse Temurin JDK ${JAVA_VERSION} installed."
+}
+
+main "$@"

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.base.json",
+
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "types": ["vite/client"]
+  },
+
+  "include": [
+    "src",
+    "**/*.mdx",
+    "**/*.astro",
+    "astro.config.*",
+    "vite.config.*"
+  ],
+
+  "exclude": ["dist", "node_modules", "generated"]
+}

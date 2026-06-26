@@ -1,0 +1,171 @@
+#!/usr/bin/env bash
+# apt-install — Reproducible APT install + freeze using snapshot timestamp + deb caching
+
+set -euo pipefail
+
+LOCK_DIR="${DEVTOOLS_LOCKS:-/opt/devtools/locks}"
+LOCK_FILE="${LOCK_DIR}/packages.lock"
+TIMESTAMP_FILE="${LOCK_DIR}/snapshot.timestamp"
+PIN_DIR="${LOCK_DIR}/preferences.d"
+IGNORE_FILE="${LOCK_DIR}/lockfile.ignore"
+PIN_PRIORITY="1001"
+
+CACHE_DIR=""
+APT_PACKAGES=()
+PACKAGE_FILE=""
+SNAPSHOT_TIMESTAMP=""
+
+usage() {
+    cat <<EOF
+Usage:
+  $0 --lock [--packages-file FILE] [--cache-dir DIR]
+      Install & freeze APT packages and save snapshot + cache
+  $0 --from-lock --snapshot TS [--cache-dir DIR]
+      Install from lock file and snapshot, optionally using cached .debs
+
+Options:
+  --packages-file FILE   File with list of packages to install (one per line)
+  --snapshot TS          Snapshot timestamp (e.g. 20240720T000000Z)
+  --cache-dir DIR        Directory to store or reuse downloaded .deb files
+EOF
+    exit 1
+}
+
+read_package_list() {
+    if [[ -n "${PACKAGE_FILE}" ]]; then
+        mapfile -t APT_PACKAGES <"${PACKAGE_FILE}"
+    fi
+}
+
+generate_snapshot_timestamp() {
+    SNAPSHOT_TIMESTAMP="$(date -u +%Y%m%dT000000Z)"
+    echo "${SNAPSHOT_TIMESTAMP}" > "${TIMESTAMP_FILE}"
+    echo "📅 Snapshot timestamp saved: ${SNAPSHOT_TIMESTAMP}"
+}
+
+filter_lock_output() {
+    if [[ -f "${IGNORE_FILE}" ]]; then
+        grep -vFf "${IGNORE_FILE}"
+    else
+        cat
+    fi
+}
+
+setup_cache_dir() {
+    if [[ -n "${CACHE_DIR}" ]]; then
+        echo "📁 Using local APT cache directory: ${CACHE_DIR}"
+        mkdir -p "${CACHE_DIR}/archives/partial"
+        echo "Dir::Cache::archives \"${CACHE_DIR}/archives\";" > /etc/apt/apt.conf.d/99cache-dir
+    fi
+}
+
+install_deps() {
+    echo "📦 Installing packages using snapshot: ${SNAPSHOT_TIMESTAMP}"
+    setup_cache_dir
+    apt-get install --yes --no-install-recommends \
+        --update \
+        --snapshot "${SNAPSHOT_TIMESTAMP}" \
+        "${APT_PACKAGES[@]}"
+}
+
+install_from_lock() {
+    echo "🔐 Installing from lock file: ${LOCK_FILE}"
+
+    if [[ -z "${SNAPSHOT_TIMESTAMP}" && -f "${TIMESTAMP_FILE}" ]]; then
+        SNAPSHOT_TIMESTAMP="$(cat "${TIMESTAMP_FILE}")"
+        echo "📁 Loaded snapshot timestamp from file: ${SNAPSHOT_TIMESTAMP}"
+    fi
+
+    [[ -z "${SNAPSHOT_TIMESTAMP}" ]] && {
+        echo "❌ Missing snapshot timestamp!" >&2
+        exit 1
+    }
+
+    setup_cache_dir
+
+    local raw_packages raw_packages_sorted filtered_packages packages_to_install
+    raw_packages="$(cut -d= -f1 "${LOCK_FILE}")"
+    raw_packages_sorted="$(echo "${raw_packages}" | sort)"
+    filtered_packages="$(filter_lock_output <<< "${raw_packages_sorted}")"
+
+    mapfile -t packages_to_install < <(echo "${filtered_packages}")
+
+    apt-get install --yes --no-install-recommends \
+        --update \
+        --snapshot "${SNAPSHOT_TIMESTAMP}" \
+        "${packages_to_install[@]}"
+}
+
+generate_lock_file() {
+    echo "🔒 Freezing package versions to: ${LOCK_FILE}"
+    mkdir -p "${LOCK_DIR}" "${PIN_DIR}"
+    dpkg-query -W -f='${Package}=${Version}\n' |
+        sort |
+        filter_lock_output > "${LOCK_FILE}"
+    echo "✅ Lock file written."
+
+    echo "📦 Generating .pref pin files..."
+
+    manual_packages=$(apt-mark showmanual | grep -vE '^(bash|coreutils|libc6|gcc|perl|python|linux-|grub|init|login|util-linux)' | sort)
+
+    if [[ -f "${IGNORE_FILE}" ]]; then
+        echo "🔍 Filtering manual packages against ${IGNORE_FILE}..."
+        sorted_manual=$(echo "${manual_packages}" | sort)
+        sorted_ignore=$(sort "${IGNORE_FILE}")
+        manual_packages=$(comm -23 <(echo "${sorted_manual}") <(echo "${sorted_ignore}"))
+    fi
+
+    for pkg in ${manual_packages}; do
+        version=$(dpkg-query --show --showformat='${Version}' "${pkg}" 2>/dev/null || true)
+        [[ -n "${version}" ]] || continue
+
+        cat > "${PIN_DIR}/${pkg}.pref" <<EOF
+Package: ${pkg}
+Pin: version ${version}
+Pin-Priority: ${PIN_PRIORITY}
+EOF
+
+        echo "📌 Pinned ${pkg}=${version}"
+    done
+
+    echo "✅ Pin files saved to ${PIN_DIR}"
+}
+
+main() {
+    case "${1:-}" in
+        --lock)
+            shift
+            while [[ $# -gt 0 ]]; do
+                case "$1" in
+                    --packages-file) PACKAGE_FILE="$2"; shift ;;
+                    --cache-dir) CACHE_DIR="$2"; shift ;;
+                    *) usage ;;
+                esac
+                shift
+            done
+            read_package_list
+            generate_snapshot_timestamp
+            install_deps
+            generate_lock_file
+            ;;
+        --from-lock)
+            shift
+            while [[ $# -gt 0 ]]; do
+                case "$1" in
+                    --snapshot) SNAPSHOT_TIMESTAMP="$2"; shift ;;
+                    --cache-dir) CACHE_DIR="$2"; shift ;;
+                    *) usage ;;
+                esac
+                shift
+            done
+            install_from_lock
+            ;;
+        *)
+            usage
+            ;;
+    esac
+
+    echo "✅ APT stage complete."
+}
+
+main "$@"

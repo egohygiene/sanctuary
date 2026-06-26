@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#
+# Brief description of your script
+# Copyright 2023 alan
+
+status_regex='Status:\s\K.*'
+
+function is_connected() {
+    if [[ $(nordvpn status | grep -Po $status_regex) == 'Disconnected' ]]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+function main() {
+    if is_connected; then
+        nordvpn disconnect
+    else
+        nordvpn connect
+    fi
+}
+
+main "$@"
+

@@ -1,0 +1,17 @@
+{
+    // Favorites
+    // @jlab-enhanced/favorites:favorites
+    // Favorites settings.
+    // **********************************
+
+    // Favorites
+    // The list of favorites.
+    "favorites": [
+        {
+            "root": "~/src/bu/cs677/assignment4",
+            "path": "assignment4/assignment4.ipynb",
+            "contentType": "notebook",
+            "iconLabel": "ui-components:notebook"
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+# Currently mounted filesystems.
+mount | column -t
+
+# Get your external IP address.
+curl ifconfig.me
+
+# Show ascii table.
+man ascii
+
+# Mount folder/filesystem through ssh.
+sshfs name@server:/path/to/folder /path/to/mount/point
+
+# Mount a temporary ram partition.
+mount -t tmpfs tmpfs /mnt -o size=1024m
+
+# 32-bits or 64-bits.
+getconf LONG_BIT
+
+# Save command output to an image.
+ifconfig | convert label:@- ip.png
+
+# Fix imagemagick policy.
+sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
+
+
+# Copy ssh public key to remote machine.
+ssh-copy-id username@hostname
+
+
+# Copy ssh public key to remote machine that doesn't have ssh-copy-id.
+cat ~/.ssh/id_rsa.pub | ssh user@machine "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
+
+# Replace spaces in filenames with underscores.
+rename 'y/ /_/' *
+
+# Get weath forecase
+curl wttr.in/seville
+
+
+# Show a clock.
+watch -t -n1 "date +%T|figlet"
+
+
+# Pretend to be busy.
+cat /dev/urandom | hexdump -C | grep "ca fe"
+
+
+# Remove security limitations of pdf.
+gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=OUTPUT.pdf -c .setpdfwrite -f INPUT.pdf
+
+
+# List all bash shortcuts.
+bind -P
+
+# Run file system check on next boot.
+sudo touch /forcefsck
+
+
+# Google text to speech.
+wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=hello+world
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

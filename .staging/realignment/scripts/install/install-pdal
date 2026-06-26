@@ -1,0 +1,342 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-pdal
+## @brief Reproducible PDAL build (from commit/tag or URL) with verbose, plugin-rich build.
+## @version 1.0.0
+## @description
+##   Builds PDAL from a pinned source tarball (commit/tag or explicit URL),
+##   verifies SHA-512, installs broad delegate deps (best effort), compiles with
+##   shared libs, and registers the install via ld.so (no global LD_LIBRARY_PATH).
+##   Tries to enable *all* plugins; any missing dev libs will auto-disable gracefully.
+##
+## @usage
+##   install-pdal
+##     [--commit <sha> | --version <v> | --url <tarball>]
+##     [--sha512 <hex>]
+##     [--prefix /opt/pdal]
+##     [--with-deps | --no-deps]
+##     [--symlink-bin]
+##     [--debug] [--no-color]
+##
+## @options
+##   --commit <sha>   PDAL commit SHA to fetch from GitHub codeload (default: $PDAL_COMMIT_DEFAULT).
+##   --version <v>    PDAL release tag (e.g., 2.9.0) – uses GitHub release tarball.
+##   --url <url>      Override tarball URL completely (implies you supply --sha512).
+##   --sha512 <hex>   Expected SHA-512 for the tarball (recommended).
+##   --prefix <dir>   Install prefix (default: $PDAL_PREFIX or $UNIVERSAL_TOOLBOX/pdal).
+##   --with-deps      Install broad apt build deps (best-effort; default).
+##   --no-deps        Skip apt deps installation.
+##   --symlink-bin    Symlink installed binaries into $UNIVERSAL_BIN.
+##   --debug          Verbose logs and CMake/Ninja debug output.
+##   --no-color       Disable ANSI colors in logs.
+##   -h, --help       Show help and exit.
+##
+## @env UNIVERSAL_HOME     Default /opt/universal
+## @env UNIVERSAL_TOOLBOX  Default $UNIVERSAL_HOME/toolbox
+## @env UNIVERSAL_BIN      Default $UNIVERSAL_HOME/bin
+## @env XDG_CACHE_HOME     Where to cache source tarballs (fallback: /var/cache/src)
+## @env PDAL_PREFIX        Install prefix override
+## @env PDAL_SHA512        Default SHA-512 if --sha512 omitted
+## @env PDAL_COMMIT        Default commit if --commit omitted
+## @env PDAL_VERSION       Default version tag if --version used and --commit/--url omitted
+
+# -------- defaults (your pin) --------
+PDAL_COMMIT_DEFAULT="${PDAL_COMMIT:-795f0d9858dba72074fa3a4736282b1d2635620b}"
+PDAL_SHA512_DEFAULT="${PDAL_SHA512:-9c47e0fe056c36c5d8d54600f321a976fb8623808ea9448fcefa55659ab2c1e37f6467f5325372e1a40f4ae5ecccc117565d9d66d26873bf7b52346f63ec6bea}"
+
+UNIVERSAL_HOME="${UNIVERSAL_HOME:-/opt/universal}"
+UNIVERSAL_TOOLBOX="${UNIVERSAL_TOOLBOX:-${UNIVERSAL_HOME}/toolbox}"
+UNIVERSAL_BIN="${UNIVERSAL_BIN:-${UNIVERSAL_HOME}/bin}"
+PDAL_PREFIX="${PDAL_PREFIX:-${UNIVERSAL_TOOLBOX}/pdal}"
+
+ZIP_CACHE_DIR="${XDG_CACHE_HOME:-/var/cache}/src"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+
+TMP_DIR="${TMPDIR:-/tmp}/pdal-src"
+
+SRC_DIR=""
+TARBALL_PATH=""
+TARBALL_URL=""
+EXPECTED_SHA512=""
+
+DO_DEPS=1
+DO_SYMLINKS=0
+
+# -------- logging --------
+color() {
+  [[ "${USE_COLOR}" == true ]] || { printf ''; return 0; }
+  case "${1:-}" in red) printf '\033[31m';; green) printf '\033[32m';;
+    yellow) printf '\033[33m';; cyan) printf '\033[36m';; reset) printf '\033[0m';; esac
+}
+log() {
+  local lvl="${1:-}"; shift || true; local p c
+  case "${lvl}" in
+    info) p='👉'; c=$(color cyan) ;;
+    ok)   p='✅'; c=$(color green) ;;
+    warn) p='⚠️ '; c=$(color yellow) ;;
+    err)  p='❌'; c=$(color red) ;;
+    dbg)  [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan) ;;
+    *) p=''; c=$(color reset) ;;
+  esac
+  printf '%s%s %s%s\n' "${c}" "${p}" "$*" "$(color reset)" >&2
+}
+die() { local code="$1"; shift || true; log err "$*"; exit "$code"; }
+[[ -t 2 ]] || USE_COLOR=false
+
+sudo_if_needed() {
+  if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then
+    command -v sudo >/dev/null 2>&1 && printf 'sudo' || printf ''
+  else
+    printf ''
+  fi
+}
+have() { command -v "$1" >/dev/null 2>&1; }
+
+cleanup() { [[ -n "${TMP_DIR}" && -d "${TMP_DIR}" ]] && rm -rf -- "${TMP_DIR}" || true; }
+trap cleanup EXIT
+trap 'log err "Failed at line $LINENO: $BASH_COMMAND"' ERR
+
+usage() {
+  sed -n '2,120p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'
+}
+
+# -------- args --------
+PDAL_COMMIT_PIN=""
+PDAL_VERSION_TAG=""
+CUSTOM_URL=""
+
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --commit)   PDAL_COMMIT_PIN="$2"; shift ;;
+      --version)  PDAL_VERSION_TAG="$2"; shift ;;
+      --url)      CUSTOM_URL="$2"; shift ;;
+      --sha512)   EXPECTED_SHA512="$2"; shift ;;
+      --prefix)   PDAL_PREFIX="$2"; shift ;;
+      --with-deps) DO_DEPS=1 ;;
+      --no-deps)   DO_DEPS=0 ;;
+      --symlink-bin) DO_SYMLINKS=1 ;;
+      --debug)    DEBUG=true ;;
+      --no-color) USE_COLOR=false ;;
+      -h|--help)  usage; exit 0 ;;
+      *) die 1 "Unknown option: $1" ;;
+    esac
+    shift
+  done
+
+  # Decide tarball URL & expected SHA512
+  if [[ -n "${CUSTOM_URL}" ]]; then
+    TARBALL_URL="${CUSTOM_URL}"
+    [[ -n "${EXPECTED_SHA512}" ]] || EXPECTED_SHA512="${PDAL_SHA512_DEFAULT}"
+  elif [[ -n "${PDAL_VERSION_TAG}" ]]; then
+    # Official release tarball pattern
+    TARBALL_URL="https://github.com/PDAL/PDAL/releases/download/${PDAL_VERSION_TAG}/PDAL-${PDAL_VERSION_TAG}-src.tar.gz"
+    [[ -n "${EXPECTED_SHA512}" ]] || EXPECTED_SHA512="${PDAL_SHA512_DEFAULT}"
+  else
+    # Default to your commit pin via codeload
+    PDAL_COMMIT_PIN="${PDAL_COMMIT_PIN:-${PDAL_COMMIT_DEFAULT}}"
+    TARBALL_URL="https://codeload.github.com/PDAL/PDAL/tar.gz/${PDAL_COMMIT_PIN}"
+    [[ -n "${EXPECTED_SHA512}" ]] || EXPECTED_SHA512="${PDAL_SHA512_DEFAULT}"
+  fi
+
+  log dbg "Tarball URL: ${TARBALL_URL}"
+  log dbg "Expected SHA512: ${EXPECTED_SHA512}"
+}
+
+# -------- deps (best effort) --------
+apt_best_effort_install() {
+  local packages=("$@")
+  local SUDO; SUDO="$(sudo_if_needed)"
+  $SUDO apt-get update -qq
+  for p in "${packages[@]}"; do
+    if ! $SUDO apt-get install --yes --no-install-recommends "$p"; then
+      log warn "Package not available (skipping): $p"
+    fi
+  done
+  $SUDO rm -rf /var/lib/apt/lists/* || true
+}
+
+install_deps() {
+  [[ "${DO_DEPS}" -eq 1 ]] || { log dbg "Skipping apt deps (--no-deps)"; return; }
+  if ! have apt-get; then
+    log warn "apt-get not found; skipping deps install"
+    return
+  fi
+  log info "Installing broad PDAL build dependencies (best effort)…"
+
+  # Core toolchain
+  local core=(build-essential ca-certificates curl git cmake ninja-build pkg-config)
+
+  # Geo + common libs
+  local geo=(
+    libgdal-dev gdal-bin
+    libproj-dev proj-bin
+    libgeos-dev
+    libeigen3-dev
+    libsqlite3-dev
+    libcurl4-openssl-dev
+    libjsoncpp-dev
+    zlib1g-dev libzstd-dev liblzma-dev
+    libtiff-dev libgeotiff-dev
+    libpq-dev
+    libhdf5-dev
+    libxerces-c-dev
+  )
+
+  # LAZ support: try both names across distros
+  local laz=(liblaszip-dev liblaszip8-dev)
+
+  # “nice-to-have” plugin deps (may not exist on all distros)
+  local optional=(libarrow-dev libdraco-dev libtiledb-dev libe57format-dev)
+
+  apt_best_effort_install "${core[@]}"
+  apt_best_effort_install "${geo[@]}"
+  apt_best_effort_install "${laz[@]}"
+  apt_best_effort_install "${optional[@]}"
+}
+
+# -------- fetch & verify --------
+download_source() {
+  mkdir -p -- "${ZIP_CACHE_DIR%/}"
+  local filename
+  filename="$(basename "${TARBALL_URL}")"
+  # Normalize name for commit tarball
+  if [[ "${filename}" == "${PDAL_COMMIT_PIN}" ]]; then
+    filename="PDAL-${PDAL_COMMIT_PIN}.tar.gz"
+  fi
+  TARBALL_PATH="${ZIP_CACHE_DIR%/}/${filename}"
+
+  if [[ -f "${TARBALL_PATH}" ]]; then
+    log info "Using cached tarball: ${TARBALL_PATH}"
+    return
+  fi
+
+  log info "Downloading PDAL source from: ${TARBALL_URL}"
+  curl -fsSL --retry 3 --retry-connrefused -o "${TARBALL_PATH}" "${TARBALL_URL}"
+}
+
+verify_sha512() {
+  [[ -n "${EXPECTED_SHA512}" ]] || { log warn "No SHA-512 provided — skipping verification"; return; }
+  local got
+  if have sha512sum; then
+    got="$(sha512sum "${TARBALL_PATH}" | awk '{print $1}')"
+  else
+    die 127 "sha512sum not found"
+  fi
+
+  if [[ "${got}" != "${EXPECTED_SHA512}" ]]; then
+    log warn "SHA-512 mismatch; re-fetching once…
+  expected: ${EXPECTED_SHA512}
+       got: ${got}"
+    rm -f -- "${TARBALL_PATH}"
+    download_source
+    got="$(sha512sum "${TARBALL_PATH}" | awk '{print $1}')"
+    [[ "${got}" == "${EXPECTED_SHA512}" ]] || die 1 "SHA-512 mismatch after re-fetch"
+  fi
+  log ok "SHA-512 verified"
+}
+
+# -------- build & install --------
+configure_and_build() {
+  local SUDO; SUDO="$(sudo_if_needed)"
+  TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/pdal.XXXXXXXX")"
+  SRC_DIR="${TMP_DIR}/src"
+  mkdir -p "${SRC_DIR}"
+  log info "Extracting to: ${SRC_DIR}"
+  tar -xzf "${TARBALL_PATH}" --strip-components=1 -C "${SRC_DIR}"
+
+  log info "Configuring PDAL (prefix: ${PDAL_PREFIX})"
+  mkdir -p "${PDAL_PREFIX}"
+  local gen="Unix Makefiles"
+  local build_cmd
+  build_cmd="make -j$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 2) VERBOSE=1"
+  if have ninja; then
+    gen="Ninja"
+    build_cmd="ninja -v -j$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 2)"
+  fi
+
+  local cmake_flags=(
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_INSTALL_PREFIX="${PDAL_PREFIX}"
+    -DBUILD_SHARED_LIBS=ON
+    -DBUILD_TESTING=OFF
+    -DCMAKE_VERBOSE_MAKEFILE=ON
+    -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE
+    -DCMAKE_INSTALL_RPATH="${PDAL_PREFIX}/lib"
+    -DCMAKE_BUILD_RPATH="${PDAL_PREFIX}/lib"
+    -DWITH_COMPLETION=ON
+
+    # Try to enable *everything*; CMake will auto-disable missing deps
+    -DBUILD_PLUGIN_ARROW=ON
+    -DBUILD_PLUGIN_CPD=ON
+    -DBUILD_PLUGIN_DRACO=ON
+    -DBUILD_PLUGIN_E57=ON
+    -DBUILD_PLUGIN_HDF=ON
+    -DBUILD_PLUGIN_ICEBRIDGE=ON
+    -DBUILD_PLUGIN_MATLAB=ON
+    -DBUILD_PLUGIN_MBIO=ON
+    -DBUILD_PLUGIN_FBX=ON
+    -DBUILD_PLUGIN_NITF=ON
+    -DBUILD_PLUGIN_PGPOINTCLOUD=ON
+    -DBUILD_PLUGIN_TILEDB=ON
+    -DBUILD_PLUGIN_OPENSCENEGRAPH=ON
+    -DBUILD_PLUGIN_RIVLIB=ON
+    -DBUILD_PLUGIN_RDBLIB=ON
+    -DBUILD_PLUGIN_TEASER=ON
+
+    -DWITH_LASZIP=ON
+    -DWITH_LAZPERF=OFF
+    -DWITH_ZSTD=ON
+  )
+
+  pushd "${SRC_DIR}" >/dev/null
+    cmake -S . -B build -G "${gen}" "${cmake_flags[@]}" --debug-find
+    ${build_cmd} -C build
+    ${build_cmd} -C build install
+  popd >/dev/null
+
+  # Register libs (no LD_LIBRARY_PATH)
+  if have ldconfig; then
+    echo "${PDAL_PREFIX}/lib" | ${SUDO} tee /etc/ld.so.conf.d/pdal.conf >/dev/null
+    ${SUDO} ldconfig || true
+  fi
+  log ok "Installed PDAL to ${PDAL_PREFIX}"
+}
+
+symlink_binaries() {
+  [[ "${DO_SYMLINKS}" -eq 1 ]] || { log dbg "Skipping bin symlinks"; return; }
+  mkdir -p "${UNIVERSAL_BIN}"
+  for b in "${PDAL_PREFIX}/bin/"*; do
+    [[ -x "$b" ]] && ln -sf "$b" "${UNIVERSAL_BIN}/$(basename "$b")"
+  done
+  log ok "Symlinked PDAL binaries to ${UNIVERSAL_BIN}"
+}
+
+verify_install() {
+  log info "Verifying PDAL runtime…"
+  if ! "${PDAL_PREFIX}/bin/pdal" --version 2>&1 | sed 's/^/  /'; then
+    die 1 "pdal --version failed"
+  fi
+  "${PDAL_PREFIX}/bin/pdal" --drivers 2>/dev/null | sed -n '1,120p' | sed 's/^/  /' || true
+  log ok "PDAL is ready."
+}
+
+main() {
+  parse_args "$@"
+
+  have curl || die 127 "curl is required"
+  have tar  || die 127 "tar is required"
+  have sha512sum || die 127 "sha512sum is required"
+  install_deps
+  download_source
+  verify_sha512
+  configure_and_build
+  symlink_binaries
+  verify_install
+  log ok "Done."
+}
+
+main "$@"

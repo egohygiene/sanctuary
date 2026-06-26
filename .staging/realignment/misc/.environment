@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+# Netlify CLI
+# https://netlify.com
+if is_command netlify; then
+  run_cmd "netlify" "--telemetry-disable"
+fi
+
+# WAPM CLI
+# https://wasmer.io/
+if is_command wapm; then
+  run_cmd "wapm" "config set telemetry.enabled false"
+fi
+
+# TimescaleDB
+# https://www.timescale.com/
+if is_command psql; then
+  run_cmd "psql" "-c ALTER SYSTEM SET timescaledb.telemetry_level=off"
+fi
+
+# DVC
+# https://dvc.org/
+if is_command dvc; then
+  run_cmd "dvc" "config core.analytics false --global"
+fi
+
+# Microsoft Power Platform CLI
+# https://docs.microsoft.com/en-us/powerapps/developer/data-platform/powerapps-cli
+if is_command pac; then
+  run_cmd "pac" "telemetry disable"
+fi
+
+# Skaffold
+# https://skaffold.dev/
+if is_command skaffold; then
+  run_cmd "skaffold" "config set --global collect-metrics false"
+fi
+
+# AWS Amplify CLI
+# https://aws.amazon.com/amplify/
+if is_command amplify; then
+  run_cmd "amplify" "configure --usage-data-off"
+fi
+
+# App Center CLI
+# https://github.com/microsoft/appcenter-cli/
+if is_command appcenter; then
+  run_cmd "appcenter" "telemetry off"
+fi
+
+# Scaleway CLI (v2)
+# https://www.scaleway.com/en/cli/
+if is_command scw; then
+  run_cmd "scw" "config set send-telemetry=false"
+fi
+
+# Azure Service Fabric CLI
+# https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-sfctl
+if is_command sfctl; then
+  run_cmd "sfctl" "settings telemetry set_telemetry --off"
+fi
+
+# Ionic CLI
+# https://ionicframework.com/
+if is_command ionic; then
+  run_cmd "ionic" "config set --global telemetry false"
+fi
+
+# Capacitor
+# https://capacitorjs.com
+if is_command cap nx; then
+  run_cmd "nx" "cap telemetry off"
+fi
+
+# Webiny
+# https://www.webiny.com/
+# https://www.webiny.com/docs/key-topics/webiny-cli/#yarn-webiny-disable-tracking
+if is_command webiny yarn; then
+  run_cmd "yarn" "webiny disable-tracking"
+fi
+
+# Aerospike
+# https://aerospike.com/
+if is_command /opt/aerospike/telemetry/telemetry.py; then
+  run_cmd "/opt/aerospike/telemetry/telemetry.py" "/etc/aerospike/telemetry.conf --disable"
+fi
+
+# Flutter
+# https://flutter.dev/
+if is_command flutter; then
+  run_cmd "flutter" "config --no-analytics"
+fi

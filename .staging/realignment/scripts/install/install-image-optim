@@ -1,0 +1,212 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-image-optim
+## @brief Install image_optim Ruby gem with all required binary helpers.
+## @version 1.0.0
+## @description
+##   Installs the image_optim Ruby gem and its supporting binary optimisers:
+##     advpng  (advancecomp), gifsicle, jhead, jpegtran (libjpeg-turbo-progs),
+##     jpegoptim, optipng, pngcrush, pngquant.
+##   Also optionally installs svgo via npm (for SVG optimisation).
+##   oxipng is expected to already be available on PATH from the Rust toolchain.
+##
+##   Reference: https://github.com/toy/image_optim
+##
+## @usage
+##   install-image-optim [--gem-version <x.y.z>] [--bindir <path>]
+##                       [--skip-apt] [--skip-ruby] [--skip-svgo]
+##                       [--debug] [--no-color]
+##
+## @options
+##   --gem-version <x.y.z> image_optim gem version to install (default: latest).
+##   --bindir <path>        Directory for gem executables (default: /usr/local/bin).
+##   --skip-apt             Skip apt package installation.
+##   --skip-ruby            Skip Ruby installation (use when Ruby is already present).
+##   --skip-svgo            Skip svgo npm package installation.
+##   --debug                Extra logging to stderr.
+##   --no-color             Disable ANSI colours in log output.
+##   -h, --help             Show this help and exit.
+##
+## @env IMAGE_OPTIM_VERSION  Gem version to install (default: latest).
+## @env IMAGE_OPTIM_BINDIR   Directory for gem executables (default: /usr/local/bin).
+## @env SKIP_APT             Skip apt packages when "true".
+## @env SKIP_RUBY            Skip Ruby install when "true".
+## @env SKIP_SVGO            Skip svgo install when "true".
+## @env DEBUG                Verbose logs when "true".
+## @env USE_COLOR            ANSI colour output (default: true).
+
+# ----------------  defaults  ----------------
+GEM_VERSION="${IMAGE_OPTIM_VERSION:-}"
+BINDIR="${IMAGE_OPTIM_BINDIR:-/usr/local/bin}"
+SKIP_APT="${SKIP_APT:-false}"
+SKIP_RUBY="${SKIP_RUBY:-false}"
+SKIP_SVGO="${SKIP_SVGO:-false}"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+
+# ----------------  logging  ----------------
+color() {
+  [[ "${USE_COLOR}" == true ]] || { printf ''; return; }
+  case "${1:-}" in
+    red)    printf '\033[31m' ;;
+    green)  printf '\033[32m' ;;
+    yellow) printf '\033[33m' ;;
+    cyan)   printf '\033[36m' ;;
+    reset)  printf '\033[0m'  ;;
+  esac
+}
+log() {
+  local t="$1"; shift || true
+  local p c
+  case "$t" in
+    info)  p='👉'; c=$(color cyan)   ;;
+    ok)    p='✅'; c=$(color green)  ;;
+    warn)  p='⚠️ '; c=$(color yellow) ;;
+    err)   p='❌'; c=$(color red)    ;;
+    dbg)   [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan) ;;
+    *)     p='';  c=$(color reset)  ;;
+  esac
+  printf '%s%s %s%s\n' "$c" "$p" "$*" "$(color reset)" >&2
+}
+die() { local c="$1"; shift || true; log err "$*"; exit "$c"; }
+[[ -t 2 ]] || USE_COLOR=false
+have() { command -v "$1" >/dev/null 2>&1; }
+
+usage() { sed -n '2,50p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'; }
+
+# ----------------  args  ----------------
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --gem-version)  GEM_VERSION="$2";  shift ;;
+    --bindir)       BINDIR="$2";       shift ;;
+    --skip-apt)     SKIP_APT=true ;;
+    --skip-ruby)    SKIP_RUBY=true ;;
+    --skip-svgo)    SKIP_SVGO=true ;;
+    --debug)        DEBUG=true ;;
+    --no-color)     USE_COLOR=false ;;
+    -h|--help)      usage; exit 0 ;;
+    *) die 1 "Unknown option: $1" ;;
+  esac; shift
+done
+
+# ----------------  apt deps  ----------------
+install_apt_deps() {
+  if [[ "${SKIP_APT}" == true ]]; then
+    log info "Skipping apt dependency installation (--skip-apt)."
+    return 0
+  fi
+
+  log info "Installing image_optim binary dependencies via apt…"
+  apt-get update -qq
+  apt-get install --yes --no-install-recommends \
+    advancecomp \
+    gifsicle \
+    jhead \
+    jpegoptim \
+    libjpeg-turbo-progs \
+    optipng \
+    pngcrush \
+    pngquant
+
+  apt-get clean
+  rm -rf /var/lib/apt/lists/*
+  log ok "Binary dependencies installed."
+}
+
+# ----------------  ruby  ----------------
+install_ruby() {
+  if [[ "${SKIP_RUBY}" == true ]]; then
+    log info "Skipping Ruby installation (--skip-ruby)."
+    return 0
+  fi
+
+  if have ruby && have gem; then
+    log ok "Ruby already installed: $(command -v ruby) ($(ruby --version 2>&1 | head -1))"
+    return 0
+  fi
+
+  if [[ "${SKIP_APT}" == true ]]; then
+    log warn "ruby not found and --skip-apt is set; cannot install Ruby."
+    return 0
+  fi
+
+  log info "Installing ruby-full via apt…"
+  apt-get update -qq
+  apt-get install --yes --no-install-recommends ruby-full
+  apt-get clean
+  rm -rf /var/lib/apt/lists/*
+  log ok "Ruby installed: $(command -v ruby)"
+}
+
+# ----------------  svgo  ----------------
+install_svgo() {
+  if [[ "${SKIP_SVGO}" == true ]]; then
+    log info "Skipping svgo installation (--skip-svgo)."
+    return 0
+  fi
+
+  if ! have npm && ! have node; then
+    log warn "npm/node not found; skipping svgo."
+    return 0
+  fi
+
+  log info "Installing svgo via npm…"
+  npm install --global svgo
+  log ok "svgo installed: $(command -v svgo || echo 'not on PATH yet')"
+}
+
+# ----------------  gem install  ----------------
+install_gem() {
+  have gem || die 127 "gem not found; ensure Ruby is installed."
+
+  local version_flag=""
+  if [[ -n "${GEM_VERSION}" ]]; then
+    version_flag="--version ${GEM_VERSION}"
+  fi
+
+  log info "Installing image_optim gem${GEM_VERSION:+ version ${GEM_VERSION}}…"
+  # shellcheck disable=SC2086
+  gem install \
+    --no-document \
+    --bindir "${BINDIR}" \
+    ${version_flag} \
+    image_optim
+
+  log ok "image_optim gem installed."
+}
+
+# ----------------  verify  ----------------
+verify() {
+  log info "Verifying image_optim installation…"
+
+  if have image_optim; then
+    image_optim --version 2>&1 | head -1 || true
+    log ok "image_optim installed: $(command -v image_optim)"
+  else
+    die 1 "image_optim not found after install; ensure ${BINDIR} is on PATH."
+  fi
+
+  log info "Checking available binary workers:"
+  for tool in advpng gifsicle jhead jpegtran jpegoptim optipng pngcrush pngquant oxipng svgo; do
+    if have "${tool}"; then
+      log ok "  ${tool}: $(command -v "${tool}")"
+    else
+      log warn "  ${tool}: not found (some optimisations will be skipped)"
+    fi
+  done
+}
+
+# ----------------  main  ----------------
+main() {
+  install_apt_deps
+  install_ruby
+  install_svgo
+  install_gem
+  verify
+
+  log ok "Done — image_optim installed."
+}
+
+main "$@"

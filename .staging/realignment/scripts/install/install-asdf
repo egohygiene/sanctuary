@@ -1,0 +1,207 @@
+#!/usr/bin/env bash
+# =============================================================================
+# install-asdf.sh
+# -----------------------------------------------------------------------------
+# Installs the asdf version manager into a devcontainer or host environment.
+# Strict Bash practices with traps and logging.
+# =============================================================================
+
+set -euo pipefail
+
+# -----------------------------------------------------------------------------
+# trap::on_error
+## @description Trap handler for ERR. Prints the line number and exit code.
+## @param $1 Line number where the error occurred.
+# -----------------------------------------------------------------------------
+trap::on_error() {
+  local exit_code=$?
+  local line_no=$1
+  printf "❌ Error on line %s (exit code: %d)\n" "${line_no}" "${exit_code}" >&2
+  exit "${exit_code}"
+}
+
+# -----------------------------------------------------------------------------
+# trap::on_exit
+## @description Trap handler for EXIT. Prints the exit code.
+# -----------------------------------------------------------------------------
+trap::on_exit() {
+  local exit_code=$?
+  printf "📤 Script exited with code %d\n" "${exit_code}" >&2
+}
+
+# -----------------------------------------------------------------------------
+# trap::on_interrupt
+## @description Trap handler for SIGINT (Ctrl+C). Exits with code 130.
+# -----------------------------------------------------------------------------
+trap::on_interrupt() {
+  printf "🚫 Interrupted by user (Ctrl+C)\n" >&2
+  exit 130
+}
+
+# -----------------------------------------------------------------------------
+# trap::init
+## @description Initializes traps for ERR, EXIT, and INT.
+# -----------------------------------------------------------------------------
+trap::init() {
+  trap 'trap::on_error $LINENO' ERR
+  trap trap::on_exit EXIT
+  trap trap::on_interrupt INT
+}
+
+# -----------------------------------------------------------------------------
+# log::info
+## @description Logs an informational message.
+## @param $* Message string
+# -----------------------------------------------------------------------------
+log::info()    { printf "🔹 %s\n" "$*"; }
+
+# -----------------------------------------------------------------------------
+# log::success
+## @description Logs a success message.
+## @param $* Message string
+# -----------------------------------------------------------------------------
+log::success() { printf "✅ %s\n" "$*"; }
+
+# -----------------------------------------------------------------------------
+# log::error
+## @description Logs an error message.
+## @param $* Message string
+# -----------------------------------------------------------------------------
+log::error()   { printf "❌ %s\n" "$*" >&2; }
+
+# -----------------------------------------------------------------------------
+# asdf::version
+## @description Returns the asdf version to install (defaults to latest).
+## @return Version string
+# -----------------------------------------------------------------------------
+asdf::version() {
+  echo "${ASDF_VERSION:-latest}"
+}
+
+# -----------------------------------------------------------------------------
+# asdf::home
+## @description Returns the install directory for asdf.
+## @return Install directory path (default: $HOME/.asdf)
+# -----------------------------------------------------------------------------
+asdf::home() {
+  echo "${ASDF_DIR:-"${HOME}/.asdf"}"
+}
+
+# -----------------------------------------------------------------------------
+# asdf::data_dir
+## @description Returns the data directory for asdf.
+## @return Data directory path (default: $HOME/.asdf/data)
+# -----------------------------------------------------------------------------
+asdf::data_dir() {
+  echo "${ASDF_DATA_DIR:-"$(asdf::home)/data"}"
+}
+
+# -----------------------------------------------------------------------------
+# asdf::verify
+## @description Verifies if asdf is installed and prints its version.
+## @return Exit 0 if found, non-zero otherwise.
+# -----------------------------------------------------------------------------
+asdf::verify() {
+  local binary_path
+  if command -v asdf >/dev/null 2>&1; then
+    binary_path="$(command -v asdf)"
+  elif [[ -x "$(asdf::home)/bin/asdf" ]]; then
+    binary_path="$(asdf::home)/bin/asdf"
+  else
+    return 1
+  fi
+  local version
+  version="$("${binary_path}" --version 2>/dev/null || echo "unknown")"
+  log::success "ASDF available at ${binary_path}: ${version}"
+}
+
+# -----------------------------------------------------------------------------
+# asdf::install
+## @description Downloads and installs asdf with verbose logging.
+## @usage asdf::install
+# -----------------------------------------------------------------------------
+asdf::install() {
+  local repo_url="https://github.com/asdf-vm/asdf"
+  local binary_path
+  binary_path="$(asdf::home)/bin/asdf"
+  local version
+  version="$(asdf::version)"
+
+  mkdir -p "$(asdf::home)" "$(asdf::data_dir)"
+
+  log::info "📦 ASDF repo URL set to: ${repo_url}"
+  log::info "📂 Install directory: $(asdf::home)"
+  log::info "📂 Data directory   : $(asdf::data_dir)"
+  log::info "📂 Binary path      : ${binary_path}"
+  log::info "🔖 Requested version: ${version}"
+
+  if [[ "${version}" == "latest" ]]; then
+    log::info "🔍 Resolving latest ASDF version from GitHub releases..."
+    version="$(curl --fail --silent --show-error --location -o /dev/null \
+      -w '%{url_effective}' "${repo_url}/releases/latest" | sed 's#.*/tag/##')"
+    log::success "🔖 Latest version resolved: ${version}"
+  fi
+
+  if [[ -x "${binary_path}" ]]; then
+    if "${binary_path}" --version &>/dev/null; then
+      log::success "✅ ASDF already installed at ${binary_path}"
+      return 0
+    else
+      log::error "⚠️  Corrupt ASDF install detected at ${binary_path}, reinstalling..."
+      rm -rf "$(asdf::home)"
+    fi
+  fi
+
+  local os arch download_url
+  os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+  arch="$(uname -m)"
+
+  # normalize arch names
+  case "${arch}" in
+    x86_64) arch="amd64" ;;
+    aarch64|arm64) arch="arm64" ;;
+  esac
+
+  # final URL: asdf-v0.18.0-linux-amd64.tar.gz
+  download_url="${repo_url}/releases/download/${version}/asdf-${version}-${os}-${arch}.tar.gz"
+  # if version doesn’t already have a leading v, prepend it
+  [[ "${version}" =~ ^v ]] || download_url="${repo_url}/releases/download/v${version}/asdf-v${version}-${os}-${arch}.tar.gz"
+
+  log::info "🌍 Detected OS      : ${os}"
+  log::info "🌍 Detected Arch    : ${arch}"
+  log::info "🌐 Download URL     : ${download_url}"
+  log::info "📥 Starting download of ASDF ${version}..."
+
+  curl --fail --silent --show-error --location \
+    "${download_url}" \
+    --output asdf.tar.gz
+  log::success "📥 Download complete: asdf.tar.gz"
+
+  log::info "📦 Extracting asdf.tar.gz..."
+  tar -xzf asdf.tar.gz
+
+  log::info "📂 Moving binary into place at: ${binary_path}"
+  mkdir -p "$(dirname "${binary_path}")"
+  chmod +x asdf
+  mv asdf "${binary_path}"
+
+  log::info "🧹 Cleaning up archive..."
+  rm -f asdf.tar.gz
+
+  log::success "✅ ASDF ${version} installed to ${binary_path}"
+  asdf::verify
+}
+
+# -----------------------------------------------------------------------------
+# main
+## @description Entry point. Installs traps and asdf.
+## @usage main "$@"
+# -----------------------------------------------------------------------------
+main() {
+  trap::init
+  log::info "🚀 Starting ASDF installation..."
+  asdf::install
+  log::success "🎉 ASDF installation complete!"
+}
+
+main "$@"

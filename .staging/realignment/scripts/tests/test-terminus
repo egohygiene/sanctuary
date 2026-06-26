@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# test-terminus
+# Verifies that Terminus (Pantheon CLI) is installed and functional.
+
+set -euo pipefail
+
+TERMINUS_BIN="${TERMINUS_INSTALL_DIR:-/usr/local/bin}/terminus"
+
+check_terminus_binary() {
+    if [[ ! -x "${TERMINUS_BIN}" ]]; then
+        echo "❌ terminus not found at ${TERMINUS_BIN}" >&2
+        return 1
+    fi
+}
+
+check_terminus_version() {
+    "${TERMINUS_BIN}" --version >/dev/null 2>&1 || {
+        echo "❌ 'terminus --version' failed" >&2
+        return 1
+    }
+}
+
+check_php_dependency() {
+    if ! command -v php >/dev/null 2>&1; then
+        echo "❌ PHP not found; terminus requires PHP 8.2+" >&2
+        return 1
+    fi
+}
+
+main() {
+    echo "🔍 Testing Terminus (Pantheon CLI)..."
+    check_terminus_binary
+    check_php_dependency
+    check_terminus_version
+    echo "✅ Terminus check passed"
+}
+
+main "$@"

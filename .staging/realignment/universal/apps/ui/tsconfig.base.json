@@ -1,0 +1,36 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        // Output targets
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "jsx": "react-jsx",
+
+        // Paths & module resolution
+        "baseUrl": "./",
+        "paths": {
+            "@universal/*": ["src/*"]
+        },
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+
+        // Interop & imports
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+
+        // Type checking behavior
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "useDefineForClassFields": true,
+        "skipLibCheck": true,
+
+        // Output behavior
+        "noEmit": true,
+        "allowJs": false,
+
+        // Environment types (extended by other configs)
+        "types": []
+    }
+}

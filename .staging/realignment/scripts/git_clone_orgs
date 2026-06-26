@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+
+# ###########################################################
+# Script to Clone All Repositories in a GitHub Organization
+# @Author: szmyty
+# @Description: This script clones all repositories from a specified GitHub organization.
+#               It includes checks for required dependencies, user confirmation,
+#               and command-line options for help and automated execution.
+# ###########################################################
+
+# Function to display the help message.
+display_help() {
+    echo "Usage: $0 [options] <organization>"
+    echo
+    echo "Options:"
+    echo "  -y, --yes       Skip the confirmation prompt and clone repositories immediately."
+    echo "  --help          Display this help message and exit."
+    echo
+    echo "Arguments:"
+    echo "  organization    The GitHub organization from which to clone repositories."
+}
+
+# Function to check if a command is installed.
+check_command() {
+    command -v "$1" >/dev/null 2>&1 || {
+        echo >&2 "Error: $1 is not installed. Please install $1 and try again."
+        exit 1
+    }
+}
+
+# Check for dependencies.
+check_dependencies() {
+    for cmd in gh jq xargs; do
+        check_command "$cmd"
+    done
+}
+
+# Function to prompt the user for confirmation.
+confirm() {
+    read -r -p "Are you sure you want to clone $1 repositories from the organization '$2'? (y/n) " response
+    case "$response" in
+        [yY][eE][sS]|[yY]) 
+            return 0
+            ;;
+        *)
+            echo "Aborted."
+            exit 1
+            ;;
+    esac
+}
+
+# Function to clone repositories.
+clone_repositories() {
+    local org="$1"
+    gh repo list "$org" --json nameWithOwner --jq '.[].nameWithOwner' | xargs -L1 gh repo clone
+}
+
+# Main script logic.
+main() {
+    if [[ "$1" == "--help" ]]; then
+        display_help
+        exit 0
+    fi
+
+    local skip_confirmation=false
+
+    while [[ "$1" =~ ^- ]]; do
+        case "$1" in
+            -y|--yes)
+                skip_confirmation=true
+                shift
+                ;;
+            --help)
+                display_help
+                exit 0
+                ;;
+            *)
+                echo "Unknown option: $1"
+                display_help
+                exit 1
+                ;;
+        esac
+    done
+
+    if [[ -z "$1" ]]; then
+        echo "Error: Missing organization argument."
+        display_help
+        exit 1
+    fi
+
+    local organization="$1"
+
+    check_dependencies
+
+    local repo_count
+    repo_count=$(gh repo list "$organization" --json nameWithOwner --jq '.[].nameWithOwner' | wc -l)
+
+    if [[ "$skip_confirmation" = false ]]; then
+        confirm "$repo_count" "$organization"
+    fi
+
+    echo "Cloning $repo_count repositories from the organization '$organization'..."
+    clone_repositories "$organization"
+    echo "Done."
+}
+
+# Run the main function with all script arguments.
+main "$@"

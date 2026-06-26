@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    // 🧠 Strictest Type Checking
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+
+    // 📦 Module Resolution
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "auto",
+    "preserveSymlinks": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@egohygiene/*": ["packages/*/src"]
+    },
+    "rootDirs": ["packages"],
+    "rewriteRelativeImportExtensions": true,
+
+    // 📚 Libraries
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+    // 🧱 Project-level behavior
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "generated/tsconfig.tsbuildinfo",
+
+    // 👁 Debugging & Diagnostics
+    "pretty": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // 🚫 JS support turned off
+    "allowJs": false,
+    "checkJs": false,
+
+    // 🔒 Safety
+    "allowUmdGlobalAccess": false,
+    "allowArbitraryExtensions": false,
+    "allowImportingTsExtensions": false,
+    "noUncheckedSideEffectImports": true,
+
+    // 🧪 Disable emit globally
+    "noEmit": true
+  },
+
+  "exclude": ["node_modules", "dist"],
+
+  "watchOptions": {
+    "excludeDirectories": ["**/node_modules", "_build", "temp/*"]
+  }
+}

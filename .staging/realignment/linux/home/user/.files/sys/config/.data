@@ -1,0 +1,289 @@
+#!/bin/sh
+##########################################
+# Set application data directories.      #
+#                                        #
+# Author: Alan Szmyt                     #
+# Date: 09/11/2023                       # 
+##########################################
+
+# Set Java directory.
+# https://www.java.com/
+export JAVA_HOME="$USER_SYS_APPS/java/jdks/openjdk17"
+
+# Set the maven home directory.
+# https://maven.apache.org/
+export M2_HOME="$USER_SYS_APPS/mvn/.mvn"
+
+# Set the JDK for Intellij.
+export IDEA_JDK="$JAVA_HOME"
+
+# Set android home directory.
+export ANDROID_HOME="$USER_SYS_APPS/android/.android"
+
+# Set the android sdk preferences directory.
+export ANDROID_SDK_HOME="$ANDROID_HOME/.sdk"
+
+# Set the installation directory of the Android NDK package.
+export ANDROID_NDK_ROOT="$ANDROID_HOME/.ndk"
+
+# Set android emulator configuration.
+export ANDROID_EMULATOR_HOME="$ANDROID_HOME/emulator"
+export ANDROID_AVD_HOME="$ANDROID_EMULATOR_HOME/avd"
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=0
+
+# Android studio configuration.
+export STUDIO_CONFIG_DIR="$USER_SYS_CONFIG/android-studio"
+export STUDIO_VM_OPTIONS="$STUDIO_CONFIG_DIR/studio.vmoptions"
+export STUDIO_PROPERTIES="$STUDIO_CONFIG_DIR/idea.properties"
+export STUDIO_JDK="$JAVA_HOME"
+export STUDIO_GRADLE_JDK="$JAVA_HOME"
+
+# Set Flutter home directory.
+export FLUTTER_HOME="$USER_SYS_APPS/flutter"
+
+# Set gradle home directory.
+export GRADLE_USER_HOME="$USER_SYS_APPS/.gradle"
+
+# Dart server directory.
+export ANALYZER_STATE_LOCATION_OVERRIDE="$USER_SYS_APPS/dart/.dartServer"
+
+# nvm
+export NVM_DIR="$USER_SYS_APPS/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# nvm end
+
+# pnpm
+export PNPM_HOME="$USER_SYS_APPS/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# ansible
+# https://www.ansible.com/
+export ANSIBLE_HOME="$USER_SYS_APPS/ansible"
+
+# Blender configuration.
+# https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html#command-line-args-environment-variables
+export BLENDER_USER_RESOURCES="$USER_SYS_APPS/blender"
+
+# Set dotnet home directory.
+export DOTNET_CLI_HOME="$USER_SYS_APPS/dotnet"
+
+# Set Visual Studio Code data and extensions directories.
+export VS_CODE_DATA_DIR="$USER_SYS_APPS/vscode/data"
+export VS_CODE_EXTENSIONS_DIR="$USER_SYS_APPS/vscode/extensions"
+
+# atom: https://github.com/atom/atom
+export ATOM_HOME="$USER_SYS_APPS/.atom"
+
+# kodi
+export KODI_DATA="$USER_SYS_APPS/kodi"
+
+# rbenv
+export RBENV_ROOT="$USER_SYS_APPS/rbenv"
+
+# rustup
+export RUSTUP_HOME="$USER_SYS_APPS/rustup"
+
+# minikube
+export MINIKUBE_HOME="$USER_SYS_APPS/minikube"
+
+# ncurses
+export TERMINFO="$USER_SYS_APPS/terminfo"
+export TERMINFO_DIRS="$USER_SYS_APPS/terminfo:/usr/share/terminfo"
+
+# mujoco
+export MUJOCO_PY_MUJOCO_PATH="$USER_SYS_APPS/mujoco"
+
+# asdf
+export ASDF_DATA_DIR="$USER_SYS_APPS/asdf"
+
+# xmonad
+export XMONAD_DATA_DIR="$USER_SYS_APPS/xmonad"
+
+# bindle
+export BINDLEPATH="$USER_SYS_APPS/bindle"
+
+# Vagrant
+export VAGRANT_HOME="$USER_SYS_APPS/vagrant"
+export VAGRANT_ALIAS_FILE="$VAGRANT_HOME/aliases"
+
+# ruby bundler
+export BUNDLE_USER_PLUGIN="$USER_SYS_APPS/bundle"
+
+# gq-ldap-client
+export GQSTATE="$USER_SYS_APPS/gq/gq-state"
+
+# cabal
+export CABAL_DIR="$USER_SYS_APPS/cabal"
+
+# ohmyzsh
+export ZSH="$USER_SYS_APPS/oh-my-zsh"
+
+# Set the gnupg home directory.
+export GNUPGHOME="$USER_SYS_APPS/gnupg"
+
+# VLC configuration.
+export VLC_DATA_PATH="$USER_SYS_APPS/vlc/data"
+export VLC_PLUGIN_PATH="$USER_SYS_APPS/vlc/plugins"
+
+# Nuget packages directory.
+export NUGET_PACKAGES="$USER_SYS_APPS/.nuget/packages"
+
+# abook
+export ABOOK_DATA="$USER_SYS_APPS/abook/addressbook"
+
+# Set Ruby gems home directory.
+export GEM_HOME="$USER_SYS_APPS/ruby/gems"
+
+# Set yarn install directory.
+export YARN_GLOBAL_FOLDER="$USER_SYS_APPS/yarn"
+
+# get_iplayer
+export GETIPLAYERUSERPREFS="$USER_SYS_APP/get_iplayer"
+
+# oh-my-bash
+export OSH="$USER_SYS_APPS/oh-my-bash"
+
+# opam
+export OPAMROOT="$USER_SYS_APPS/opam"
+
+# platformio
+export PLATFORMIO_CORE_DIR="$USER_SYS_APPS/platformio"
+
+# ipfs
+export IPFS_PATH="$USER_SYS_APPS/ipfs"
+
+# audacity
+# https://manpages.ubuntu.com/manpages/lunar/en/man1/audacity.1.html
+export AUDACITY_PATH="$USER_SYS_APPS/audacity"
+
+# virtualenv
+export WORKON_HOME="$USER_SYS_APPS/virtualenvs"
+
+# imapfilter
+# https://manpages.ubuntu.com/manpages/impish/man1/imapfilter.1.html
+export IMAPFILTER_HOME="$USER_SYS_APPS/imapfilter"
+
+# z
+# https://github.com/rupa/z
+export _Z_DATA="$USER_SYS_APPS/z"
+
+# nb
+export NB_DIR="$USER_SYS_APPS/nb"
+
+# anki
+# https://manpages.ubuntu.com/manpages/focal/en/man1/anki.1.html
+export ANKI_DIR="$USER_SYS_APPS/anki"
+
+# hledger file.
+export LEDGER_FILE="$USER_SYS_APPS/hledger/.hledger.journal"
+
+# unison: 
+export UNISON="$USER_SYS_APPS/unison"
+
+# wine:
+export WINEPREFIX="$USER_SYS_APPS/wine"
+
+# sagemath directory:
+export DOT_SAGE="$USER_SYS_APPS/sagemath/sage"
+
+# stack directory:
+export STACK_ROOT="$USER_SYS_APPS/stack"
+
+# since directory:
+export SINCE="$USER_SYS_APPS/since"
+
+# grip directory:
+export GRIPHOME="$USER_SYS_APPS/grip"
+
+# Electrum: 
+export ELECTRUMDIR="$USER_SYS_APPS/.electrum"
+
+# Password store:
+export PASSWORD_STORE_DIR="$USER_SYS_APPS/.password-store"
+
+# TeXmacs:
+export TEXMACS_HOME_PATH="$USER_SYS_APPS/texmacs"
+
+# Volta:
+export VOLTA_HOME="$USER_SYS_APPS/volta"
+
+# ZPLUG_HOME: 
+export ZPLUG_HOME="$USER_SYS_APPS/zplug"
+
+# sdkman: 
+export SDKMAN_DIR="$USER_SYS_APPS/sdkman"
+
+# https://www.gnu.org/software/parallel/man.html
+export PARALLEL_HOME="$USER_SYS_APPS/.parallel"
+
+# distcc: https://linux.die.net/man/1/distcc
+export DISTCC_DIR="$USER_SYS_APPS/.distcc"
+
+# ffmpeg: https://linux.die.net/man/1/ffmpeg
+export FFMPEG_DATADIR="$USER_SYS_APPS/.ffmpeg"
+
+# ccache: https://linux.die.net/man/1/ccache
+export CCACHE_DIR="$USER_SYS_APPS/.ccache"
+
+# Set home directory for tensorflow.
+export KERAS_HOME="$XDG_STATE_HOME/keras"
+
+# Dungeon Crawl: http://www.dungeoncrawl.org/
+export CRAWL_DIR="$USER_SYS_APPS/.crawl/"
+
+# leiningen
+export LEIN_HOME="$USER_SYS_APPS/lein"
+
+# Rust configuration.
+# https://doc.rust-lang.org/cargo/guide/cargo-home.html
+export CARGO_HOME="$USER_SYS_APPS/.cargo"
+[ -s "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"  # This loads Cargo environment
+
+# julia
+export JULIA_DEPOT_PATH="$USER_SYS_APPS/julia:$JULIA_DEPOT_PATH" 
+
+# Set texlive directories.
+export TEXLIVE_INSTALL_PREFIX="$USER_SYS_APPS/texlive"
+export TEXMFHOME="$TEXLIVE_INSTALL_PREFIX/texmf"
+export TEXMFVAR="$TEXLIVE_INSTALL_PREFIX/.texlive/texmf-var"
+export TEXMFCONFIG="$TEXLIVE_INSTALL_PREFIX/.texlive/texmf-config"
+
+# Set golang directories.
+export GOPATH="$USER_SYS_APPS/go"
+export GOMODCACHE="$GOPATH/pkg/mod"
+
+# Set home directory for poetry.
+export POETRY_HOME="$USER_SYS_APPS/.poetry"
+
+# Set pyenv home directory.
+export PYENV_ROOT="$USER_SYS_APPS/.pyenv"
+
+# Set pipx virtual environment location.
+export PIPX_HOME="$USER_SYS_APPS/.pipx"
+
+# Set the binary location for pipx-installed apps.
+export PIPX_BIN_DIR="$PIPX_HOME/bin"
+
+export RLWRAP_HOME="$XDG_DATA_HOME/rlwrap"
+
+export N_PREFIX="$XDG_DATA_HOME/n"
+
+export GPODDER_DOWNLOAD_DIR="$XDG_DATA_HOME/gpodder/downloads"
+
+export EM_PORTS="$XDG_DATA_HOME/emscripten/cache"
+
+export BOGOFILTER_DIR="$XDG_DATA_HOME/bogofilter"
+
+# https://docs.flatpak.org/en/latest/flatpak-command-reference.html 
+# Flatpak
+export FLATPAK_USER_DIR="$XDG_DATA_HOME/flatpak"
+
+export FLATPAK_SYSTEM_DIR
+export FLATPAK_SYSTEM_CACHE_DIR
+export FLATPAK_CONFIG_DIR
+export FLATPAK_RUN_DIR

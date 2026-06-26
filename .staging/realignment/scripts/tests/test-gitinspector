@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# test-gitinspector.sh
+# Verifies that gitinspector is installed and functional.
+
+set -euo pipefail
+
+check_gitinspector_binary() {
+    if ! command -v gitinspector >/dev/null 2>&1; then
+        echo "❌ gitinspector not found on PATH" >&2
+        return 1
+    fi
+}
+
+check_gitinspector_version() {
+    gitinspector --version >/dev/null 2>&1 || {
+        echo "❌ 'gitinspector --version' failed" >&2
+        return 1
+    }
+}
+
+main() {
+    echo "🔍 Testing gitinspector..."
+    check_gitinspector_binary
+    check_gitinspector_version
+    echo "✅ gitinspector check passed"
+}
+
+main "$@"

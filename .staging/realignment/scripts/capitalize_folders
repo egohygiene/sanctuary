@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Function to capitalize folder names
+capitalize_folders() {
+    for dir in "$1"/*/; do
+        [ -d "$dir" ] || continue
+        baseDir=$(basename "$dir")
+        newname=$(echo "$baseDir" | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2));}1')
+        newPath=$(dirname "$dir")/"$newname"
+        if [ "$dir" != "$newPath/" ]; then
+            mv "$dir" "$newPath"
+        fi
+        if [ "$2" = true ]; then
+            capitalize_folders "$newPath" $2
+        fi
+    done
+}
+
+# Default values
+RECURSIVE=false
+START_DIR=.
+
+# Parse command line options
+while getopts "rd:" opt; do
+    case $opt in
+        r) RECURSIVE=true ;;
+        d) START_DIR="$OPTARG" ;;
+        \?) echo "Invalid option -$OPTARG" >&2; exit 1 ;;
+    esac
+done
+
+capitalize_folders "$START_DIR" $RECURSIVE
+

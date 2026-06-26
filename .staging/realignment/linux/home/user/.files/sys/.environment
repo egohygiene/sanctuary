@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# Set a flag that the environment has been sourced.
+if [ -z "${ENVIRONMENT_SOURCED}" ]; then
+    export ENVIRONMENT_SOURCED=1
+else
+    return
+fi
+
+# Custom user directories.
+export USER_SYS_FILES="$HOME/.files/sys"
+export USER_SYS_APPS="$USER_SYS_FILES/applications"
+export USER_SYS_CONFIG="$USER_SYS_FILES/config"
+export USER_SYS_LOGS="$USER_SYS_FILES/logs"
+export USER_SYS_TEMP="$USER_SYS_FILES/temp"
+export USER_SYS_REPORTS="$USER_SYS_FILES/reports"
+export USER_SYS_SCRIPTS="$USER_SYS_FILES/scripts"
+export USER_SYS_ENVIRONMENT="$USER_SYS_FILES/.environment"
+export USER_APPLICATIONS="$HOME/.files/applications"
+export LINUXBREW_HOME="/home/linuxbrew"
+
+# XDG Base Directories: https://wiki.archlinux.org/title/XDG_Base_Directory
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Add user application .desktop files to gnome.
+# https://help.gnome.org/admin//system-admin-guide/2.32/menustructure-desktopentry.html.en
+export XDG_DATA_DIRS="$USER_APPLICATIONS:$XDG_DATA_DIRS"
+
+# Load shell environment.
+import_files "$USER_SYS_CONFIG/.general" \
+    "$USER_SYS_CONFIG/.data" \
+    "$USER_SYS_CONFIG/.configuration" \
+    "$USER_SYS_CONFIG/.history" \
+    "$USER_SYS_CONFIG/.cache" \
+    "$USER_SYS_CONFIG/.telemetry" \
+    "$USER_SYS_CONFIG/.secrets" \
+    "$USER_SYS_APPS/.cargo/env"
+
+# Add user-specific binary directories to the PATH.
+add_to_path "$HOME/bin" \
+    "$HOME/.local/bin" \
+    "$USER_SYS_FILES/bin" \
+    "/usr/local/go/bin" \
+    "$XDG_DATA_HOME/JetBrains/Toolbox/scripts" \
+    "$PIPX_BIN_DIR" \
+    "$POETRY_HOME/bin" \
+    "$PYENV_ROOT/bin" \
+    "$ANDROID_HOME/tools" \
+    "$ANDROID_HOME/tools/bin" \
+    "$ANDROID_HOME/platform-tools" \
+    "$FLUTTER_HOME/bin" \
+    "$JAVA_HOME/bin"
+
+# Load all extra environments.
+load_environments

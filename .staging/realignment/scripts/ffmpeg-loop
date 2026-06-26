@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+# This script synchronizes the length of an audio file to match the duration of a video file,
+# loops the audio as necessary, merges the audio with the video, and applies a fade-out effect
+# to the audio at the end of the video. The script calculates the necessary loop count for the
+# audio file and ensures the merged audio does not exceed the video length.
+
+
+parse_duration() {
+    local IFS=: duration=$1
+    local hours minutes full_seconds seconds milliseconds
+
+    read -r hours minutes full_seconds <<< "$duration"
+    # Extract seconds and milliseconds
+    seconds=${full_seconds%.*}
+    milliseconds=$(echo $full_seconds | grep -oP "\.\K\d+")
+    milliseconds=${milliseconds:-0} # Default to 0 if no milliseconds
+
+    # Normalize milliseconds to 3 digits
+    milliseconds=$(printf "%03d" $milliseconds)
+
+    echo "$hours $minutes $seconds $milliseconds"
+}
+
+duration_to_seconds() {
+    read hours minutes seconds milliseconds <<< $(parse_duration "$1")
+    # Calculate total seconds
+    local total_seconds=$((hours * 3600 + minutes * 60 + seconds))
+    echo "$total_seconds"
+}
+
+duration_to_milliseconds() {
+    read hours minutes seconds milliseconds <<< $(parse_duration "$1")
+    # Convert entire duration to milliseconds
+    local total_milliseconds=$(( (hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds ))
+    echo "$total_milliseconds"
+}
+
+get_filename() {
+    local filepath=$1
+    # Extract filename from path using basename
+    local filename=$(basename "$filepath")
+    echo "$filename"
+}
+
+# Function to calculate the loop count needed for the audio
+calculate_loop_count() {
+    local video_duration=$1
+    local audio_duration=$2
+    local video_milliseconds=$(duration_to_milliseconds "$video_duration")
+    local audio_milliseconds=$(duration_to_milliseconds "$audio_duration")
+    local loop_count=$((video_milliseconds / audio_milliseconds + 1)) # Adding 1 to ensure coverage
+    echo "$loop_count"
+}
+
+# Function to create a concatenated audio file for looping
+generate_looped_audio() {
+    local audio_file=$1
+    local loop_count=$2
+    local output_audio_file="looped_$(get_filename "$audio_file")"
+    local concat_file="concat_list.txt"
+    rm -f "$concat_file"
+    for ((i=0; i<loop_count; i++)); do
+        echo "file '$audio_file'" >> "$concat_file"
+    done
+    ffmpeg -f concat -safe 0 -i "$concat_file" -c copy "$output_audio_file"
+    rm -f "$concat_file"
+    echo "$output_audio_file"
+}
+
+# Function to merge video and looped audio, applying fade out at the end
+merge_audio_video_with_fade() {
+    local video_file=$1
+    local audio_file="$2"
+    local fade_duration=5 # Fade out duration in seconds
+    local output_file="final_output.mp4"
+    ffmpeg -i "$video_file" -i "$audio_file" -filter_complex "[1:a]afade=t=out:st=$(ffmpeg -i "$video_file" 2>&1 | grep "Duration" | awk '{print $2}' | tr -d , | awk -F: '{print $1*3600+$2*60+$3-'$fade_duration'}'):d=$fade_duration, volume=1.5[a]" -c:v copy -map 0:v:0 -map "[a]" -shortest "$output_file"
+}
+
+# Main script execution starts here
+main() {
+    local video_file="/home/alan/Downloads/trello_demo.mp4"
+    local audio_file="/home/alan/Downloads/stereo_love.mp3"
+
+    # Extract durations
+    local video_duration=$(ffmpeg -i "$video_file" 2>&1 | grep "Duration" | awk '{print $2}' | tr -d ,)
+    local audio_duration=$(ffmpeg -i "$audio_file" 2>&1 | grep "Duration" | awk '{print $2}' | tr -d ,)
+
+    echo "Video duration: $video_duration"
+    echo "Audio duration: $audio_duration"
+
+    # Calculate loop count
+    local loop_count=$(calculate_loop_count "$video_duration" "$audio_duration")
+
+    echo "Loop count: $loop_count"
+
+    # Generate looped audio
+    local looped_audio_file=$(generate_looped_audio "$audio_file" "$loop_count")
+
+    # Merge audio and video with fade out
+    merge_audio_video_with_fade "$video_file" "$looped_audio_file"
+
+    echo "Process completed. Output file is final_output.mp4"
+}
+
+# Invoke main function
+main "$@"

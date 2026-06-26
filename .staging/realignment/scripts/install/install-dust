@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ============================================
+# install-dust
+# Install dust (modern du replacement) from GitHub release archive.
+# Reference: https://github.com/bootandy/dust
+# Supports: latest or specific version
+# ============================================
+
+# -----------------------------
+# Config
+# -----------------------------
+OWNER="bootandy"
+REPO="dust"
+INSTALL_DIR="/usr/local/bin"
+
+# Detect platform
+OS="$(uname -s)"
+ARCH="$(uname -m)"
+
+case "$OS" in
+  Linux)  PLATFORM="unknown-linux-gnu" ;;
+  Darwin) PLATFORM="apple-darwin" ;;
+  *) echo "❌ Unsupported OS: $OS"; exit 1 ;;
+esac
+
+case "$ARCH" in
+  x86_64)        ARCH_LABEL="x86_64" ;;
+  arm64|aarch64) ARCH_LABEL="aarch64" ;;
+  *) echo "❌ Unsupported architecture: $ARCH"; exit 1 ;;
+esac
+
+# -----------------------------
+# Functions
+# -----------------------------
+
+get_latest_release() {
+  curl -s "https://api.github.com/repos/$OWNER/$REPO/releases/latest" \
+    | grep '"tag_name":' \
+    | sed -E 's/.*"v([^"]+)".*/\1/'
+}
+
+download_and_install() {
+  local version="$1"
+
+  FILENAME="dust-v${version}-${ARCH_LABEL}-${PLATFORM}.tar.gz"
+  DOWNLOAD_URL="https://github.com/${OWNER}/${REPO}/releases/download/v${version}/${FILENAME}"
+
+  echo "📦 Downloading dust v${version} from ${DOWNLOAD_URL}..."
+  curl -fsSL "$DOWNLOAD_URL" -o "/tmp/$FILENAME"
+
+  echo "📂 Extracting and installing to $INSTALL_DIR..."
+  tar -xzf "/tmp/$FILENAME" -C /tmp --strip-components=1 "dust-v${version}-${ARCH_LABEL}-${PLATFORM}/dust"
+  sudo mv "/tmp/dust" "$INSTALL_DIR/dust"
+  sudo chmod +x "$INSTALL_DIR/dust"
+  rm -f "/tmp/$FILENAME"
+
+  echo "✅ Installed dust v${version} at $(command -v dust)"
+  dust --version
+}
+
+# -----------------------------
+# Main
+# -----------------------------
+usage() {
+  echo "Usage: $0 [--version x.y.z] [--help]"
+  exit 1
+}
+
+VERSION=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --version)
+      VERSION="$2"
+      shift 2
+      ;;
+    --help|-h)
+      usage
+      ;;
+    *)
+      echo "❌ Unknown argument: $1"
+      usage
+      ;;
+  esac
+done
+
+if [[ -z "$VERSION" ]]; then
+  echo "🔍 Fetching latest dust release..."
+  VERSION=$(get_latest_release)
+fi
+
+download_and_install "$VERSION"

@@ -1,0 +1,300 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-google-fonts
+## @brief Install Google Fonts from GitHub using a reproducible commit.
+## @version 1.2.1
+## @description
+##   Downloads the Google Fonts repository archive at a specific commit/branch/tag,
+##   optionally verifies its SHA256, extracts it, installs font files into a target
+##   directory, and refreshes the font cache.
+## @usage
+##   install-google-fonts [--dest <dir>] [--no-color] [--debug]
+## @options
+##   --dest <dir>   Directory to install fonts (default: $UNIVERSAL_FONTS/google).
+##   --no-color     Disable ANSI colors in logs.
+##   --debug        Verbose diagnostics to stderr.
+##   -h, --help     Show help and exit.
+## @env GOOGLE_FONTS_SHA_COMMIT  Commit-ish for the repo archive (default: main).
+## @env GOOGLE_FONTS_SHA256       Optional SHA256 of the downloaded zip to verify.
+## @env UNIVERSAL_FONTS             Base dir (default: /opt/universal/fonts).
+## @env GOOGLE_FONTS_DIR          Install dir (default: $UNIVERSAL_FONTS/google).
+## @env ZIP_CACHE_DIR             Zip cache dir (default: $XDG_CACHE_HOME or /var/cache/fonts).
+## @env USE_COLOR                 Enable colored logs (default: true; auto-disabled if not a TTY).
+## @env DEBUG                     Verbose logs (default: false).
+## @exitcode
+##   0  on success
+##   1  on usage/runtime error
+##   127 if required tools are missing
+
+# ------------------------------- configuration --------------------------------
+
+GOOGLE_FONTS_SHA_COMMIT="${GOOGLE_FONTS_SHA_COMMIT:-main}"
+GOOGLE_FONTS_SHA256="${GOOGLE_FONTS_SHA256:-}"
+GOOGLE_FONTS_ARCHIVE_URL="https://github.com/google/fonts/archive"
+
+UNIVERSAL_FONTS="${UNIVERSAL_FONTS:-/opt/universal/fonts}"
+GOOGLE_FONTS_DIR="${GOOGLE_FONTS_DIR:-${UNIVERSAL_FONTS}/google}"
+
+# Prefer user cache; fall back to system cache path
+ZIP_CACHE_DIR="${ZIP_CACHE_DIR:-${XDG_CACHE_HOME:-/var/cache/fonts}}"
+
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+
+# Will be set to a unique directory during extraction
+TMP_DIR="${TMPDIR:-/tmp}/google-fonts-src"
+
+# --------------------------------- logging ------------------------------------
+
+color() {
+  [[ "${USE_COLOR}" == true ]] || { printf ''; return 0; }
+  case "${1:-}" in
+    red)    printf '\033[31m' ;;
+    green)  printf '\033[32m' ;;
+    yellow) printf '\033[33m' ;;
+    cyan)   printf '\033[36m' ;;
+    reset)  printf '\033[0m' ;;
+    *)      printf '' ;;
+  esac
+}
+
+log() {
+  local level="${1:-}"; shift || true
+  local p c
+  case "${level}" in
+    info)    p='👉'; c=$(color cyan) ;;
+    success) p='✅'; c=$(color green) ;;
+    warn)    p='⚠️'; c=$(color yellow) ;;
+    error)   p='❌'; c=$(color red) ;;
+    debug)   [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan) ;;
+    *)       p=''; c=$(color reset) ;;
+  esac
+  printf '%s%s %s%s\n' "${c}" "${p}" "$*" "$(color reset)" >&2
+}
+
+die() { local code="${1}"; shift || true; log error "$*"; exit "${code}"; }
+
+# Auto-disable color if not TTY
+[[ -t 2 ]] || USE_COLOR=false
+
+# --------------------------------- helpers ------------------------------------
+
+## @description Return "sudo" if needed, otherwise a no-op.
+sudo_if_needed() {
+  if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then
+    command -v sudo >/dev/null 2>&1 && printf 'sudo' || printf ''
+  else
+    printf ''
+  fi
+}
+
+## @description Ensure a command exists.
+## @arg $1 command
+require_cmd() {
+  command -v "$1" >/dev/null 2>&1 || die 127 "Missing required command: $1"
+}
+
+## @description Detect package manager: apt|apk|dnf|yum|pacman|unknown
+detect_package_manager() {
+  if command -v apt-get >/dev/null 2>&1; then echo apt
+  elif command -v apk >/dev/null 2>&1; then echo apk
+  elif command -v dnf >/dev/null 2>&1; then echo dnf
+  elif command -v yum >/dev/null 2>&1; then echo yum
+  elif command -v pacman >/dev/null 2>&1; then echo pacman
+  else echo unknown
+  fi
+}
+
+# ------------------------------- lifecycle ------------------------------------
+
+cleanup() {
+  [[ -n "${TMP_DIR}" && -d "${TMP_DIR}" ]] && rm -rf -- "${TMP_DIR}" || true
+}
+trap cleanup EXIT
+trap 'log error "Failed at line $LINENO: $BASH_COMMAND"' ERR
+
+# --------------------------------- usage --------------------------------------
+
+usage() {
+  cat <<'EOF'
+Usage:
+  install-google-fonts [--dest <dir>] [--no-color] [--debug]
+
+Options:
+  --dest <dir>   Directory to install fonts (default: /opt/universal/fonts/google).
+  --no-color     Disable ANSI colors in logs.
+  --debug        Verbose diagnostics.
+  -h, --help     Show this help and exit.
+
+Environment:
+  GOOGLE_FONTS_SHA_COMMIT  (default: main)
+  GOOGLE_FONTS_SHA256      (optional, to verify the archive)
+  UNIVERSAL_FONTS          (default: /opt/universal/fonts)
+  GOOGLE_FONTS_DIR         (default: $UNIVERSAL_FONTS/google)
+  ZIP_CACHE_DIR            (default: $XDG_CACHE_HOME or /var/cache/fonts)
+EOF
+}
+
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --dest)
+        [[ $# -ge 2 ]] || die 1 "--dest requires a directory"
+        GOOGLE_FONTS_DIR="$2"; shift
+        ;;
+      --no-color) USE_COLOR=false ;;
+      --debug)    DEBUG=true ;;
+      -h|--help)  usage; exit 0 ;;
+      *)          die 1 "Unknown option: $1" ;;
+    esac
+    shift
+  done
+}
+
+# ------------------------------ installation ----------------------------------
+
+## @description Install required tools via the detected package manager.
+install_deps() {
+  local sudo; sudo="$(sudo_if_needed)"
+  local pm; pm="$(detect_package_manager)"
+
+  log info "Installing dependencies (package manager: ${pm})…"
+  case "${pm}" in
+    apt)
+      ${sudo} apt-get update -qq
+      ${sudo} apt-get install -y --no-install-recommends curl ca-certificates unzip fontconfig
+      ;;
+    apk)
+      ${sudo} apk add --no-cache curl ca-certificates unzip fontconfig
+      ;;
+    dnf)
+      ${sudo} dnf -y install curl ca-certificates unzip fontconfig
+      ;;
+    yum)
+      ${sudo} yum -y install curl ca-certificates unzip fontconfig
+      ;;
+    pacman)
+      ${sudo} pacman -Sy --noconfirm curl ca-certificates unzip fontconfig
+      ;;
+    *)
+      log warn "Unknown package manager; ensure curl, unzip, and fontconfig are installed."
+      ;;
+  esac
+}
+
+## @description Download the Google Fonts repo archive (zip) to the cache directory.
+download_fonts_zip() {
+  local url="${GOOGLE_FONTS_ARCHIVE_URL}/${GOOGLE_FONTS_SHA_COMMIT}.zip"
+  local zip_file="$1"
+  local sudo; sudo="$(sudo_if_needed)"
+
+  log info "Downloading Google Fonts archive: ${url}"
+  mkdir -p -- "$(dirname "${zip_file}")"
+  # If cache is system path and user is non-root, ensure permissions
+  if [[ ! -w "$(dirname "${zip_file}")" ]]; then
+    ${sudo} mkdir -p -- "$(dirname "${zip_file}")"
+    ${sudo} chown -R "$(id -u):$(id -g)" "$(dirname "${zip_file}")" || true
+  fi
+  curl --fail --location --retry 3 --retry-connrefused --output "${zip_file}" "${url}"
+}
+
+## @description Verify the archive against GOOGLE_FONTS_SHA256 (if provided).
+verify_sha256() {
+  local zip_file="$1"
+  [[ -n "${GOOGLE_FONTS_SHA256}" ]] || { log warn "No SHA256 provided — skipping verification"; return 0; }
+
+  require_cmd sha256sum
+  log info "Verifying SHA256 checksum…"
+  local actual expected
+  actual="$(sha256sum "${zip_file}" | awk '{print $1}')"
+  expected="${GOOGLE_FONTS_SHA256}"
+
+  if [[ "${actual}" != "${expected}" ]]; then
+    log error "SHA256 mismatch:
+  Expected: ${expected}
+  Actual:   ${actual}"
+    exit 1
+  fi
+  log success "SHA256 verified."
+}
+
+## @description Extract the archive into a temporary directory.
+extract_fonts() {
+  local zip_file="$1"
+  TMP_DIR="$(mktemp -d -t google-fonts.XXXXXXXX)"
+  log info "Extracting archive to ${TMP_DIR}…"
+  unzip -q "${zip_file}" -d "${TMP_DIR}"
+}
+
+## @description Determine the top-level fonts directory inside the extracted tree.
+## @stdout Prints the directory path.
+locate_fonts_root() {
+  # Typical pattern: ${TMP_DIR}/fonts-<commit>/
+  local root
+  root="$(find "${TMP_DIR}" -mindepth 1 -maxdepth 1 -type d -name 'fonts-*' -print -quit || true)"
+  if [[ -z "${root}" ]]; then
+    # Fallback: first-level directory
+    root="$(find "${TMP_DIR}" -mindepth 1 -maxdepth 1 -type d -print -quit || true)"
+  fi
+  [[ -n "${root}" ]] || die 1 "Unable to locate extracted fonts directory."
+  printf '%s\n' "${root}"
+}
+
+## @description Install font files into GOOGLE_FONTS_DIR and refresh cache.
+install_fonts() {
+  local src_root="$1"
+  local sudo; sudo="$(sudo_if_needed)"
+
+  log info "Installing fonts into ${GOOGLE_FONTS_DIR}…"
+  ${sudo} mkdir -p -- "${GOOGLE_FONTS_DIR}"
+
+  # Copy common font types, including variable fonts
+  mapfile -t files < <(find "${src_root}" -type f \( \
+      -iname '*.ttf' -o -iname '*.otf' -o -iname '*.ttc' -o -iname '*.otc' \
+    \) -print)
+
+  if [[ "${#files[@]}" -eq 0 ]]; then
+    die 1 "No font files found in extracted archive."
+  fi
+
+  # Copy with deterministic perms
+  for f in "${files[@]}"; do
+    ${sudo} install -m 0644 -D -- "$f" "${GOOGLE_FONTS_DIR}/$(basename "$f")"
+  done
+
+  log info "Refreshing font cache…"
+  ${sudo} fc-cache -f "${GOOGLE_FONTS_DIR}"
+  log success "Installed ${#files[@]} font files."
+}
+
+# ----------------------------------- main -------------------------------------
+
+main() {
+  parse_args "$@"
+
+  # Pre-flight checks (script can install deps but we fail early if PATH is broken)
+  require_cmd curl
+  require_cmd unzip
+  require_cmd fc-cache
+
+  local zip_file="${ZIP_FILE:-${ZIP_CACHE_DIR%/}/google-fonts-${GOOGLE_FONTS_SHA_COMMIT}.zip}"
+
+  install_deps
+
+  if [[ -f "${zip_file}" ]]; then
+    log info "Using cached archive: ${zip_file}"
+  else
+    download_fonts_zip "${zip_file}"
+  fi
+
+  verify_sha256 "${zip_file}"
+  extract_fonts "${zip_file}"
+  local root; root="$(locate_fonts_root)"
+  install_fonts "${root}"
+
+  log success "Google Fonts installed at ${GOOGLE_FONTS_DIR} (commit: ${GOOGLE_FONTS_SHA_COMMIT})."
+}
+
+main "$@"

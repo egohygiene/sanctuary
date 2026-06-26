@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Function to rotate video
+rotate_video() {
+    local video_file=$1
+    local degrees=$2
+    local transpose_filter
+
+    case $degrees in
+        90) transpose_filter="transpose=2";;
+        -90|270) transpose_filter="transpose=1";;
+        180|-180) transpose_filter="transpose=2,transpose=2";;
+        *) echo "Invalid rotation degrees. Allowed values: 90, 180, -90, -180."; exit 1;;
+    esac
+
+    ffmpeg -i "$video_file" -vf "$transpose_filter" -c:a copy "${video_file%.*}_rotated.mp4"
+}
+
+# Check if correct number of arguments provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <video_file> <rotation_degrees>"
+    exit 1
+fi
+
+rotate_video "$1" "$2"
+

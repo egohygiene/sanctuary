@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.base.json",
+
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@egohygiene/*": ["../*/src"]
+    },
+    "types": ["vite/client", "storybook__react"]
+  },
+
+  "include": [
+    "src",
+    ".storybook",
+    "**/*.stories.ts",
+    "**/*.stories.tsx"
+  ],
+
+  "exclude": ["dist", "node_modules", "coverage"]
+}

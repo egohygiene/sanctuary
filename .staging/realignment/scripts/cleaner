@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+import os
+import shutil
+from appdirs import user_cache_dir
+from pathlib import Path
+from threading import Thread
+from typing import Self, Iterator
+from subprocess import Popen, PIPE
+
+
+class Directory:
+
+    @staticmethod
+    def scan_tree(directory: Path) -> Iterator[Path]:
+        """Recursively yield DirEntry objects for the given directory.
+
+        Args:
+            directory (Path): The directory to scan.
+
+
+        Yields:
+            Path: A file path in the directory.
+        """
+        for entry in os.scandir(directory):
+            if entry.is_dir(follow_symlinks=False):
+                yield from Directory.scan_tree(Path(entry.path))
+            else:
+                yield Path(entry).resolve()
+
+
+
+class ShellCommand(Thread):
+
+    def __init__(self: Self, command: str, message: str | None = None) -> None:
+        self.stdout = None
+        self.stderr = None
+        self.command: str = command
+        self.message: str = message
+        Thread.__init__(self)
+
+    def run(self: Self):
+        p = Popen(self.command.split(), shell=False, stdout=PIPE, stderr=PIPE)
+
+        if self.message:
+            print(self.message)
+
+        self.stdout, self.stderr = p.communicate()
+
+
+# def clear_clipboard_indicator() -> None:
+#     CLIPBOARD_INDICATOR_FILE.unlink(missing_ok=True)
+
+def clean() -> None:
+    jobs: list[ShellCommand] = [
+        # Clipboard cleaner.
+        ShellCommand(
+            command="xsel -bc",
+            message="Clearing clipboard..."
+        ), 
+        # Primary cleaner.
+        ShellCommand(
+            command="xsel -c",
+        ), 
+    ]
+
+    # Run each shell command.
+    for job in jobs:
+        job.start()
+        job.join()
+
+    
+    shutil.rmtree(user_cache_dir(), ignore_errors=True)
+
+clean()

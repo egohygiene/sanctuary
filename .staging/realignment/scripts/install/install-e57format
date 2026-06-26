@@ -1,0 +1,261 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-e57format
+## @brief Build & install libE57Format (E57 reader/writer) safely.
+## @version 1.0.0
+## @description
+##   Clones (or fetches a tarball for) libE57Format, builds shared libs with CMake/Ninja,
+##   installs to a prefix, and registers its lib dir via ld.so (no global LD_LIBRARY_PATH).
+##   Minimal apt deps are installed best-effort when requested.
+##
+## @usage
+##   install-e57format
+##     [--repo https://github.com/asmaloney/libE57Format.git]
+##     [--ref <tag|commit>] | [--url <tarball> --sha512 <hex>]
+##     [--prefix /opt/universal/toolbox/e57]
+##     [--with-deps|--no-deps]
+##     [--symlink-bin] [--debug] [--no-color]
+##
+## @options
+##   --repo <url>     Git repo URL (default: https://github.com/asmaloney/libE57Format.git)
+##   --ref  <ref>     Git ref (tag/branch/commit). If omitted and no --url given, uses default branch.
+##   --url  <url>     Source tarball URL (skips git). Pair with --sha512 for verification.
+##   --sha512 <hex>   Expected SHA-512 for --url tarball.
+##   --prefix <dir>   Install prefix (default: $E57_PREFIX or /opt/universal/toolbox/e57)
+##   --with-deps      Install apt build deps (cmake, ninja, libxerces-c-dev, …) [default]
+##   --no-deps        Skip apt deps installation
+##   --symlink-bin    Symlink any installed tools into $UNIVERSAL_BIN (usually none; kept for consistency)
+##   --debug          Verbose logging and CMake --debug-find
+##   --no-color       Disable ANSI colors
+##   -h, --help       Show help and exit
+##
+## @env E57_PREFIX        Install prefix (default /opt/universal/toolbox/e57)
+## @env UNIVERSAL_HOME    Default /opt/universal
+## @env UNIVERSAL_TOOLBOX Default $UNIVERSAL_HOME/toolbox
+## @env UNIVERSAL_BIN     Optional global bin dir for symlinks
+## @env XDG_CACHE_HOME    Cache dir for source tarballs (default /var/cache/src)
+## @env DEBUG             Verbose logs when "true"
+## @env USE_COLOR         ANSI color (default true)
+
+# ---------- defaults ----------
+REPO_URL="${REPO_URL:-https://github.com/asmaloney/libE57Format.git}"
+REF="${REF:-}"
+CUSTOM_URL="${CUSTOM_URL:-}"
+EXPECTED_SHA512="${EXPECTED_SHA512:-}"
+
+UNIVERSAL_HOME="${UNIVERSAL_HOME:-/opt/universal}"
+UNIVERSAL_TOOLBOX="${UNIVERSAL_TOOLBOX:-${UNIVERSAL_HOME}/toolbox}"
+E57_PREFIX="${E57_PREFIX:-${UNIVERSAL_TOOLBOX}/e57}"
+UNIVERSAL_BIN="${UNIVERSAL_BIN:-}"
+
+ZIP_CACHE_DIR="${XDG_CACHE_HOME:-/var/cache}/src"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+DO_DEPS=1
+DO_SYMLINKS=0
+
+# Will be set to a unique directory during extraction
+TMP_DIR="${TMPDIR:-/tmp}/e57format-src"
+
+SRC_DIR=""
+TARBALL_PATH=""
+
+# ---------- logging ----------
+color() { [[ "${USE_COLOR}" == true ]] || { printf ''; return; }
+  case "${1:-}" in red) printf '\033[31m';; green) printf '\033[32m';;
+    yellow) printf '\033[33m';; cyan) printf '\033[36m';; reset) printf '\033[0m';; esac; }
+log() { local t="$1"; shift || true; local p c;
+  case "$t" in info) p='👉'; c=$(color cyan);;
+    ok) p='✅'; c=$(color green);;
+    warn) p='⚠️ '; c=$(color yellow);;
+    err) p='❌'; c=$(color red);;
+    dbg) [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan);;
+    *) p=''; c=$(color reset);; esac
+  printf '%s%s %s%s\n' "$c" "$p" "$*" "$(color reset)" >&2; }
+die() { local c="$1"; shift || true; log err "$*"; exit "$c"; }
+[[ -t 2 ]] || USE_COLOR=false
+have() { command -v "$1" >/dev/null 2>&1; }
+sudo_if_needed() { if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then command -v sudo >/dev/null 2>&1 && printf 'sudo' || printf ''; fi; }
+
+cleanup() { [[ -n "${TMP_DIR}" && -d "${TMP_DIR}" ]] && rm -rf -- "${TMP_DIR}" || true; }
+trap cleanup EXIT
+trap 'log err "Failed at line $LINENO: $BASH_COMMAND"' ERR
+
+usage() { sed -n '2,160p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'; }
+
+# ---------- args ----------
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --repo)    REPO_URL="$2"; shift ;;
+    --ref)     REF="$2"; shift ;;
+    --url)     CUSTOM_URL="$2"; shift ;;
+    --sha512)  EXPECTED_SHA512="$2"; shift ;;
+    --prefix)  E57_PREFIX="$2"; shift ;;
+    --with-deps) DO_DEPS=1 ;;
+    --no-deps)   DO_DEPS=0 ;;
+    --symlink-bin) DO_SYMLINKS=1 ;;
+    --debug)   DEBUG=true ;;
+    --no-color) USE_COLOR=false ;;
+    -h|--help) usage; exit 0 ;;
+    *) die 1 "Unknown option: $1" ;;
+  esac; shift
+done
+
+# ---------- deps ----------
+apt_best_effort() {
+  local SUDO; SUDO="$(sudo_if_needed)"
+  $SUDO apt-get update -qq
+  if ! $SUDO apt-get install -y --no-install-recommends "$@"; then
+    log warn "Some packages not available; continuing: $*"
+  fi
+  $SUDO rm -rf /var/lib/apt/lists/* || true
+}
+install_deps() {
+  [[ "${DO_DEPS}" -eq 1 ]] || { log dbg "Skipping deps (--no-deps)"; return; }
+  if have apt-get; then
+    log info "Installing libE57Format build deps (best effort)…"
+    apt_best_effort cmake ninja-build build-essential pkg-config \
+      libxerces-c-dev zlib1g-dev ca-certificates curl git
+  else
+    log warn "apt-get not found; ensure cmake, ninja, and libxerces-c-dev exist"
+  fi
+}
+
+# ---------- fetch ----------
+download_tarball() {
+  mkdir -p -- "${ZIP_CACHE_DIR%/}"
+  local filename; filename="$(basename "${CUSTOM_URL}")"
+  TARBALL_PATH="${ZIP_CACHE_DIR%/}/${filename}"
+  if [[ ! -f "${TARBALL_PATH}" ]]; then
+    log info "Downloading E57 tarball: ${CUSTOM_URL}"
+    curl -fsSL --retry 3 --retry-connrefused -o "${TARBALL_PATH}" "${CUSTOM_URL}"
+  else
+    log info "Using cached tarball: ${TARBALL_PATH}"
+  fi
+}
+verify_sha512() {
+  [[ -n "${EXPECTED_SHA512}" ]] || { log warn "No SHA-512 provided — skipping verification"; return; }
+  have sha512sum || die 127 "sha512sum required for verification"
+  local got; got="$(sha512sum "${TARBALL_PATH}" | awk '{print $1}')"
+  if [[ "${got}" != "${EXPECTED_SHA512}" ]]; then
+    log warn "SHA-512 mismatch; refetching once…
+  expected: ${EXPECTED_SHA512}
+       got: ${got}"
+    rm -f -- "${TARBALL_PATH}"
+    download_tarball
+    got="$(sha512sum "${TARBALL_PATH}" | awk '{print $1}')"
+    [[ "${got}" == "${EXPECTED_SHA512}" ]] || die 1 "SHA-512 mismatch after re-fetch"
+  fi
+  log ok "SHA-512 verified"
+}
+
+# ---------- build & install ----------
+build_from_source() {
+  have cmake || die 127 "cmake required"
+  have ninja || log warn "ninja not found; falling back to Makefiles"
+
+  TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/e57.XXXXXXXX")"
+  local gen="Unix Makefiles"
+  local build_cmd
+  build_cmd="make -j$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 2) VERBOSE=1"
+
+  if [[ -n "${CUSTOM_URL}" ]]; then
+    # Tarball path
+    SRC_DIR="${TMP_DIR}/src"
+    mkdir -p "${SRC_DIR}"
+    log info "Extracting ${TARBALL_PATH} -> ${SRC_DIR}"
+    tar -xzf "${TARBALL_PATH}" --strip-components=1 -C "${SRC_DIR}"
+  else
+    # Git clone
+    SRC_DIR="${TMP_DIR}/libE57Format"
+    log info "Cloning ${REPO_URL}${REF:+ @ ${REF}}"
+    git clone --quiet --recursive "${REPO_URL}" "${SRC_DIR}"
+    if [[ -n "${REF}" ]]; then
+      git -C "${SRC_DIR}" checkout --quiet "${REF}"
+      git -C "${SRC_DIR}" submodule update --init --recursive --quiet
+    fi
+  fi
+
+  mkdir -p "${E57_PREFIX}"
+  if have ninja; then gen="Ninja"; build_cmd="ninja -v -j$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 2)"; fi
+
+  log info "Configuring libE57Format (prefix: ${E57_PREFIX})"
+  local cmake_flags=(
+    -DCMAKE_BUILD_TYPE=Release
+    -DBUILD_SHARED_LIBS=ON
+    -DCMAKE_INSTALL_PREFIX="${E57_PREFIX}"
+    -DCMAKE_INSTALL_RPATH="${E57_PREFIX}/lib"
+    -DCMAKE_BUILD_RPATH="${E57_PREFIX}/lib"
+    -DCMAKE_VERBOSE_MAKEFILE=ON
+  )
+
+  pushd "${SRC_DIR}" >/dev/null
+    cmake -S . -B build -G "${gen}" "${cmake_flags[@]}" "$([[ "${DEBUG}" == true ]] && printf -- "--debug-find")"
+    ${build_cmd} -C build
+    ${build_cmd} -C build install
+  popd >/dev/null
+
+  # Register libs
+  if have ldconfig; then
+    echo "${E57_PREFIX}/lib" | $(sudo_if_needed) tee /etc/ld.so.conf.d/e57.conf >/dev/null
+    $(sudo_if_needed) ldconfig || true
+  fi
+  log ok "Installed libE57Format to ${E57_PREFIX}"
+}
+
+symlink_bins() {
+  [[ "${DO_SYMLINKS}" -eq 1 && -n "${UNIVERSAL_BIN}" ]] || return 0
+  mkdir -p "${UNIVERSAL_BIN}"
+  # E57 typically ships only libraries/headers; keep hook for future tools
+  for b in "${E57_PREFIX}/bin/"*; do
+    [[ -x "$b" ]] && ln -sf "$b" "${UNIVERSAL_BIN}/$(basename "$b")"
+  done
+}
+
+verify_install() {
+  log info "Verifying E57 install…"
+  # Library present?
+  ls -1 "${E57_PREFIX}/lib"/libE57Format*.so* >/dev/null 2>&1 || \
+    ls -1 "${E57_PREFIX}/lib64"/libE57Format*.so* >/dev/null 2>&1 || \
+    die 1 "libE57Format*.so not found under ${E57_PREFIX}/lib(64)"
+  # Header present?
+  ls -1 "${E57_PREFIX}/include"/E57Format*.h >/dev/null 2>&1 || \
+    die 1 "E57 headers not found under ${E57_PREFIX}/include"
+  # ldconfig sees it?
+  command -v ldconfig >/dev/null 2>&1 && ldconfig -p | grep -i E57Format || true
+  log ok "libE57Format ready."
+}
+
+main() {
+  # Parse args again to allow env overrides via CLI
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --repo) REPO_URL="$2"; shift ;;
+      --ref) REF="$2"; shift ;;
+      --url) CUSTOM_URL="$2"; shift ;;
+      --sha512) EXPECTED_SHA512="$2"; shift ;;
+      --prefix) E57_PREFIX="$2"; shift ;;
+      --with-deps) DO_DEPS=1 ;;
+      --no-deps) DO_DEPS=0 ;;
+      --symlink-bin) DO_SYMLINKS=1 ;;
+      --debug) DEBUG=true ;;
+      --no-color) USE_COLOR=false ;;
+      -h|--help) usage; exit 0 ;;
+      *) die 1 "Unknown option: $1" ;;
+    esac; shift
+  done
+
+  install_deps
+  if [[ -n "${CUSTOM_URL}" ]]; then
+    download_tarball
+    verify_sha512
+  fi
+  build_from_source
+  symlink_bins
+  verify_install
+  log ok "Done."
+}
+
+main "$@"

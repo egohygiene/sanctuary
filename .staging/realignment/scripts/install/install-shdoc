@@ -1,0 +1,156 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-shdoc
+## @brief Install reconquest/shdoc (Bash doc generator) the safe way.
+## @version 1.0.0
+## @description
+##   Clones shdoc, installs it to a configurable prefix, and verifies it’s on PATH.
+##   No global LD_LIBRARY_PATH shenanigans. Best-effort apt deps if requested.
+##
+## @usage
+##   install-shdoc [--ref <tag|commit>] [--repo <url>] [--prefix /usr/local]
+##                 [--with-deps|--no-deps] [--symlink-bin] [--debug] [--no-color]
+##
+## @options
+##   --ref <r>        Git ref (tag/branch/commit) to checkout (default: repo default branch).
+##   --repo <url>     Git repo URL (default: https://github.com/reconquest/shdoc.git).
+##   --prefix <dir>   Install prefix (default: $SHDOC_PREFIX or /usr/local).
+##   --with-deps      Install minimal build deps (git, make) via apt (default).
+##   --no-deps        Skip installing deps.
+##   --symlink-bin    Symlink shdoc into $UNIVERSAL_BIN (if set).
+##   --debug          Extra logging.
+##   --no-color       Disable ANSI colors in logs.
+##   -h, --help       Show help and exit.
+##
+## @env SHDOC_PREFIX       Install prefix (default /usr/local).
+## @env UNIVERSAL_HOME     Default /opt/universal (optional).
+## @env UNIVERSAL_BIN      Optional global bin dir for symlinks.
+## @env XDG_CACHE_HOME     Cache location for sources if you adapt later.
+## @env DEBUG              Verbose logs when "true".
+## @env USE_COLOR          ANSI color (default true).
+
+# ---------------- defaults ----------------
+REPO_URL="${REPO_URL:-https://github.com/reconquest/shdoc.git}"
+REF="${REF:-}"
+SHDOC_PREFIX="${SHDOC_PREFIX:-/usr/local}"
+UNIVERSAL_BIN="${UNIVERSAL_BIN:-}"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+DO_DEPS=1
+DO_SYMLINKS=0
+
+TMP_DIR=""
+SRC_DIR=""
+
+# ---------------- logging ----------------
+color() { [[ "${USE_COLOR}" == true ]] || { printf ''; return; }
+  case "${1:-}" in red) printf '\033[31m';; green) printf '\033[32m';;
+    yellow) printf '\033[33m';; cyan) printf '\033[36m';; reset) printf '\033[0m';; esac; }
+log() { local t="$1"; shift || true; local p c;
+  case "$t" in info) p='👉'; c=$(color cyan);;
+    ok) p='✅'; c=$(color green);;
+    warn) p='⚠️ '; c=$(color yellow);;
+    err) p='❌'; c=$(color red);;
+    dbg) [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan);;
+    *) p=''; c=$(color reset);; esac
+  printf '%s%s %s%s\n' "$c" "$p" "$*" "$(color reset)" >&2; }
+die() { local c="$1"; shift || true; log err "$*"; exit "$c"; }
+[[ -t 2 ]] || USE_COLOR=false
+have() { command -v "$1" >/dev/null 2>&1; }
+sudo_if_needed() { if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then command -v sudo >/dev/null 2>&1 && printf 'sudo' || printf ''; fi; }
+
+cleanup() { [[ -n "${TMP_DIR}" && -d "${TMP_DIR}" ]] && rm -rf -- "${TMP_DIR}" || true; }
+trap cleanup EXIT
+trap 'log err "Failed at line $LINENO: $BASH_COMMAND"' ERR
+
+usage() { sed -n '2,120p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'; }
+
+# ---------------- args ----------------
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --ref)       REF="$2"; shift ;;
+    --repo)      REPO_URL="$2"; shift ;;
+    --prefix)    SHDOC_PREFIX="$2"; shift ;;
+    --with-deps) DO_DEPS=1 ;;
+    --no-deps)   DO_DEPS=0 ;;
+    --symlink-bin) DO_SYMLINKS=1 ;;
+    --debug)     DEBUG=true ;;
+    --no-color)  USE_COLOR=false ;;
+    -h|--help)   usage; exit 0 ;;
+    *) die 1 "Unknown option: $1" ;;
+  esac; shift
+done
+
+# ---------------- deps ----------------
+install_deps() {
+  [[ "${DO_DEPS}" -eq 1 ]] || { log dbg "Skipping deps (--no-deps)"; return; }
+  if have apt-get; then
+    log info "Installing minimal deps (git, make)…"
+    $(sudo_if_needed) apt-get update -qq
+    $(sudo_if_needed) apt-get install -y --no-install-recommends git make ca-certificates
+    $(sudo_if_needed) rm -rf /var/lib/apt/lists/* || true
+  else
+    log warn "apt-get not found; ensure git and make are installed"
+  fi
+}
+
+# ---------------- build & install ----------------
+clone_build_install() {
+  have git  || die 127 "git is required"
+  have make || die 127 "make is required"
+
+  TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/shdoc.XXXXXXXX")"
+  SRC_DIR="${TMP_DIR}/shdoc"
+  log info "Cloning ${REPO_URL}${REF:+ @ ${REF}}"
+  git clone --quiet --recursive "${REPO_URL}" "${SRC_DIR}"
+  if [[ -n "${REF}" ]]; then
+    git -C "${SRC_DIR}" checkout --quiet "${REF}"
+    git -C "${SRC_DIR}" submodule update --init --recursive --quiet
+  fi
+
+  log info "Installing to ${SHDOC_PREFIX}"
+  mkdir -p "${SHDOC_PREFIX}/bin"
+  # Prefer upstream Makefile install (supports PREFIX in many projects)
+  if make -C "${SRC_DIR}" -n install >/dev/null 2>&1; then
+    $(sudo_if_needed) make -C "${SRC_DIR}" install PREFIX="${SHDOC_PREFIX}"
+  else
+    # Fallback: copy the 'shdoc' script if Makefile lacks install target
+    local script="${SRC_DIR}/shdoc"
+    [[ -f "${script}" && -r "${script}" ]] || die 1 "shdoc entrypoint not found in repo"
+    $(sudo_if_needed) install -m 0755 "${script}" "${SHDOC_PREFIX}/bin/shdoc"
+  fi
+
+  # Optional symlink into UNIVERSAL_BIN
+  if [[ "${DO_SYMLINKS}" -eq 1 && -n "${UNIVERSAL_BIN}" ]]; then
+    mkdir -p "${UNIVERSAL_BIN}"
+    ln -sf "${SHDOC_PREFIX}/bin/shdoc" "${UNIVERSAL_BIN}/shdoc"
+    log ok "Symlinked to ${UNIVERSAL_BIN}/shdoc"
+  fi
+}
+
+verify() {
+  log info "Verifying shdoc on PATH…"
+  if command -v shdoc >/dev/null 2>&1; then
+    shdoc -h >/dev/null 2>&1 || shdoc --help >/dev/null 2>&1 || true
+    log ok "shdoc installed: $(command -v shdoc)"
+  else
+    # It may not be in PATH; point to target directly
+    if [[ -x "${SHDOC_PREFIX}/bin/shdoc" ]]; then
+      "${SHDOC_PREFIX}/bin/shdoc" -h >/dev/null 2>&1 || true
+      log ok "shdoc installed at ${SHDOC_PREFIX}/bin/shdoc"
+    else
+      die 1 "shdoc not found after install"
+    fi
+  fi
+}
+
+main() {
+  install_deps
+  clone_build_install
+  verify
+  log ok "Done."
+}
+
+main "$@"

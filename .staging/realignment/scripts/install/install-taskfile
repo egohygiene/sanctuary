@@ -1,0 +1,226 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# install-taskfile: Install go-task (Taskfile) by version or commit with optional SHA verification
+#
+# Usage:
+#   install-taskfile [-v VERSION | -c COMMIT] [-b BINDIR] [--sha256 HEX | --sha512 HEX]
+#   Environment:
+#     TASKFILE_VERSION   Version without leading 'v' (e.g., 3.39.2)
+#     TASKFILE_COMMIT    Git commit SHA (7-40 chars)
+#     TASKFILE_HOME_DIR  Installation directory (default: "$HOME/.taskfile")
+#     TASKFILE_SHA256    Expected SHA-256 hex digest of the downloaded tarball
+#     TASKFILE_SHA512    Expected SHA-512 hex digest of the downloaded tarball
+#
+# Notes:
+# - Version install uses GitHub release artifacts and can auto-verify using checksums.txt if available.
+# - Commit install builds from source; requires a working Go toolchain in PATH.
+# - One of version or commit must be provided. If both are omitted, defaults to latest via installer script is NOT supported here
+#   to keep checksum verification explicit.
+
+log() { printf "%s\n" "$*"; }
+err() { printf "ERROR: %s\n" "$*" >&2; }
+die() { err "$*"; exit 1; }
+
+have() { command -v "$1" >/dev/null 2>&1; }
+
+detect_os() {
+  local os
+  os=$(uname -s | tr '[:upper:]' '[:lower:]')
+  case "$os" in
+    linux|darwin) printf "%s" "$os" ;;
+    msys*|mingw*|cygwin*) printf "windows" ;;
+    *) die "Unsupported OS: $os" ;;
+  esac
+}
+
+detect_arch() {
+  local arch
+  arch=$(uname -m)
+  case "$arch" in
+    x86_64|amd64) printf "amd64" ;;
+    aarch64|arm64) printf "arm64" ;;
+    armv7l|armv7) printf "armv7" ;;
+    armv6l|armv6) printf "armv6" ;;
+    i386|i686) printf "386" ;;
+    *) die "Unsupported ARCH: $arch" ;;
+  esac
+}
+
+dl() {
+  # dl URL OUTFILE
+  local url=$1 out=$2
+  if have curl; then
+    curl -fsSL "$url" -o "$out"
+  elif have wget; then
+    wget -qO "$out" "$url"
+  else
+    die "Need curl or wget to download $url"
+  fi
+}
+
+sha256_file() {
+  if have sha256sum; then sha256sum "$1" | awk '{print $1}';
+  elif have shasum; then shasum -a 256 "$1" | awk '{print $1}';
+  elif have openssl; then openssl dgst -sha256 "$1" | awk '{print $2}';
+  else die "No SHA-256 utility found"; fi
+}
+
+sha512_file() {
+  if have sha512sum; then sha512sum "$1" | awk '{print $1}';
+  elif have shasum; then shasum -a 512 "$1" | awk '{print $1}';
+  elif have openssl; then openssl dgst -sha512 "$1" | awk '{print $2}';
+  else die "No SHA-512 utility found"; fi
+}
+
+verify_hash() {
+  # verify_hash FILE algo expected_hex
+  local file=$1 algo=$2 expected=$3 actual
+  case "$algo" in
+    sha256) actual=$(sha256_file "$file") ;;
+    sha512) actual=$(sha512_file "$file") ;;
+    *) die "Unknown algo: $algo" ;;
+  esac
+  if [ "$actual" != "$expected" ]; then
+    die "Checksum mismatch ($algo). expected=$expected actual=$actual file=$file"
+  fi
+  log "✔ Checksum OK ($algo)"
+}
+
+extract_tar() {
+  # extract_tar TARFILE DESTDIR
+  local tarfile=$1 dest=$2
+  mkdir -p "$dest"
+  tar -xzf "$tarfile" -C "$dest"
+}
+
+usage() {
+  cat <<EOF
+Usage: $0 [-v VERSION | -c COMMIT] [-b BINDIR] [--sha256 HEX | --sha512 HEX]
+
+Options:
+  -v, --version VERSION   Task version (no leading 'v', e.g., 3.39.2)
+  -c, --commit COMMIT     Git commit SHA to build from source
+  -b, --bin-dir DIR       Directory to install 'task' (default: \$TASKFILE_HOME_DIR or \$HOME/.taskfile)
+      --sha256 HEX        Expected SHA-256 of archive to verify
+      --sha512 HEX        Expected SHA-512 of archive to verify
+  -h, --help              Show this help
+
+Env vars:
+  TASKFILE_VERSION, TASKFILE_COMMIT, TASKFILE_HOME_DIR, TASKFILE_SHA256, TASKFILE_SHA512
+EOF
+}
+
+VERSION=${TASKFILE_VERSION:-}
+COMMIT=${TASKFILE_COMMIT:-}
+SHA256=${TASKFILE_SHA256:-}
+SHA512=${TASKFILE_SHA512:-}
+BINDIR=${TASKFILE_HOME_DIR:-"${HOME}/.taskfile"}
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -v|--version) VERSION=$2; shift 2 ;;
+    -c|--commit)  COMMIT=$2; shift 2 ;;
+    -b|--bin-dir) BINDIR=$2; shift 2 ;;
+    --sha256)     SHA256=$2; shift 2 ;;
+    --sha512)     SHA512=$2; shift 2 ;;
+    -h|--help)    usage; exit 0 ;;
+    *) err "Unknown arg: $1"; usage; exit 2 ;;
+  esac
+done
+
+mkdir -p "$BINDIR"
+OS=$(detect_os)
+ARCH=$(detect_arch)
+
+if [ -n "$VERSION" ] && [ -n "$COMMIT" ]; then
+  die "Provide either --version or --commit, not both"
+fi
+if [ -z "$VERSION" ] && [ -z "$COMMIT" ]; then
+  die "Must specify --version or --commit to ensure reproducibility and checksum verification"
+fi
+
+tmpdir=$(mktemp -d)
+cleanup() { rm -rf "$tmpdir"; }
+trap cleanup EXIT
+
+if [ -n "$VERSION" ]; then
+  # Install from GitHub release
+  # Artifact pattern: task_${VERSION}_${OS}_${ARCH}.tar.gz
+  artifact="task_${VERSION}_${OS}_${ARCH}.tar.gz"
+  url="https://github.com/go-task/task/releases/download/v${VERSION}/${artifact}"
+  tarball="$tmpdir/${artifact}"
+  log "Downloading Task v${VERSION} for ${OS}/${ARCH}..."
+  dl "$url" "$tarball"
+
+  # Verification: use provided hash, or attempt to fetch checksums.txt (sha256) and verify
+  if [ -n "$SHA256" ]; then
+    verify_hash "$tarball" sha256 "$SHA256"
+  elif [ -n "$SHA512" ]; then
+    verify_hash "$tarball" sha512 "$SHA512"
+  else
+    # Try to fetch checksums.txt from release (sha256)
+    checksums_url="https://github.com/go-task/task/releases/download/v${VERSION}/checksums.txt"
+    checksums_file="$tmpdir/checksums.txt"
+    if dl "$checksums_url" "$checksums_file" 2>/dev/null; then
+      # Find matching line and extract expected sha256
+      expected=$(grep "  ${artifact}$" "$checksums_file" | awk '{print $1}' || true)
+      if [ -n "$expected" ]; then
+        verify_hash "$tarball" sha256 "$expected"
+      else
+        die "checksums.txt found but no entry for ${artifact}"
+      fi
+    else
+      die "No checksum provided and failed to fetch checksums.txt for v${VERSION}"
+    fi
+  fi
+
+  # Extract and install
+  extract_dir="$tmpdir/extract"
+  extract_tar "$tarball" "$extract_dir"
+  # The tarball usually contains 'task' binary
+  if [ ! -f "$extract_dir/task" ]; then
+    # sometimes nested dir; try to locate
+    binpath=$(find "$extract_dir" -type f -name task -perm -u+x | head -n1 || true)
+  else
+    binpath="$extract_dir/task"
+  fi
+  [ -n "${binpath:-}" ] || die "Failed to find 'task' binary in archive"
+  install_path="$BINDIR/task"
+  mv "$binpath" "$install_path"
+  chmod +x "$install_path"
+  log "Installed task to $install_path"
+else
+  # Build from a specific commit
+  have go || die "Building from commit requires 'go' in PATH"
+  src_tar="https://github.com/go-task/task/archive/${COMMIT}.tar.gz"
+  tarball="$tmpdir/task-${COMMIT}.tar.gz"
+  log "Downloading task source at commit ${COMMIT}..."
+  dl "$src_tar" "$tarball"
+
+  # Optional verification if user supplied
+  if [ -n "$SHA256" ]; then
+    verify_hash "$tarball" sha256 "$SHA256"
+  elif [ -n "$SHA512" ]; then
+    verify_hash "$tarball" sha512 "$SHA512"
+  else
+    log "No checksum provided for commit tarball; proceeding without checksum"
+  fi
+
+  srcdir="$tmpdir/src"
+  mkdir -p "$srcdir"
+  tar -xzf "$tarball" -C "$srcdir"
+  # the extracted dir name is task-COMMIT
+  workdir=$(find "$srcdir" -maxdepth 1 -type d -name "task-*" | head -n1)
+  [ -d "$workdir" ] || die "Failed to unpack source"
+  log "Building task from source (commit ${COMMIT})..."
+  (cd "$workdir" && GO111MODULE=on go build -trimpath -ldflags "-s -w" -o "$tmpdir/task" ./cmd/task)
+  install_path="$BINDIR/task"
+  mv "$tmpdir/task" "$install_path"
+  chmod +x "$install_path"
+  log "Installed task to $install_path"
+fi
+
+# Show version
+"$BINDIR/task" --version || true
+

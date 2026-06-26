@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# test-talisman
+# Verifies that Talisman is installed and functional.
+
+set -euo pipefail
+
+TALISMAN_HOME="${TALISMAN_HOME:-${HOME}/.talisman}"
+TALISMAN_BIN="${TALISMAN_HOME}/bin/talisman"
+
+check_talisman_binary() {
+    if [[ ! -x "${TALISMAN_BIN}" ]]; then
+        echo "❌ Talisman not found at ${TALISMAN_BIN}" >&2
+        return 1
+    fi
+}
+
+check_talisman_version() {
+    "${TALISMAN_BIN}" --version >/dev/null 2>&1 || {
+        echo "❌ 'talisman --version' failed" >&2
+        return 1
+    }
+}
+
+main() {
+    echo "🔍 Testing Talisman..."
+    check_talisman_binary
+    check_talisman_version
+    echo "✅ Talisman check passed"
+}
+
+main "$@"

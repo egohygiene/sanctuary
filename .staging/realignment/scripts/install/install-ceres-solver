@@ -1,0 +1,314 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-ceres-solver
+## @brief Reproducible Ceres Solver build (from tag/commit or URL) with verbose, plugin-rich build.
+## @version 1.0.0
+## @description
+##   Builds Ceres Solver from a pinned source tarball (tag or explicit URL),
+##   verifies SHA-512, installs broad delegate deps (best effort), compiles with
+##   shared libs, and registers the install via ld.so (no global LD_LIBRARY_PATH).
+##   Tries to enable SuiteSparse, LAPACK, and Eigen sparse backends; any missing
+##   dev libs will auto-disable gracefully.
+##
+## @usage
+##   install-ceres-solver
+##     [--version <v> | --url <tarball>]
+##     [--sha512 <hex>]
+##     [--prefix /opt/ceres-solver]
+##     [--with-deps | --no-deps]
+##     [--symlink-bin]
+##     [--debug] [--no-color]
+##
+## @options
+##   --version <v>    Ceres Solver release tag (e.g., 2.2.0) – uses GitHub codeload tarball (default: $CERES_VERSION_DEFAULT).
+##   --url <url>      Override tarball URL completely (implies you supply --sha512).
+##   --sha512 <hex>   Expected SHA-512 for the tarball (recommended).
+##   --prefix <dir>   Install prefix (default: $CERES_PREFIX or $UNIVERSAL_TOOLBOX/ceres-solver).
+##   --with-deps      Install broad apt build deps (best-effort; default).
+##   --no-deps        Skip apt deps installation.
+##   --symlink-bin    Symlink installed binaries into $UNIVERSAL_BIN.
+##   --debug          Verbose logs and CMake/Ninja debug output.
+##   --no-color       Disable ANSI colors in logs.
+##   -h, --help       Show help and exit.
+##
+## @env UNIVERSAL_HOME     Default /opt/universal
+## @env UNIVERSAL_TOOLBOX  Default $UNIVERSAL_HOME/toolbox
+## @env UNIVERSAL_BIN      Default $UNIVERSAL_HOME/bin
+## @env XDG_CACHE_HOME     Where to cache source tarballs (fallback: /var/cache/src)
+## @env CERES_PREFIX       Install prefix override
+## @env CERES_SHA512       Default SHA-512 if --sha512 omitted
+## @env CERES_VERSION      Default version tag if --version used and --url omitted
+
+# -------- defaults (your pin) --------
+CERES_VERSION_DEFAULT="${CERES_VERSION:-2.2.0}"
+CERES_SHA512_DEFAULT="${CERES_SHA512:-d4cefe5851e25bd3c7b76352092d8d549eb371af2e35a325736554c54fe58a3523658697c3e2d65af660fe6895ae3d96fe31bd1875870474fc4b6fed3bbdfae9}"
+
+UNIVERSAL_HOME="${UNIVERSAL_HOME:-/opt/universal}"
+UNIVERSAL_TOOLBOX="${UNIVERSAL_TOOLBOX:-${UNIVERSAL_HOME}/toolbox}"
+UNIVERSAL_BIN="${UNIVERSAL_BIN:-${UNIVERSAL_HOME}/bin}"
+CERES_PREFIX="${CERES_PREFIX:-${UNIVERSAL_TOOLBOX}/ceres-solver}"
+
+ZIP_CACHE_DIR="${XDG_CACHE_HOME:-/var/cache}/src"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+
+TMP_DIR="${TMPDIR:-/tmp}/ceres-src"
+
+SRC_DIR=""
+TARBALL_PATH=""
+TARBALL_URL=""
+EXPECTED_SHA512=""
+
+DO_DEPS=1
+DO_SYMLINKS=0
+
+# -------- logging --------
+color() {
+  [[ "${USE_COLOR}" == true ]] || { printf ''; return 0; }
+  case "${1:-}" in red) printf '\033[31m';; green) printf '\033[32m';;
+    yellow) printf '\033[33m';; cyan) printf '\033[36m';; reset) printf '\033[0m';; esac
+}
+log() {
+  local lvl="${1:-}"; shift || true; local p c
+  case "${lvl}" in
+    info) p='👉'; c=$(color cyan) ;;
+    ok)   p='✅'; c=$(color green) ;;
+    warn) p='⚠️ '; c=$(color yellow) ;;
+    err)  p='❌'; c=$(color red) ;;
+    dbg)  [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan) ;;
+    *) p=''; c=$(color reset) ;;
+  esac
+  printf '%s%s %s%s\n' "${c}" "${p}" "$*" "$(color reset)" >&2
+}
+die() { local code="$1"; shift || true; log err "$*"; exit "$code"; }
+[[ -t 2 ]] || USE_COLOR=false
+
+sudo_if_needed() {
+  if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then
+    command -v sudo >/dev/null 2>&1 && printf 'sudo' || printf ''
+  else
+    printf ''
+  fi
+}
+have() { command -v "$1" >/dev/null 2>&1; }
+
+cleanup() { [[ -n "${TMP_DIR}" && -d "${TMP_DIR}" ]] && rm -rf -- "${TMP_DIR}" || true; }
+trap cleanup EXIT
+trap 'log err "Failed at line $LINENO: $BASH_COMMAND"' ERR
+
+usage() {
+  sed -n '2,120p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'
+}
+
+# -------- args --------
+CERES_VERSION_TAG=""
+CUSTOM_URL=""
+
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --version)  CERES_VERSION_TAG="$2"; shift ;;
+      --url)      CUSTOM_URL="$2"; shift ;;
+      --sha512)   EXPECTED_SHA512="$2"; shift ;;
+      --prefix)   CERES_PREFIX="$2"; shift ;;
+      --with-deps) DO_DEPS=1 ;;
+      --no-deps)   DO_DEPS=0 ;;
+      --symlink-bin) DO_SYMLINKS=1 ;;
+      --debug)    DEBUG=true ;;
+      --no-color) USE_COLOR=false ;;
+      -h|--help)  usage; exit 0 ;;
+      *) die 1 "Unknown option: $1" ;;
+    esac
+    shift
+  done
+
+  # Decide tarball URL & expected SHA512
+  if [[ -n "${CUSTOM_URL}" ]]; then
+    TARBALL_URL="${CUSTOM_URL}"
+    [[ -n "${EXPECTED_SHA512}" ]] || EXPECTED_SHA512="${CERES_SHA512_DEFAULT}"
+  else
+    # Use version tag via codeload (default: CERES_VERSION_DEFAULT)
+    CERES_VERSION_TAG="${CERES_VERSION_TAG:-${CERES_VERSION_DEFAULT}}"
+    TARBALL_URL="https://codeload.github.com/ceres-solver/ceres-solver/tar.gz/refs/tags/${CERES_VERSION_TAG}"
+    [[ -n "${EXPECTED_SHA512}" ]] || EXPECTED_SHA512="${CERES_SHA512_DEFAULT}"
+  fi
+
+  log dbg "Tarball URL: ${TARBALL_URL}"
+  log dbg "Expected SHA512: ${EXPECTED_SHA512}"
+}
+
+# -------- deps (best effort) --------
+apt_best_effort_install() {
+  local packages=("$@")
+  local SUDO; SUDO="$(sudo_if_needed)"
+  $SUDO apt-get update -qq
+  for p in "${packages[@]}"; do
+    if ! $SUDO apt-get install --yes --no-install-recommends "$p"; then
+      log warn "Package not available (skipping): $p"
+    fi
+  done
+  $SUDO rm -rf /var/lib/apt/lists/* || true
+}
+
+install_deps() {
+  [[ "${DO_DEPS}" -eq 1 ]] || { log dbg "Skipping apt deps (--no-deps)"; return; }
+  if ! have apt-get; then
+    log warn "apt-get not found; skipping deps install"
+    return
+  fi
+  log info "Installing Ceres Solver build dependencies (best effort)…"
+
+  # Core toolchain
+  local core=(build-essential ca-certificates curl cmake ninja-build pkg-config)
+
+  # Required: Eigen3 (linear algebra), glog (logging), gflags (flags)
+  local required=(
+    libeigen3-dev
+    libgoogle-glog-dev
+    libgflags-dev
+  )
+
+  # BLAS / LAPACK – Ceres needs one of these for dense linear algebra
+  local blas=(libatlas-base-dev liblapack-dev libblas-dev)
+
+  # SuiteSparse – sparse linear algebra (strongly recommended)
+  local sparse=(libsuitesparse-dev libcholmod-dev libcxsparse3 libmetis-dev)
+
+  apt_best_effort_install "${core[@]}"
+  apt_best_effort_install "${required[@]}"
+  apt_best_effort_install "${blas[@]}"
+  apt_best_effort_install "${sparse[@]}"
+}
+
+# -------- fetch & verify --------
+download_source() {
+  mkdir -p -- "${ZIP_CACHE_DIR%/}"
+  local filename
+  filename="ceres-solver-${CERES_VERSION_TAG:-custom}.tar.gz"
+  TARBALL_PATH="${ZIP_CACHE_DIR%/}/${filename}"
+
+  if [[ -f "${TARBALL_PATH}" ]]; then
+    log info "Using cached tarball: ${TARBALL_PATH}"
+    return
+  fi
+
+  log info "Downloading Ceres Solver source from: ${TARBALL_URL}"
+  curl -fsSL --retry 3 --retry-connrefused -o "${TARBALL_PATH}" "${TARBALL_URL}"
+}
+
+verify_sha512() {
+  [[ -n "${EXPECTED_SHA512}" ]] || { log warn "No SHA-512 provided — skipping verification"; return; }
+  local got
+  if have sha512sum; then
+    got="$(sha512sum "${TARBALL_PATH}" | awk '{print $1}')"
+  else
+    die 127 "sha512sum not found"
+  fi
+
+  if [[ "${got}" != "${EXPECTED_SHA512}" ]]; then
+    log warn "SHA-512 mismatch; re-fetching once…
+  expected: ${EXPECTED_SHA512}
+       got: ${got}"
+    rm -f -- "${TARBALL_PATH}"
+    download_source
+    got="$(sha512sum "${TARBALL_PATH}" | awk '{print $1}')"
+    [[ "${got}" == "${EXPECTED_SHA512}" ]] || die 1 "SHA-512 mismatch after re-fetch"
+  fi
+  log ok "SHA-512 verified"
+}
+
+# -------- build & install --------
+configure_and_build() {
+  local SUDO; SUDO="$(sudo_if_needed)"
+  TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/ceres.XXXXXXXX")"
+  SRC_DIR="${TMP_DIR}/src"
+  mkdir -p "${SRC_DIR}"
+  log info "Extracting to: ${SRC_DIR}"
+  tar -xzf "${TARBALL_PATH}" --strip-components=1 -C "${SRC_DIR}"
+
+  log info "Configuring Ceres Solver (prefix: ${CERES_PREFIX})"
+  mkdir -p "${CERES_PREFIX}"
+  local gen="Unix Makefiles"
+  local build_cmd
+  build_cmd="make -j$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 2) VERBOSE=1"
+  if have ninja; then
+    gen="Ninja"
+    build_cmd="ninja -v -j$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 2)"
+  fi
+
+  local cmake_flags=(
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_INSTALL_PREFIX="${CERES_PREFIX}"
+    -DBUILD_SHARED_LIBS=ON
+    -DBUILD_TESTING=OFF
+    -DBUILD_EXAMPLES=OFF
+    -DBUILD_BENCHMARKS=OFF
+    -DCMAKE_VERBOSE_MAKEFILE=ON
+    -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE
+    -DCMAKE_INSTALL_RPATH="${CERES_PREFIX}/lib"
+    -DCMAKE_BUILD_RPATH="${CERES_PREFIX}/lib"
+
+    # Sparse linear algebra backends (auto-disable if deps missing)
+    -DSUITESPARSE=ON
+    -DEIGENSPARSE=ON
+    -DLAPACK=ON
+
+    # Disable CUDA acceleration (no GPU in container)
+    -DCUDA=OFF
+  )
+
+  pushd "${SRC_DIR}" >/dev/null
+    cmake -S . -B build -G "${gen}" "${cmake_flags[@]}"
+    ${build_cmd} -C build
+    ${build_cmd} -C build install
+  popd >/dev/null
+
+  # Register libs (no LD_LIBRARY_PATH)
+  if have ldconfig; then
+    echo "${CERES_PREFIX}/lib" | ${SUDO} tee /etc/ld.so.conf.d/ceres-solver.conf >/dev/null
+    ${SUDO} ldconfig || true
+  fi
+  log ok "Installed Ceres Solver to ${CERES_PREFIX}"
+}
+
+symlink_binaries() {
+  [[ "${DO_SYMLINKS}" -eq 1 ]] || { log dbg "Skipping bin symlinks"; return; }
+  mkdir -p "${UNIVERSAL_BIN}"
+  for b in "${CERES_PREFIX}/bin/"*; do
+    [[ -x "$b" ]] && ln -sf "$b" "${UNIVERSAL_BIN}/$(basename "$b")"
+  done
+  log ok "Symlinked Ceres Solver binaries to ${UNIVERSAL_BIN}"
+}
+
+verify_install() {
+  log info "Verifying Ceres Solver runtime…"
+  # Ceres Solver is a library; verify the headers and shared library exist
+  if [[ ! -f "${CERES_PREFIX}/include/ceres/ceres.h" ]]; then
+    die 1 "ceres.h header not found in ${CERES_PREFIX}/include/ceres/"
+  fi
+  if ! find "${CERES_PREFIX}/lib" -name "libceres*" | grep -q .; then
+    die 1 "libceres not found in ${CERES_PREFIX}/lib"
+  fi
+  log ok "Ceres Solver headers: ${CERES_PREFIX}/include/ceres/ceres.h"
+  log ok "Ceres Solver library: $(find "${CERES_PREFIX}/lib" -name "libceres*" | head -n 1)"
+  log ok "Ceres Solver is ready."
+}
+
+main() {
+  parse_args "$@"
+
+  have curl || die 127 "curl is required"
+  have tar  || die 127 "tar is required"
+  have sha512sum || die 127 "sha512sum is required"
+  install_deps
+  download_source
+  verify_sha512
+  configure_and_build
+  symlink_binaries
+  verify_install
+  log ok "Done."
+}
+
+main "$@"

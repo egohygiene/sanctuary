@@ -1,0 +1,51 @@
+{
+    "id": "docker-proxy",
+    "version": "1.0.0",
+    "name": "Docker Proxy Setup",
+    "description": "Configure Docker proxy and daemon settings",
+    "options": {
+        "http_proxy": {
+            "type": "string",
+            "default": "",
+            "description": "HTTP proxy URL or \"none\" to disable"
+        },
+        "https_proxy": {
+            "type": "string",
+            "default": "",
+            "description": "HTTPS proxy URL or \"none\" to disable"
+        },
+        "no_proxy": {
+            "type": "string",
+            "default": "",
+            "description": "Comma-separated list of hosts that should be excluded from proxy"
+        },
+        "docker_dns": {
+            "type": "string",
+            "default": "8.8.8.8",
+            "description": "DNS server for Docker daemon"
+        },
+        "insecure_registries": {
+            "type": "string",
+            "default": "",
+            "description": "Comma separated list of insecure registries"
+        },
+        "log_file": {
+            "type": "string",
+            "default": "/var/log/.devtools/docker-proxy-setup.log",
+            "description": "File path for docker-proxy setup logs"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils",
+        "ghcr.io/devcontainers/features/docker-in-docker"
+    ],
+    "postCreateCommand": ". /etc/devcontainer/docker-proxy.env && sudo --preserve-env=HTTP_PROXY,HTTPS_PROXY,NO_PROXY,DOCKER_DNS,INSECURE_REGISTRIES,LOG_FILE python3 /usr/local/share/docker-proxy-setup.py --http-proxy \"$HTTP_PROXY\" --https-proxy \"$HTTPS_PROXY\" --no-proxy \"$NO_PROXY\" --docker-dns \"$DOCKER_DNS\" --insecure-registries \"$INSECURE_REGISTRIES\" --log-file \"$LOG_FILE\"",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "github.copilot.chat.codeGeneration.instructions": "Use the Docker proxy setup feature to configure Docker to work behind a proxy."
+            }
+        }
+    }
+}

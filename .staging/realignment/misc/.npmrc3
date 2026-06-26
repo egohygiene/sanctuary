@@ -1,0 +1,33 @@
+# Ensure all dependencies are pinned to exact versions
+save-exact=true
+
+# Speed up installs with local cache
+prefer-offline=true
+
+# Don’t auto-install peerDeps (forces awareness)
+#auto-install-peers=false
+
+# Enforce strict peer dependency resolution
+#strict-peer-dependencies=true
+
+# Avoid writing package-lock.json or node_modules (npm compatibility)
+package-lock=false
+legacy-peer-deps=false
+
+# Ignore optional dependencies (e.g., for production container builds)
+#optional=false
+
+# Respect frozen lock files for CI/CD
+#frozen-lockfile=false
+
+# Set default package manager if fallback occurs
+#package-manager=pnpm
+
+# Don’t allow unsafe lifecycle scripts to run without consent
+ignore-scripts=false
+
+# Don't audit on every install (you can run manually)
+audit=false
+
+# Clean install experience
+fund=false

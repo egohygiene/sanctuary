@@ -1,0 +1,208 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-terminus
+## @brief Install Terminus (Pantheon CLI) as a standalone PHAR.
+## @version 1.0.0
+## @description
+##   Downloads the Terminus PHAR from GitHub releases, installs PHP 8.2+
+##   (via ondrej/php PPA if needed), and places the binary on PATH.
+##   Reference: https://docs.pantheon.io/terminus
+##   Reference: https://github.com/pantheon-systems/terminus
+##
+## @usage
+##   install-terminus [--version x.y.z] [--install-dir <path>]
+##                    [--php-version <n.n>] [--skip-php] [--debug] [--no-color]
+##
+## @options
+##   --version <x.y.z>    Terminus version to install (default: latest).
+##   --install-dir <path> Directory to install the terminus binary (default: /usr/local/bin).
+##   --php-version <n.n>  PHP major.minor version to install (default: 8.3).
+##   --skip-php           Skip PHP installation (use when PHP is already present).
+##   --debug              Extra logging.
+##   --no-color           Disable ANSI colors in logs.
+##   -h, --help           Show help and exit.
+##
+## @env TERMINUS_VERSION    Version to install (default: latest).
+## @env TERMINUS_INSTALL_DIR  Installation directory (default: /usr/local/bin).
+## @env PHP_VERSION         PHP version for the ondrej/php PPA (default: 8.3).
+## @env SKIP_PHP            Skip PHP install when "true" (default: false).
+## @env DEBUG               Verbose logs when "true".
+## @env USE_COLOR           ANSI color (default true).
+
+# ----------------  defaults  ----------------
+OWNER="pantheon-systems"
+REPO="terminus"
+TERMINUS_VERSION="${TERMINUS_VERSION:-}"
+TERMINUS_INSTALL_DIR="${TERMINUS_INSTALL_DIR:-/usr/local/bin}"
+PHP_VERSION="${PHP_VERSION:-8.3}"
+SKIP_PHP="${SKIP_PHP:-false}"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+
+# ----------------  logging  ----------------
+color() {
+  [[ "${USE_COLOR}" == true ]] || { printf ''; return; }
+  case "${1:-}" in
+    red)    printf '\033[31m' ;;
+    green)  printf '\033[32m' ;;
+    yellow) printf '\033[33m' ;;
+    cyan)   printf '\033[36m' ;;
+    reset)  printf '\033[0m'  ;;
+  esac
+}
+log() {
+  local t="$1"; shift || true
+  local p c
+  case "$t" in
+    info)  p='👉'; c=$(color cyan)   ;;
+    ok)    p='✅'; c=$(color green)  ;;
+    warn)  p='⚠️ '; c=$(color yellow) ;;
+    err)   p='❌'; c=$(color red)    ;;
+    dbg)   [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan) ;;
+    *)     p='';  c=$(color reset)  ;;
+  esac
+  printf '%s%s %s%s\n' "$c" "$p" "$*" "$(color reset)" >&2
+}
+die() { local c="$1"; shift || true; log err "$*"; exit "$c"; }
+[[ -t 2 ]] || USE_COLOR=false
+have() { command -v "$1" >/dev/null 2>&1; }
+
+usage() { sed -n '2,50p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'; }
+
+# ----------------  args  ----------------
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --version)      TERMINUS_VERSION="$2"; shift ;;
+    --install-dir)  TERMINUS_INSTALL_DIR="$2"; shift ;;
+    --php-version)  PHP_VERSION="$2"; shift ;;
+    --skip-php)     SKIP_PHP=true ;;
+    --debug)        DEBUG=true ;;
+    --no-color)     USE_COLOR=false ;;
+    -h|--help)      usage; exit 0 ;;
+    *) die 1 "Unknown option: $1" ;;
+  esac; shift
+done
+
+# ----------------  helpers  ----------------
+get_latest_version() {
+  curl -s "https://api.github.com/repos/${OWNER}/${REPO}/releases/latest" \
+    | grep '"tag_name":' \
+    | sed -E 's/.*"([0-9][^"]+)".*/\1/'
+}
+
+# ----------------  PHP install  ----------------
+install_php() {
+  if [[ "${SKIP_PHP}" == true ]]; then
+    log info "Skipping PHP installation (--skip-php)."
+    return 0
+  fi
+
+  if have php; then
+    local installed_ver
+    installed_ver="$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')"
+    log ok "PHP ${installed_ver} already installed: $(command -v php)"
+    # Terminus requires PHP 8.2+; warn but do not abort if existing version is sufficient.
+    return 0
+  fi
+
+  have wget  || die 127 "wget is required but not found"
+  have gpg   || die 127 "gpg is required but not found"
+
+  log info "Adding ondrej/php PPA for PHP ${PHP_VERSION}…"
+  mkdir -p /etc/apt/trusted.gpg.d
+  wget -qO - https://packages.sury.org/php/apt.gpg \
+    | gpg --dearmor \
+    | tee /etc/apt/trusted.gpg.d/sury-php.gpg > /dev/null
+
+  local codename
+  codename="$(awk -F= '/^VERSION_CODENAME/{print $2}' /etc/os-release)"
+  log info "Detected Ubuntu codename: ${codename}"
+
+  echo "deb https://packages.sury.org/php/ ${codename} main" \
+    | tee /etc/apt/sources.list.d/sury-php.list > /dev/null
+
+  log info "Updating apt package index…"
+  apt-get update -qq
+
+  local package="php${PHP_VERSION}"
+  log info "Installing ${package} and required extensions…"
+  apt-get install --yes --no-install-recommends \
+    "${package}" \
+    "${package}-cli" \
+    "${package}-curl" \
+    "${package}-mbstring" \
+    "${package}-xml" \
+    "${package}-zip"
+
+  log ok "PHP ${PHP_VERSION} installed: $(command -v php)"
+}
+
+# ----------------  terminus install  ----------------
+install_terminus() {
+  local version="$1"
+
+  local phar_url="https://github.com/${OWNER}/${REPO}/releases/download/${version}/terminus.phar"
+  local tmp_phar="/tmp/terminus.phar"
+
+  log info "Downloading Terminus ${version} from ${phar_url}…"
+  curl -fsSL "${phar_url}" -o "${tmp_phar}"
+
+  # Attempt checksum verification via GitHub releases API digest
+  local checksums_url="https://github.com/${OWNER}/${REPO}/releases/download/${version}/terminus.phar.sha256sum"
+  local checksums_file="/tmp/terminus.phar.sha256sum"
+  if curl -fsSL "${checksums_url}" -o "${checksums_file}" 2>/dev/null; then
+    EXPECTED=$(awk '{print $1}' "${checksums_file}" | head -1 || true)
+    if [[ -n "${EXPECTED}" ]]; then
+      log info "Verifying SHA256 checksum…"
+      if have sha256sum; then
+        echo "${EXPECTED}  ${tmp_phar}" | sha256sum --check --quiet
+      elif have shasum; then
+        echo "${EXPECTED}  ${tmp_phar}" | shasum -a 256 --check --quiet
+      else
+        log warn "No sha256sum or shasum found; skipping checksum verification."
+      fi
+      log ok "Checksum verified."
+    fi
+    rm -f "${checksums_file}"
+  else
+    log warn "No checksums file found at ${checksums_url}; skipping verification."
+  fi
+
+  log info "Installing terminus to ${TERMINUS_INSTALL_DIR}/terminus…"
+  mkdir -p "${TERMINUS_INSTALL_DIR}"
+  mv "${tmp_phar}" "${TERMINUS_INSTALL_DIR}/terminus"
+  chmod +x "${TERMINUS_INSTALL_DIR}/terminus"
+
+  log ok "Terminus installed at $(command -v terminus)"
+}
+
+# ----------------  verify  ----------------
+verify() {
+  log info "Verifying terminus on PATH…"
+  if have terminus; then
+    terminus --version 2>&1 | head -1 || true
+    log ok "terminus installed: $(command -v terminus)"
+  else
+    die 1 "terminus not found after install; ensure ${TERMINUS_INSTALL_DIR} is on PATH."
+  fi
+}
+
+# ----------------  main  ----------------
+main() {
+  if [[ -z "${TERMINUS_VERSION}" ]]; then
+    log info "Fetching latest Terminus release…"
+    TERMINUS_VERSION="$(get_latest_version)"
+    [[ -n "${TERMINUS_VERSION}" ]] || die 1 "Failed to determine latest Terminus version."
+    log info "Latest version: ${TERMINUS_VERSION}"
+  fi
+
+  install_php
+  install_terminus "${TERMINUS_VERSION}"
+  verify
+
+  log ok "Done — Terminus ${TERMINUS_VERSION} installed."
+}
+
+main "$@"

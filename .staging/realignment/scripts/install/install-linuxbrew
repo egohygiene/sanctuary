@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+## @file install-linuxbrew
+## @brief Install Homebrew (Linuxbrew) on Linux.
+## @version 1.0.0
+## @description
+##   Installs Homebrew on Linux using the official installer script.
+##   By default creates a dedicated 'linuxbrew' system user and installs
+##   Homebrew to /home/linuxbrew/.linuxbrew, the canonical Linux prefix.
+##   Also grants the 'vscode' user (when present) access to brew via group
+##   membership so that the devcontainer user can run brew without sudo.
+##   Reference: https://docs.brew.sh/Homebrew-on-Linux
+##
+## @usage
+##   install-linuxbrew [--prefix <path>] [--brew-user <name>] [--debug] [--no-color]
+##
+## @options
+##   --prefix <path>     Homebrew installation prefix (default: /home/linuxbrew/.linuxbrew).
+##   --brew-user <name>  System user that owns the Homebrew installation (default: linuxbrew).
+##   --debug             Extra logging.
+##   --no-color          Disable ANSI colors in logs.
+##   -h, --help          Show help and exit.
+##
+## @env HOMEBREW_PREFIX   Homebrew installation prefix (default: /home/linuxbrew/.linuxbrew).
+## @env BREW_USER         System user that owns the installation (default: linuxbrew).
+## @env DEBUG             Verbose logs when "true".
+## @env USE_COLOR         ANSI color (default true).
+
+# ---------------- defaults ----------------
+HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-/home/linuxbrew/.linuxbrew}"
+BREW_USER="${BREW_USER:-linuxbrew}"
+USE_COLOR="${USE_COLOR:-true}"
+DEBUG="${DEBUG:-false}"
+
+# ---------------- logging ----------------
+color() { [[ "${USE_COLOR}" == true ]] || { printf ''; return; }
+  case "${1:-}" in red) printf '\033[31m';; green) printf '\033[32m';;
+    yellow) printf '\033[33m';; cyan) printf '\033[36m';; reset) printf '\033[0m';; esac; }
+log() { local t="$1"; shift || true; local p c;
+  case "$t" in info) p='👉'; c=$(color cyan);;
+    ok) p='✅'; c=$(color green);;
+    warn) p='⚠️ '; c=$(color yellow);;
+    err) p='❌'; c=$(color red);;
+    dbg) [[ "${DEBUG}" == true ]] || return 0; p='🐞'; c=$(color cyan);;
+    *) p=''; c=$(color reset);; esac
+  printf '%s%s %s%s\n' "$c" "$p" "$*" "$(color reset)" >&2; }
+die() { local c="$1"; shift || true; log err "$*"; exit "$c"; }
+[[ -t 2 ]] || USE_COLOR=false
+have() { command -v "$1" >/dev/null 2>&1; }
+
+usage() { sed -n '2,120p' "${BASH_SOURCE[0]}" | sed -n '/^## @file/,/^## @env/p' | sed 's/^## \{0,1\}//'; }
+
+# ---------------- args ----------------
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --prefix)     HOMEBREW_PREFIX="$2"; shift ;;
+    --brew-user)  BREW_USER="$2"; shift ;;
+    --debug)      DEBUG=true ;;
+    --no-color)   USE_COLOR=false ;;
+    -h|--help)    usage; exit 0 ;;
+    *) die 1 "Unknown option: $1" ;;
+  esac; shift
+done
+
+# ---------------- helpers ----------------
+create_brew_user() {
+  if id "${BREW_USER}" &>/dev/null; then
+    log info "User '${BREW_USER}' already exists"
+    return 0
+  fi
+  log info "Creating '${BREW_USER}' system user…"
+  useradd --system --create-home --shell /bin/bash "${BREW_USER}"
+  log ok "Created user '${BREW_USER}'"
+}
+
+install_homebrew() {
+  local brew_bin="${HOMEBREW_PREFIX}/bin/brew"
+
+  if [[ -x "${brew_bin}" ]]; then
+    log info "Homebrew already installed at ${brew_bin}"
+    return 0
+  fi
+
+  have curl || die 127 "curl is required but not found"
+
+  log info "Installing Homebrew to ${HOMEBREW_PREFIX}…"
+
+  # Ensure the prefix parent directory exists and is owned by the brew user.
+  mkdir -p "$(dirname "${HOMEBREW_PREFIX}")"
+  chown "${BREW_USER}:" "$(dirname "${HOMEBREW_PREFIX}")"
+
+  # Run the official Homebrew installer as the designated non-root user.
+  su -s /bin/bash "${BREW_USER}" -c \
+    "NONINTERACTIVE=1 HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_AUTO_UPDATE=1 \
+     /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+}
+
+configure_permissions() {
+  # Grant the 'vscode' devcontainer user read/write access to the Homebrew
+  # installation so that packages can be managed without sudo.
+  if id vscode &>/dev/null && [[ "${BREW_USER}" != "vscode" ]]; then
+    log info "Adding 'vscode' to '${BREW_USER}' group for brew access…"
+    usermod -aG "${BREW_USER}" vscode 2>/dev/null || true
+    chgrp -R "${BREW_USER}" "${HOMEBREW_PREFIX}" 2>/dev/null || true
+    chmod -R g+rwX "${HOMEBREW_PREFIX}" 2>/dev/null || true
+    log ok "Permissions configured for 'vscode' user"
+  fi
+
+  # Ensure Homebrew cache and log directories are writable.
+  for dir in "${HOMEBREW_CACHE:-}" "${HOMEBREW_LOGS:-}" "${HOMEBREW_TEMP:-}"; do
+    [[ -z "${dir}" ]] && continue
+    mkdir -p "${dir}"
+    chown -R "${BREW_USER}:" "${dir}" 2>/dev/null || true
+    chmod -R g+rwX "${dir}" 2>/dev/null || true
+  done
+}
+
+# ---------------- verify ----------------
+verify() {
+  local brew_bin="${HOMEBREW_PREFIX}/bin/brew"
+  log info "Verifying brew on PATH…"
+  if [[ -x "${brew_bin}" ]]; then
+    su -s /bin/bash "${BREW_USER}" -c "${brew_bin} --version" 2>/dev/null || true
+    log ok "Homebrew installed: ${brew_bin}"
+  else
+    die 1 "brew not found at ${brew_bin} after install"
+  fi
+}
+
+# ---------------- main ----------------
+main() {
+  log info "Setting up Homebrew (Linuxbrew)…"
+  create_brew_user
+  install_homebrew
+  configure_permissions
+  verify
+  log ok "Done — Homebrew installed to ${HOMEBREW_PREFIX}."
+}
+
+main "$@"

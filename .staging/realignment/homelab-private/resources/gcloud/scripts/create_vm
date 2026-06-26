@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+# Function to display help.
+show_help() {
+  echo "Usage: $0 INSTANCE [options]"
+  echo
+  echo "INSTANCE                                            The VM instance's name (required)"
+  echo "Options:"
+  echo "  -p, --project NAME                                Set the project name (default: audiora)"
+  echo "  -startup, --startup-script STARTUP_SCRIPT_PATH    Set the path of the startup script (default: ./startup)"
+  echo "  -shutdown, --shutdown-script SHUTDOWN_SCRIPT_PATH Set the path of the shutdown script (default: ./shutdown)"
+  echo "  -z, --zone ZONE                                   Set the zone to use (default: us-east1-b)"
+  echo "  -m, --machine-type MACHINE_TYPE                   Set the machine type to use (default: e2-medium)"
+  echo "  -h, --help                                        Display this help message"
+}
+
+# Check if at least one argument is provided.
+if [[ "$#" -eq 0 ]]; then
+  echo "Error: No arguments provided."
+  show_help
+  exit 1
+fi
+
+# The first argument is the required "instance".
+INSTANCE_NAME="$1"
+shift # Remove the first argument from the list.
+
+# Default values.
+PROJECT_NAME="audiora"
+STARTUP_SCRIPT_PATH="./startup"
+SHUTDOWN_SCRIPT_PATH="./shutdown"
+ZONE="us-east1-b"
+MACHINE_TYPE="e2-medium"
+
+# Parse command-line options.
+while (( "$#" )); do
+  case "$1" in
+    -p|--project)
+      PROJECT_NAME="$2"
+      shift 2
+      ;;
+    -startup|--startup-script)
+      STARTUP_SCRIPT_PATH="$2"
+      shift 2
+      ;;
+    -shutdown|--shutdown-script)
+      SHUTDOWN_SCRIPT_PATH="$2"
+      shift 2
+      ;;
+    -z|--zone)
+      ZONE="$2"
+      shift 2
+      ;;
+    -m|--machine-type)
+      MACHINE_TYPE="$2"
+      shift 2
+      ;;
+    -h|--help)
+      show_help
+      exit 0
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*) # unsupported flags
+      echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+    *) # preserve positional arguments
+      shift
+      ;;
+  esac
+done
+
+# Create a new VM instance with the startup script
+gcloud compute instances create "${INSTANCE_NAME}" \
+    --project="${PROJECT_NAME}" \
+    --zone="${ZONE}" \
+    --machine-type="${MACHINE_TYPE}" \
+    --metadata-from-file startup-script="${STARTUP_SCRIPT_PATH}" \
+    --metadata-from-file shutdown-script="${SHUTDOWN_SCRIPT_PATH}" \
+    --network-interface=network-tier=PREMIUM,stack-type=IPV4_ONLY,subnet=default \
+    --maintenance-policy=MIGRATE \
+    --provisioning-model=STANDARD \
+    --service-account=877703078836-compute@developer.gserviceaccount.com \
+    --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+    --enable-display-device \
+    --tags=http-server,https-server \
+    --create-disk=auto-delete=yes,boot=yes,device-name=base,image=projects/debian-cloud/global/images/debian-11-bullseye-v20230912,mode=rw,size=10,type=projects/audiora/zones/us-central1-a/diskTypes/pd-balanced \
+    --no-shielded-secure-boot \
+    --shielded-vtpm \
+    --shielded-integrity-monitoring \
+    --labels=goog-ec-src=vm_add-gcloud \
+    --reservation-affinity=any \
+    --metadata serial-port-enable=TRUE
+
+echo "VM instance ${INSTANCE_NAME} created."

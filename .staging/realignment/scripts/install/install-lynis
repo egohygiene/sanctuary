@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ============================================
+# install-lynis
+# Install Lynis from GitHub release archive.
+# Reference: https://github.com/CISOfy/lynis
+# Supports: latest or specific version
+# ============================================
+
+# -----------------------------
+# Config
+# -----------------------------
+OWNER="CISOfy"
+REPO="lynis"
+INSTALL_DIR="/opt/lynis"
+BIN_LINK="/usr/local/bin/lynis"
+
+# -----------------------------
+# Functions
+# -----------------------------
+
+get_latest_release() {
+  curl -s "https://api.github.com/repos/$OWNER/$REPO/releases/latest" \
+    | grep '"tag_name":' \
+    | sed -E 's/.*"([^"]+)".*/\1/'
+}
+
+download_and_install() {
+  local version="$1"
+
+  FILENAME="lynis-${version}.tar.gz"
+  DOWNLOAD_URL="https://github.com/${OWNER}/${REPO}/releases/download/${version}/${FILENAME}"
+
+  echo "📦 Downloading Lynis ${version} from ${DOWNLOAD_URL}..."
+  curl -fsSL "$DOWNLOAD_URL" -o "/tmp/$FILENAME"
+
+  echo "📂 Extracting and installing to $INSTALL_DIR..."
+  sudo rm -rf "$INSTALL_DIR"
+  sudo mkdir -p "$(dirname "$INSTALL_DIR")"
+  sudo tar -xzf "/tmp/$FILENAME" -C "$(dirname "$INSTALL_DIR")"
+  sudo chmod 0755 "$INSTALL_DIR"
+  sudo chmod 0640 "$INSTALL_DIR/default.prf"
+  rm -f "/tmp/$FILENAME"
+
+  echo "🔗 Creating symlink at $BIN_LINK..."
+  sudo ln -sf "$INSTALL_DIR/lynis" "$BIN_LINK"
+  sudo chmod +x "$BIN_LINK"
+
+  echo "✅ Installed Lynis ${version} at $(command -v lynis)"
+  lynis --version
+}
+
+# -----------------------------
+# Main
+# -----------------------------
+usage() {
+  echo "Usage: $0 [--version x.y.z] [--help]"
+  exit 1
+}
+
+VERSION=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --version)
+      VERSION="$2"
+      shift 2
+      ;;
+    --help|-h)
+      usage
+      ;;
+    *)
+      echo "❌ Unknown argument: $1"
+      usage
+      ;;
+  esac
+done
+
+if [[ -z "$VERSION" ]]; then
+  echo "🔍 Fetching latest Lynis release..."
+  VERSION=$(get_latest_release)
+fi
+
+download_and_install "$VERSION"
