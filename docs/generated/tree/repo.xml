@@ -30537,6 +30537,15 @@
     </directory>
   </directory>
   <directory name="docs" path="docs">
+    <directory name="architecture" path="docs/architecture">
+      <file name="audit.md" path="docs/architecture/audit.md" />
+      <file name="duplication-report.md" path="docs/architecture/duplication-report.md" />
+      <file name="extraction-candidates.md" path="docs/architecture/extraction-candidates.md" />
+      <file name="index.md" path="docs/architecture/index.md" />
+      <file name="modernization-report.md" path="docs/architecture/modernization-report.md" />
+      <file name="responsibility-matrix.md" path="docs/architecture/responsibility-matrix.md" />
+      <file name="roadmap.md" path="docs/architecture/roadmap.md" />
+    </directory>
     <directory name="copilot" path="docs/copilot">
       <file name="COPILOT_ALLOWLIST.md" path="docs/copilot/COPILOT_ALLOWLIST.md" />
     </directory>
