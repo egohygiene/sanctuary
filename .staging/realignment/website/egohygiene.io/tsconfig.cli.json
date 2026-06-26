@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+
+  "compilerOptions": {
+    "composite": false,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "dist-cli",
+    "declaration": false,
+    "noEmit": false,
+    "types": ["node"]
+  },
+
+  "include": [
+    "scripts",
+    "src/utils/cli", // Optional shared helpers
+    "vite.config.ts" // CLI-friendly build config too
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "generated"
+  ]
+}

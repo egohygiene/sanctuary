@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Entity Relationships",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["from", "to", "type", "description"],
+    "properties": {
+      "from": { "type": "string" },
+      "to": { "type": "string" },
+      "type": { "type": "string" },
+      "description": { "type": "string" }
+    }
+  }
+}

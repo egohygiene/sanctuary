@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "slug": "mindfulness",
+    "term": "Mindfulness",
+    "definition": "The quality of being present and fully engaged with whatever we are doing in the moment."
+  },
+  {
+    "id": "2",
+    "slug": "neuroplasticity",
+    "term": "Neuroplasticity",
+    "definition": "The brain's ability to reorganize itself by forming new neural connections throughout life."
+  },
+  {
+    "id": "3",
+    "slug": "somatics",
+    "term": "Somatics",
+    "definition": "Practices that emphasize internal physical perception and experience of the body."
+  }
+]

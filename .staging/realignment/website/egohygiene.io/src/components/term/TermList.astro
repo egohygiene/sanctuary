@@ -1,0 +1,21 @@
+---
+import type { Term } from '@egohygiene/models';
+import TermCard from './TermCard.astro';
+const { terms } = Astro.props as { terms: Term[] };
+---
+<ul class="term-list">
+  {terms.map(t => (
+    <li><TermCard term={t} /></li>
+  ))}
+</ul>
+
+<style>
+.term-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.term-list li {
+  margin: 0;
+}
+</style>

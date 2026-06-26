@@ -1,0 +1,41 @@
+---
+const categories = [
+  'psychology',
+  'metaphysics',
+  'meditation',
+  'systems thinking',
+  'dreamwork',
+  'technology',
+  'alchemic rituals'
+];
+---
+<div id="landing-carousel" class="overflow-x-auto py-8" data-animate>
+  <div class="flex gap-4 px-4 min-w-max motion-safe:opacity-0 motion-safe:translate-y-6 transition-all duration-700">
+    {categories.map(cat => (
+      <div class="flex-shrink-0 w-48 h-28 rounded-lg bg-gray-200 dark:bg-gray-700 overflow-hidden relative shadow-lg" style={`background-image:url('/assets/categories/${cat.replace(/\s+/g,'-')}.jpg'); background-size:cover; background-position:center;`}>
+        <div class="absolute inset-0 bg-black/30 flex items-end">
+          <span class="text-white text-sm p-2">{cat}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+#landing-carousel[data-visible] .motion-safe\:opacity-0{
+  opacity:1;transform:none;
+}
+#landing-carousel .motion-safe\:opacity-0{
+  opacity:0;transform:translateY(1.5rem);
+}
+</style>
+
+<script>
+const carousel: HTMLElement | null = document.getElementById('landing-carousel');
+if (carousel){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting) carousel.setAttribute('data-visible','');});
+  },{threshold:0.2});
+  obs.observe(carousel);
+}
+</script>

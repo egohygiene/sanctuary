@@ -1,0 +1,21 @@
+---
+import type { GetStaticPathsResult } from "astro";
+import { TermLayout } from '@egohygiene/components';
+import { loadTerms, mapTermsBySlug, type Term } from '@egohygiene/models';
+import type { AstroParams } from "@egohygiene/types/astro";
+
+type Params = { slug: string };
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  const terms: Term[] = await loadTerms();
+  return terms.map(term => ({ params: { slug: term.slug } }));
+}
+
+const { slug } = Astro.params as AstroParams<Params>;
+const termMap: Record<string, Term> = await mapTermsBySlug();
+const term: Term = termMap[slug];
+if (!term) {
+  throw new Error(`Term not found: ${slug}`);
+}
+---
+<TermLayout term={term} />

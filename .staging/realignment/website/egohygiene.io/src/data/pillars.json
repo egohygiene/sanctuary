@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "slug": "self-awareness",
+    "title": "Self Awareness",
+    "subtitle": "Know Thyself",
+    "description": "Understanding of personal strengths and weaknesses.",
+    "domains": ["mind", "body"],
+    "aspects": ["growth", "reflection"],
+    "tags": ["introspection", "mindfulness"],
+    "quote": "To know yourself is the beginning of wisdom.",
+    "image": "/images/pillars/self-awareness.jpg"
+  }
+]

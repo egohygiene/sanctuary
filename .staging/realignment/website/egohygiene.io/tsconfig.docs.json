@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+
+  "compilerOptions": {
+    "noEmit": true // Docs tools only need the type graph
+  },
+
+  "include": [
+    "src"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-node",
+    ".cache",
+    "generated",
+    "tests",
+    "**/*.test.*",
+    "**/*.stories.*"
+  ]
+}

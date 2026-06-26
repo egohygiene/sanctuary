@@ -1,0 +1,33 @@
+<!--
+  @file manager-head.html
+  @description Customizes Storybook's Manager UI (sidebar, docs tab, toolbar).
+  Applies styling fixes and branding enhancements.
+  Inspired by Elastic UI: https://github.com/elastic/eui/blob/main/.storybook/manager-head.html
+-->
+
+<!-- 🎨 Fix code overflow in ArgsTable in Docs tab -->
+<style>
+  .docblock-argstable code {
+    white-space: pre-wrap !important;
+    word-break: break-word;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .docblock-argstable td {
+    vertical-align: top;
+  }
+</style>
+
+<!-- 🧠 Optional: Branding / theme-color / font override -->
+<!--
+<link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+<meta name="theme-color" content="#0d1117" />
+-->
+
+<!-- 🛠 Optional: Override Docs sidebar layout, padding, etc. -->
+<!--
+<style>
+  .sidebar-header { padding: 1rem; }
+</style>
+-->

@@ -1,0 +1,9 @@
+{
+    "cSpell.words": [
+        "drei",
+        "egohygiene",
+        "mdast"
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true
+}

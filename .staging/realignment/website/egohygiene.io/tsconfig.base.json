@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    // 🧠 Strictest Type Checking
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+
+    // 📦 Module Resolution
+    "module": "ESNext",
+    "target": "ES2022",
+    "moduleResolution": "bundler",
+    "moduleDetection": "auto",
+    "verbatimModuleSyntax": false,
+    "preserveSymlinks": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@": ["src/*"]
+    },
+    "rootDirs": ["src", "generated"],
+    "rewriteRelativeImportExtensions": true,
+    "customConditions": [],
+
+    // 🛠 Emit & Declarations (override per target)
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "generated/types",
+    "emitDeclarationOnly": false, // Override in `tsconfig.types.json`
+    "sourceMap": true,
+    "outDir": "dist",
+    "newLine": "lf",
+    "downlevelIteration": true,
+    "importHelpers": true,
+
+    // ✋ Don’t Emit JS by default
+    "noEmit": true,
+
+    // 📚 Libraries
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+    // 🌐 JSX defaults — override in app-specific config
+    "jsx": "preserve",
+
+    // 🧱 Project-level behavior
+    "composite": false,
+    "incremental": true,
+    "tsBuildInfoFile": "generated/tsconfig.tsbuildinfo",
+
+    // 👁 Debugging & Diagnostics (disabled by default)
+    "pretty": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // 🚫 JS support turned off (can override for migration)
+    "allowJs": false,
+    "checkJs": false,
+
+    // 🔬 Experimental / Decorators — override per target
+    "experimentalDecorators": false,
+    "emitDecoratorMetadata": false,
+
+    // 🔒 Safe constraints (leave strict)
+    "allowUmdGlobalAccess": false,
+    "allowArbitraryExtensions": false,
+    "allowImportingTsExtensions": false,
+    "noUncheckedSideEffectImports": true,
+    "noResolve": false
+  },
+
+  // 🧹 Ignore folders in base
+  "exclude": ["dist", "node_modules"],
+
+  // 🕵️ Watch settings (opt-in)
+  "watchOptions": {
+    "excludeDirectories": ["**/node_modules", "_build", "temp/*"]
+  }
+}

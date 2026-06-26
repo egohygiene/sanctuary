@@ -1,0 +1,30 @@
+---
+import type { SynapseRow } from '../../lib/getSynapses';
+import { SynapseCard } from '@egohygiene/components';
+
+const { synapses } = Astro.props as { synapses: SynapseRow[] };
+---
+<ul class="synapse-list">
+  {synapses.map((syn) => (
+    <li><SynapseCard synapse={syn} /></li>
+  ))}
+</ul>
+
+<style>
+.synapse-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.synapse-list li {
+  width: calc(50% - 1rem);
+}
+@media (max-width: 720px) {
+  .synapse-list li {
+    width: 100%;
+  }
+}
+</style>

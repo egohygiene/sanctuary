@@ -1,0 +1,24 @@
+---
+import { BaseHead, Header, Footer, FormattedDate } from '@egohygiene/components';
+import type { SynapseRow } from '../../lib/getSynapses';
+
+const { synapse } = Astro.props as { synapse: SynapseRow };
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={synapse.title} description={synapse.content.slice(0, 120)} />
+  </head>
+  <body>
+    <Header />
+    <main class="max-w-3xl mx-auto p-4">
+      <article>
+        <h1 class="text-3xl font-bold mb-2">{synapse.title}</h1>
+        <p class="text-sm text-gray-600 mb-4"><FormattedDate date={new Date(synapse.created_at)} /></p>
+        <div class="prose mb-6">{synapse.content}</div>
+        <p class="text-sm text-indigo-600">{synapse.tags ? synapse.tags.split(',').map(t => `#${t.trim()}`).join(' ') : ''}</p>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

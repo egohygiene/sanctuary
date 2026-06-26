@@ -1,0 +1,22 @@
+---
+import { BaseHead, Header, Footer } from '@egohygiene/components';
+import type { Term } from '@egohygiene/models';
+
+const { term } = Astro.props as { term: Term };
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={term.term} description={term.definition.slice(0, 120)} />
+  </head>
+  <body>
+    <Header />
+    <main class="max-w-3xl mx-auto p-4">
+      <article>
+        <h1 class="text-3xl font-bold mb-4">{term.term}</h1>
+        <p class="text-lg text-gray-700">{term.definition}</p>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

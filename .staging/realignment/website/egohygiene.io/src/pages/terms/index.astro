@@ -1,0 +1,21 @@
+---
+import { BaseHead, Header, Footer, TermList } from '@egohygiene/components';
+import { loadTerms, type Term } from '@egohygiene/models';
+import { SITE_TITLE, SITE_DESCRIPTION } from '@egohygiene/consts';
+
+const terms: Term[] = await loadTerms();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} - Terms`} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="max-w-3xl mx-auto p-4">
+      <h1 class="text-3xl font-bold mb-4">Terms</h1>
+      <TermList terms={terms} />
+    </main>
+    <Footer />
+  </body>
+</html>

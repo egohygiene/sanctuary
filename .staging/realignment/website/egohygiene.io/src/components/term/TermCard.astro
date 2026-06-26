@@ -1,0 +1,29 @@
+---
+import type { Term } from '@egohygiene/models';
+const { term } = Astro.props as { term: Term };
+---
+<article class="term-card">
+  <h4 class="name">{term.term}</h4>
+  <p class="definition">{term.definition}</p>
+</article>
+
+<style>
+.term-card {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgb(var(--gray-light));
+}
+.term-card .name {
+  flex: 0 0 160px;
+  margin: 0;
+  font-weight: 600;
+  color: rgb(var(--black));
+}
+.term-card .definition {
+  margin: 0;
+  color: rgb(var(--gray-dark));
+}
+</style>

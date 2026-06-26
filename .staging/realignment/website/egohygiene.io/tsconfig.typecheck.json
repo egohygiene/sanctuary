@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.app.json",
+
+  "compilerOptions": {
+    "noEmit": true // ✅ Type checking only, no output
+  },
+
+  "include": [
+    "src",
+    "db",
+    "plugins",
+    "astro.config.mts",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "src/env.d.ts",
+    "src/astro-shim.d.ts",
+    ".astro/types.d.ts",
+    "types/**/*.d.ts",
+    "astro.config.*",
+    "**/*.astro"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-node",
+    "coverage",
+    "generated",
+    ".cache"
+  ],
+  "typeRoots": ["./types", "./node_modules/@types"]
+}

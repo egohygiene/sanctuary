@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+
+  "compilerOptions": {
+    // 📦 Storybook (React + MDX)
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "types": ["storybook__react", "vite/client"]
+  },
+
+  "include": [
+    ".storybook",
+    "src",
+    "stories"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "generated",
+    "**/*.test.*"
+  ]
+}

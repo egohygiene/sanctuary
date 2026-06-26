@@ -1,0 +1,21 @@
+.synapse-card {
+  padding: 0.5rem;
+}
+.synapse-card .title {
+  margin: 0 0 0.25rem 0;
+  color: rgb(var(--black));
+}
+.synapse-card .date {
+  margin: 0 0 0.5rem 0;
+  color: rgb(var(--gray));
+  font-size: 0.9em;
+}
+.synapse-card .excerpt {
+  margin: 0 0 0.5rem 0;
+  color: rgb(var(--gray-dark));
+}
+.synapse-card .tags {
+  margin: 0;
+  font-size: 0.85em;
+  color: rgb(var(--accent));
+}

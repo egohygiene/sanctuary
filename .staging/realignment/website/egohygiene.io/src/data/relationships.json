@@ -1,0 +1,8 @@
+[
+  {
+    "from": "synapse:gratitude-practice",
+    "to": "pillar:self-awareness",
+    "type": "belongs_to",
+    "description": "This synapse is part of the self-awareness pillar"
+  }
+]

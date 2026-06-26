@@ -1,0 +1,20 @@
+---
+import { BaseHead, Header, Footer, SynapseList } from '@egohygiene/components';
+import { SITE_TITLE, SITE_DESCRIPTION } from '@egohygiene/consts';
+import { getSynapses } from '../lib/getSynapses';
+
+const synapses = getSynapses();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <SynapseList synapses={synapses} />
+    </main>
+    <Footer />
+  </body>
+</html>

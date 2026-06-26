@@ -1,0 +1,28 @@
+---
+import { BaseHead, Header, Footer } from '@egohygiene/components';
+import { getSynapseBySlug } from '../../lib/getSynapseBySlug';
+import { SITE_TITLE } from '@egohygiene/consts';
+
+const { slug } = Astro.params;
+const synapse = getSynapseBySlug(slug!);
+if (!synapse) {
+  throw new Error('Synapse not found');
+}
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${synapse.title} | ${SITE_TITLE}`} description={synapse.content.slice(0, 100)} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article>
+        <h1>{synapse.title}</h1>
+        <p>{synapse.content}</p>
+        {synapse.tags && <p>{synapse.tags.split(',').map((t) => `#${t}`).join(' ')}</p>}
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

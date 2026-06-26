@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Glossary Term",
+  "type": "object",
+  "required": ["id", "slug", "term", "definition"],
+  "properties": {
+    "id": { "type": "string" },
+    "slug": { "type": "string" },
+    "term": { "type": "string" },
+    "definition": { "type": "string" }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "website",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "egohygiene.io"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter egohygiene.io dev",
+    "build": "pnpm --filter egohygiene.io build",
+    "preview": "pnpm --filter egohygiene.io preview",
+    "astro": "pnpm --filter egohygiene.io astro",
+    "typecheck": "pnpm --filter egohygiene.io typecheck",
+    "validate-data": "ts-node --esm scripts/validate-data.ts",
+    "lint": "pnpm --filter egohygiene.io lint",
+    "format": "pnpm --filter egohygiene.io format"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.15",
+    "ajv": "^8.12.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

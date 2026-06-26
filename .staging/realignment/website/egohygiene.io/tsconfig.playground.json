@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+
+  "compilerOptions": {
+    "noEmit": true // Just typecheck — no output needed
+  },
+
+  "include": [
+    "playground"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-node",
+    ".cache",
+    "coverage"
+  ]
+}

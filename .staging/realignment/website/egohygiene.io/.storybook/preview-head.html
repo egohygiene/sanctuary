@@ -1,0 +1,33 @@
+<!--
+  @file preview-head.html
+  @description Injected into the <head> of Storybook’s preview iframe.
+  Provides polyfills and global shims for Vite + Storybook compatibility.
+  Also used for theming, branding, and loading global fonts/scripts/styles.
+-->
+
+<!-- ✅ Vite compatibility fix for interaction tests -->
+<script>
+  // Some libraries expect a `global` object to exist (like in Node).
+  window.global = window;
+</script>
+
+<!-- 🎨 Optional: Add a favicon for your stories -->
+<link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+
+<!-- 🎨 Optional: Global dark mode styles or theme overrides -->
+<style>
+  html.dark {
+    background-color: #0d1117;
+    color: #ffffff;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+  }
+</style>
+
+<!-- 🧩 Optional: Load global fonts or web assets -->
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"> -->

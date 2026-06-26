@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "slug": "gratitude-practice",
+    "title": "Gratitude Practice",
+    "content": "Write down things you are grateful for.",
+    "tags": [
+      "mindfulness"
+    ],
+    "created": "2024-01-01T00:00:00Z",
+    "updated": "2024-01-02T00:00:00Z",
+    "pillarSlug": "self-awareness"
+  },
+  {
+    "id": "2",
+    "slug": "morning-stretch",
+    "title": "Morning Stretch",
+    "content": "Spend five minutes stretching to awaken the body.",
+    "tags": [
+      "movement",
+      "health"
+    ],
+    "created": "2024-01-05T00:00:00Z",
+    "pillarSlug": "physical-wellbeing"
+  },
+  {
+    "id": "3",
+    "slug": "digital-detox",
+    "title": "Digital Detox",
+    "content": "Turn off all devices for an hour before bed.",
+    "tags": [
+      "mindfulness",
+      "habits"
+    ],
+    "created": "2024-01-07T00:00:00Z",
+    "pillarSlug": "self-awareness"
+  },
+  {
+    "id": "4",
+    "slug": "mindful-breathing",
+    "title": "Mindful Breathing",
+    "content": "Pause and take ten deep breaths during stressful moments.",
+    "tags": [
+      "meditation"
+    ],
+    "created": "2024-01-09T00:00:00Z",
+    "pillarSlug": "self-regulation"
+  },
+  {
+    "id": "5",
+    "slug": "evening-journal",
+    "title": "Evening Journal",
+    "content": "Reflect on the day by writing a short journal entry.",
+    "tags": [
+      "reflection"
+    ],
+    "created": "2024-01-11T00:00:00Z",
+    "pillarSlug": "self-awareness"
+  },
+  {
+    "id": "6",
+    "slug": "walk-in-nature",
+    "title": "Walk in Nature",
+    "content": "Spend time walking outdoors to clear your mind.",
+    "tags": [
+      "health",
+      "nature"
+    ],
+    "created": "2024-01-15T00:00:00Z",
+    "pillarSlug": "physical-wellbeing"
+  }
+]

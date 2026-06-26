@@ -1,0 +1,16 @@
+---
+import FormattedDate from '../FormattedDate.astro';
+import type { SynapseCardProps } from './SynapseCard.types';
+import './SynapseCard.styles.css';
+
+const { synapse } = Astro.props as SynapseCardProps;
+---
+
+<article class="synapse-card">
+  <a href={`/synapse/${synapse.slug}/`} class="block no-underline">
+    <h4 class="title">{synapse.title}</h4>
+      <p class="date"><FormattedDate date={new Date(synapse.created_at)} /></p>
+    <p class="excerpt">{synapse.content.slice(0, 120)}{synapse.content.length > 120 ? '…' : ''}</p>
+    <p class="tags">{synapse.tags ? synapse.tags.split(',').map((tag) => `#${tag.trim()}`).join(' ') : ''}</p>
+  </a>
+</article>

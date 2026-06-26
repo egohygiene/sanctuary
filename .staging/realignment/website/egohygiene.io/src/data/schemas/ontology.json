@@ -1,0 +1,17 @@
+{
+  "name": "Ego Hygiene Ontology",
+  "version": "1.0.0",
+  "entities": [
+    { "type": "pillar", "schema": "pillars.schema.json" },
+    { "type": "synapse", "schema": "synapse.schema.json" },
+    { "type": "term", "schema": "terms.schema.json" },
+    { "type": "tag", "schema": "tags.schema.json" },
+    { "type": "system", "schema": "systems.schema.json" }
+  ],
+  "relationships": [
+    { "from": "synapse", "to": "pillar", "type": "belongs_to" },
+    { "from": "pillar", "to": "tag", "type": "contains" },
+    { "from": "system", "to": "pillar", "type": "supports" },
+    { "from": "synapse", "to": "tag", "type": "references" }
+  ]
+}

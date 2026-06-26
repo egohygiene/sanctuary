@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "modules": [
+    { "name": "pillars", "file": "pillars.schema.json" },
+    { "name": "synapse", "file": "synapse.schema.json" },
+    { "name": "terms", "file": "terms.schema.json" },
+    { "name": "tags", "file": "tags.schema.json" },
+    { "name": "systems", "file": "systems.schema.json" },
+    { "name": "relationships", "file": "relationships.schema.json" }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+
+  "compilerOptions": {
+    // 📦 Emit runtime + type info
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "declarationMap": true,
+
+    // 🔄 Output compiled files
+    "outDir": "dist",
+
+    // 🧱 Enable incremental builds
+    "composite": true,
+    "noEmitOnError": true
+  },
+
+  "include": [
+    "src",
+    "db",
+    "plugins"
+  ],
+
+  "exclude": [
+    "dist",
+    "dist-node",
+    "node_modules",
+    "generated",
+    "coverage",
+    ".cache",
+    "**/*.test.*"
+  ]
+}
