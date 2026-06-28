@@ -17,19 +17,19 @@
       ]
     },
     {
-      "login": "Copilot",
-      "name": "Copilot",
-      "avatar_url": "https://avatars.githubusercontent.com/in/1143301?v=4",
-      "profile": "https://github.com/apps/copilot-swe-agent",
+      "login": "github-actions[bot]",
+      "name": "github-actions[bot]",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "profile": "https://github.com/apps/github-actions",
       "contributions": [
         "code"
       ]
     },
     {
-      "login": "github-actions[bot]",
-      "name": "github-actions[bot]",
-      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
-      "profile": "https://github.com/apps/github-actions",
+      "login": "Copilot",
+      "name": "Copilot",
+      "avatar_url": "https://avatars.githubusercontent.com/in/1143301?v=4",
+      "profile": "https://github.com/apps/copilot-swe-agent",
       "contributions": [
         "code"
       ]
