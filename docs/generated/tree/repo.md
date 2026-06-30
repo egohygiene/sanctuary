@@ -1531,6 +1531,7 @@ sanctuary/
 │   │       └── threejs-textures/
 │   │           └── SKILL.md
 │   ├── specs/
+│   │   ├── repository-evolution.spec.md
 │   │   └── specfile.spec.md
 │   ├── workflows/
 │   │   ├── future/

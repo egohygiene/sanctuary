@@ -2029,6 +2029,7 @@
       </directory>
     </directory>
     <directory name="specs" path=".github/specs">
+      <file name="repository-evolution.spec.md" path=".github/specs/repository-evolution.spec.md" />
       <file name="specfile.spec.md" path=".github/specs/specfile.spec.md" />
     </directory>
     <directory name="workflows" path=".github/workflows">
