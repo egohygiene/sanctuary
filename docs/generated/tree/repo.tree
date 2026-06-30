@@ -1493,6 +1493,7 @@ sanctuary/
 │   │   └── specfile-creator.agent.md
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── architecture.yml
+│   │   ├── bootstrap-repository.yml
 │   │   ├── bug-report.yml
 │   │   ├── ci.yml
 │   │   ├── config.yml
