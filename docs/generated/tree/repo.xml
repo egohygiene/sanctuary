@@ -1980,6 +1980,7 @@
     </directory>
     <directory name="ISSUE_TEMPLATE" path=".github/ISSUE_TEMPLATE">
       <file name="architecture.yml" path=".github/ISSUE_TEMPLATE/architecture.yml" />
+      <file name="bootstrap-repository.yml" path=".github/ISSUE_TEMPLATE/bootstrap-repository.yml" />
       <file name="bug-report.yml" path=".github/ISSUE_TEMPLATE/bug-report.yml" />
       <file name="ci.yml" path=".github/ISSUE_TEMPLATE/ci.yml" />
       <file name="config.yml" path=".github/ISSUE_TEMPLATE/config.yml" />
