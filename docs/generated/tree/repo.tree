@@ -1542,6 +1542,7 @@ sanctuary/
 │   │   ├── contributors.yml
 │   │   ├── copilot-setup-steps.yml
 │   │   ├── dependency-review.yml
+│   │   ├── garden.yml
 │   │   ├── github-pages.yml
 │   │   ├── ossf-scorecard.yml
 │   │   ├── osv-scan.yml
@@ -28125,6 +28126,7 @@ sanctuary/
 │   ├── publish/
 │   │   └── README.md
 │   ├── quartz/
+│   │   ├── quartz.config.yaml
 │   │   └── README.md
 │   ├── reflections/
 │   │   ├── .gitkeep

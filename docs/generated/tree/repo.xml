@@ -2045,6 +2045,7 @@
       <file name="contributors.yml" path=".github/workflows/contributors.yml" />
       <file name="copilot-setup-steps.yml" path=".github/workflows/copilot-setup-steps.yml" />
       <file name="dependency-review.yml" path=".github/workflows/dependency-review.yml" />
+      <file name="garden.yml" path=".github/workflows/garden.yml" />
       <file name="github-pages.yml" path=".github/workflows/github-pages.yml" />
       <file name="ossf-scorecard.yml" path=".github/workflows/ossf-scorecard.yml" />
       <file name="osv-scan.yml" path=".github/workflows/osv-scan.yml" />
@@ -30745,6 +30746,7 @@
       <file name="README.md" path="garden/publish/README.md" />
     </directory>
     <directory name="quartz" path="garden/quartz">
+      <file name="quartz.config.yaml" path="garden/quartz/quartz.config.yaml" />
       <file name="README.md" path="garden/quartz/README.md" />
     </directory>
     <directory name="reflections" path="garden/reflections">
