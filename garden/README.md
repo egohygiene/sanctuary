@@ -142,8 +142,24 @@ Templates are stored in `templates/` and use **Templater** syntax.
 - **Citations** references are stored in `research/references/` using a
   structured template to integrate with the Research MOC.
 
+## Publishing
+
+The Garden can be published as a static digital garden website using
+[Quartz v5](https://github.com/jackyzha0/quartz).
+
+**Quick workflow:**
+
+1. Place notes to publish in the `publish/` directory.
+2. Commit and push to `main`.
+3. The [`garden.yml`](../.github/workflows/garden.yml) workflow builds and
+   deploys the site automatically.
+
+For local preview and full documentation see
+[`quartz/README.md`](quartz/README.md).
+
 ## Related
 
 - [Architecture Audit](../docs/architecture/audit.md)
 - [Responsibility Matrix](../docs/architecture/responsibility-matrix.md)
 - [Quartz Integration](quartz/README.md)
+- [Publish workflow](publish/README.md)
