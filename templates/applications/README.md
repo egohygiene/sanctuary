@@ -54,6 +54,45 @@ Potential future templates include:
 * Full-stack application templates
 * AI application templates
 
+## AI Discoverability
+
+Each application template includes a `public/llms.txt` file following the [llms.txt specification](https://llmstxt.org/).
+
+This file is served from the application root and provides structured metadata that enables AI assistants, language models, and indexing systems to discover high-value project documentation and understand the repository structure.
+
+### Customizing `llms.txt`
+
+After generating a new project from a template, update `public/llms.txt` to reflect your project:
+
+1. Replace `[Project Name]` with the actual project name.
+2. Replace the blockquote summary with a concise description of your project.
+3. Replace the introductory paragraph with relevant background context.
+4. Update each section to point to your real documentation files.
+5. Remove any sections or links that do not apply to your project.
+6. Add new sections as needed for your specific use case.
+
+Sections marked `## Optional` contain lower-priority links that AI systems may omit when operating under context constraints.
+
+### Structure
+
+The `llms.txt` file follows this format:
+
+```text
+# Project Name
+
+> Short summary of the project.
+
+Additional context paragraphs.
+
+## Documentation
+
+- [File Name](relative/path.md): Brief description
+
+## Optional
+
+- [Secondary File](relative/path.md): Description
+```
+
 ## Notes
 
 Templates are expected to evolve over time.
