@@ -30614,6 +30614,34 @@
           <file name="data.json" path="garden/.obsidian/plugins/templater-obsidian/data.json" />
         </directory>
       </directory>
+      <directory name="snippets" path="garden/.obsidian/snippets">
+        <file name="autofading-ui.css" path="garden/.obsidian/snippets/autofading-ui.css" />
+        <file name="better-bullet-points-in-edit-mode.css" path="garden/.obsidian/snippets/better-bullet-points-in-edit-mode.css" />
+        <file name="collapsing-sidebar.css" path="garden/.obsidian/snippets/collapsing-sidebar.css" />
+        <file name="image-cards.css" path="garden/.obsidian/snippets/image-cards.css" />
+        <file name="LICENSE.awesome-obsidian" path="garden/.obsidian/snippets/LICENSE.awesome-obsidian" />
+        <file name="outliner-for-the-outline-and-file-explorer.css" path="garden/.obsidian/snippets/outliner-for-the-outline-and-file-explorer.css" />
+        <file name="README.md" path="garden/.obsidian/snippets/README.md" />
+        <file name="tag-pills.css" path="garden/.obsidian/snippets/tag-pills.css" />
+      </directory>
+      <directory name="themes" path="garden/.obsidian/themes">
+        <directory name="AnuPpuccin" path="garden/.obsidian/themes/AnuPpuccin">
+          <file name="LICENSE" path="garden/.obsidian/themes/AnuPpuccin/LICENSE" />
+          <file name="manifest.json" path="garden/.obsidian/themes/AnuPpuccin/manifest.json" />
+          <file name="theme.css" path="garden/.obsidian/themes/AnuPpuccin/theme.css" />
+        </directory>
+        <directory name="Minimal" path="garden/.obsidian/themes/Minimal">
+          <file name="LICENSE" path="garden/.obsidian/themes/Minimal/LICENSE" />
+          <file name="manifest.json" path="garden/.obsidian/themes/Minimal/manifest.json" />
+          <file name="theme.css" path="garden/.obsidian/themes/Minimal/theme.css" />
+        </directory>
+        <directory name="Tokyo Night" path="garden/.obsidian/themes/Tokyo Night">
+          <file name="LICENSE" path="garden/.obsidian/themes/Tokyo Night/LICENSE" />
+          <file name="manifest.json" path="garden/.obsidian/themes/Tokyo Night/manifest.json" />
+          <file name="theme.css" path="garden/.obsidian/themes/Tokyo Night/theme.css" />
+        </directory>
+        <file name="README.md" path="garden/.obsidian/themes/README.md" />
+      </directory>
       <file name="app.json" path="garden/.obsidian/app.json" />
       <file name="appearance.json" path="garden/.obsidian/appearance.json" />
       <file name="community-plugins.json" path="garden/.obsidian/community-plugins.json" />
@@ -30641,6 +30669,7 @@
       <file name="awesome-devcontainers.md" path="garden/awesome/awesome-devcontainers.md" />
       <file name="awesome-flutter.md" path="garden/awesome/awesome-flutter.md" />
       <file name="awesome-nutrition.md" path="garden/awesome/awesome-nutrition.md" />
+      <file name="awesome-obsidian.md" path="garden/awesome/awesome-obsidian.md" />
       <file name="awesome-python.md" path="garden/awesome/awesome-python.md" />
       <file name="README.md" path="garden/awesome/README.md" />
     </directory>
@@ -31834,6 +31863,887 @@
     </directory>
     <directory name="poetry" path="templates/poetry">
       <file name="poetry.toml" path="templates/poetry/poetry.toml" />
+    </directory>
+    <directory name="writing" path="templates/writing">
+      <directory name="latex" path="templates/writing/latex">
+        <directory name="Academic Articles" path="templates/writing/latex/Academic Articles">
+          <directory name="arsclassica-article" path="templates/writing/latex/Academic Articles/arsclassica-article">
+            <directory name="Figures" path="templates/writing/latex/Academic Articles/arsclassica-article/Figures">
+              <file name="Dolor.jpg" path="templates/writing/latex/Academic Articles/arsclassica-article/Figures/Dolor.jpg" />
+              <file name="GalleriaStampe.jpg" path="templates/writing/latex/Academic Articles/arsclassica-article/Figures/GalleriaStampe.jpg" />
+              <file name="Ipsum.jpg" path="templates/writing/latex/Academic Articles/arsclassica-article/Figures/Ipsum.jpg" />
+              <file name="Lorem.jpg" path="templates/writing/latex/Academic Articles/arsclassica-article/Figures/Lorem.jpg" />
+              <file name="Sit.jpg" path="templates/writing/latex/Academic Articles/arsclassica-article/Figures/Sit.jpg" />
+            </directory>
+            <file name="article_4.tex" path="templates/writing/latex/Academic Articles/arsclassica-article/article_4.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Academic Articles/arsclassica-article/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Academic Articles/arsclassica-article/sample.bib" />
+            <file name="structure.tex" path="templates/writing/latex/Academic Articles/arsclassica-article/structure.tex" />
+          </directory>
+          <directory name="journal-article" path="templates/writing/latex/Academic Articles/journal-article">
+            <directory name="Figures" path="templates/writing/latex/Academic Articles/journal-article/Figures">
+              <file name="Fibroblastid.jpg" path="templates/writing/latex/Academic Articles/journal-article/Figures/Fibroblastid.jpg" />
+              <file name="Tolmukapea.jpg" path="templates/writing/latex/Academic Articles/journal-article/Figures/Tolmukapea.jpg" />
+            </directory>
+            <file name="LTJournalArticle.cls" path="templates/writing/latex/Academic Articles/journal-article/LTJournalArticle.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Academic Articles/journal-article/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Academic Articles/journal-article/sample.bib" />
+            <file name="template.tex" path="templates/writing/latex/Academic Articles/journal-article/template.tex" />
+          </directory>
+          <directory name="stylish-article" path="templates/writing/latex/Academic Articles/stylish-article">
+            <directory name="Figures" path="templates/writing/latex/Academic Articles/stylish-article/Figures">
+              <file name="results.pdf" path="templates/writing/latex/Academic Articles/stylish-article/Figures/results.pdf" />
+              <file name="view.jpg" path="templates/writing/latex/Academic Articles/stylish-article/Figures/view.jpg" />
+            </directory>
+            <file name="article_3.tex" path="templates/writing/latex/Academic Articles/stylish-article/article_3.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Academic Articles/stylish-article/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Academic Articles/stylish-article/sample.bib" />
+            <file name="SelfArx.cls" path="templates/writing/latex/Academic Articles/stylish-article/SelfArx.cls" />
+          </directory>
+          <directory name="wenneker-article" path="templates/writing/latex/Academic Articles/wenneker-article">
+            <file name="bear.jpg" path="templates/writing/latex/Academic Articles/wenneker-article/bear.jpg" />
+            <file name="example.bib" path="templates/writing/latex/Academic Articles/wenneker-article/example.bib" />
+            <file name="main.tex" path="templates/writing/latex/Academic Articles/wenneker-article/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Academic Articles/wenneker-article/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Academic Articles/wenneker-article/structure.tex" />
+          </directory>
+        </directory>
+        <directory name="Academic Journals" path="templates/writing/latex/Academic Journals">
+          <directory name="acmart-primary" path="templates/writing/latex/Academic Journals/acmart-primary">
+            <directory name="samples" path="templates/writing/latex/Academic Journals/acmart-primary/samples">
+              <file name="sample-base.bib" path="templates/writing/latex/Academic Journals/acmart-primary/samples/sample-base.bib" />
+              <file name="sample-franklin.png" path="templates/writing/latex/Academic Journals/acmart-primary/samples/sample-franklin.png" />
+              <file name="samples.dtx" path="templates/writing/latex/Academic Journals/acmart-primary/samples/samples.dtx" />
+              <file name="samples.ins" path="templates/writing/latex/Academic Journals/acmart-primary/samples/samples.ins" />
+              <file name="sampleteaser.pdf" path="templates/writing/latex/Academic Journals/acmart-primary/samples/sampleteaser.pdf" />
+            </directory>
+            <file name=".gitignore" path="templates/writing/latex/Academic Journals/acmart-primary/.gitignore" />
+            <file name="ACM-Reference-Format.bbx" path="templates/writing/latex/Academic Journals/acmart-primary/ACM-Reference-Format.bbx" />
+            <file name="ACM-Reference-Format.bst" path="templates/writing/latex/Academic Journals/acmart-primary/ACM-Reference-Format.bst" />
+            <file name="ACM-Reference-Format.cbx" path="templates/writing/latex/Academic Journals/acmart-primary/ACM-Reference-Format.cbx" />
+            <file name="ACM-Reference-Format.dbx" path="templates/writing/latex/Academic Journals/acmart-primary/ACM-Reference-Format.dbx" />
+            <file name="acmart.bib" path="templates/writing/latex/Academic Journals/acmart-primary/acmart.bib" />
+            <file name="acmart.dtx" path="templates/writing/latex/Academic Journals/acmart-primary/acmart.dtx" />
+            <file name="acmart.ins" path="templates/writing/latex/Academic Journals/acmart-primary/acmart.ins" />
+            <file name="Makefile" path="templates/writing/latex/Academic Journals/acmart-primary/Makefile" />
+            <file name="README" path="templates/writing/latex/Academic Journals/acmart-primary/README" />
+            <file name="README.pdf" path="templates/writing/latex/Academic Journals/acmart-primary/README.pdf" />
+          </directory>
+          <directory name="american-geophysical-union" path="templates/writing/latex/Academic Journals/american-geophysical-union">
+            <directory name="April 16 2019" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019">
+              <directory name="trackchanges-0.7.0" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0">
+                <directory name="documentation" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation">
+                  <directory name="web" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web">
+                    <directory name="examples" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/examples" truncated="true" />
+                    <directory name="screenshots" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/screenshots" truncated="true" />
+                    <file name="doc.css" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/doc.css" />
+                    <file name="help.html" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/help.html" />
+                    <file name="help_gui.html" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/help_gui.html" />
+                    <file name="help_stylefile.html" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/help_stylefile.html" />
+                    <file name="index.html" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/index.html" />
+                    <file name="web_contact.html" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/web_contact.html" />
+                    <file name="web_credits.html" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/web_credits.html" />
+                    <file name="web_download.html" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/web_download.html" />
+                    <file name="web_preview.html" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/documentation/web/web_preview.html" />
+                  </directory>
+                </directory>
+                <directory name="LatexPackage" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/LatexPackage">
+                  <file name="license.txt" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/LatexPackage/license.txt" />
+                  <file name="trackchanges.sty" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/LatexPackage/trackchanges.sty" />
+                </directory>
+                <directory name="PythonPackage" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage">
+                  <directory name="AcceptChanges" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage/AcceptChanges">
+                    <file name="__init__.py" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage/AcceptChanges/__init__.py" />
+                    <file name="consoleoutput.py" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage/AcceptChanges/consoleoutput.py" />
+                    <file name="linesegment.py" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage/AcceptChanges/linesegment.py" />
+                  </directory>
+                  <directory name="TrackChanges" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage/TrackChanges">
+                    <file name="__init__.py" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage/TrackChanges/__init__.py" />
+                  </directory>
+                  <file name="acceptchanges.py" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage/acceptchanges.py" />
+                  <file name="trackchanges.py" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PythonPackage/trackchanges.py" />
+                </directory>
+                <directory name="testing" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/testing">
+                  <file name="testing_edit.tex" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/testing/testing_edit.tex" />
+                  <file name="testing_new.tex" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/testing/testing_new.tex" />
+                  <file name="testing_old.tex" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/testing/testing_old.tex" />
+                </directory>
+                <file name="AUTHORS" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/AUTHORS" />
+                <file name="COPYING" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/COPYING" />
+                <file name="PKG-INFO" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/PKG-INFO" />
+                <file name="README" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges-0.7.0/README" />
+              </directory>
+              <file name="agujournal2019.cls" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/agujournal2019.cls" />
+              <file name="agujournaltemplate.tex" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/agujournaltemplate.tex" />
+              <file name="agutexSI2019.cls" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/agutexSI2019.cls" />
+              <file name="si_template_2019.tex" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/si_template_2019.tex" />
+              <file name="trackchanges.sty" path="templates/writing/latex/Academic Journals/american-geophysical-union/April 16 2019/trackchanges.sty" />
+            </directory>
+            <file name="README.pdf" path="templates/writing/latex/Academic Journals/american-geophysical-union/README.pdf" />
+          </directory>
+          <directory name="asme" path="templates/writing/latex/Academic Journals/asme">
+            <directory name="conf-1.8" path="templates/writing/latex/Academic Journals/asme/conf-1.8">
+              <file name="abstract.pdf" path="templates/writing/latex/Academic Journals/asme/conf-1.8/abstract.pdf" />
+              <file name="abstract.tex" path="templates/writing/latex/Academic Journals/asme/conf-1.8/abstract.tex" />
+              <file name="asme2e.bib" path="templates/writing/latex/Academic Journals/asme/conf-1.8/asme2e.bib" />
+              <file name="asme2e.cls" path="templates/writing/latex/Academic Journals/asme/conf-1.8/asme2e.cls" />
+              <file name="asme2e.pdf" path="templates/writing/latex/Academic Journals/asme/conf-1.8/asme2e.pdf" />
+              <file name="asme2e.tex" path="templates/writing/latex/Academic Journals/asme/conf-1.8/asme2e.tex" />
+              <file name="asmems4.bst" path="templates/writing/latex/Academic Journals/asme/conf-1.8/asmems4.bst" />
+              <file name="FAQ" path="templates/writing/latex/Academic Journals/asme/conf-1.8/FAQ" />
+              <file name="Makefile" path="templates/writing/latex/Academic Journals/asme/conf-1.8/Makefile" />
+              <file name="README" path="templates/writing/latex/Academic Journals/asme/conf-1.8/README" />
+              <file name="README2" path="templates/writing/latex/Academic Journals/asme/conf-1.8/README2" />
+            </directory>
+            <directory name="journal-1.1" path="templates/writing/latex/Academic Journals/asme/journal-1.1">
+              <directory name="figure" path="templates/writing/latex/Academic Journals/asme/journal-1.1/figure">
+                <file name="FMANU_MD_04_1274_13.jpg" path="templates/writing/latex/Academic Journals/asme/journal-1.1/figure/FMANU_MD_04_1274_13.jpg" />
+                <file name="FMANU_MD_05_1107_11.jpg" path="templates/writing/latex/Academic Journals/asme/journal-1.1/figure/FMANU_MD_05_1107_11.jpg" />
+                <file name="FMANU_MD_05_1272_5.jpg" path="templates/writing/latex/Academic Journals/asme/journal-1.1/figure/FMANU_MD_05_1272_5.jpg" />
+              </directory>
+              <file name="asme2e.bib" path="templates/writing/latex/Academic Journals/asme/journal-1.1/asme2e.bib" />
+              <file name="asme2ej.cls" path="templates/writing/latex/Academic Journals/asme/journal-1.1/asme2ej.cls" />
+              <file name="asme2ej.pdf" path="templates/writing/latex/Academic Journals/asme/journal-1.1/asme2ej.pdf" />
+              <file name="asme2ej.tex" path="templates/writing/latex/Academic Journals/asme/journal-1.1/asme2ej.tex" />
+              <file name="asmems4.bst" path="templates/writing/latex/Academic Journals/asme/journal-1.1/asmems4.bst" />
+              <file name="FAQ" path="templates/writing/latex/Academic Journals/asme/journal-1.1/FAQ" />
+              <file name="Makefile" path="templates/writing/latex/Academic Journals/asme/journal-1.1/Makefile" />
+              <file name="README" path="templates/writing/latex/Academic Journals/asme/journal-1.1/README" />
+              <file name="README2" path="templates/writing/latex/Academic Journals/asme/journal-1.1/README2" />
+            </directory>
+            <directory name="journals-1.2" path="templates/writing/latex/Academic Journals/asme/journals-1.2">
+              <directory name="figure" path="templates/writing/latex/Academic Journals/asme/journals-1.2/figure">
+                <file name="FMANU_MD_04_1274_13.jpg" path="templates/writing/latex/Academic Journals/asme/journals-1.2/figure/FMANU_MD_04_1274_13.jpg" />
+                <file name="FMANU_MD_05_1107_11.jpg" path="templates/writing/latex/Academic Journals/asme/journals-1.2/figure/FMANU_MD_05_1107_11.jpg" />
+                <file name="FMANU_MD_05_1272_5.jpg" path="templates/writing/latex/Academic Journals/asme/journals-1.2/figure/FMANU_MD_05_1272_5.jpg" />
+              </directory>
+              <file name="asme2e.bib" path="templates/writing/latex/Academic Journals/asme/journals-1.2/asme2e.bib" />
+              <file name="asme2ej.cls" path="templates/writing/latex/Academic Journals/asme/journals-1.2/asme2ej.cls" />
+              <file name="asme2ejs.pdf" path="templates/writing/latex/Academic Journals/asme/journals-1.2/asme2ejs.pdf" />
+              <file name="asme2ejs.tex" path="templates/writing/latex/Academic Journals/asme/journals-1.2/asme2ejs.tex" />
+              <file name="asmems4.bst" path="templates/writing/latex/Academic Journals/asme/journals-1.2/asmems4.bst" />
+              <file name="FAQ" path="templates/writing/latex/Academic Journals/asme/journals-1.2/FAQ" />
+              <file name="Makefile" path="templates/writing/latex/Academic Journals/asme/journals-1.2/Makefile" />
+              <file name="README" path="templates/writing/latex/Academic Journals/asme/journals-1.2/README" />
+              <file name="README2" path="templates/writing/latex/Academic Journals/asme/journals-1.2/README2" />
+            </directory>
+            <file name="README.pdf" path="templates/writing/latex/Academic Journals/asme/README.pdf" />
+          </directory>
+          <directory name="elsarticle-academic-journal" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal">
+            <file name="elsarticle Documentation.pdf" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/elsarticle Documentation.pdf" />
+            <file name="elsarticle-num.bst" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/elsarticle-num.bst" />
+            <file name="elsarticle-template.pdf" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/elsarticle-template.pdf" />
+            <file name="elsarticle-template.tex" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/elsarticle-template.tex" />
+            <file name="model1-num-names.bst" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/model1-num-names.bst" />
+            <file name="model1a-num-names.bst" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/model1a-num-names.bst" />
+            <file name="model2-names.bst" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/model2-names.bst" />
+            <file name="model3-num-names.bst" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/model3-num-names.bst" />
+            <file name="model4-names.bst" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/model4-names.bst" />
+            <file name="model5-names.bst" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/model5-names.bst" />
+            <file name="model6-num-names.bst" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/model6-num-names.bst" />
+            <file name="mybibfile.bib" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/mybibfile.bib" />
+            <file name="numcompress.sty" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/numcompress.sty" />
+            <file name="README.pdf" path="templates/writing/latex/Academic Journals/elsarticle-academic-journal/README.pdf" />
+          </directory>
+          <directory name="pnas" path="templates/writing/latex/Academic Journals/pnas">
+            <file name="frog.eps" path="templates/writing/latex/Academic Journals/pnas/frog.eps" />
+            <file name="pnas-new.bst" path="templates/writing/latex/Academic Journals/pnas/pnas-new.bst" />
+            <file name="pnas-new.cls" path="templates/writing/latex/Academic Journals/pnas/pnas-new.cls" />
+            <file name="pnas-sample.bib" path="templates/writing/latex/Academic Journals/pnas/pnas-sample.bib" />
+            <file name="PNAS-template-main.tex" path="templates/writing/latex/Academic Journals/pnas/PNAS-template-main.tex" />
+            <file name="pnas_additional_latex_instructions.pdf" path="templates/writing/latex/Academic Journals/pnas/pnas_additional_latex_instructions.pdf" />
+            <file name="pnasresearcharticle.sty" path="templates/writing/latex/Academic Journals/pnas/pnasresearcharticle.sty" />
+            <file name="README.pdf" path="templates/writing/latex/Academic Journals/pnas/README.pdf" />
+            <file name="widetext.sty" path="templates/writing/latex/Academic Journals/pnas/widetext.sty" />
+          </directory>
+          <directory name="public-library-of-science-plos" path="templates/writing/latex/Academic Journals/public-library-of-science-plos">
+            <file name="plos2015.bst" path="templates/writing/latex/Academic Journals/public-library-of-science-plos/plos2015.bst" />
+            <file name="plos_latex_template.pdf" path="templates/writing/latex/Academic Journals/public-library-of-science-plos/plos_latex_template.pdf" />
+            <file name="plos_latex_template.tex" path="templates/writing/latex/Academic Journals/public-library-of-science-plos/plos_latex_template.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Academic Journals/public-library-of-science-plos/README.pdf" />
+          </directory>
+          <directory name="royal-society-of-chemistry" path="templates/writing/latex/Academic Journals/royal-society-of-chemistry">
+            <file name="README.pdf" path="templates/writing/latex/Academic Journals/royal-society-of-chemistry/README.pdf" />
+            <file name="royal-society-of-chemistry-article-template.zip" path="templates/writing/latex/Academic Journals/royal-society-of-chemistry/royal-society-of-chemistry-article-template.zip" />
+            <file name="royal-society-of-chemistry-communication-template.zip" path="templates/writing/latex/Academic Journals/royal-society-of-chemistry/royal-society-of-chemistry-communication-template.zip" />
+          </directory>
+          <directory name="science-journal" path="templates/writing/latex/Academic Journals/science-journal">
+            <file name="README.pdf" path="templates/writing/latex/Academic Journals/science-journal/README.pdf" />
+            <file name="scibib.bib" path="templates/writing/latex/Academic Journals/science-journal/scibib.bib" />
+            <file name="scicite.sty" path="templates/writing/latex/Academic Journals/science-journal/scicite.sty" />
+            <file name="Science.bst" path="templates/writing/latex/Academic Journals/science-journal/Science.bst" />
+            <file name="scifile.tex" path="templates/writing/latex/Academic Journals/science-journal/scifile.tex" />
+          </directory>
+        </directory>
+        <directory name="Assignments" path="templates/writing/latex/Assignments">
+          <directory name="cleese-assignment" path="templates/writing/latex/Assignments/cleese-assignment">
+            <file name="luftballons.pl" path="templates/writing/latex/Assignments/cleese-assignment/luftballons.pl" />
+            <file name="README.pdf" path="templates/writing/latex/Assignments/cleese-assignment/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Assignments/cleese-assignment/structure.tex" />
+            <file name="student_template.tex" path="templates/writing/latex/Assignments/cleese-assignment/student_template.tex" />
+            <file name="swallow.jpg" path="templates/writing/latex/Assignments/cleese-assignment/swallow.jpg" />
+            <file name="teacher_template.tex" path="templates/writing/latex/Assignments/cleese-assignment/teacher_template.tex" />
+          </directory>
+          <directory name="fphw-assignment" path="templates/writing/latex/Assignments/fphw-assignment">
+            <file name="fphw.cls" path="templates/writing/latex/Assignments/fphw-assignment/fphw.cls" />
+            <file name="luftballons.pl" path="templates/writing/latex/Assignments/fphw-assignment/luftballons.pl" />
+            <file name="main.tex" path="templates/writing/latex/Assignments/fphw-assignment/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Assignments/fphw-assignment/README.pdf" />
+            <file name="swallow.jpg" path="templates/writing/latex/Assignments/fphw-assignment/swallow.jpg" />
+          </directory>
+          <directory name="lachaise-assignment" path="templates/writing/latex/Assignments/lachaise-assignment">
+            <file name="main.tex" path="templates/writing/latex/Assignments/lachaise-assignment/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Assignments/lachaise-assignment/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Assignments/lachaise-assignment/structure.tex" />
+          </directory>
+          <directory name="wenneker-assignment" path="templates/writing/latex/Assignments/wenneker-assignment">
+            <directory name="Figures" path="templates/writing/latex/Assignments/wenneker-assignment/Figures">
+              <file name="swallow.jpg" path="templates/writing/latex/Assignments/wenneker-assignment/Figures/swallow.jpg" />
+            </directory>
+            <file name="luftballons.pl" path="templates/writing/latex/Assignments/wenneker-assignment/luftballons.pl" />
+            <file name="main.tex" path="templates/writing/latex/Assignments/wenneker-assignment/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Assignments/wenneker-assignment/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Assignments/wenneker-assignment/structure.tex" />
+          </directory>
+        </directory>
+        <directory name="Books" path="templates/writing/latex/Books">
+          <directory name="ebook-book" path="templates/writing/latex/Books/ebook-book">
+            <file name="ebook.tex" path="templates/writing/latex/Books/ebook-book/ebook.tex" />
+            <file name="littlered.jpg" path="templates/writing/latex/Books/ebook-book/littlered.jpg" />
+            <file name="README.pdf" path="templates/writing/latex/Books/ebook-book/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Books/ebook-book/structure.tex" />
+          </directory>
+          <directory name="kaobook" path="templates/writing/latex/Books/kaobook">
+            <directory name="chapters" path="templates/writing/latex/Books/kaobook/chapters">
+              <file name="appendix.tex" path="templates/writing/latex/Books/kaobook/chapters/appendix.tex" />
+              <file name="figsntabs.tex" path="templates/writing/latex/Books/kaobook/chapters/figsntabs.tex" />
+              <file name="introduction.tex" path="templates/writing/latex/Books/kaobook/chapters/introduction.tex" />
+              <file name="layout.tex" path="templates/writing/latex/Books/kaobook/chapters/layout.tex" />
+              <file name="mathematics.tex" path="templates/writing/latex/Books/kaobook/chapters/mathematics.tex" />
+              <file name="options.tex" path="templates/writing/latex/Books/kaobook/chapters/options.tex" />
+              <file name="preface.tex" path="templates/writing/latex/Books/kaobook/chapters/preface.tex" />
+              <file name="references.tex" path="templates/writing/latex/Books/kaobook/chapters/references.tex" />
+              <file name="textnotes.tex" path="templates/writing/latex/Books/kaobook/chapters/textnotes.tex" />
+            </directory>
+            <directory name="images" path="templates/writing/latex/Books/kaobook/images">
+              <file name="monalisa.jpg" path="templates/writing/latex/Books/kaobook/images/monalisa.jpg" />
+              <file name="seaside.jpeg" path="templates/writing/latex/Books/kaobook/images/seaside.jpeg" />
+            </directory>
+            <file name="compileall.sh" path="templates/writing/latex/Books/kaobook/compileall.sh" />
+            <file name="glossary.tex" path="templates/writing/latex/Books/kaobook/glossary.tex" />
+            <file name="kao.sty" path="templates/writing/latex/Books/kaobook/kao.sty" />
+            <file name="kaobiblio.sty" path="templates/writing/latex/Books/kaobook/kaobiblio.sty" />
+            <file name="kaobook.cls" path="templates/writing/latex/Books/kaobook/kaobook.cls" />
+            <file name="kaorefs.sty" path="templates/writing/latex/Books/kaobook/kaorefs.sty" />
+            <file name="kaotheorems.sty" path="templates/writing/latex/Books/kaobook/kaotheorems.sty" />
+            <file name="main.bib" path="templates/writing/latex/Books/kaobook/main.bib" />
+            <file name="main.tex" path="templates/writing/latex/Books/kaobook/main.tex" />
+            <file name="MANIFEST.md" path="templates/writing/latex/Books/kaobook/MANIFEST.md" />
+            <file name="README.md" path="templates/writing/latex/Books/kaobook/README.md" />
+            <file name="README.pdf" path="templates/writing/latex/Books/kaobook/README.pdf" />
+          </directory>
+          <directory name="legrand-orange-book" path="templates/writing/latex/Books/legrand-orange-book">
+            <directory name="Images" path="templates/writing/latex/Books/legrand-orange-book/Images">
+              <file name="background.pdf" path="templates/writing/latex/Books/legrand-orange-book/Images/background.pdf" />
+              <file name="creodocs_logo.pdf" path="templates/writing/latex/Books/legrand-orange-book/Images/creodocs_logo.pdf" />
+              <file name="orange1.jpg" path="templates/writing/latex/Books/legrand-orange-book/Images/orange1.jpg" />
+              <file name="orange2.jpg" path="templates/writing/latex/Books/legrand-orange-book/Images/orange2.jpg" />
+              <file name="orange3.jpg" path="templates/writing/latex/Books/legrand-orange-book/Images/orange3.jpg" />
+            </directory>
+            <file name="indexstyle.ist" path="templates/writing/latex/Books/legrand-orange-book/indexstyle.ist" />
+            <file name="LegrandOrangeBook.cls" path="templates/writing/latex/Books/legrand-orange-book/LegrandOrangeBook.cls" />
+            <file name="main.tex" path="templates/writing/latex/Books/legrand-orange-book/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Books/legrand-orange-book/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Books/legrand-orange-book/sample.bib" />
+          </directory>
+          <directory name="tufte-book" path="templates/writing/latex/Books/tufte-book">
+            <directory name="graphics" path="templates/writing/latex/Books/tufte-book/graphics">
+              <file name="be-contents.pdf" path="templates/writing/latex/Books/tufte-book/graphics/be-contents.pdf" />
+              <file name="be-title.pdf" path="templates/writing/latex/Books/tufte-book/graphics/be-title.pdf" />
+              <file name="ei-contents.pdf" path="templates/writing/latex/Books/tufte-book/graphics/ei-contents.pdf" />
+              <file name="ei-title.pdf" path="templates/writing/latex/Books/tufte-book/graphics/ei-title.pdf" />
+              <file name="helix.pdf" path="templates/writing/latex/Books/tufte-book/graphics/helix.pdf" />
+              <file name="hilbertcurves.pdf" path="templates/writing/latex/Books/tufte-book/graphics/hilbertcurves.pdf" />
+              <file name="sine.pdf" path="templates/writing/latex/Books/tufte-book/graphics/sine.pdf" />
+              <file name="vdqi-contents.pdf" path="templates/writing/latex/Books/tufte-book/graphics/vdqi-contents.pdf" />
+              <file name="vdqi-title.pdf" path="templates/writing/latex/Books/tufte-book/graphics/vdqi-title.pdf" />
+              <file name="ve-contents.pdf" path="templates/writing/latex/Books/tufte-book/graphics/ve-contents.pdf" />
+              <file name="ve-title.pdf" path="templates/writing/latex/Books/tufte-book/graphics/ve-title.pdf" />
+            </directory>
+            <file name="bibliography.bib" path="templates/writing/latex/Books/tufte-book/bibliography.bib" />
+            <file name="book_1_template.bbl" path="templates/writing/latex/Books/tufte-book/book_1_template.bbl" />
+            <file name="book_1_template.ind" path="templates/writing/latex/Books/tufte-book/book_1_template.ind" />
+            <file name="book_1_template.tex" path="templates/writing/latex/Books/tufte-book/book_1_template.tex" />
+            <file name="book_1_template.toc" path="templates/writing/latex/Books/tufte-book/book_1_template.toc" />
+            <file name="main.bbl" path="templates/writing/latex/Books/tufte-book/main.bbl" />
+            <file name="main.ind" path="templates/writing/latex/Books/tufte-book/main.ind" />
+            <file name="main.tex" path="templates/writing/latex/Books/tufte-book/main.tex" />
+            <file name="main.toc" path="templates/writing/latex/Books/tufte-book/main.toc" />
+            <file name="README.pdf" path="templates/writing/latex/Books/tufte-book/README.pdf" />
+            <file name="tufte-book.cls" path="templates/writing/latex/Books/tufte-book/tufte-book.cls" />
+            <file name="tufte-common.def" path="templates/writing/latex/Books/tufte-book/tufte-common.def" />
+          </directory>
+        </directory>
+        <directory name="Business Cards" path="templates/writing/latex/Business Cards">
+          <directory name="bezos-business-card" path="templates/writing/latex/Business Cards/bezos-business-card">
+            <file name="CSBezosBusinessCard.cls" path="templates/writing/latex/Business Cards/bezos-business-card/CSBezosBusinessCard.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Business Cards/bezos-business-card/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Business Cards/bezos-business-card/template.tex" />
+          </directory>
+          <directory name="goodman-business-card" path="templates/writing/latex/Business Cards/goodman-business-card">
+            <file name="CSGoodmanBusinessCard.cls" path="templates/writing/latex/Business Cards/goodman-business-card/CSGoodmanBusinessCard.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Business Cards/goodman-business-card/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Business Cards/goodman-business-card/template.tex" />
+          </directory>
+        </directory>
+        <directory name="Business Reports" path="templates/writing/latex/Business Reports">
+          <directory name="makoto-technical-report" path="templates/writing/latex/Business Reports/makoto-technical-report">
+            <directory name="Fonts" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts">
+              <file name="IBMPlexMono-Light.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexMono-Light.otf" />
+              <file name="IBMPlexMono-LightItalic.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexMono-LightItalic.otf" />
+              <file name="IBMPlexMono-SemiBold.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexMono-SemiBold.otf" />
+              <file name="IBMPlexMono-SemiBoldItalic.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexMono-SemiBoldItalic.otf" />
+              <file name="IBMPlexSans-Light.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSans-Light.otf" />
+              <file name="IBMPlexSans-LightItalic.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSans-LightItalic.otf" />
+              <file name="IBMPlexSans-Medium.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSans-Medium.otf" />
+              <file name="IBMPlexSans-SemiBold.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSans-SemiBold.otf" />
+              <file name="IBMPlexSans-SemiBoldItalic.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSans-SemiBoldItalic.otf" />
+              <file name="IBMPlexSansCondensed-Light.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSansCondensed-Light.otf" />
+              <file name="IBMPlexSansCondensed-LightItalic.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSansCondensed-LightItalic.otf" />
+              <file name="IBMPlexSansCondensed-SemiBold.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSansCondensed-SemiBold.otf" />
+              <file name="IBMPlexSansCondensed-SemiBoldItalic.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSansCondensed-SemiBoldItalic.otf" />
+              <file name="IBMPlexSerif-Light.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSerif-Light.otf" />
+              <file name="IBMPlexSerif-LightItalic.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSerif-LightItalic.otf" />
+              <file name="IBMPlexSerif-SemiBold.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSerif-SemiBold.otf" />
+              <file name="IBMPlexSerif-SemiBoldItalic.otf" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/IBMPlexSerif-SemiBoldItalic.otf" />
+              <file name="license.txt" path="templates/writing/latex/Business Reports/makoto-technical-report/Fonts/license.txt" />
+            </directory>
+            <directory name="Images" path="templates/writing/latex/Business Reports/makoto-technical-report/Images">
+              <file name="ARR.pdf" path="templates/writing/latex/Business Reports/makoto-technical-report/Images/ARR.pdf" />
+              <file name="creodocs_logo.pdf" path="templates/writing/latex/Business Reports/makoto-technical-report/Images/creodocs_logo.pdf" />
+            </directory>
+            <file name="CSMakotoTechnicalReport.cls" path="templates/writing/latex/Business Reports/makoto-technical-report/CSMakotoTechnicalReport.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Business Reports/makoto-technical-report/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Business Reports/makoto-technical-report/sample.bib" />
+            <file name="template.tex" path="templates/writing/latex/Business Reports/makoto-technical-report/template.tex" />
+          </directory>
+          <directory name="sullivan-business-report" path="templates/writing/latex/Business Reports/sullivan-business-report">
+            <directory name="Images" path="templates/writing/latex/Business Reports/sullivan-business-report/Images">
+              <file name="ARR.pdf" path="templates/writing/latex/Business Reports/sullivan-business-report/Images/ARR.pdf" />
+              <file name="creodocs_logo.pdf" path="templates/writing/latex/Business Reports/sullivan-business-report/Images/creodocs_logo.pdf" />
+              <file name="placeholder.jpg" path="templates/writing/latex/Business Reports/sullivan-business-report/Images/placeholder.jpg" />
+            </directory>
+            <file name="CSSullivanBusinessReport.cls" path="templates/writing/latex/Business Reports/sullivan-business-report/CSSullivanBusinessReport.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Business Reports/sullivan-business-report/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Business Reports/sullivan-business-report/sample.bib" />
+            <file name="template.tex" path="templates/writing/latex/Business Reports/sullivan-business-report/template.tex" />
+          </directory>
+        </directory>
+        <directory name="Calendars" path="templates/writing/latex/Calendars">
+          <directory name="conference-event-timetable" path="templates/writing/latex/Calendars/conference-event-timetable">
+            <file name="CSCalendars.cls" path="templates/writing/latex/Calendars/conference-event-timetable/CSCalendars.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Calendars/conference-event-timetable/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Calendars/conference-event-timetable/template.tex" />
+          </directory>
+          <directory name="monthly-calendar" path="templates/writing/latex/Calendars/monthly-calendar">
+            <file name="CSCalendars.cls" path="templates/writing/latex/Calendars/monthly-calendar/CSCalendars.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Calendars/monthly-calendar/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Calendars/monthly-calendar/template.tex" />
+          </directory>
+          <directory name="weekly-timetable" path="templates/writing/latex/Calendars/weekly-timetable">
+            <file name="CSCalendars.cls" path="templates/writing/latex/Calendars/weekly-timetable/CSCalendars.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Calendars/weekly-timetable/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Calendars/weekly-timetable/template.tex" />
+          </directory>
+        </directory>
+        <directory name="Community" path="templates/writing/latex/Community">
+          <directory name="TeXtured" path="templates/writing/latex/Community/TeXtured">
+            <directory name=".github" path="templates/writing/latex/Community/TeXtured/.github">
+              <directory name="workflows" path="templates/writing/latex/Community/TeXtured/.github/workflows">
+                <file name="main.yml" path="templates/writing/latex/Community/TeXtured/.github/workflows/main.yml" />
+              </directory>
+            </directory>
+            <directory name="anc" path="templates/writing/latex/Community/TeXtured/anc">
+              <file name="ancillary.md" path="templates/writing/latex/Community/TeXtured/anc/ancillary.md" />
+            </directory>
+            <directory name="chapters" path="templates/writing/latex/Community/TeXtured/chapters">
+              <file name="Appendix.tex" path="templates/writing/latex/Community/TeXtured/chapters/Appendix.tex" />
+              <file name="Design.tex" path="templates/writing/latex/Community/TeXtured/chapters/Design.tex" />
+              <file name="Features.tex" path="templates/writing/latex/Community/TeXtured/chapters/Features.tex" />
+              <file name="Introduction.tex" path="templates/writing/latex/Community/TeXtured/chapters/Introduction.tex" />
+              <file name="Notation.tex" path="templates/writing/latex/Community/TeXtured/chapters/Notation.tex" />
+              <file name="QuickSummary.tex" path="templates/writing/latex/Community/TeXtured/chapters/QuickSummary.tex" />
+              <file name="Summary.tex" path="templates/writing/latex/Community/TeXtured/chapters/Summary.tex" />
+              <file name="Tips.tex" path="templates/writing/latex/Community/TeXtured/chapters/Tips.tex" />
+              <file name="Usage.tex" path="templates/writing/latex/Community/TeXtured/chapters/Usage.tex" />
+            </directory>
+            <directory name="figures" path="templates/writing/latex/Community/TeXtured/figures">
+              <directory name="Inkscape" path="templates/writing/latex/Community/TeXtured/figures/Inkscape">
+                <file name="add-watermark" path="templates/writing/latex/Community/TeXtured/figures/Inkscape/add-watermark" />
+                <file name="inkscape-export-to-latex" path="templates/writing/latex/Community/TeXtured/figures/Inkscape/inkscape-export-to-latex" />
+                <file name="parallel-plate-capacitor.pdf" path="templates/writing/latex/Community/TeXtured/figures/Inkscape/parallel-plate-capacitor.pdf" />
+                <file name="parallel-plate-capacitor.pdf_tex" path="templates/writing/latex/Community/TeXtured/figures/Inkscape/parallel-plate-capacitor.pdf_tex" />
+                <file name="parallel-plate-capacitor.svg" path="templates/writing/latex/Community/TeXtured/figures/Inkscape/parallel-plate-capacitor.svg" />
+                <file name="template.svg" path="templates/writing/latex/Community/TeXtured/figures/Inkscape/template.svg" />
+                <file name="watermark-template.ps" path="templates/writing/latex/Community/TeXtured/figures/Inkscape/watermark-template.ps" />
+              </directory>
+              <file name="TeXtured-logo-dark-mode.svg" path="templates/writing/latex/Community/TeXtured/figures/TeXtured-logo-dark-mode.svg" />
+              <file name="TeXtured-logo-light-mode.svg" path="templates/writing/latex/Community/TeXtured/figures/TeXtured-logo-light-mode.svg" />
+            </directory>
+            <directory name="frontmatter" path="templates/writing/latex/Community/TeXtured/frontmatter">
+              <directory name="img" path="templates/writing/latex/Community/TeXtured/frontmatter/img">
+                <file name="MFF-logo.pdf" path="templates/writing/latex/Community/TeXtured/frontmatter/img/MFF-logo.pdf" />
+              </directory>
+              <file name="declaration.tex" path="templates/writing/latex/Community/TeXtured/frontmatter/declaration.tex" />
+              <file name="dedication.tex" path="templates/writing/latex/Community/TeXtured/frontmatter/dedication.tex" />
+              <file name="information.tex" path="templates/writing/latex/Community/TeXtured/frontmatter/information.tex" />
+              <file name="title.tex" path="templates/writing/latex/Community/TeXtured/frontmatter/title.tex" />
+            </directory>
+            <directory name="preamble" path="templates/writing/latex/Community/TeXtured/preamble">
+              <directory name="debug" path="templates/writing/latex/Community/TeXtured/preamble/debug">
+                <file name="commands.tex" path="templates/writing/latex/Community/TeXtured/preamble/debug/commands.tex" />
+                <file name="line-numbers.tex" path="templates/writing/latex/Community/TeXtured/preamble/debug/line-numbers.tex" />
+                <file name="silence.tex" path="templates/writing/latex/Community/TeXtured/preamble/debug/silence.tex" />
+              </directory>
+              <directory name="environments" path="templates/writing/latex/Community/TeXtured/preamble/environments">
+                <file name="init.tex" path="templates/writing/latex/Community/TeXtured/preamble/environments/init.tex" />
+                <file name="remark-like.tex" path="templates/writing/latex/Community/TeXtured/preamble/environments/remark-like.tex" />
+                <file name="theorem-like.tex" path="templates/writing/latex/Community/TeXtured/preamble/environments/theorem-like.tex" />
+                <file name="todo-like.tex" path="templates/writing/latex/Community/TeXtured/preamble/environments/todo-like.tex" />
+              </directory>
+              <directory name="general" path="templates/writing/latex/Community/TeXtured/preamble/general">
+                <file name="colors.tex" path="templates/writing/latex/Community/TeXtured/preamble/general/colors.tex" />
+                <file name="floats.tex" path="templates/writing/latex/Community/TeXtured/preamble/general/floats.tex" />
+                <file name="hyperref.tex" path="templates/writing/latex/Community/TeXtured/preamble/general/hyperref.tex" />
+                <file name="typesetting.tex" path="templates/writing/latex/Community/TeXtured/preamble/general/typesetting.tex" />
+              </directory>
+              <directory name="hacks" path="templates/writing/latex/Community/TeXtured/preamble/hacks">
+                <file name="custom-reference-boxes.tex" path="templates/writing/latex/Community/TeXtured/preamble/hacks/custom-reference-boxes.tex" />
+                <file name="fix-hyperref.tex" path="templates/writing/latex/Community/TeXtured/preamble/hacks/fix-hyperref.tex" />
+                <file name="fix-qed.tex" path="templates/writing/latex/Community/TeXtured/preamble/hacks/fix-qed.tex" />
+                <file name="floatrow-parskip.tex" path="templates/writing/latex/Community/TeXtured/preamble/hacks/floatrow-parskip.tex" />
+              </directory>
+              <directory name="layout" path="templates/writing/latex/Community/TeXtured/preamble/layout">
+                <file name="geometry.tex" path="templates/writing/latex/Community/TeXtured/preamble/layout/geometry.tex" />
+                <file name="headers.tex" path="templates/writing/latex/Community/TeXtured/preamble/layout/headers.tex" />
+                <file name="numbering.tex" path="templates/writing/latex/Community/TeXtured/preamble/layout/numbering.tex" />
+                <file name="titles.tex" path="templates/writing/latex/Community/TeXtured/preamble/layout/titles.tex" />
+                <file name="toc.tex" path="templates/writing/latex/Community/TeXtured/preamble/layout/toc.tex" />
+              </directory>
+              <directory name="math" path="templates/writing/latex/Community/TeXtured/preamble/math">
+                <file name="fonts.tex" path="templates/writing/latex/Community/TeXtured/preamble/math/fonts.tex" />
+                <file name="macros.tex" path="templates/writing/latex/Community/TeXtured/preamble/math/macros.tex" />
+                <file name="packages.tex" path="templates/writing/latex/Community/TeXtured/preamble/math/packages.tex" />
+                <file name="spacing.tex" path="templates/writing/latex/Community/TeXtured/preamble/math/spacing.tex" />
+              </directory>
+              <directory name="misc" path="templates/writing/latex/Community/TeXtured/preamble/misc">
+                <file name="inkscape.tex" path="templates/writing/latex/Community/TeXtured/preamble/misc/inkscape.tex" />
+                <file name="macros.tex" path="templates/writing/latex/Community/TeXtured/preamble/misc/macros.tex" />
+                <file name="packages-macros.tex" path="templates/writing/latex/Community/TeXtured/preamble/misc/packages-macros.tex" />
+                <file name="tikz.tex" path="templates/writing/latex/Community/TeXtured/preamble/misc/tikz.tex" />
+              </directory>
+              <directory name="pdfA-compliance" path="templates/writing/latex/Community/TeXtured/preamble/pdfA-compliance">
+                <directory name="LaTeX-find-glyph-name" path="templates/writing/latex/Community/TeXtured/preamble/pdfA-compliance/LaTeX-find-glyph-name">
+                  <file name=".latexmkrc" path="templates/writing/latex/Community/TeXtured/preamble/pdfA-compliance/LaTeX-find-glyph-name/.latexmkrc" />
+                  <file name="LaTeX-find-glyph-name.tex" path="templates/writing/latex/Community/TeXtured/preamble/pdfA-compliance/LaTeX-find-glyph-name/LaTeX-find-glyph-name.tex" />
+                </directory>
+                <file name="glyphtounicode.tex" path="templates/writing/latex/Community/TeXtured/preamble/pdfA-compliance/glyphtounicode.tex" />
+              </directory>
+              <directory name="references" path="templates/writing/latex/Community/TeXtured/preamble/references">
+                <file name="backref.tex" path="templates/writing/latex/Community/TeXtured/preamble/references/backref.tex" />
+                <file name="biblatex-extra-fields.dbx" path="templates/writing/latex/Community/TeXtured/preamble/references/biblatex-extra-fields.dbx" />
+                <file name="biblatex.tex" path="templates/writing/latex/Community/TeXtured/preamble/references/biblatex.tex" />
+                <file name="cite.tex" path="templates/writing/latex/Community/TeXtured/preamble/references/cite.tex" />
+                <file name="doi-eprint-url.tex" path="templates/writing/latex/Community/TeXtured/preamble/references/doi-eprint-url.tex" />
+                <file name="fields.tex" path="templates/writing/latex/Community/TeXtured/preamble/references/fields.tex" />
+                <file name="style.tex" path="templates/writing/latex/Community/TeXtured/preamble/references/style.tex" />
+              </directory>
+              <directory name="user" path="templates/writing/latex/Community/TeXtured/preamble/user">
+                <file name="macros.tex" path="templates/writing/latex/Community/TeXtured/preamble/user/macros.tex" />
+                <file name="main.tex" path="templates/writing/latex/Community/TeXtured/preamble/user/main.tex" />
+                <file name="math.tex" path="templates/writing/latex/Community/TeXtured/preamble/user/math.tex" />
+              </directory>
+              <file name="bibliography.bib" path="templates/writing/latex/Community/TeXtured/preamble/bibliography.bib" />
+              <file name="data.tex" path="templates/writing/latex/Community/TeXtured/preamble/data.tex" />
+              <file name="main.tex" path="templates/writing/latex/Community/TeXtured/preamble/main.tex" />
+              <file name="toggles.tex" path="templates/writing/latex/Community/TeXtured/preamble/toggles.tex" />
+            </directory>
+            <file name=".gitattributes" path="templates/writing/latex/Community/TeXtured/.gitattributes" />
+            <file name=".gitignore" path="templates/writing/latex/Community/TeXtured/.gitignore" />
+            <file name=".latexmkrc" path="templates/writing/latex/Community/TeXtured/.latexmkrc" />
+            <file name="LICENSE" path="templates/writing/latex/Community/TeXtured/LICENSE" />
+            <file name="README.md" path="templates/writing/latex/Community/TeXtured/README.md" />
+            <file name="thesis.tex" path="templates/writing/latex/Community/TeXtured/thesis.tex" />
+          </directory>
+        </directory>
+        <directory name="Conference Posters" path="templates/writing/latex/Conference Posters">
+          <directory name="a0poster-landscape-poster" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster">
+            <directory name="figures" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster/figures">
+              <file name="logo.png" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster/figures/logo.png" />
+              <file name="placeholder.jpg" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster/figures/placeholder.jpg" />
+            </directory>
+            <file name="a0poster.cls" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster/a0poster.cls" />
+            <file name="a0size.sty" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster/a0size.sty" />
+            <file name="conference_poster_5.tex" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster/conference_poster_5.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Conference Posters/a0poster-landscape-poster/sample.bib" />
+          </directory>
+          <directory name="a0poster-portrait-poster" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster">
+            <directory name="figures" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster/figures">
+              <file name="logo.png" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster/figures/logo.png" />
+              <file name="placeholder.jpg" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster/figures/placeholder.jpg" />
+            </directory>
+            <file name="a0poster.cls" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster/a0poster.cls" />
+            <file name="a0size.sty" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster/a0size.sty" />
+            <file name="conference_poster_6.tex" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster/conference_poster_6.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Conference Posters/a0poster-portrait-poster/sample.bib" />
+          </directory>
+          <directory name="baposter-landscape-poster" path="templates/writing/latex/Conference Posters/baposter-landscape-poster">
+            <directory name="figures" path="templates/writing/latex/Conference Posters/baposter-landscape-poster/figures">
+              <file name="logo.png" path="templates/writing/latex/Conference Posters/baposter-landscape-poster/figures/logo.png" />
+              <file name="placeholder.jpg" path="templates/writing/latex/Conference Posters/baposter-landscape-poster/figures/placeholder.jpg" />
+            </directory>
+            <file name="baposter.cls" path="templates/writing/latex/Conference Posters/baposter-landscape-poster/baposter.cls" />
+            <file name="conference_poster_4.bbl" path="templates/writing/latex/Conference Posters/baposter-landscape-poster/conference_poster_4.bbl" />
+            <file name="conference_poster_4.tex" path="templates/writing/latex/Conference Posters/baposter-landscape-poster/conference_poster_4.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Conference Posters/baposter-landscape-poster/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Conference Posters/baposter-landscape-poster/sample.bib" />
+          </directory>
+          <directory name="baposter-portrait-poster" path="templates/writing/latex/Conference Posters/baposter-portrait-poster">
+            <directory name="figures" path="templates/writing/latex/Conference Posters/baposter-portrait-poster/figures">
+              <file name="background.pdf" path="templates/writing/latex/Conference Posters/baposter-portrait-poster/figures/background.pdf" />
+              <file name="logo.png" path="templates/writing/latex/Conference Posters/baposter-portrait-poster/figures/logo.png" />
+              <file name="placeholder.jpg" path="templates/writing/latex/Conference Posters/baposter-portrait-poster/figures/placeholder.jpg" />
+            </directory>
+            <file name="baposter.cls" path="templates/writing/latex/Conference Posters/baposter-portrait-poster/baposter.cls" />
+            <file name="conference_poster_3.tex" path="templates/writing/latex/Conference Posters/baposter-portrait-poster/conference_poster_3.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Conference Posters/baposter-portrait-poster/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Conference Posters/baposter-portrait-poster/sample.bib" />
+          </directory>
+          <directory name="dreuw-deselaers-poster" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster">
+            <directory name="Figures" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/Figures">
+              <file name="Fibroblastid.jpg" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/Figures/Fibroblastid.jpg" />
+              <file name="logo.pdf" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/Figures/logo.pdf" />
+              <file name="Tolmukapea.jpg" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/Figures/Tolmukapea.jpg" />
+            </directory>
+            <file name="beamerthemeI6pd2.sty" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/beamerthemeI6pd2.sty" />
+            <file name="README.pdf" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/sample.bib" />
+            <file name="tangocolors.sty" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/tangocolors.sty" />
+            <file name="template.tex" path="templates/writing/latex/Conference Posters/dreuw-deselaers-poster/template.tex" />
+          </directory>
+          <directory name="jacobs-landscape-poster" path="templates/writing/latex/Conference Posters/jacobs-landscape-poster">
+            <file name="beamerposter.sty" path="templates/writing/latex/Conference Posters/jacobs-landscape-poster/beamerposter.sty" />
+            <file name="beamerthemeconfposter.sty" path="templates/writing/latex/Conference Posters/jacobs-landscape-poster/beamerthemeconfposter.sty" />
+            <file name="logo.png" path="templates/writing/latex/Conference Posters/jacobs-landscape-poster/logo.png" />
+            <file name="main.tex" path="templates/writing/latex/Conference Posters/jacobs-landscape-poster/main.tex" />
+            <file name="placeholder.jpg" path="templates/writing/latex/Conference Posters/jacobs-landscape-poster/placeholder.jpg" />
+            <file name="README.pdf" path="templates/writing/latex/Conference Posters/jacobs-landscape-poster/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Conference Posters/jacobs-landscape-poster/sample.bib" />
+          </directory>
+        </directory>
+        <directory name="Essays" path="templates/writing/latex/Essays">
+          <directory name="diaz-essay" path="templates/writing/latex/Essays/diaz-essay">
+            <directory name="Figures" path="templates/writing/latex/Essays/diaz-essay/Figures">
+              <file name="fish.png" path="templates/writing/latex/Essays/diaz-essay/Figures/fish.png" />
+            </directory>
+            <file name="diazessay.cls" path="templates/writing/latex/Essays/diaz-essay/diazessay.cls" />
+            <file name="main.tex" path="templates/writing/latex/Essays/diaz-essay/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Essays/diaz-essay/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Essays/diaz-essay/sample.bib" />
+          </directory>
+          <directory name="tufte-essay" path="templates/writing/latex/Essays/tufte-essay">
+            <directory name="Figures" path="templates/writing/latex/Essays/tufte-essay/Figures">
+              <file name="helix.pdf" path="templates/writing/latex/Essays/tufte-essay/Figures/helix.pdf" />
+              <file name="hilbertcurves.pdf" path="templates/writing/latex/Essays/tufte-essay/Figures/hilbertcurves.pdf" />
+              <file name="sine.pdf" path="templates/writing/latex/Essays/tufte-essay/Figures/sine.pdf" />
+            </directory>
+            <file name="main.tex" path="templates/writing/latex/Essays/tufte-essay/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Essays/tufte-essay/README.pdf" />
+            <file name="sample.bib" path="templates/writing/latex/Essays/tufte-essay/sample.bib" />
+            <file name="tufte-common.def" path="templates/writing/latex/Essays/tufte-essay/tufte-common.def" />
+            <file name="tufte-handout.cls" path="templates/writing/latex/Essays/tufte-essay/tufte-handout.cls" />
+            <file name="tufte.bst" path="templates/writing/latex/Essays/tufte-essay/tufte.bst" />
+          </directory>
+        </directory>
+        <directory name="Formal Letters" path="templates/writing/latex/Formal Letters">
+          <directory name="elmueller-formal-letter" path="templates/writing/latex/Formal Letters/elmueller-formal-letter">
+            <file name="formal_letter_2.tex" path="templates/writing/latex/Formal Letters/elmueller-formal-letter/formal_letter_2.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Formal Letters/elmueller-formal-letter/README.pdf" />
+          </directory>
+          <directory name="letter-of-notice" path="templates/writing/latex/Formal Letters/letter-of-notice">
+            <file name="formal_letter_3.tex" path="templates/writing/latex/Formal Letters/letter-of-notice/formal_letter_3.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Formal Letters/letter-of-notice/README.pdf" />
+          </directory>
+          <directory name="professional-formal-letter" path="templates/writing/latex/Formal Letters/professional-formal-letter">
+            <file name="formal_letter_4.tex" path="templates/writing/latex/Formal Letters/professional-formal-letter/formal_letter_4.tex" />
+            <file name="logo.jpg" path="templates/writing/latex/Formal Letters/professional-formal-letter/logo.jpg" />
+            <file name="README.pdf" path="templates/writing/latex/Formal Letters/professional-formal-letter/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Formal Letters/professional-formal-letter/structure.tex" />
+          </directory>
+          <directory name="thin-formal-letter" path="templates/writing/latex/Formal Letters/thin-formal-letter">
+            <file name="formal_letter_1.tex" path="templates/writing/latex/Formal Letters/thin-formal-letter/formal_letter_1.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Formal Letters/thin-formal-letter/README.pdf" />
+          </directory>
+        </directory>
+        <directory name="Invoices" path="templates/writing/latex/Invoices">
+          <directory name="minimal-invoice" path="templates/writing/latex/Invoices/minimal-invoice">
+            <file name="CSMinimalInvoice.cls" path="templates/writing/latex/Invoices/minimal-invoice/CSMinimalInvoice.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Invoices/minimal-invoice/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Invoices/minimal-invoice/template.tex" />
+          </directory>
+          <directory name="wile-e-invoice" path="templates/writing/latex/Invoices/wile-e-invoice">
+            <file name="main.tex" path="templates/writing/latex/Invoices/wile-e-invoice/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Invoices/wile-e-invoice/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Invoices/wile-e-invoice/structure.tex" />
+          </directory>
+        </directory>
+        <directory name="Laboratory Books" path="templates/writing/latex/Laboratory Books">
+          <directory name="compact-laboratory-book" path="templates/writing/latex/Laboratory Books/compact-laboratory-book">
+            <file name="lab_book_2.tex" path="templates/writing/latex/Laboratory Books/compact-laboratory-book/lab_book_2.tex" />
+            <file name="labbook.cls" path="templates/writing/latex/Laboratory Books/compact-laboratory-book/labbook.cls" />
+            <file name="placeholder.png" path="templates/writing/latex/Laboratory Books/compact-laboratory-book/placeholder.png" />
+            <file name="README.pdf" path="templates/writing/latex/Laboratory Books/compact-laboratory-book/README.pdf" />
+          </directory>
+          <directory name="daily-laboratory-book" path="templates/writing/latex/Laboratory Books/daily-laboratory-book">
+            <file name="example_figure.png" path="templates/writing/latex/Laboratory Books/daily-laboratory-book/example_figure.png" />
+            <file name="lab_book_1.tex" path="templates/writing/latex/Laboratory Books/daily-laboratory-book/lab_book_1.tex" />
+            <file name="labbook.cls" path="templates/writing/latex/Laboratory Books/daily-laboratory-book/labbook.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Laboratory Books/daily-laboratory-book/README.pdf" />
+          </directory>
+        </directory>
+        <directory name="Newsletters" path="templates/writing/latex/Newsletters">
+          <directory name="professional-newsletter" path="templates/writing/latex/Newsletters/professional-newsletter">
+            <file name="logo.png" path="templates/writing/latex/Newsletters/professional-newsletter/logo.png" />
+            <file name="newsletter_2.tex" path="templates/writing/latex/Newsletters/professional-newsletter/newsletter_2.tex" />
+            <file name="placeholder.jpg" path="templates/writing/latex/Newsletters/professional-newsletter/placeholder.jpg" />
+            <file name="README.pdf" path="templates/writing/latex/Newsletters/professional-newsletter/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Newsletters/professional-newsletter/structure.tex" />
+          </directory>
+          <directory name="short-three-column-newsletter" path="templates/writing/latex/Newsletters/short-three-column-newsletter">
+            <file name="elephant.jpg" path="templates/writing/latex/Newsletters/short-three-column-newsletter/elephant.jpg" />
+            <file name="frog.jpg" path="templates/writing/latex/Newsletters/short-three-column-newsletter/frog.jpg" />
+            <file name="newsletter_1.tex" path="templates/writing/latex/Newsletters/short-three-column-newsletter/newsletter_1.tex" />
+            <file name="placeholder.jpg" path="templates/writing/latex/Newsletters/short-three-column-newsletter/placeholder.jpg" />
+            <file name="README.pdf" path="templates/writing/latex/Newsletters/short-three-column-newsletter/README.pdf" />
+          </directory>
+        </directory>
+        <directory name="Presentations" path="templates/writing/latex/Presentations">
+          <directory name="beamer-presentation" path="templates/writing/latex/Presentations/beamer-presentation">
+            <directory name="Images" path="templates/writing/latex/Presentations/beamer-presentation/Images">
+              <file name="creodocs_logo.pdf" path="templates/writing/latex/Presentations/beamer-presentation/Images/creodocs_logo.pdf" />
+            </directory>
+            <file name="README.pdf" path="templates/writing/latex/Presentations/beamer-presentation/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Presentations/beamer-presentation/template.tex" />
+          </directory>
+          <directory name="fancyslides-presentation" path="templates/writing/latex/Presentations/fancyslides-presentation">
+            <directory name="images" path="templates/writing/latex/Presentations/fancyslides-presentation/images">
+              <file name="1.jpg" path="templates/writing/latex/Presentations/fancyslides-presentation/images/1.jpg" />
+              <file name="2.jpg" path="templates/writing/latex/Presentations/fancyslides-presentation/images/2.jpg" />
+              <file name="blank.jpg" path="templates/writing/latex/Presentations/fancyslides-presentation/images/blank.jpg" />
+              <file name="placeholder.jpg" path="templates/writing/latex/Presentations/fancyslides-presentation/images/placeholder.jpg" />
+            </directory>
+            <file name="fancyslides.cls" path="templates/writing/latex/Presentations/fancyslides-presentation/fancyslides.cls" />
+            <file name="presentation_3.tex" path="templates/writing/latex/Presentations/fancyslides-presentation/presentation_3.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Presentations/fancyslides-presentation/README.pdf" />
+          </directory>
+          <directory name="focus-presentation" path="templates/writing/latex/Presentations/focus-presentation">
+            <directory name="Images" path="templates/writing/latex/Presentations/focus-presentation/Images">
+              <file name="focuslogo.pdf" path="templates/writing/latex/Presentations/focus-presentation/Images/focuslogo.pdf" />
+              <file name="placeholder.jpg" path="templates/writing/latex/Presentations/focus-presentation/Images/placeholder.jpg" />
+            </directory>
+            <file name="beamercolorthemefocus.sty" path="templates/writing/latex/Presentations/focus-presentation/beamercolorthemefocus.sty" />
+            <file name="beamerfontthemefocus.sty" path="templates/writing/latex/Presentations/focus-presentation/beamerfontthemefocus.sty" />
+            <file name="beamerinnerthemefocus.sty" path="templates/writing/latex/Presentations/focus-presentation/beamerinnerthemefocus.sty" />
+            <file name="beamerouterthemefocus.sty" path="templates/writing/latex/Presentations/focus-presentation/beamerouterthemefocus.sty" />
+            <file name="beamerthemefocus.sty" path="templates/writing/latex/Presentations/focus-presentation/beamerthemefocus.sty" />
+            <file name="example.bib" path="templates/writing/latex/Presentations/focus-presentation/example.bib" />
+            <file name="LICENSE" path="templates/writing/latex/Presentations/focus-presentation/LICENSE" />
+            <file name="README.pdf" path="templates/writing/latex/Presentations/focus-presentation/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Presentations/focus-presentation/template.tex" />
+          </directory>
+        </directory>
+        <directory name="Recipes" path="templates/writing/latex/Recipes">
+          <directory name="jacopo-recipe" path="templates/writing/latex/Recipes/jacopo-recipe">
+            <file name="CSJacopoRecipe.cls" path="templates/writing/latex/Recipes/jacopo-recipe/CSJacopoRecipe.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Recipes/jacopo-recipe/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Recipes/jacopo-recipe/template.tex" />
+          </directory>
+          <directory name="morgana-recipe" path="templates/writing/latex/Recipes/morgana-recipe">
+            <file name="CSMorganaRecipe.cls" path="templates/writing/latex/Recipes/morgana-recipe/CSMorganaRecipe.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Recipes/morgana-recipe/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Recipes/morgana-recipe/template.tex" />
+          </directory>
+        </directory>
+        <directory name="Signs" path="templates/writing/latex/Signs">
+          <directory name="alert-sign" path="templates/writing/latex/Signs/alert-sign">
+            <file name="CSAlertSign.cls" path="templates/writing/latex/Signs/alert-sign/CSAlertSign.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Signs/alert-sign/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Signs/alert-sign/template.tex" />
+          </directory>
+          <directory name="arrow-sign" path="templates/writing/latex/Signs/arrow-sign">
+            <directory name="Fonts" path="templates/writing/latex/Signs/arrow-sign/Fonts">
+              <file name="LeagueGothic-Regular.otf" path="templates/writing/latex/Signs/arrow-sign/Fonts/LeagueGothic-Regular.otf" />
+              <file name="OFL.md" path="templates/writing/latex/Signs/arrow-sign/Fonts/OFL.md" />
+              <file name="README.md" path="templates/writing/latex/Signs/arrow-sign/Fonts/README.md" />
+            </directory>
+            <file name="CSArrowSign.cls" path="templates/writing/latex/Signs/arrow-sign/CSArrowSign.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Signs/arrow-sign/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Signs/arrow-sign/template.tex" />
+          </directory>
+          <directory name="description-sign" path="templates/writing/latex/Signs/description-sign">
+            <file name="CSDescriptionSign.cls" path="templates/writing/latex/Signs/description-sign/CSDescriptionSign.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Signs/description-sign/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Signs/description-sign/template.tex" />
+          </directory>
+          <directory name="information-sign" path="templates/writing/latex/Signs/information-sign">
+            <directory name="Fonts" path="templates/writing/latex/Signs/information-sign/Fonts">
+              <file name="Lato-Black.ttf" path="templates/writing/latex/Signs/information-sign/Fonts/Lato-Black.ttf" />
+              <file name="Merriweather-Bold.otf" path="templates/writing/latex/Signs/information-sign/Fonts/Merriweather-Bold.otf" />
+              <file name="Merriweather-BoldItalic.otf" path="templates/writing/latex/Signs/information-sign/Fonts/Merriweather-BoldItalic.otf" />
+              <file name="Merriweather-Italic.otf" path="templates/writing/latex/Signs/information-sign/Fonts/Merriweather-Italic.otf" />
+              <file name="Merriweather-Regular.otf" path="templates/writing/latex/Signs/information-sign/Fonts/Merriweather-Regular.otf" />
+              <file name="OFL.txt" path="templates/writing/latex/Signs/information-sign/Fonts/OFL.txt" />
+              <file name="SIL Open Font License.txt" path="templates/writing/latex/Signs/information-sign/Fonts/SIL Open Font License.txt" />
+            </directory>
+            <file name="CSInformationSign.cls" path="templates/writing/latex/Signs/information-sign/CSInformationSign.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Signs/information-sign/README.pdf" />
+            <file name="template.tex" path="templates/writing/latex/Signs/information-sign/template.tex" />
+          </directory>
+        </directory>
+        <directory name="Theses" path="templates/writing/latex/Theses">
+          <directory name="classicthesis-thesis" path="templates/writing/latex/Theses/classicthesis-thesis">
+            <directory name="Chapters" path="templates/writing/latex/Theses/classicthesis-thesis/Chapters">
+              <file name="Chapter01.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Chapters/Chapter01.tex" />
+              <file name="Chapter02.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Chapters/Chapter02.tex" />
+              <file name="Chapter03.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Chapters/Chapter03.tex" />
+              <file name="Chapter04.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Chapters/Chapter04.tex" />
+              <file name="Chapter0A.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Chapters/Chapter0A.tex" />
+              <file name="Chapter0B.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Chapters/Chapter0B.tex" />
+            </directory>
+            <directory name="Examples" path="templates/writing/latex/Theses/classicthesis-thesis/Examples">
+              <file name="classicthesis-article.pdf" path="templates/writing/latex/Theses/classicthesis-thesis/Examples/classicthesis-article.pdf" />
+              <file name="classicthesis-article.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Examples/classicthesis-article.tex" />
+              <file name="classicthesis-book-xelatex.pdf" path="templates/writing/latex/Theses/classicthesis-thesis/Examples/classicthesis-book-xelatex.pdf" />
+              <file name="classicthesis-book-xelatex.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Examples/classicthesis-book-xelatex.tex" />
+              <file name="classicthesis-book.pdf" path="templates/writing/latex/Theses/classicthesis-thesis/Examples/classicthesis-book.pdf" />
+              <file name="classicthesis-book.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Examples/classicthesis-book.tex" />
+              <file name="classicthesis-cv.pdf" path="templates/writing/latex/Theses/classicthesis-thesis/Examples/classicthesis-cv.pdf" />
+              <file name="classicthesis-cv.tex" path="templates/writing/latex/Theses/classicthesis-thesis/Examples/classicthesis-cv.tex" />
+            </directory>
+            <directory name="FrontBackMatter" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter">
+              <file name="Abstract.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Abstract.tex" />
+              <file name="Acknowledgments.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Acknowledgments.tex" />
+              <file name="Bibliography.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Bibliography.tex" />
+              <file name="Colophon.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Colophon.tex" />
+              <file name="Contents.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Contents.tex" />
+              <file name="Declaration.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Declaration.tex" />
+              <file name="Dedication.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Dedication.tex" />
+              <file name="Publications.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Publications.tex" />
+              <file name="Titleback.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Titleback.tex" />
+              <file name="Titlepage.tex" path="templates/writing/latex/Theses/classicthesis-thesis/FrontBackMatter/Titlepage.tex" />
+            </directory>
+            <directory name="gfx" path="templates/writing/latex/Theses/classicthesis-thesis/gfx">
+              <file name="example_1.jpg" path="templates/writing/latex/Theses/classicthesis-thesis/gfx/example_1.jpg" />
+              <file name="example_2.jpg" path="templates/writing/latex/Theses/classicthesis-thesis/gfx/example_2.jpg" />
+              <file name="example_3.jpg" path="templates/writing/latex/Theses/classicthesis-thesis/gfx/example_3.jpg" />
+              <file name="example_4.jpg" path="templates/writing/latex/Theses/classicthesis-thesis/gfx/example_4.jpg" />
+              <file name="TFZsuperellipse_bw.pdf" path="templates/writing/latex/Theses/classicthesis-thesis/gfx/TFZsuperellipse_bw.pdf" />
+            </directory>
+            <file name="Bibliography.bib" path="templates/writing/latex/Theses/classicthesis-thesis/Bibliography.bib" />
+            <file name="classicthesis-config.tex" path="templates/writing/latex/Theses/classicthesis-thesis/classicthesis-config.tex" />
+            <file name="classicthesis.sty" path="templates/writing/latex/Theses/classicthesis-thesis/classicthesis.sty" />
+            <file name="main.tex" path="templates/writing/latex/Theses/classicthesis-thesis/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Theses/classicthesis-thesis/README.pdf" />
+          </directory>
+          <directory name="kaobook" path="templates/writing/latex/Theses/kaobook">
+            <directory name="chapters" path="templates/writing/latex/Theses/kaobook/chapters">
+              <file name="appendix.tex" path="templates/writing/latex/Theses/kaobook/chapters/appendix.tex" />
+              <file name="figsntabs.tex" path="templates/writing/latex/Theses/kaobook/chapters/figsntabs.tex" />
+              <file name="introduction.tex" path="templates/writing/latex/Theses/kaobook/chapters/introduction.tex" />
+              <file name="layout.tex" path="templates/writing/latex/Theses/kaobook/chapters/layout.tex" />
+              <file name="mathematics.tex" path="templates/writing/latex/Theses/kaobook/chapters/mathematics.tex" />
+              <file name="options.tex" path="templates/writing/latex/Theses/kaobook/chapters/options.tex" />
+              <file name="preface.tex" path="templates/writing/latex/Theses/kaobook/chapters/preface.tex" />
+              <file name="references.tex" path="templates/writing/latex/Theses/kaobook/chapters/references.tex" />
+              <file name="textnotes.tex" path="templates/writing/latex/Theses/kaobook/chapters/textnotes.tex" />
+            </directory>
+            <directory name="images" path="templates/writing/latex/Theses/kaobook/images">
+              <file name="monalisa.jpg" path="templates/writing/latex/Theses/kaobook/images/monalisa.jpg" />
+              <file name="seaside.jpeg" path="templates/writing/latex/Theses/kaobook/images/seaside.jpeg" />
+            </directory>
+            <file name="compileall.sh" path="templates/writing/latex/Theses/kaobook/compileall.sh" />
+            <file name="glossary.tex" path="templates/writing/latex/Theses/kaobook/glossary.tex" />
+            <file name="kao.sty" path="templates/writing/latex/Theses/kaobook/kao.sty" />
+            <file name="kaobiblio.sty" path="templates/writing/latex/Theses/kaobook/kaobiblio.sty" />
+            <file name="kaobook.cls" path="templates/writing/latex/Theses/kaobook/kaobook.cls" />
+            <file name="kaorefs.sty" path="templates/writing/latex/Theses/kaobook/kaorefs.sty" />
+            <file name="kaotheorems.sty" path="templates/writing/latex/Theses/kaobook/kaotheorems.sty" />
+            <file name="main.bib" path="templates/writing/latex/Theses/kaobook/main.bib" />
+            <file name="main.tex" path="templates/writing/latex/Theses/kaobook/main.tex" />
+            <file name="MANIFEST.md" path="templates/writing/latex/Theses/kaobook/MANIFEST.md" />
+            <file name="README.md" path="templates/writing/latex/Theses/kaobook/README.md" />
+            <file name="README.pdf" path="templates/writing/latex/Theses/kaobook/README.pdf" />
+          </directory>
+          <directory name="maggi-memoir-thesis" path="templates/writing/latex/Theses/maggi-memoir-thesis">
+            <directory name="Chapters" path="templates/writing/latex/Theses/maggi-memoir-thesis/Chapters">
+              <file name="chapter1.tex" path="templates/writing/latex/Theses/maggi-memoir-thesis/Chapters/chapter1.tex" />
+              <file name="introduction.tex" path="templates/writing/latex/Theses/maggi-memoir-thesis/Chapters/introduction.tex" />
+            </directory>
+            <directory name="Figures" path="templates/writing/latex/Theses/maggi-memoir-thesis/Figures">
+              <file name="bots.pdf" path="templates/writing/latex/Theses/maggi-memoir-thesis/Figures/bots.pdf" />
+              <file name="polimi-logo.pdf" path="templates/writing/latex/Theses/maggi-memoir-thesis/Figures/polimi-logo.pdf" />
+              <file name="telnet.pdf" path="templates/writing/latex/Theses/maggi-memoir-thesis/Figures/telnet.pdf" />
+            </directory>
+            <file name="acronyms.tex" path="templates/writing/latex/Theses/maggi-memoir-thesis/acronyms.tex" />
+            <file name="bibliography.bib" path="templates/writing/latex/Theses/maggi-memoir-thesis/bibliography.bib" />
+            <file name="README.pdf" path="templates/writing/latex/Theses/maggi-memoir-thesis/README.pdf" />
+            <file name="structure.tex" path="templates/writing/latex/Theses/maggi-memoir-thesis/structure.tex" />
+            <file name="thesis.tex" path="templates/writing/latex/Theses/maggi-memoir-thesis/thesis.tex" />
+          </directory>
+          <directory name="masters-doctoral-thesis" path="templates/writing/latex/Theses/masters-doctoral-thesis">
+            <directory name="Appendices" path="templates/writing/latex/Theses/masters-doctoral-thesis/Appendices">
+              <file name="AppendixA.tex" path="templates/writing/latex/Theses/masters-doctoral-thesis/Appendices/AppendixA.tex" />
+              <file name="AppendixTemplate.tex" path="templates/writing/latex/Theses/masters-doctoral-thesis/Appendices/AppendixTemplate.tex" />
+            </directory>
+            <directory name="Chapters" path="templates/writing/latex/Theses/masters-doctoral-thesis/Chapters">
+              <file name="Chapter1.tex" path="templates/writing/latex/Theses/masters-doctoral-thesis/Chapters/Chapter1.tex" />
+              <file name="ChapterTemplate.tex" path="templates/writing/latex/Theses/masters-doctoral-thesis/Chapters/ChapterTemplate.tex" />
+            </directory>
+            <directory name="Figures" path="templates/writing/latex/Theses/masters-doctoral-thesis/Figures">
+              <file name="Electron.pdf" path="templates/writing/latex/Theses/masters-doctoral-thesis/Figures/Electron.pdf" />
+            </directory>
+            <file name="example.bib" path="templates/writing/latex/Theses/masters-doctoral-thesis/example.bib" />
+            <file name="main.pdf" path="templates/writing/latex/Theses/masters-doctoral-thesis/main.pdf" />
+            <file name="main.tex" path="templates/writing/latex/Theses/masters-doctoral-thesis/main.tex" />
+            <file name="MastersDoctoralThesis.cls" path="templates/writing/latex/Theses/masters-doctoral-thesis/MastersDoctoralThesis.cls" />
+            <file name="README.pdf" path="templates/writing/latex/Theses/masters-doctoral-thesis/README.pdf" />
+          </directory>
+        </directory>
+        <directory name="Title Pages" path="templates/writing/latex/Title Pages">
+          <directory name="academic-title-page" path="templates/writing/latex/Title Pages/academic-title-page">
+            <file name="main.tex" path="templates/writing/latex/Title Pages/academic-title-page/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Title Pages/academic-title-page/README.pdf" />
+          </directory>
+          <directory name="formal-book-title-page" path="templates/writing/latex/Title Pages/formal-book-title-page">
+            <file name="main.tex" path="templates/writing/latex/Title Pages/formal-book-title-page/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Title Pages/formal-book-title-page/README.pdf" />
+          </directory>
+          <directory name="minimalist-book-title-page" path="templates/writing/latex/Title Pages/minimalist-book-title-page">
+            <file name="main.tex" path="templates/writing/latex/Title Pages/minimalist-book-title-page/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Title Pages/minimalist-book-title-page/README.pdf" />
+          </directory>
+          <directory name="multi-purpose-large-font-title-page" path="templates/writing/latex/Title Pages/multi-purpose-large-font-title-page">
+            <file name="main.tex" path="templates/writing/latex/Title Pages/multi-purpose-large-font-title-page/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Title Pages/multi-purpose-large-font-title-page/README.pdf" />
+          </directory>
+          <directory name="stylish-title-page" path="templates/writing/latex/Title Pages/stylish-title-page">
+            <file name="main.tex" path="templates/writing/latex/Title Pages/stylish-title-page/main.tex" />
+            <file name="README.pdf" path="templates/writing/latex/Title Pages/stylish-title-page/README.pdf" />
+          </directory>
+        </directory>
+      </directory>
     </directory>
   </directory>
   <directory name="workstation" path="workstation">

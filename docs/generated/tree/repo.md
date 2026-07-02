@@ -28028,6 +28028,29 @@ sanctuary/
 │   │   │   │   └── data.json
 │   │   │   └── templater-obsidian/
 │   │   │       └── data.json
+│   │   ├── snippets/
+│   │   │   ├── autofading-ui.css
+│   │   │   ├── better-bullet-points-in-edit-mode.css
+│   │   │   ├── collapsing-sidebar.css
+│   │   │   ├── image-cards.css
+│   │   │   ├── LICENSE.awesome-obsidian
+│   │   │   ├── outliner-for-the-outline-and-file-explorer.css
+│   │   │   ├── README.md
+│   │   │   └── tag-pills.css
+│   │   ├── themes/
+│   │   │   ├── AnuPpuccin/
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── manifest.json
+│   │   │   │   └── theme.css
+│   │   │   ├── Minimal/
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── manifest.json
+│   │   │   │   └── theme.css
+│   │   │   ├── Tokyo Night/
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── manifest.json
+│   │   │   │   └── theme.css
+│   │   │   └── README.md
 │   │   ├── app.json
 │   │   ├── appearance.json
 │   │   ├── community-plugins.json
@@ -28050,6 +28073,7 @@ sanctuary/
 │   │   ├── awesome-devcontainers.md
 │   │   ├── awesome-flutter.md
 │   │   ├── awesome-nutrition.md
+│   │   ├── awesome-obsidian.md
 │   │   ├── awesome-python.md
 │   │   └── README.md
 │   ├── concepts/
@@ -28968,8 +28992,737 @@ sanctuary/
 │   │   ├── README.md
 │   │   ├── references.bib
 │   │   └── roadmap.md
-│   └── poetry/
-│       └── poetry.toml
+│   ├── poetry/
+│   │   └── poetry.toml
+│   └── writing/
+│       └── latex/
+│           ├── Academic Articles/
+│           │   ├── arsclassica-article/
+│           │   │   ├── Figures/
+│           │   │   │   ├── Dolor.jpg
+│           │   │   │   ├── GalleriaStampe.jpg
+│           │   │   │   ├── Ipsum.jpg
+│           │   │   │   ├── Lorem.jpg
+│           │   │   │   └── Sit.jpg
+│           │   │   ├── article_4.tex
+│           │   │   ├── README.pdf
+│           │   │   ├── sample.bib
+│           │   │   └── structure.tex
+│           │   ├── journal-article/
+│           │   │   ├── Figures/
+│           │   │   │   ├── Fibroblastid.jpg
+│           │   │   │   └── Tolmukapea.jpg
+│           │   │   ├── LTJournalArticle.cls
+│           │   │   ├── README.pdf
+│           │   │   ├── sample.bib
+│           │   │   └── template.tex
+│           │   ├── stylish-article/
+│           │   │   ├── Figures/
+│           │   │   │   ├── results.pdf
+│           │   │   │   └── view.jpg
+│           │   │   ├── article_3.tex
+│           │   │   ├── README.pdf
+│           │   │   ├── sample.bib
+│           │   │   └── SelfArx.cls
+│           │   └── wenneker-article/
+│           │       ├── bear.jpg
+│           │       ├── example.bib
+│           │       ├── main.tex
+│           │       ├── README.pdf
+│           │       └── structure.tex
+│           ├── Academic Journals/
+│           │   ├── acmart-primary/
+│           │   │   ├── samples/
+│           │   │   │   ├── sample-base.bib
+│           │   │   │   ├── sample-franklin.png
+│           │   │   │   ├── samples.dtx
+│           │   │   │   ├── samples.ins
+│           │   │   │   └── sampleteaser.pdf
+│           │   │   ├── .gitignore
+│           │   │   ├── ACM-Reference-Format.bbx
+│           │   │   ├── ACM-Reference-Format.bst
+│           │   │   ├── ACM-Reference-Format.cbx
+│           │   │   ├── ACM-Reference-Format.dbx
+│           │   │   ├── acmart.bib
+│           │   │   ├── acmart.dtx
+│           │   │   ├── acmart.ins
+│           │   │   ├── Makefile
+│           │   │   ├── README
+│           │   │   └── README.pdf
+│           │   ├── american-geophysical-union/
+│           │   │   ├── April 16 2019/
+│           │   │   │   ├── trackchanges-0.7.0/
+│           │   │   │   │   ├── documentation/
+│           │   │   │   │   │   └── web/
+│           │   │   │   │   │       ├── examples/
+│           │   │   │   │   │       │   └── …
+│           │   │   │   │   │       ├── screenshots/
+│           │   │   │   │   │       │   └── …
+│           │   │   │   │   │       ├── doc.css
+│           │   │   │   │   │       ├── help.html
+│           │   │   │   │   │       ├── help_gui.html
+│           │   │   │   │   │       ├── help_stylefile.html
+│           │   │   │   │   │       ├── index.html
+│           │   │   │   │   │       ├── web_contact.html
+│           │   │   │   │   │       ├── web_credits.html
+│           │   │   │   │   │       ├── web_download.html
+│           │   │   │   │   │       └── web_preview.html
+│           │   │   │   │   ├── LatexPackage/
+│           │   │   │   │   │   ├── license.txt
+│           │   │   │   │   │   └── trackchanges.sty
+│           │   │   │   │   ├── PythonPackage/
+│           │   │   │   │   │   ├── AcceptChanges/
+│           │   │   │   │   │   │   ├── __init__.py
+│           │   │   │   │   │   │   ├── consoleoutput.py
+│           │   │   │   │   │   │   └── linesegment.py
+│           │   │   │   │   │   ├── TrackChanges/
+│           │   │   │   │   │   │   └── __init__.py
+│           │   │   │   │   │   ├── acceptchanges.py
+│           │   │   │   │   │   └── trackchanges.py
+│           │   │   │   │   ├── testing/
+│           │   │   │   │   │   ├── testing_edit.tex
+│           │   │   │   │   │   ├── testing_new.tex
+│           │   │   │   │   │   └── testing_old.tex
+│           │   │   │   │   ├── AUTHORS
+│           │   │   │   │   ├── COPYING
+│           │   │   │   │   ├── PKG-INFO
+│           │   │   │   │   └── README
+│           │   │   │   ├── agujournal2019.cls
+│           │   │   │   ├── agujournaltemplate.tex
+│           │   │   │   ├── agutexSI2019.cls
+│           │   │   │   ├── si_template_2019.tex
+│           │   │   │   └── trackchanges.sty
+│           │   │   └── README.pdf
+│           │   ├── asme/
+│           │   │   ├── conf-1.8/
+│           │   │   │   ├── abstract.pdf
+│           │   │   │   ├── abstract.tex
+│           │   │   │   ├── asme2e.bib
+│           │   │   │   ├── asme2e.cls
+│           │   │   │   ├── asme2e.pdf
+│           │   │   │   ├── asme2e.tex
+│           │   │   │   ├── asmems4.bst
+│           │   │   │   ├── FAQ
+│           │   │   │   ├── Makefile
+│           │   │   │   ├── README
+│           │   │   │   └── README2
+│           │   │   ├── journal-1.1/
+│           │   │   │   ├── figure/
+│           │   │   │   │   ├── FMANU_MD_04_1274_13.jpg
+│           │   │   │   │   ├── FMANU_MD_05_1107_11.jpg
+│           │   │   │   │   └── FMANU_MD_05_1272_5.jpg
+│           │   │   │   ├── asme2e.bib
+│           │   │   │   ├── asme2ej.cls
+│           │   │   │   ├── asme2ej.pdf
+│           │   │   │   ├── asme2ej.tex
+│           │   │   │   ├── asmems4.bst
+│           │   │   │   ├── FAQ
+│           │   │   │   ├── Makefile
+│           │   │   │   ├── README
+│           │   │   │   └── README2
+│           │   │   ├── journals-1.2/
+│           │   │   │   ├── figure/
+│           │   │   │   │   ├── FMANU_MD_04_1274_13.jpg
+│           │   │   │   │   ├── FMANU_MD_05_1107_11.jpg
+│           │   │   │   │   └── FMANU_MD_05_1272_5.jpg
+│           │   │   │   ├── asme2e.bib
+│           │   │   │   ├── asme2ej.cls
+│           │   │   │   ├── asme2ejs.pdf
+│           │   │   │   ├── asme2ejs.tex
+│           │   │   │   ├── asmems4.bst
+│           │   │   │   ├── FAQ
+│           │   │   │   ├── Makefile
+│           │   │   │   ├── README
+│           │   │   │   └── README2
+│           │   │   └── README.pdf
+│           │   ├── elsarticle-academic-journal/
+│           │   │   ├── elsarticle Documentation.pdf
+│           │   │   ├── elsarticle-num.bst
+│           │   │   ├── elsarticle-template.pdf
+│           │   │   ├── elsarticle-template.tex
+│           │   │   ├── model1-num-names.bst
+│           │   │   ├── model1a-num-names.bst
+│           │   │   ├── model2-names.bst
+│           │   │   ├── model3-num-names.bst
+│           │   │   ├── model4-names.bst
+│           │   │   ├── model5-names.bst
+│           │   │   ├── model6-num-names.bst
+│           │   │   ├── mybibfile.bib
+│           │   │   ├── numcompress.sty
+│           │   │   └── README.pdf
+│           │   ├── pnas/
+│           │   │   ├── frog.eps
+│           │   │   ├── pnas-new.bst
+│           │   │   ├── pnas-new.cls
+│           │   │   ├── pnas-sample.bib
+│           │   │   ├── PNAS-template-main.tex
+│           │   │   ├── pnas_additional_latex_instructions.pdf
+│           │   │   ├── pnasresearcharticle.sty
+│           │   │   ├── README.pdf
+│           │   │   └── widetext.sty
+│           │   ├── public-library-of-science-plos/
+│           │   │   ├── plos2015.bst
+│           │   │   ├── plos_latex_template.pdf
+│           │   │   ├── plos_latex_template.tex
+│           │   │   └── README.pdf
+│           │   ├── royal-society-of-chemistry/
+│           │   │   ├── README.pdf
+│           │   │   ├── royal-society-of-chemistry-article-template.zip
+│           │   │   └── royal-society-of-chemistry-communication-template.zip
+│           │   └── science-journal/
+│           │       ├── README.pdf
+│           │       ├── scibib.bib
+│           │       ├── scicite.sty
+│           │       ├── Science.bst
+│           │       └── scifile.tex
+│           ├── Assignments/
+│           │   ├── cleese-assignment/
+│           │   │   ├── luftballons.pl
+│           │   │   ├── README.pdf
+│           │   │   ├── structure.tex
+│           │   │   ├── student_template.tex
+│           │   │   ├── swallow.jpg
+│           │   │   └── teacher_template.tex
+│           │   ├── fphw-assignment/
+│           │   │   ├── fphw.cls
+│           │   │   ├── luftballons.pl
+│           │   │   ├── main.tex
+│           │   │   ├── README.pdf
+│           │   │   └── swallow.jpg
+│           │   ├── lachaise-assignment/
+│           │   │   ├── main.tex
+│           │   │   ├── README.pdf
+│           │   │   └── structure.tex
+│           │   └── wenneker-assignment/
+│           │       ├── Figures/
+│           │       │   └── swallow.jpg
+│           │       ├── luftballons.pl
+│           │       ├── main.tex
+│           │       ├── README.pdf
+│           │       └── structure.tex
+│           ├── Books/
+│           │   ├── ebook-book/
+│           │   │   ├── ebook.tex
+│           │   │   ├── littlered.jpg
+│           │   │   ├── README.pdf
+│           │   │   └── structure.tex
+│           │   ├── kaobook/
+│           │   │   ├── chapters/
+│           │   │   │   ├── appendix.tex
+│           │   │   │   ├── figsntabs.tex
+│           │   │   │   ├── introduction.tex
+│           │   │   │   ├── layout.tex
+│           │   │   │   ├── mathematics.tex
+│           │   │   │   ├── options.tex
+│           │   │   │   ├── preface.tex
+│           │   │   │   ├── references.tex
+│           │   │   │   └── textnotes.tex
+│           │   │   ├── images/
+│           │   │   │   ├── monalisa.jpg
+│           │   │   │   └── seaside.jpeg
+│           │   │   ├── compileall.sh
+│           │   │   ├── glossary.tex
+│           │   │   ├── kao.sty
+│           │   │   ├── kaobiblio.sty
+│           │   │   ├── kaobook.cls
+│           │   │   ├── kaorefs.sty
+│           │   │   ├── kaotheorems.sty
+│           │   │   ├── main.bib
+│           │   │   ├── main.tex
+│           │   │   ├── MANIFEST.md
+│           │   │   ├── README.md
+│           │   │   └── README.pdf
+│           │   ├── legrand-orange-book/
+│           │   │   ├── Images/
+│           │   │   │   ├── background.pdf
+│           │   │   │   ├── creodocs_logo.pdf
+│           │   │   │   ├── orange1.jpg
+│           │   │   │   ├── orange2.jpg
+│           │   │   │   └── orange3.jpg
+│           │   │   ├── indexstyle.ist
+│           │   │   ├── LegrandOrangeBook.cls
+│           │   │   ├── main.tex
+│           │   │   ├── README.pdf
+│           │   │   └── sample.bib
+│           │   └── tufte-book/
+│           │       ├── graphics/
+│           │       │   ├── be-contents.pdf
+│           │       │   ├── be-title.pdf
+│           │       │   ├── ei-contents.pdf
+│           │       │   ├── ei-title.pdf
+│           │       │   ├── helix.pdf
+│           │       │   ├── hilbertcurves.pdf
+│           │       │   ├── sine.pdf
+│           │       │   ├── vdqi-contents.pdf
+│           │       │   ├── vdqi-title.pdf
+│           │       │   ├── ve-contents.pdf
+│           │       │   └── ve-title.pdf
+│           │       ├── bibliography.bib
+│           │       ├── book_1_template.bbl
+│           │       ├── book_1_template.ind
+│           │       ├── book_1_template.tex
+│           │       ├── book_1_template.toc
+│           │       ├── main.bbl
+│           │       ├── main.ind
+│           │       ├── main.tex
+│           │       ├── main.toc
+│           │       ├── README.pdf
+│           │       ├── tufte-book.cls
+│           │       └── tufte-common.def
+│           ├── Business Cards/
+│           │   ├── bezos-business-card/
+│           │   │   ├── CSBezosBusinessCard.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   └── goodman-business-card/
+│           │       ├── CSGoodmanBusinessCard.cls
+│           │       ├── README.pdf
+│           │       └── template.tex
+│           ├── Business Reports/
+│           │   ├── makoto-technical-report/
+│           │   │   ├── Fonts/
+│           │   │   │   ├── IBMPlexMono-Light.otf
+│           │   │   │   ├── IBMPlexMono-LightItalic.otf
+│           │   │   │   ├── IBMPlexMono-SemiBold.otf
+│           │   │   │   ├── IBMPlexMono-SemiBoldItalic.otf
+│           │   │   │   ├── IBMPlexSans-Light.otf
+│           │   │   │   ├── IBMPlexSans-LightItalic.otf
+│           │   │   │   ├── IBMPlexSans-Medium.otf
+│           │   │   │   ├── IBMPlexSans-SemiBold.otf
+│           │   │   │   ├── IBMPlexSans-SemiBoldItalic.otf
+│           │   │   │   ├── IBMPlexSansCondensed-Light.otf
+│           │   │   │   ├── IBMPlexSansCondensed-LightItalic.otf
+│           │   │   │   ├── IBMPlexSansCondensed-SemiBold.otf
+│           │   │   │   ├── IBMPlexSansCondensed-SemiBoldItalic.otf
+│           │   │   │   ├── IBMPlexSerif-Light.otf
+│           │   │   │   ├── IBMPlexSerif-LightItalic.otf
+│           │   │   │   ├── IBMPlexSerif-SemiBold.otf
+│           │   │   │   ├── IBMPlexSerif-SemiBoldItalic.otf
+│           │   │   │   └── license.txt
+│           │   │   ├── Images/
+│           │   │   │   ├── ARR.pdf
+│           │   │   │   └── creodocs_logo.pdf
+│           │   │   ├── CSMakotoTechnicalReport.cls
+│           │   │   ├── README.pdf
+│           │   │   ├── sample.bib
+│           │   │   └── template.tex
+│           │   └── sullivan-business-report/
+│           │       ├── Images/
+│           │       │   ├── ARR.pdf
+│           │       │   ├── creodocs_logo.pdf
+│           │       │   └── placeholder.jpg
+│           │       ├── CSSullivanBusinessReport.cls
+│           │       ├── README.pdf
+│           │       ├── sample.bib
+│           │       └── template.tex
+│           ├── Calendars/
+│           │   ├── conference-event-timetable/
+│           │   │   ├── CSCalendars.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── monthly-calendar/
+│           │   │   ├── CSCalendars.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   └── weekly-timetable/
+│           │       ├── CSCalendars.cls
+│           │       ├── README.pdf
+│           │       └── template.tex
+│           ├── Community/
+│           │   └── TeXtured/
+│           │       ├── .github/
+│           │       │   └── workflows/
+│           │       │       └── main.yml
+│           │       ├── anc/
+│           │       │   └── ancillary.md
+│           │       ├── chapters/
+│           │       │   ├── Appendix.tex
+│           │       │   ├── Design.tex
+│           │       │   ├── Features.tex
+│           │       │   ├── Introduction.tex
+│           │       │   ├── Notation.tex
+│           │       │   ├── QuickSummary.tex
+│           │       │   ├── Summary.tex
+│           │       │   ├── Tips.tex
+│           │       │   └── Usage.tex
+│           │       ├── figures/
+│           │       │   ├── Inkscape/
+│           │       │   │   ├── add-watermark
+│           │       │   │   ├── inkscape-export-to-latex
+│           │       │   │   ├── parallel-plate-capacitor.pdf
+│           │       │   │   ├── parallel-plate-capacitor.pdf_tex
+│           │       │   │   ├── parallel-plate-capacitor.svg
+│           │       │   │   ├── template.svg
+│           │       │   │   └── watermark-template.ps
+│           │       │   ├── TeXtured-logo-dark-mode.svg
+│           │       │   └── TeXtured-logo-light-mode.svg
+│           │       ├── frontmatter/
+│           │       │   ├── img/
+│           │       │   │   └── MFF-logo.pdf
+│           │       │   ├── declaration.tex
+│           │       │   ├── dedication.tex
+│           │       │   ├── information.tex
+│           │       │   └── title.tex
+│           │       ├── preamble/
+│           │       │   ├── debug/
+│           │       │   │   ├── commands.tex
+│           │       │   │   ├── line-numbers.tex
+│           │       │   │   └── silence.tex
+│           │       │   ├── environments/
+│           │       │   │   ├── init.tex
+│           │       │   │   ├── remark-like.tex
+│           │       │   │   ├── theorem-like.tex
+│           │       │   │   └── todo-like.tex
+│           │       │   ├── general/
+│           │       │   │   ├── colors.tex
+│           │       │   │   ├── floats.tex
+│           │       │   │   ├── hyperref.tex
+│           │       │   │   └── typesetting.tex
+│           │       │   ├── hacks/
+│           │       │   │   ├── custom-reference-boxes.tex
+│           │       │   │   ├── fix-hyperref.tex
+│           │       │   │   ├── fix-qed.tex
+│           │       │   │   └── floatrow-parskip.tex
+│           │       │   ├── layout/
+│           │       │   │   ├── geometry.tex
+│           │       │   │   ├── headers.tex
+│           │       │   │   ├── numbering.tex
+│           │       │   │   ├── titles.tex
+│           │       │   │   └── toc.tex
+│           │       │   ├── math/
+│           │       │   │   ├── fonts.tex
+│           │       │   │   ├── macros.tex
+│           │       │   │   ├── packages.tex
+│           │       │   │   └── spacing.tex
+│           │       │   ├── misc/
+│           │       │   │   ├── inkscape.tex
+│           │       │   │   ├── macros.tex
+│           │       │   │   ├── packages-macros.tex
+│           │       │   │   └── tikz.tex
+│           │       │   ├── pdfA-compliance/
+│           │       │   │   ├── LaTeX-find-glyph-name/
+│           │       │   │   │   ├── .latexmkrc
+│           │       │   │   │   └── LaTeX-find-glyph-name.tex
+│           │       │   │   └── glyphtounicode.tex
+│           │       │   ├── references/
+│           │       │   │   ├── backref.tex
+│           │       │   │   ├── biblatex-extra-fields.dbx
+│           │       │   │   ├── biblatex.tex
+│           │       │   │   ├── cite.tex
+│           │       │   │   ├── doi-eprint-url.tex
+│           │       │   │   ├── fields.tex
+│           │       │   │   └── style.tex
+│           │       │   ├── user/
+│           │       │   │   ├── macros.tex
+│           │       │   │   ├── main.tex
+│           │       │   │   └── math.tex
+│           │       │   ├── bibliography.bib
+│           │       │   ├── data.tex
+│           │       │   ├── main.tex
+│           │       │   └── toggles.tex
+│           │       ├── .gitattributes
+│           │       ├── .gitignore
+│           │       ├── .latexmkrc
+│           │       ├── LICENSE
+│           │       ├── README.md
+│           │       └── thesis.tex
+│           ├── Conference Posters/
+│           │   ├── a0poster-landscape-poster/
+│           │   │   ├── figures/
+│           │   │   │   ├── logo.png
+│           │   │   │   └── placeholder.jpg
+│           │   │   ├── a0poster.cls
+│           │   │   ├── a0size.sty
+│           │   │   ├── conference_poster_5.tex
+│           │   │   ├── README.pdf
+│           │   │   └── sample.bib
+│           │   ├── a0poster-portrait-poster/
+│           │   │   ├── figures/
+│           │   │   │   ├── logo.png
+│           │   │   │   └── placeholder.jpg
+│           │   │   ├── a0poster.cls
+│           │   │   ├── a0size.sty
+│           │   │   ├── conference_poster_6.tex
+│           │   │   ├── README.pdf
+│           │   │   └── sample.bib
+│           │   ├── baposter-landscape-poster/
+│           │   │   ├── figures/
+│           │   │   │   ├── logo.png
+│           │   │   │   └── placeholder.jpg
+│           │   │   ├── baposter.cls
+│           │   │   ├── conference_poster_4.bbl
+│           │   │   ├── conference_poster_4.tex
+│           │   │   ├── README.pdf
+│           │   │   └── sample.bib
+│           │   ├── baposter-portrait-poster/
+│           │   │   ├── figures/
+│           │   │   │   ├── background.pdf
+│           │   │   │   ├── logo.png
+│           │   │   │   └── placeholder.jpg
+│           │   │   ├── baposter.cls
+│           │   │   ├── conference_poster_3.tex
+│           │   │   ├── README.pdf
+│           │   │   └── sample.bib
+│           │   ├── dreuw-deselaers-poster/
+│           │   │   ├── Figures/
+│           │   │   │   ├── Fibroblastid.jpg
+│           │   │   │   ├── logo.pdf
+│           │   │   │   └── Tolmukapea.jpg
+│           │   │   ├── beamerthemeI6pd2.sty
+│           │   │   ├── README.pdf
+│           │   │   ├── sample.bib
+│           │   │   ├── tangocolors.sty
+│           │   │   └── template.tex
+│           │   └── jacobs-landscape-poster/
+│           │       ├── beamerposter.sty
+│           │       ├── beamerthemeconfposter.sty
+│           │       ├── logo.png
+│           │       ├── main.tex
+│           │       ├── placeholder.jpg
+│           │       ├── README.pdf
+│           │       └── sample.bib
+│           ├── Essays/
+│           │   ├── diaz-essay/
+│           │   │   ├── Figures/
+│           │   │   │   └── fish.png
+│           │   │   ├── diazessay.cls
+│           │   │   ├── main.tex
+│           │   │   ├── README.pdf
+│           │   │   └── sample.bib
+│           │   └── tufte-essay/
+│           │       ├── Figures/
+│           │       │   ├── helix.pdf
+│           │       │   ├── hilbertcurves.pdf
+│           │       │   └── sine.pdf
+│           │       ├── main.tex
+│           │       ├── README.pdf
+│           │       ├── sample.bib
+│           │       ├── tufte-common.def
+│           │       ├── tufte-handout.cls
+│           │       └── tufte.bst
+│           ├── Formal Letters/
+│           │   ├── elmueller-formal-letter/
+│           │   │   ├── formal_letter_2.tex
+│           │   │   └── README.pdf
+│           │   ├── letter-of-notice/
+│           │   │   ├── formal_letter_3.tex
+│           │   │   └── README.pdf
+│           │   ├── professional-formal-letter/
+│           │   │   ├── formal_letter_4.tex
+│           │   │   ├── logo.jpg
+│           │   │   ├── README.pdf
+│           │   │   └── structure.tex
+│           │   └── thin-formal-letter/
+│           │       ├── formal_letter_1.tex
+│           │       └── README.pdf
+│           ├── Invoices/
+│           │   ├── minimal-invoice/
+│           │   │   ├── CSMinimalInvoice.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   └── wile-e-invoice/
+│           │       ├── main.tex
+│           │       ├── README.pdf
+│           │       └── structure.tex
+│           ├── Laboratory Books/
+│           │   ├── compact-laboratory-book/
+│           │   │   ├── lab_book_2.tex
+│           │   │   ├── labbook.cls
+│           │   │   ├── placeholder.png
+│           │   │   └── README.pdf
+│           │   └── daily-laboratory-book/
+│           │       ├── example_figure.png
+│           │       ├── lab_book_1.tex
+│           │       ├── labbook.cls
+│           │       └── README.pdf
+│           ├── Newsletters/
+│           │   ├── professional-newsletter/
+│           │   │   ├── logo.png
+│           │   │   ├── newsletter_2.tex
+│           │   │   ├── placeholder.jpg
+│           │   │   ├── README.pdf
+│           │   │   └── structure.tex
+│           │   └── short-three-column-newsletter/
+│           │       ├── elephant.jpg
+│           │       ├── frog.jpg
+│           │       ├── newsletter_1.tex
+│           │       ├── placeholder.jpg
+│           │       └── README.pdf
+│           ├── Presentations/
+│           │   ├── beamer-presentation/
+│           │   │   ├── Images/
+│           │   │   │   └── creodocs_logo.pdf
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── fancyslides-presentation/
+│           │   │   ├── images/
+│           │   │   │   ├── 1.jpg
+│           │   │   │   ├── 2.jpg
+│           │   │   │   ├── blank.jpg
+│           │   │   │   └── placeholder.jpg
+│           │   │   ├── fancyslides.cls
+│           │   │   ├── presentation_3.tex
+│           │   │   └── README.pdf
+│           │   └── focus-presentation/
+│           │       ├── Images/
+│           │       │   ├── focuslogo.pdf
+│           │       │   └── placeholder.jpg
+│           │       ├── beamercolorthemefocus.sty
+│           │       ├── beamerfontthemefocus.sty
+│           │       ├── beamerinnerthemefocus.sty
+│           │       ├── beamerouterthemefocus.sty
+│           │       ├── beamerthemefocus.sty
+│           │       ├── example.bib
+│           │       ├── LICENSE
+│           │       ├── README.pdf
+│           │       └── template.tex
+│           ├── Recipes/
+│           │   ├── jacopo-recipe/
+│           │   │   ├── CSJacopoRecipe.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   └── morgana-recipe/
+│           │       ├── CSMorganaRecipe.cls
+│           │       ├── README.pdf
+│           │       └── template.tex
+│           ├── Signs/
+│           │   ├── alert-sign/
+│           │   │   ├── CSAlertSign.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── arrow-sign/
+│           │   │   ├── Fonts/
+│           │   │   │   ├── LeagueGothic-Regular.otf
+│           │   │   │   ├── OFL.md
+│           │   │   │   └── README.md
+│           │   │   ├── CSArrowSign.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── description-sign/
+│           │   │   ├── CSDescriptionSign.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   └── information-sign/
+│           │       ├── Fonts/
+│           │       │   ├── Lato-Black.ttf
+│           │       │   ├── Merriweather-Bold.otf
+│           │       │   ├── Merriweather-BoldItalic.otf
+│           │       │   ├── Merriweather-Italic.otf
+│           │       │   ├── Merriweather-Regular.otf
+│           │       │   ├── OFL.txt
+│           │       │   └── SIL Open Font License.txt
+│           │       ├── CSInformationSign.cls
+│           │       ├── README.pdf
+│           │       └── template.tex
+│           ├── Theses/
+│           │   ├── classicthesis-thesis/
+│           │   │   ├── Chapters/
+│           │   │   │   ├── Chapter01.tex
+│           │   │   │   ├── Chapter02.tex
+│           │   │   │   ├── Chapter03.tex
+│           │   │   │   ├── Chapter04.tex
+│           │   │   │   ├── Chapter0A.tex
+│           │   │   │   └── Chapter0B.tex
+│           │   │   ├── Examples/
+│           │   │   │   ├── classicthesis-article.pdf
+│           │   │   │   ├── classicthesis-article.tex
+│           │   │   │   ├── classicthesis-book-xelatex.pdf
+│           │   │   │   ├── classicthesis-book-xelatex.tex
+│           │   │   │   ├── classicthesis-book.pdf
+│           │   │   │   ├── classicthesis-book.tex
+│           │   │   │   ├── classicthesis-cv.pdf
+│           │   │   │   └── classicthesis-cv.tex
+│           │   │   ├── FrontBackMatter/
+│           │   │   │   ├── Abstract.tex
+│           │   │   │   ├── Acknowledgments.tex
+│           │   │   │   ├── Bibliography.tex
+│           │   │   │   ├── Colophon.tex
+│           │   │   │   ├── Contents.tex
+│           │   │   │   ├── Declaration.tex
+│           │   │   │   ├── Dedication.tex
+│           │   │   │   ├── Publications.tex
+│           │   │   │   ├── Titleback.tex
+│           │   │   │   └── Titlepage.tex
+│           │   │   ├── gfx/
+│           │   │   │   ├── example_1.jpg
+│           │   │   │   ├── example_2.jpg
+│           │   │   │   ├── example_3.jpg
+│           │   │   │   ├── example_4.jpg
+│           │   │   │   └── TFZsuperellipse_bw.pdf
+│           │   │   ├── Bibliography.bib
+│           │   │   ├── classicthesis-config.tex
+│           │   │   ├── classicthesis.sty
+│           │   │   ├── main.tex
+│           │   │   └── README.pdf
+│           │   ├── kaobook/
+│           │   │   ├── chapters/
+│           │   │   │   ├── appendix.tex
+│           │   │   │   ├── figsntabs.tex
+│           │   │   │   ├── introduction.tex
+│           │   │   │   ├── layout.tex
+│           │   │   │   ├── mathematics.tex
+│           │   │   │   ├── options.tex
+│           │   │   │   ├── preface.tex
+│           │   │   │   ├── references.tex
+│           │   │   │   └── textnotes.tex
+│           │   │   ├── images/
+│           │   │   │   ├── monalisa.jpg
+│           │   │   │   └── seaside.jpeg
+│           │   │   ├── compileall.sh
+│           │   │   ├── glossary.tex
+│           │   │   ├── kao.sty
+│           │   │   ├── kaobiblio.sty
+│           │   │   ├── kaobook.cls
+│           │   │   ├── kaorefs.sty
+│           │   │   ├── kaotheorems.sty
+│           │   │   ├── main.bib
+│           │   │   ├── main.tex
+│           │   │   ├── MANIFEST.md
+│           │   │   ├── README.md
+│           │   │   └── README.pdf
+│           │   ├── maggi-memoir-thesis/
+│           │   │   ├── Chapters/
+│           │   │   │   ├── chapter1.tex
+│           │   │   │   └── introduction.tex
+│           │   │   ├── Figures/
+│           │   │   │   ├── bots.pdf
+│           │   │   │   ├── polimi-logo.pdf
+│           │   │   │   └── telnet.pdf
+│           │   │   ├── acronyms.tex
+│           │   │   ├── bibliography.bib
+│           │   │   ├── README.pdf
+│           │   │   ├── structure.tex
+│           │   │   └── thesis.tex
+│           │   └── masters-doctoral-thesis/
+│           │       ├── Appendices/
+│           │       │   ├── AppendixA.tex
+│           │       │   └── AppendixTemplate.tex
+│           │       ├── Chapters/
+│           │       │   ├── Chapter1.tex
+│           │       │   └── ChapterTemplate.tex
+│           │       ├── Figures/
+│           │       │   └── Electron.pdf
+│           │       ├── example.bib
+│           │       ├── main.pdf
+│           │       ├── main.tex
+│           │       ├── MastersDoctoralThesis.cls
+│           │       └── README.pdf
+│           └── Title Pages/
+│               ├── academic-title-page/
+│               │   ├── main.tex
+│               │   └── README.pdf
+│               ├── formal-book-title-page/
+│               │   ├── main.tex
+│               │   └── README.pdf
+│               ├── minimalist-book-title-page/
+│               │   ├── main.tex
+│               │   └── README.pdf
+│               ├── multi-purpose-large-font-title-page/
+│               │   ├── main.tex
+│               │   └── README.pdf
+│               └── stylish-title-page/
+│                   ├── main.tex
+│                   └── README.pdf
 ├── workstation/
 │   ├── linux/
 │   │   ├── aide/
