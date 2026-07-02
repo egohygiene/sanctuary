@@ -64,8 +64,12 @@ field in `quartz.config.yaml` before running the build.
 git clone https://github.com/jackyzha0/quartz.git /tmp/quartz
 cd /tmp/quartz
 
-# 2. Check out the pinned commit used in CI (see garden.yml for the exact SHA).
-git checkout 9cf87ff1c248a8ca551093214b0fec3b31415009
+# 2. Check out the pinned commit used in CI.
+#    The authoritative SHA lives in the QUARTZ_COMMIT variable in:
+#    .github/workflows/garden.yml → env.QUARTZ_COMMIT
+#    Always use the value from the workflow to stay in sync with CI.
+QUARTZ_COMMIT=$(grep 'QUARTZ_COMMIT:' /path/to/sanctuary/.github/workflows/garden.yml | awk '{print $2}')
+git checkout "$QUARTZ_COMMIT"
 
 # 3. Copy the Garden's Quartz configuration over the default.
 cp /path/to/sanctuary/garden/quartz/quartz.config.yaml quartz.config.yaml
