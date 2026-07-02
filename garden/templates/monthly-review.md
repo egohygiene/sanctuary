@@ -45,4 +45,4 @@ SORT status ASC, file.mtime DESC
 
 ---
 
-← [[<% tp.date.now("YYYY-MM", -31, "YYYY-MM-DD") %>]] | [[<% tp.date.now("YYYY-MM", 31, "YYYY-MM-DD") %>]] →
+← [[<% tp.date.now("YYYY-MM", -31) %>]] | [[<% tp.date.now("YYYY-MM", 31) %>]] →

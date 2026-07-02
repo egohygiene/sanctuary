@@ -64,4 +64,4 @@ SORT file.ctime ASC
 
 ---
 
-← [[<% tp.date.now("YYYY-[W]WW", -7, "YYYY-MM-DD") %>]] | [[<% tp.date.now("YYYY-[W]WW", 7, "YYYY-MM-DD") %>]] →
+← [[<% tp.date.now("YYYY-[W]WW", -7) %>]] | [[<% tp.date.now("YYYY-[W]WW", 7) %>]] →

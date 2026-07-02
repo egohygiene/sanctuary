@@ -25,7 +25,7 @@ tags:
 ```dataview
 LIST
 FROM "journal/daily"
-WHERE file.name = string(date(today))
+WHERE file.name = dateformat(date(today), "yyyy-MM-dd")
 LIMIT 1
 ```
 
