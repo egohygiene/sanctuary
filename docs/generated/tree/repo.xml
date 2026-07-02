@@ -30561,7 +30561,75 @@
   </directory>
   <directory name="garden" path="garden">
     <directory name=".obsidian" path="garden/.obsidian">
+      <directory name="plugins" path="garden/.obsidian/plugins">
+        <directory name="advanced-tables-obsidian" path="garden/.obsidian/plugins/advanced-tables-obsidian">
+          <file name="data.json" path="garden/.obsidian/plugins/advanced-tables-obsidian/data.json" />
+        </directory>
+        <directory name="calendar" path="garden/.obsidian/plugins/calendar">
+          <file name="data.json" path="garden/.obsidian/plugins/calendar/data.json" />
+        </directory>
+        <directory name="cmdr" path="garden/.obsidian/plugins/cmdr">
+          <file name="data.json" path="garden/.obsidian/plugins/cmdr/data.json" />
+        </directory>
+        <directory name="dataview" path="garden/.obsidian/plugins/dataview">
+          <file name="data.json" path="garden/.obsidian/plugins/dataview/data.json" />
+        </directory>
+        <directory name="homepage" path="garden/.obsidian/plugins/homepage">
+          <file name="data.json" path="garden/.obsidian/plugins/homepage/data.json" />
+        </directory>
+        <directory name="longform" path="garden/.obsidian/plugins/longform">
+          <file name="data.json" path="garden/.obsidian/plugins/longform/data.json" />
+        </directory>
+        <directory name="obsidian-charts" path="garden/.obsidian/plugins/obsidian-charts">
+          <file name="data.json" path="garden/.obsidian/plugins/obsidian-charts/data.json" />
+        </directory>
+        <directory name="obsidian-citation-plugin" path="garden/.obsidian/plugins/obsidian-citation-plugin">
+          <file name="data.json" path="garden/.obsidian/plugins/obsidian-citation-plugin/data.json" />
+        </directory>
+        <directory name="obsidian-excalidraw-plugin" path="garden/.obsidian/plugins/obsidian-excalidraw-plugin">
+          <file name="data.json" path="garden/.obsidian/plugins/obsidian-excalidraw-plugin/data.json" />
+        </directory>
+        <directory name="obsidian-git" path="garden/.obsidian/plugins/obsidian-git">
+          <file name="data.json" path="garden/.obsidian/plugins/obsidian-git/data.json" />
+        </directory>
+        <directory name="obsidian-kanban" path="garden/.obsidian/plugins/obsidian-kanban">
+          <file name="data.json" path="garden/.obsidian/plugins/obsidian-kanban/data.json" />
+        </directory>
+        <directory name="obsidian-mind-map" path="garden/.obsidian/plugins/obsidian-mind-map">
+          <file name="data.json" path="garden/.obsidian/plugins/obsidian-mind-map/data.json" />
+        </directory>
+        <directory name="obsidian-style-settings" path="garden/.obsidian/plugins/obsidian-style-settings">
+          <file name="data.json" path="garden/.obsidian/plugins/obsidian-style-settings/data.json" />
+        </directory>
+        <directory name="obsidian-tasks-plugin" path="garden/.obsidian/plugins/obsidian-tasks-plugin">
+          <file name="data.json" path="garden/.obsidian/plugins/obsidian-tasks-plugin/data.json" />
+        </directory>
+        <directory name="omnisearch" path="garden/.obsidian/plugins/omnisearch">
+          <file name="data.json" path="garden/.obsidian/plugins/omnisearch/data.json" />
+        </directory>
+        <directory name="periodic-notes" path="garden/.obsidian/plugins/periodic-notes">
+          <file name="data.json" path="garden/.obsidian/plugins/periodic-notes/data.json" />
+        </directory>
+        <directory name="templater-obsidian" path="garden/.obsidian/plugins/templater-obsidian">
+          <file name="data.json" path="garden/.obsidian/plugins/templater-obsidian/data.json" />
+        </directory>
+      </directory>
+      <file name="app.json" path="garden/.obsidian/app.json" />
+      <file name="appearance.json" path="garden/.obsidian/appearance.json" />
+      <file name="community-plugins.json" path="garden/.obsidian/community-plugins.json" />
+      <file name="core-plugins.json" path="garden/.obsidian/core-plugins.json" />
+      <file name="graph.json" path="garden/.obsidian/graph.json" />
+      <file name="hotkeys.json" path="garden/.obsidian/hotkeys.json" />
       <file name="README.md" path="garden/.obsidian/README.md" />
+      <file name="workspace.json" path="garden/.obsidian/workspace.json" />
+    </directory>
+    <directory name="assets" path="garden/assets">
+      <directory name="attachments" path="garden/assets/attachments">
+        <file name=".gitkeep" path="garden/assets/attachments/.gitkeep" />
+      </directory>
+      <directory name="excalidraw" path="garden/assets/excalidraw">
+        <file name=".gitkeep" path="garden/assets/excalidraw/.gitkeep" />
+      </directory>
     </directory>
     <directory name="awesome" path="garden/awesome">
       <directory name="templates" path="garden/awesome/templates">
@@ -30615,6 +30683,15 @@
       <file name="README.md" path="garden/health/README.md" />
     </directory>
     <directory name="journal" path="garden/journal">
+      <directory name="daily" path="garden/journal/daily">
+        <file name=".gitkeep" path="garden/journal/daily/.gitkeep" />
+      </directory>
+      <directory name="monthly" path="garden/journal/monthly">
+        <file name=".gitkeep" path="garden/journal/monthly/.gitkeep" />
+      </directory>
+      <directory name="weekly" path="garden/journal/weekly">
+        <file name=".gitkeep" path="garden/journal/weekly/.gitkeep" />
+      </directory>
       <file name="README.md" path="garden/journal/README.md" />
     </directory>
     <directory name="maps" path="garden/maps">
@@ -30641,11 +30718,26 @@
       <file name="README.md" path="garden/reflections/README.md" />
     </directory>
     <directory name="research" path="garden/research">
+      <directory name="references" path="garden/research/references">
+        <file name=".gitkeep" path="garden/research/references/.gitkeep" />
+      </directory>
       <file name=".gitkeep" path="garden/research/.gitkeep" />
       <file name="README.md" path="garden/research/README.md" />
     </directory>
     <directory name="templates" path="garden/templates">
+      <file name="book.md" path="garden/templates/book.md" />
+      <file name="concept.md" path="garden/templates/concept.md" />
+      <file name="daily-note.md" path="garden/templates/daily-note.md" />
+      <file name="default.md" path="garden/templates/default.md" />
+      <file name="journal-entry.md" path="garden/templates/journal-entry.md" />
+      <file name="map-of-content.md" path="garden/templates/map-of-content.md" />
+      <file name="meeting.md" path="garden/templates/meeting.md" />
+      <file name="monthly-review.md" path="garden/templates/monthly-review.md" />
+      <file name="project.md" path="garden/templates/project.md" />
       <file name="README.md" path="garden/templates/README.md" />
+      <file name="research.md" path="garden/templates/research.md" />
+      <file name="resource.md" path="garden/templates/resource.md" />
+      <file name="weekly-review.md" path="garden/templates/weekly-review.md" />
     </directory>
     <file name=".gitkeep" path="garden/.gitkeep" />
     <file name="README.md" path="garden/README.md" />
