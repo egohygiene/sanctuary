@@ -31820,6 +31820,7 @@
           <file name="setup.ts" path="templates/applications/react-vite/.vitest/setup.ts" />
         </directory>
         <directory name="public" path="templates/applications/react-vite/public">
+          <file name="llms.txt" path="templates/applications/react-vite/public/llms.txt" />
           <file name="robots.txt" path="templates/applications/react-vite/public/robots.txt" />
         </directory>
         <file name="package.json" path="templates/applications/react-vite/package.json" />
