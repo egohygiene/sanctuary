@@ -1,0 +1,103 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: "🔍 OSV Vulnerability Scan"
+
+# =============================================================================
+# OSV.dev Vulnerability Scanning
+# =============================================================================
+#
+# Purpose:
+#   Scan repository dependencies for known vulnerabilities using the Open
+#   Source Vulnerabilities (OSV) database maintained by Google.
+#
+# Notes:
+#   - Scans lockfiles for all supported ecosystems (npm/pnpm, Python/Poetry).
+#   - Uses the official OSV Scanner GitHub Action reusable workflows.
+#   - On pull requests, reports only newly introduced vulnerabilities relative
+#     to the base branch (differential scan).
+#   - On push and schedule, performs a full dependency vulnerability scan.
+#   - Results are published to GitHub Security Code Scanning in SARIF format.
+#   - Complements Dependabot, Dependency Review, and CodeQL.
+#
+# Scanned Manifests:
+#   - pnpm-lock.yaml (Node.js / pnpm)
+#   - poetry.lock (Python / Poetry)
+#
+# References:
+#   - https://osv.dev/
+#   - https://google.github.io/osv-scanner/
+#   - https://github.com/google/osv-scanner-action
+#
+# =============================================================================
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "pnpm-lock.yaml"
+      - "package.json"
+      - "poetry.lock"
+      - "pyproject.toml"
+
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - "pnpm-lock.yaml"
+      - "package.json"
+      - "poetry.lock"
+      - "pyproject.toml"
+
+  schedule:
+    # Run every Wednesday at 04:00 UTC to catch newly published CVEs.
+    - cron: "0 4 * * 3"
+
+  workflow_dispatch:
+
+concurrency:
+  group: osv-scan-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Full scan — push, schedule, and manual dispatch
+  # ---------------------------------------------------------------------------
+  scan-scheduled:
+    name: "🔍 Full Vulnerability Scan"
+
+    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2
+
+    permissions:
+      security-events: write
+      contents: read
+
+    with:
+      scan-args: |-
+        --lockfile=pnpm-lock.yaml
+        --lockfile=poetry.lock
+
+  # ---------------------------------------------------------------------------
+  # Differential scan — pull requests only (new vulnerabilities only)
+  # ---------------------------------------------------------------------------
+  scan-pr:
+    name: "🔍 Pull Request Vulnerability Scan"
+
+    if: ${{ github.event_name == 'pull_request' }}
+
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@v2
+
+    permissions:
+      security-events: write
+      contents: read
+      pull-requests: read
+
+    with:
+      scan-args: |-
+        --lockfile=pnpm-lock.yaml
+        --lockfile=poetry.lock
