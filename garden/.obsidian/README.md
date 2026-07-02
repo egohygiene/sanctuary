@@ -183,15 +183,30 @@ tabular data you want to chart.
 
 ---
 
-## Recommended Theme: Minimal
+## Bundled Theme Library
 
-The vault is configured to use the **Minimal** theme
-(`cssTheme: "Minimal"` in `appearance.json`).
+The vault is configured to use the **Minimal** theme by default
+(`cssTheme: "Minimal"` in `appearance.json`), but it also vendors a curated
+set of additional community themes in `.obsidian/themes/`.
 
-Install it via: `Settings → Appearance → Themes → Browse → Minimal`
+See [`.obsidian/themes/README.md`](themes/README.md) for the full catalog,
+licensing, and maintenance notes.
 
-Minimal is the most popular and actively maintained Obsidian theme.
-It pairs with Style Settings for fine-grained customization.
+| Theme | Why it is included |
+| ----- | ------------------ |
+| Minimal | Default theme; best integration with Style Settings |
+| Tokyo Night | Distinct editor-centric palette for dark-mode workflows |
+| AnuPpuccin | Rich customization surface for experimentation |
+
+Switch themes via: `Settings → Appearance → Themes`
+
+## Bundled CSS Snippets
+
+The vault also includes a curated CSS snippet library in
+`.obsidian/snippets/`, sourced from Awesome Obsidian and organized in
+[`.obsidian/snippets/README.md`](snippets/README.md).
+
+Enable snippets via: `Settings → Appearance → CSS snippets`
 
 ---
 

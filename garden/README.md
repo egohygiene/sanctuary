@@ -11,14 +11,17 @@ capturing ideas, building knowledge, managing projects, and publishing insights.
 1. Open Obsidian and select **Open folder as vault**
 2. Choose this `garden/` directory
 3. Accept the prompt to install community plugins
-4. Install the **Minimal** theme via `Settings → Appearance → Themes → Browse`
-5. The vault opens to `dashboards/Home` automatically
+4. Choose a bundled community theme via `Settings → Appearance → Themes`
+5. Optionally enable curated CSS snippets via `Settings → Appearance → CSS snippets`
+6. The vault opens to `dashboards/Home` automatically
 
 ## Vault Structure
 
 ```
 garden/
-├── .obsidian/          # Obsidian configuration (plugins, hotkeys, workspace)
+├── .obsidian/          # Obsidian configuration, vendored themes, and CSS snippets
+│   ├── themes/         # Curated community themes (runtime assets only)
+│   └── snippets/       # Curated CSS snippets for experimentation
 ├── assets/
 │   ├── attachments/    # Images and file attachments
 │   └── excalidraw/     # Excalidraw drawings
@@ -75,6 +78,19 @@ See [`.obsidian/README.md`](.obsidian/README.md) for the full rationale.
 | Charts | Chart.js data visualization |
 | Commander | Custom ribbon and UI buttons |
 
+## Appearance Library
+
+The vault ships with a curated appearance library inside `.obsidian/`:
+
+- [`.obsidian/themes/README.md`](.obsidian/themes/README.md) — bundled community
+  themes with licensing and attribution
+- [`.obsidian/snippets/README.md`](.obsidian/snippets/README.md) — categorized
+  CSS snippets curated from Awesome Obsidian
+
+Minimal remains the default theme (`cssTheme: "Minimal"`), but the bundled
+library makes rapid theme switching possible without downloading assets into the
+vault manually.
+
 ## Templates
 
 Templates are stored in `templates/` and use **Templater** syntax.
@@ -116,8 +132,9 @@ Templates are stored in `templates/` and use **Templater** syntax.
   and scripting capability.
 - **Dataview** is the foundation for all dashboards; it transforms the vault
   from a collection of files into a queryable knowledge base.
-- **Minimal theme** is recommended for its clean aesthetics and deep
-  Style Settings integration.
+- **Minimal theme** remains the default for its clean aesthetics and deep
+  Style Settings integration, while a bundled theme library supports fast
+  experimentation with alternative community themes.
 - **Git sync** is configured at 10-minute intervals to ensure vault changes
   are committed automatically without manual intervention.
 - **Excalidraw SVG export** is enabled so drawings remain readable outside

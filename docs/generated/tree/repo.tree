@@ -27990,7 +27990,54 @@ sanctuary/
 │   └── index.md
 ├── garden/
 │   ├── .obsidian/
-│   │   └── README.md
+│   │   ├── plugins/
+│   │   │   ├── advanced-tables-obsidian/
+│   │   │   │   └── data.json
+│   │   │   ├── calendar/
+│   │   │   │   └── data.json
+│   │   │   ├── cmdr/
+│   │   │   │   └── data.json
+│   │   │   ├── dataview/
+│   │   │   │   └── data.json
+│   │   │   ├── homepage/
+│   │   │   │   └── data.json
+│   │   │   ├── longform/
+│   │   │   │   └── data.json
+│   │   │   ├── obsidian-charts/
+│   │   │   │   └── data.json
+│   │   │   ├── obsidian-citation-plugin/
+│   │   │   │   └── data.json
+│   │   │   ├── obsidian-excalidraw-plugin/
+│   │   │   │   └── data.json
+│   │   │   ├── obsidian-git/
+│   │   │   │   └── data.json
+│   │   │   ├── obsidian-kanban/
+│   │   │   │   └── data.json
+│   │   │   ├── obsidian-mind-map/
+│   │   │   │   └── data.json
+│   │   │   ├── obsidian-style-settings/
+│   │   │   │   └── data.json
+│   │   │   ├── obsidian-tasks-plugin/
+│   │   │   │   └── data.json
+│   │   │   ├── omnisearch/
+│   │   │   │   └── data.json
+│   │   │   ├── periodic-notes/
+│   │   │   │   └── data.json
+│   │   │   └── templater-obsidian/
+│   │   │       └── data.json
+│   │   ├── app.json
+│   │   ├── appearance.json
+│   │   ├── community-plugins.json
+│   │   ├── core-plugins.json
+│   │   ├── graph.json
+│   │   ├── hotkeys.json
+│   │   ├── README.md
+│   │   └── workspace.json
+│   ├── assets/
+│   │   ├── attachments/
+│   │   │   └── .gitkeep
+│   │   └── excalidraw/
+│   │       └── .gitkeep
 │   ├── awesome/
 │   │   ├── templates/
 │   │   │   ├── .gitkeep
@@ -28030,6 +28077,12 @@ sanctuary/
 │   ├── health/
 │   │   └── README.md
 │   ├── journal/
+│   │   ├── daily/
+│   │   │   └── .gitkeep
+│   │   ├── monthly/
+│   │   │   └── .gitkeep
+│   │   ├── weekly/
+│   │   │   └── .gitkeep
 │   │   └── README.md
 │   ├── maps/
 │   │   ├── Health.md
@@ -28049,10 +28102,24 @@ sanctuary/
 │   │   ├── .gitkeep
 │   │   └── README.md
 │   ├── research/
+│   │   ├── references/
+│   │   │   └── .gitkeep
 │   │   ├── .gitkeep
 │   │   └── README.md
 │   ├── templates/
-│   │   └── README.md
+│   │   ├── book.md
+│   │   ├── concept.md
+│   │   ├── daily-note.md
+│   │   ├── default.md
+│   │   ├── journal-entry.md
+│   │   ├── map-of-content.md
+│   │   ├── meeting.md
+│   │   ├── monthly-review.md
+│   │   ├── project.md
+│   │   ├── README.md
+│   │   ├── research.md
+│   │   ├── resource.md
+│   │   └── weekly-review.md
 │   ├── .gitkeep
 │   └── README.md
 ├── lint/
