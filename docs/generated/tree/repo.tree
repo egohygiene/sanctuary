@@ -1543,6 +1543,8 @@ sanctuary/
 │   │   ├── copilot-setup-steps.yml
 │   │   ├── dependency-review.yml
 │   │   ├── github-pages.yml
+│   │   ├── ossf-scorecard.yml
+│   │   ├── osv-scan.yml
 │   │   ├── repository-intelligence.yml
 │   │   ├── reuse.yml
 │   │   ├── sanity.yml
@@ -27985,6 +27987,8 @@ sanctuary/
 │   │   └── COPILOT_ALLOWLIST.md
 │   ├── javascripts/
 │   │   └── extra.js
+│   ├── security/
+│   │   └── index.md
 │   ├── stylesheets/
 │   │   └── extra.css
 │   └── index.md

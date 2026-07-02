@@ -2046,6 +2046,8 @@
       <file name="copilot-setup-steps.yml" path=".github/workflows/copilot-setup-steps.yml" />
       <file name="dependency-review.yml" path=".github/workflows/dependency-review.yml" />
       <file name="github-pages.yml" path=".github/workflows/github-pages.yml" />
+      <file name="ossf-scorecard.yml" path=".github/workflows/ossf-scorecard.yml" />
+      <file name="osv-scan.yml" path=".github/workflows/osv-scan.yml" />
       <file name="repository-intelligence.yml" path=".github/workflows/repository-intelligence.yml" />
       <file name="reuse.yml" path=".github/workflows/reuse.yml" />
       <file name="sanity.yml" path=".github/workflows/sanity.yml" />
@@ -30553,6 +30555,9 @@
     </directory>
     <directory name="javascripts" path="docs/javascripts">
       <file name="extra.js" path="docs/javascripts/extra.js" />
+    </directory>
+    <directory name="security" path="docs/security">
+      <file name="index.md" path="docs/security/index.md" />
     </directory>
     <directory name="stylesheets" path="docs/stylesheets">
       <file name="extra.css" path="docs/stylesheets/extra.css" />
