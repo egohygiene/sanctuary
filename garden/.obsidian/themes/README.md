@@ -15,7 +15,6 @@ Only the runtime assets required by Obsidian are kept in each theme directory:
 | Theme | Style | Modes | Source | License |
 | ----- | ----- | ----- | ------ | ------- |
 | Minimal | Clean default with strong Style Settings support | Light / Dark | [kepano/obsidian-minimal](https://github.com/kepano/obsidian-minimal) | Included in `Minimal/LICENSE` |
-| Things | Card-driven typography and gentle spacing | Light / Dark | [colineckert/obsidian-things](https://github.com/colineckert/obsidian-things) | Included in `Things/LICENSE` |
 | Tokyo Night | High-contrast editor-focused palette | Light / Dark | [tcmmichaelb139/obsidian-tokyonight](https://github.com/tcmmichaelb139/obsidian-tokyonight) | Included in `Tokyo Night/LICENSE` |
 | AnuPpuccin | Rich Catppuccin-inspired theme with deep customization | Light / Dark | [AnubisNekhet/AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin) | Included in `AnuPpuccin/LICENSE` |
 

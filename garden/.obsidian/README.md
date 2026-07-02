@@ -195,7 +195,6 @@ licensing, and maintenance notes.
 | Theme | Why it is included |
 | ----- | ------------------ |
 | Minimal | Default theme; best integration with Style Settings |
-| Things | Excellent typography and note-card styling |
 | Tokyo Night | Distinct editor-centric palette for dark-mode workflows |
 | AnuPpuccin | Rich customization surface for experimentation |
 
