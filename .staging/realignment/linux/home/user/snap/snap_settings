@@ -1,5 +1,0 @@
-
-# https://snapcraft.io/docs/system-options
-
-snap set system journal.persistent=true
-snap set system experimental.hidden-snap-folder=true

@@ -87,3 +87,263 @@ alias reload='exec "${SHELL}" --login'
 alias cp='cp --interactive --verbose'
 alias mv='mv --interactive --verbose'
 alias rm='rm --interactive'
+
+
+#!/bin/sh
+# .bash_aliases
+
+terminal::load_dircolors
+
+alias ls="ls --almost-all --color=always"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias dir="dir --color=auto"
+alias vdir="vdir --color=auto"
+
+# Always enable colored `grep` output
+# Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# Shortcut to git clone.
+alias clone="git clone"
+
+# Prints current environment and sorts.
+alias environment="printenv | sort"
+
+# Update packages.
+alias update="sudo apt-get update && sudo apt-get -y upgrade; sudo apt-get -y autoremove; sudo snap refresh; sudo aptitude safe-upgrade -y"
+
+# Generate a password.
+alias genpass="head -c 32 /dev/random | base64 | sed "s:[+=/]::g" | head -c 32"
+
+# Change directory.
+alias ..="cd ../"
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# Show disk usage.
+alias dsk="df -h --total"
+
+# Show memory usage.
+alias mem="free -h --total"
+
+# Show PATH locations.
+alias path='printf "%b\n" "${PATH//:/\\n}"'
+
+# Set curl's config file.
+alias curl="curl --config $CURLRC"
+
+# Show Java VM options.
+alias java-options="java -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version"
+
+# VLC configuration.
+alias vlc="vlc --config '$VLCRC'"
+
+# Save dconf settings.
+alias save-dconf="dconf dump / > '$USER_SYS_CONFIG/dconf/dconf-settings.ini'"
+
+# Shortcut to change directory to desktop.
+alias desktop="cd ~/Desktop"
+
+# macOS has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum="md5"
+
+# macOS has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Disable Spotlight
+alias spotlightoff="sudo mdutil -a -i off"
+
+# Enable Spotlight
+alias spotlighton="sudo mdutil -a -i on"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Set/get clipboard.
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
+
+# Set nvidia-settings to use config file.
+# https://manpages.ubuntu.com/manpages/focal/man1/nvidia-settings.1.html
+alias nvidia-settings="nvidia-settings --config=$NVIDIA_SETTINGS_RC"
+
+# Set xsel logfile location.
+alias xsel="xsel --logfile $XSEL_LOGFILE"
+
+# Set visual studio code CLI options.
+alias code="code --extensions-dir $VS_CODE_EXTENSIONS_DIR --user-data-dir $VS_CODE_DATA_DIR"
+
+# Set abook configuration and data files.
+# https://manpages.ubuntu.com/manpages/jammy/en/man1/abook.1.html
+alias abook="abook --config $ABOOK_RC --datafile $ABOOK_DATA"
+
+# Set dictd configuration file: https://linux.die.net/man/8/dictd
+alias dict="dict --config $DICTD_RC"
+
+# Set units history file.
+alias units="units --history $UNITS_HISTORY_FILE"
+
+# Sets the anki data directory.
+alias anki="anki -b $ANKI_DIR"
+
+# Sets the ncmpc configuration directory.
+alias ncmpc="ncmpc -f $NCMPC_CONFIG_DIR"
+
+# Set the subversion configuration directory.
+alias svn="svn --config-dir $SVN_CONFIG_DIR"
+
+# Set the claws-mail configuration directory.
+alias claws-mail="claws-mail --alternate-config-dir $CLAWS_MAIL_CONFIG"
+
+# Set conky config file.
+alias conky="conky --config $CONKY_CONFIG"
+
+# Set irssi
+alias irssi="irssi --config='$USER_SYS_CONFIG/irssi/config' --home='$USER_SYS_APPS/irssi'"
+
+# gliv
+alias gliv="gliv --glivrc=$USER_SYS_CONFIG/gliv/glivrc"
+
+# Set keychain's runtime directory.
+alias keychain="keychain --dir $USER_SYS_APPS/keychain"
+
+# Set wget's cache file location.
+alias wget="wget --hsts-file=$USER_SYS_APPS/wget-hsts --show-progress"
+
+# Set x2goclient configuration directory.
+alias x2goclient="x2goclient --home=$USER_SYS_CONFIG/x2goclient"
+
+# Set monero directory.
+alias monerod="monerod --data-dir $USER_SYS_APPS/bitmonero"
+
+# Set mysql-workbench directory.
+alias mysql-workbench="mysql-workbench --configdir=$USER_SYS_APPS/mysql/workbench"
+
+# Set the netbeans configuration directory.
+alias netbeans="netbeans --userdir $USER_SYS_CONFIG/netbeans"
+
+# Set pidgin's configuration location.
+alias pidgin="pidgin --config=$USER_SYS_APPS/purple"
+
+# Set dosbox's configuration directory.
+alias dosbox="dosbox -conf $USER_SYS_CONFIG/dosbox/dosbox.conf"
+
+# Set isync's configuration location.
+alias mbsync="mbsync -c $USER_SYS_CONFIG/isync/mbsyncrc"
+
+# Set bashdb to use a custom init file.
+alias bashdb="bashdb -x $USER_SYS_CONFIG/bashdb/bashdbinit"
+
+# Set chez data directory and history file location.
+alias petite="petite --eehistory ${USER_SYS_APPS}/chezscheme/history"
+alias scheme="scheme --eehistory ${USER_SYS_APPS}/chezscheme/history"
+
+# Set gdb configuration location.
+alias gdb="gdb -n -x $USER_SYS_CONFIG/gdb/init"
+
+# Set xbindkeys configuration location.
+alias xbindkeys="xbindkeys -f $USER_SYS_CONFIG/xbindkeys/config"
+
+# Set xrdb configuration location.
+alias xrdb="xrdb -load $USER_SYS_CONFIG/X11/resources"
+
+# Set ltrace configuration location.
+alias ltrace="ltrace -F $USER_SYS_CONFIG/ltrace/ltrace.conf"
+
+# Set getmail configuration location.
+alias getmail="getmail --rcfile=$USER_SYS_CONFIG/getmail/getmailrc --getmaildir=$USER_SYS_APPS/getmail"
+
+# Set yarn configuration location.
+alias yarn="yarn --use-yarnrc $USER_SYS_CONFIG/yarn/yarnrc"
+
+# Set revive configuration location.
+alias revive="revive --config $USER_SYS_CONFIG/revive/revive.toml"
+
+# Set clang-format configuration file location.
+alias clang-format="clang-format --style=file:$USER_SYS_CONFIG/clang-format/.clang-format"
+
+# Set the maven settings file.
+alias mvn="mvn --settings $M2_HOME/settings.xml"
+
+# Set moc configuration location.
+alias mocp="mocp -M $USER_SYS_CONFIG/moc"
+
+# Set mitmproxy location.
+alias mitmproxy="mitmproxy --set confdir=$USER_SYS_CONFIG/mitmproxy"
+alias mitmweb="mitmweb --set confdir=$USER_SYS_CONFIG/mitmproxy"
+
+# Set newsboat config files.
+alias newsboat="newsboat --url-file=$USER_SYS_CONFIG/newsboat/urls --cache-file=$XDG_CACHE_HOME/newsboat/cache --config-file=$USER_SYS_CONFIG/newsboat/config"
+
+# ledger
+alias ledger="ledger --init-file $USER_SYS_CONFIG/ledgerrc"
+
+# feh
+alias feh="feh --no-fehbg"
+
+# xonsh
+alias xonsh="xonsh --rc $USER_SYS_CONFIG/xonsh/xonshrc"
+
+# minecraft
+alias minecraft="minecraft --workDir $USER_SYS_APPS/minecraft/.minecraft"
+
+# colored man pages
+man() {
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
+        LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+        LESS_TERMCAP_me=$'\E[0m' \
+        LESS_TERMCAP_se=$'\E[0m' \
+        LESS_TERMCAP_so=$'\E[38;5;246m' \
+        LESS_TERMCAP_ue=$'\E[0m' \
+        LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+        man "$@"
+}
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+alias busy="cat /dev/urandom | xxd | grep --color=always --line-buffered 'be ef'"
+
+# Time
+# -----------------------------------------------------------------------------
+
+# Gets local/UTC date and time in ISO-8601 format `YYYY-MM-DDThh:mm:ss`.
+alias now='date +"%Y-%m-%dT%H:%M:%S"'
+alias unow='date -u +"%Y-%m-%dT%H:%M:%S"'
+
+# Gets date in `YYYY-MM-DD` format`
+alias nowdate='date +"%Y-%m-%d"'
+alias unowdate='date -u +"%Y-%m-%d"'
+
+# Gets time in `hh:mm:ss` format`
+alias nowtime='date +"%T"'
+alias unowtime='date -u +"%T"'
+
+# Gets Unix time stamp`
+alias timestamp='date -u +%s'
+
+# Gets week number in ISO-8601 format `YYYY-Www`.
+alias week='date +"%Y-W%V"'
+
+# Gets weekday number.
+alias weekday='date +"%u"'
+
+# Sets the gallery-dl configuration file location.
+alias gallery-dl='gallery-dl --config $USER_SYS_CONFIG/gallery-dl/gallery-dl.conf'
+
+# Shortcut for pretty printing JSON.
+alias pretty-json='python -m json.tool --sort-keys --no-ensure-ascii'
+
+alias imagefap='npx imagefap-dl --full-filenames --no-prompt --dir-structure g'
+
+alias missav='vsd save --user-agent "$(fake-user-agent)" --quality "highest" --color "always" --header "Referer" "https://missav.com" --skip-prompts'
+
+alias photos="feh --auto-zoom --image-bg black --randomize --recursive --scale-down ."
