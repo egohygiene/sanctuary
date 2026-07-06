@@ -62,7 +62,10 @@
         "devcontainer.json": "jsonc",
         ".curlrc": "properties",
         ".asdfrc": "properties",
-        ".wgetrc": "properties"
+        ".wgetrc": "properties",
+        ".gitignore_global": "ignore",
+        "gitignore_global": "ignore",
+        ".npmrc": "properties"
     },
 
     // --- Terminal ---
