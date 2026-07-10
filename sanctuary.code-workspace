@@ -168,6 +168,12 @@
     },
     "peacock.remoteColor": "#42b883",
     "notebook.formatOnSave.enabled": true,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "json.schemaDownload.trustedDomains": {
+      "https://models.dev": true,
+      "https://opencode.ai": true,
+    },
   },
   "extensions": {
     "recommendations": [
