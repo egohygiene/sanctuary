@@ -1,5 +1,0 @@
-[bandit]
-quiet = ""
-targets = .
-recursive = true
-exclude = */tests/*,venv,.venv

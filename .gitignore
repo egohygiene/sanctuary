@@ -26,3 +26,5 @@ __pycache__
 .allcontributorsrc.tmp
 
 temp.sh
+
+**/megalinter-reports

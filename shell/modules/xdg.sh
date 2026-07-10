@@ -13,6 +13,8 @@
 #   - Cross-platform (Linux, macOS, containers)
 #   - Respects pre-existing environment variables
 #
+# References:
+#   - XDG Base Directory Specification: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 
 # --------------------------------------------
 # 🛑 Idempotency Guard

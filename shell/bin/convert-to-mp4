@@ -1,0 +1,274 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+readonly PROGRAM_NAME="${0##*/}"
+readonly VERSION="2.0.0"
+
+output_file=""
+overwrite=false
+mute=false
+crf=20
+preset="medium"
+max_width=0
+temporary_file=""
+
+usage() {
+  cat <<EOF
+Usage:
+  ${PROGRAM_NAME} [options] <input>
+
+Convert any FFmpeg-readable video or animation (including GIF) to a broadly
+compatible MP4. The default output is written beside the input.
+
+Options:
+  -o, --output <file>       Output path (default: <input>.mp4)
+  -f, --force               Replace an existing output file
+  -q, --quality <0-51>      H.264 CRF; lower is higher quality (default: 20)
+  -p, --preset <name>       x264 preset (default: medium)
+  -w, --max-width <pixels>  Downscale to this width; never upscale
+      --mute                Omit audio
+  -h, --help                Show this help
+  -V, --version             Show version
+
+Presets: ultrafast, superfast, veryfast, faster, fast, medium, slow, slower,
+         veryslow
+
+Examples:
+  ${PROGRAM_NAME} clip.mov
+  ${PROGRAM_NAME} animation.gif -o animation.mp4
+  ${PROGRAM_NAME} --quality 18 --preset slow --max-width 1920 recording.mkv
+EOF
+}
+
+die() {
+  printf '%s: error: %s\n' "${PROGRAM_NAME}" "$*" >&2
+  exit 1
+}
+
+warn() {
+  printf '%s: warning: %s\n' "${PROGRAM_NAME}" "$*" >&2
+}
+
+cleanup() {
+  if [[ -n "${temporary_file}" && -e "${temporary_file}" ]]; then
+    rm -f -- "${temporary_file}"
+  fi
+}
+
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+require_command() {
+  command -v "$1" >/dev/null 2>&1 || die "required command not found: $1"
+}
+
+require_value() {
+  local option="$1"
+  local value="${2:-}"
+  [[ -n "${value}" ]] || die "${option} requires a value"
+}
+
+validate_options() {
+  if [[ ! "${crf}" =~ ^[0-9]+$ ]] || ((crf > 51)); then
+    die "quality must be an integer from 0 to 51"
+  fi
+
+  case "${preset}" in
+    ultrafast | superfast | veryfast | faster | fast | medium | slow | slower | veryslow) ;;
+    *) die "invalid preset: ${preset}" ;;
+  esac
+
+  [[ "${max_width}" =~ ^[0-9]+$ ]] ||
+    die "max width must be a positive integer"
+  ((max_width == 0 || max_width >= 2)) ||
+    die "max width must be at least 2 pixels"
+}
+
+default_output_path() {
+  local input="$1"
+  local base="${input%.*}"
+
+  # A dot in a parent directory is not a file extension.
+  if [[ "${input##*/}" != *.* ]]; then
+    base="${input}"
+  fi
+
+  if has_mp4_extension "${input}"; then
+    printf '%s_converted.mp4\n' "${base}"
+  else
+    printf '%s.mp4\n' "${base}"
+  fi
+}
+
+has_mp4_extension() {
+  local extension="${1##*.}"
+  extension="$(printf '%s' "${extension}" | tr '[:upper:]' '[:lower:]')"
+  [[ "${extension}" == "mp4" ]]
+}
+
+parse_arguments() {
+  local -a positional=()
+
+  while (($# > 0)); do
+    case "$1" in
+      -o | --output)
+        require_value "$1" "${2:-}"
+        output_file="$2"
+        shift 2
+        ;;
+      --output=*)
+        output_file="${1#*=}"
+        require_value "--output" "${output_file}"
+        shift
+        ;;
+      -f | --force)
+        overwrite=true
+        shift
+        ;;
+      -q | --quality)
+        require_value "$1" "${2:-}"
+        crf="$2"
+        shift 2
+        ;;
+      --quality=*)
+        crf="${1#*=}"
+        shift
+        ;;
+      -p | --preset)
+        require_value "$1" "${2:-}"
+        preset="$2"
+        shift 2
+        ;;
+      --preset=*)
+        preset="${1#*=}"
+        shift
+        ;;
+      -w | --max-width)
+        require_value "$1" "${2:-}"
+        max_width="$2"
+        shift 2
+        ;;
+      --max-width=*)
+        max_width="${1#*=}"
+        shift
+        ;;
+      --mute)
+        mute=true
+        shift
+        ;;
+      -h | --help)
+        usage
+        exit 0
+        ;;
+      -V | --version)
+        printf '%s %s\n' "${PROGRAM_NAME}" "${VERSION}"
+        exit 0
+        ;;
+      --)
+        shift
+        positional+=("$@")
+        break
+        ;;
+      -*) die "unknown option: $1 (try --help)" ;;
+      *)
+        positional+=("$1")
+        shift
+        ;;
+    esac
+  done
+
+  ((${#positional[@]} == 1)) || die "expected exactly one input file (try --help)"
+  input_file="${positional[0]}"
+}
+
+probe_input() {
+  local input="$1"
+
+  ffprobe -v error -select_streams v:0 \
+    -show_entries stream=codec_type -of csv=p=0 -- "${input}" 2>/dev/null |
+    grep -qx 'video' || die "input has no readable video stream: ${input}"
+}
+
+make_filter() {
+  if ((max_width > 0)); then
+    # Preserve aspect ratio, avoid upscaling, and ensure H.264-compatible dimensions.
+    printf "scale='trunc(min(iw,%d)/2)*2':'-2':flags=lanczos" "${max_width}"
+  else
+    # yuv420p encoders require even dimensions.
+    printf "scale='trunc(iw/2)*2':'trunc(ih/2)*2':flags=lanczos"
+  fi
+}
+
+convert() {
+  local input="$1"
+  local output="$2"
+  local output_directory
+  local video_filter
+  local -a audio_options=(-map '0:a:0?' -c:a aac -b:a 192k)
+
+  output_directory="$(dirname -- "${output}")"
+  [[ -d "${output_directory}" ]] || die "output directory does not exist: ${output_directory}"
+  [[ -w "${output_directory}" ]] || die "output directory is not writable: ${output_directory}"
+
+  if [[ -e "${output}" ]]; then
+    [[ "${input}" -ef "${output}" ]] && die "input and output must be different files"
+    ${overwrite} || die "output already exists: ${output} (use --force to replace it)"
+  fi
+
+  # BSD mktemp (the macOS default) requires the X characters at the end.
+  temporary_file="$(mktemp "${output_directory}/.${PROGRAM_NAME}.XXXXXX")" ||
+    die "could not create a temporary output file"
+  video_filter="$(make_filter)"
+
+  if ${mute}; then
+    audio_options=(-an)
+  fi
+
+  printf 'Converting %s -> %s\n' "${input}" "${output}"
+  if ! ffmpeg -hide_banner -nostdin -i "${input}" \
+    -map 0:v:0 "${audio_options[@]}" \
+    -c:v libx264 -preset "${preset}" -crf "${crf}" \
+    -vf "${video_filter}" -pix_fmt yuv420p \
+    -movflags +faststart -map_metadata 0 -map_chapters 0 \
+    -sn -dn -f mp4 -y -- "${temporary_file}"; then
+    die "conversion failed"
+  fi
+
+  ffprobe -v error -select_streams v:0 -show_entries stream=codec_name \
+    -of default=nw=1:nk=1 -- "${temporary_file}" 2>/dev/null |
+    grep -qx 'h264' || die "output validation failed"
+
+  if ${overwrite}; then
+    mv -f -- "${temporary_file}" "${output}"
+  else
+    mv -n -- "${temporary_file}" "${output}"
+    [[ ! -e "${temporary_file}" ]] ||
+      die "output was created by another process: ${output}"
+  fi
+  temporary_file=""
+
+  printf 'Created %s\n' "${output}"
+}
+
+main() {
+  parse_arguments "$@"
+  validate_options
+  require_command ffmpeg
+  require_command ffprobe
+
+  [[ -f "${input_file}" ]] || die "input file not found: ${input_file}"
+  [[ -r "${input_file}" ]] || die "input file is not readable: ${input_file}"
+  probe_input "${input_file}"
+
+  if [[ -z "${output_file}" ]]; then
+    output_file="$(default_output_path "${input_file}")"
+  elif ! has_mp4_extension "${output_file}"; then
+    warn "output does not use the .mp4 extension: ${output_file}"
+  fi
+
+  convert "${input_file}" "${output_file}"
+}
+
+main "$@"

@@ -1,0 +1,39 @@
+# ------------------------------------------------------------------------------
+# Bandit Configuration
+# ------------------------------------------------------------------------------
+#
+# Purpose:
+#   Static security analysis for Python source code.
+#
+# Documentation:
+#   https://bandit.readthedocs.io/
+#
+# ------------------------------------------------------------------------------
+[bandit]
+
+# Scan recursively.
+recursive = true
+
+# Repository root.
+targets = "."
+
+# Produce normal output.
+quiet = false
+
+# Skip common non-source directories.
+exclude = [
+    ".git",
+    ".cache",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules",
+    "site",
+    "tests",
+    "venv",
+]
