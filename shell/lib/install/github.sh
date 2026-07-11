@@ -102,6 +102,8 @@ install::github::checksum_from_release() {
     return 0
   fi
 
+  # Expected checksum asset format is the common "<checksum> <filename>" layout,
+  # with optional "./" or "*" filename prefixes used by sha256sum-style files.
   expected_checksum="$(
     awk -v asset="${target_asset}" '
       {
@@ -313,7 +315,7 @@ install::github::main() {
   )" || return 1
 
   verify_args_declaration="$(declare -p INSTALL_VERIFY_ARGS 2>/dev/null || true)"
-  if [[ "${verify_args_declaration}" == "declare -a"* ]]; then
+  if [[ "${verify_args_declaration}" =~ ^declare\ -[[:alpha:]]*a[[:alpha:]]*\ INSTALL_VERIFY_ARGS= ]]; then
     # INSTALL_VERIFY_ARGS is optional and may not be defined by every wrapper.
     # shellcheck disable=SC2206
     verify_args=("${INSTALL_VERIFY_ARGS[@]}")

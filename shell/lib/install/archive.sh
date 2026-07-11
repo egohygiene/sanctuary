@@ -23,7 +23,6 @@ install::archive::extract() {
   local destination_dir="$2"
   local member_path="${3:-}"
   local archive_format="${4:-}"
-  local copied_path
 
   archive_format="${archive_format:-$(install::archive::format "${archive_path}")}"
   mkdir -p "${destination_dir}"
@@ -35,8 +34,7 @@ install::archive::extract() {
         return 1
       fi
 
-      copied_path="${destination_dir}/$(basename "${archive_path}")"
-      cp "${archive_path}" "${copied_path}"
+      cp "${archive_path}" "${destination_dir}/$(basename "${archive_path}")"
       ;;
     tar.gz)
       if [[ -n "${member_path}" ]]; then
