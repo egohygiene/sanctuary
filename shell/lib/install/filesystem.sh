@@ -7,6 +7,12 @@ fi
 
 export EGOHYGIENE_LIB_INSTALL_FILESYSTEM_LOADED="true"
 
+install::fs::can_write_directory() {
+  local destination_dir="$1"
+
+  [[ -w "${destination_dir}" || ( ! -e "${destination_dir}" && -w "$(dirname "${destination_dir}")" ) ]]
+}
+
 install::fs::tempdir() {
   local base_tmpdir="${TMPDIR:-/tmp}"
   mktemp -d "${base_tmpdir%/}/egohygiene-install.XXXXXX"
@@ -26,7 +32,7 @@ install::fs::install_executable() {
   local destination_name="${3:-$(basename "${source_path}")}"
   local destination_path="${destination_dir%/}/${destination_name}"
 
-  if [[ -w "${destination_dir}" || ( ! -e "${destination_dir}" && -w "$(dirname "${destination_dir}")" ) ]]; then
+  if install::fs::can_write_directory "${destination_dir}"; then
     mkdir -p "${destination_dir}"
     install -m 0755 "${source_path}" "${destination_path}"
   elif guard::has_command sudo; then

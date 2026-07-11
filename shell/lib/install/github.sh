@@ -151,17 +151,17 @@ install::github::parse_args() {
 }
 
 install::github::assert_config() {
-  local required_vars=(
+  local required_config_vars=(
     "INSTALL_TOOL_NAME"
     "INSTALL_OWNER"
     "INSTALL_REPO"
     "INSTALL_ASSET_TEMPLATE"
   )
-  local required_var_name
+  local required_config_var_name
 
-  for required_var_name in "${required_vars[@]}"; do
-    if [[ -z "${!required_var_name:-}" ]]; then
-      log::error "Missing installer configuration: ${required_var_name}"
+  for required_config_var_name in "${required_config_vars[@]}"; do
+    if [[ -z "${!required_config_var_name:-}" ]]; then
+      log::error "Missing installer configuration: ${required_config_var_name}"
       return 1
     fi
   done
@@ -310,6 +310,7 @@ install::github::main() {
   )" || return 1
 
   if declare -p INSTALL_VERIFY_ARGS >/dev/null 2>&1; then
+    # INSTALL_VERIFY_ARGS is optional and may not be defined by every wrapper.
     # shellcheck disable=SC2206
     verify_args=("${INSTALL_VERIFY_ARGS[@]}")
   fi
