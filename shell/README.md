@@ -34,6 +34,22 @@ shell/
    - `runtime/shells/bash/runtime.sh` loads Bash-only helpers
    - shell-specific modules only load when a matching file exists in `modules/`
 
+## Fish shell
+
+Fish shell is supported through a standalone Fish-native runtime that does not
+use the Bash bootstrap path.
+
+```text
+runtime/shells/fish/
+├── runtime.fish        # Entry point — source from ~/.config/fish/config.fish
+├── conf.d/             # Auto-loaded configuration fragments
+├── functions/          # Fish functions
+└── completions/        # Fish completions
+```
+
+See [`runtime/shells/fish/README.md`](runtime/shells/fish/README.md) for
+integration instructions and a full migration summary.
+
 ## Portability notes
 
 - The bootstrap is intended to be sourced from Bash or Zsh.
