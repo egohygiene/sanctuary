@@ -83,6 +83,7 @@ fi
 if [[ -z "${EGOHYGIENE_SHELL_NAME:-}" ]]; then
   EGOHYGIENE_SHELL_NAME="unknown"
   export EGOHYGIENE_SHELL_NAME
+  printf "[warn] load-core.sh: shell runtime detection returned unknown\n" >&2
 fi
 
 posix_shell_runtime_path="${EGOHYGIENE_SHELL_ROOT}/runtime/shells/posix/runtime.sh"
@@ -98,7 +99,7 @@ shell_runtime_path="${EGOHYGIENE_SHELL_ROOT}/runtime/shells/${EGOHYGIENE_SHELL_N
 if [[ -f "${shell_runtime_path}" && -r "${shell_runtime_path}" ]]; then
   # shellcheck disable=SC1090
   source "${shell_runtime_path}"
-elif [[ "${EGOHYGIENE_SHELL_NAME}" != "unknown" ]]; then
+else
   printf "[warn] load-core.sh: missing shell runtime: %s\n" "${shell_runtime_path}" >&2
 fi
 

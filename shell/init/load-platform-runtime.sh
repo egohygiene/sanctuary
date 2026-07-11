@@ -26,10 +26,6 @@ fi
 platform_runtime_family="${platform_runtime_family:-unknown}"
 
 platforms_root="${EGOHYGIENE_SHELL_ROOT}/platforms"
-if [[ ! -d "${platforms_root}" && -d "${EGOHYGIENE_SHELL_ROOT}/shell/platforms" ]]; then
-  platforms_root="${EGOHYGIENE_SHELL_ROOT}/shell/platforms"
-fi
-
 platform_runtime_path="${platforms_root}/${platform_runtime_family}/runtime.sh"
 
 if [[ -f "${platform_runtime_path}" && -r "${platform_runtime_path}" ]]; then
