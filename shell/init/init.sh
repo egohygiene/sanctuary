@@ -20,6 +20,8 @@ export EGOHYGIENE_SHELL_INIT_LOADED="true"
 # shellcheck disable=SC1091
 source "${EGOHYGIENE_SHELL_ROOT}/init/load-core.sh"
 # shellcheck disable=SC1091
+source "${EGOHYGIENE_SHELL_ROOT}/init/load-platform-runtime.sh"
+# shellcheck disable=SC1091
 source "${EGOHYGIENE_SHELL_ROOT}/init/load-extensions.sh"
 # shellcheck disable=SC1091
 source "${EGOHYGIENE_SHELL_ROOT}/lib/modules.sh"
