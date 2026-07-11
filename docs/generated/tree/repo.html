@@ -31287,48 +31287,6 @@
 │   │   │   ├── run-lynis
 │   │   │   ├── set-umask
 │   │   │   └── show-systemd-delta
-│   │   ├── install/
-│   │   │   ├── apt-install
-│   │   │   ├── base.packages
-│   │   │   ├── gcloud.sh
-│   │   │   ├── install-addlicense
-│   │   │   ├── install-apt-base
-│   │   │   ├── install-asdf
-│   │   │   ├── install-calibre
-│   │   │   ├── install-ceres-solver
-│   │   │   ├── install-crush
-│   │   │   ├── install-docker-desktop.sh
-│   │   │   ├── install-dockerfmt
-│   │   │   ├── install-dust
-│   │   │   ├── install-e57format
-│   │   │   ├── install-eza
-│   │   │   ├── install-git-sim
-│   │   │   ├── install-gitinspector
-│   │   │   ├── install-google-fonts
-│   │   │   ├── install-httpie
-│   │   │   ├── install-image-optim
-│   │   │   ├── install-imagemagick
-│   │   │   ├── install-java
-│   │   │   ├── install-linuxbrew
-│   │   │   ├── install-lynis
-│   │   │   ├── install-mitmproxy
-│   │   │   ├── install-nerd-fonts.sh
-│   │   │   ├── install-nfpm
-│   │   │   ├── install-pdal
-│   │   │   ├── install-scc
-│   │   │   ├── install-shdoc
-│   │   │   ├── install-shfmt
-│   │   │   ├── install-sqlfluff
-│   │   │   ├── install-talisman
-│   │   │   ├── install-taskfile
-│   │   │   ├── install-terminus
-│   │   │   ├── install-typos
-│   │   │   ├── install-vale
-│   │   │   ├── install_imagemagick.bash
-│   │   │   ├── install_lynis.sh
-│   │   │   ├── install_pdal.sh
-│   │   │   ├── README.md
-│   │   │   └── repro-sources-list
 │   │   ├── macos/
 │   │   │   ├── .aliases
 │   │   │   ├── .macos
@@ -31419,6 +31377,7 @@
 │   │   ├── settings.json
 │   │   └── tasks.json
 │   ├── bin/
+│   │   ├── apt-install
 │   │   ├── capitalize-folders
 │   │   ├── cb
 │   │   ├── convert-to-ico
@@ -31426,6 +31385,7 @@
 │   │   ├── dlsite
 │   │   ├── dockerbak
 │   │   ├── dockerhealth
+│   │   ├── gcloud.sh
 │   │   ├── generate-certs
 │   │   ├── generate-password
 │   │   ├── generate-pwa-icons
@@ -31433,7 +31393,44 @@
 │   │   ├── ghignore
 │   │   ├── ghprotect
 │   │   ├── git-remove-exec-no-shebang
+│   │   ├── install-addlicense
+│   │   ├── install-apt-base
+│   │   ├── install-asdf
+│   │   ├── install-calibre
+│   │   ├── install-ceres-solver
+│   │   ├── install-crush
+│   │   ├── install-docker-desktop.sh
+│   │   ├── install-dockerfmt
+│   │   ├── install-dust
+│   │   ├── install-e57format
+│   │   ├── install-eza
+│   │   ├── install-git-sim
+│   │   ├── install-gitinspector
+│   │   ├── install-google-fonts
+│   │   ├── install-httpie
+│   │   ├── install-image-optim
+│   │   ├── install-imagemagick
+│   │   ├── install-java
+│   │   ├── install-linuxbrew
+│   │   ├── install-lynis
+│   │   ├── install-mitmproxy
+│   │   ├── install-nerd-fonts.sh
+│   │   ├── install-nfpm
+│   │   ├── install-pdal
+│   │   ├── install-scc
+│   │   ├── install-shdoc
+│   │   ├── install-shfmt
+│   │   ├── install-sqlfluff
+│   │   ├── install-talisman
+│   │   ├── install-taskfile
+│   │   ├── install-terminus
+│   │   ├── install-typos
+│   │   ├── install-vale
+│   │   ├── install_imagemagick.bash
+│   │   ├── install_lynis.sh
+│   │   ├── install_pdal.sh
 │   │   ├── is-executable
+│   │   ├── repro-sources-list
 │   │   ├── rotate_video
 │   │   ├── sysinfo
 │   │   └── ytdlp-channel
@@ -31470,6 +31467,16 @@
 │   │   ├── extensions/
 │   │   │   ├── fonts.sh
 │   │   │   └── github.sh
+│   │   ├── install/
+│   │   │   ├── archive.sh
+│   │   │   ├── checksum.sh
+│   │   │   ├── download.sh
+│   │   │   ├── filesystem.sh
+│   │   │   ├── github.sh
+│   │   │   ├── package-manager.sh
+│   │   │   ├── platform.sh
+│   │   │   ├── README.md
+│   │   │   └── runtime.sh
 │   │   └── modules.sh
 │   ├── modules/
 │   │   ├── cache.sh
@@ -31516,6 +31523,8 @@
 │   │   │   └── time.bats
 │   │   ├── extensions/
 │   │   │   └── github.bats
+│   │   ├── install/
+│   │   │   └── runtime.bats
 │   │   ├── bootstrap.bats
 │   │   ├── cb.bats
 │   │   ├── convert-to-ico.bats
