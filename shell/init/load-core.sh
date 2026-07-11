@@ -83,7 +83,7 @@ fi
 if [[ -z "${EGOHYGIENE_SHELL_NAME:-}" ]]; then
   EGOHYGIENE_SHELL_NAME="unknown"
   export EGOHYGIENE_SHELL_NAME
-  printf "[warn] load-core.sh: shell runtime detection returned unknown\n" >&2
+  printf "[warn] load-core.sh: shell detection library did not set EGOHYGIENE_SHELL_NAME\n" >&2
 fi
 
 posix_shell_runtime_path="${EGOHYGIENE_SHELL_ROOT}/runtime/shells/posix/runtime.sh"

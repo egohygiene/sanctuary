@@ -25,6 +25,8 @@ if [[ -z "${platform_runtime_family}" ]] && declare -F os::detect >/dev/null; th
 fi
 platform_runtime_family="${platform_runtime_family:-unknown}"
 
+# EGOHYGIENE_SHELL_ROOT points at the shell/ directory, so platform runtime
+# modules live under shell/platforms/<family>/runtime.sh.
 platforms_root="${EGOHYGIENE_SHELL_ROOT}/platforms"
 platform_runtime_path="${platforms_root}/${platform_runtime_family}/runtime.sh"
 

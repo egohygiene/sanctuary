@@ -11,6 +11,8 @@ fi
 
 export EGOHYGIENE_RUNTIME_BASH_LOADED="true"
 
+# Bash introspection helpers are isolated here so non-Bash sessions do not
+# inherit Bash-specific functions or variables.
 runtime_library_path="${EGOHYGIENE_SHELL_ROOT}/lib/core/bash.sh"
 
 if [[ -f "${runtime_library_path}" && -r "${runtime_library_path}" ]]; then
