@@ -3,3 +3,10 @@ allowBuilds:
 
 requiredScripts:
   - build
+
+packages:
+  - "!**/test/**"
+
+catalogs:
+  # Define a catalog of version ranges for the workspace.
+  workspace:

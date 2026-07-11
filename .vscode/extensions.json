@@ -2,6 +2,7 @@
     "recommendations": [
         "adamhartford.vscode-base64",
         "adpyke.codesnap",
+        "astro-build.astro-vscode",
         "biomejs.biome",
         "chrmarti.regex",
         "codezombiech.gitignore",
@@ -22,6 +23,7 @@
         "jetmartin.bats",
         "johnpapa.vscode-peacock",
         "josetr.cmake-language-support-vscode",
+        "malmaud.tmux",
         "mathematic.vscode-latex",
         "mikeburgh.xml-format",
         "mrmlnc.vscode-apache",
@@ -29,8 +31,8 @@
         "ms-vscode-remote.remote-containers",
         "ms-vscode-remote.remote-wsl",
         "ms-vscode.cmake-tools",
-        "ms-vscode.cpptools",
         "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cpptools",
         "ms-windows-ai-studio.windows-ai-studio",
         "openai.chatgpt",
         "pkief.material-icon-theme",
@@ -39,6 +41,7 @@
         "remcohaszing.schemastore",
         "richterger.perl",
         "sanjulaganepola.github-local-actions",
+        "shopify.ruby-lsp",
         "stoplight.spectral",
         "streetsidesoftware.code-spell-checker",
         "tal7aouy.rainbow-bracket",
@@ -46,13 +49,13 @@
         "task.vscode-task",
         "timonwong.shellcheck",
         "twxs.cmake",
+        "unifiedjs.vscode-mdx",
         "valentjn.vscode-ltex",
+        "vsls-contrib.codetour",
         "william-voyek.vscode-nginx",
         "wmaurer.change-case",
         "xaver.clang-format",
         "xyz.local-history",
-        "shopify.ruby-lsp",
-        "vsls-contrib.codetour",
-        "malmaud.tmux"
-    ]
+    ],
+    "unwantedRecommendations": []
 }
