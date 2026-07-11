@@ -1,94 +1,23 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -Eeuo pipefail
 
-# ============================================
-# install-dust
-# Install dust (modern du replacement) from GitHub release archive.
-# Reference: https://github.com/bootandy/dust
-# Supports: latest or specific version
-# ============================================
+: "${EGOHYGIENE_SHELL_ROOT:=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." >/dev/null 2>&1 && pwd)}"
 
-# -----------------------------
-# Config
-# -----------------------------
-OWNER="bootandy"
-REPO="dust"
-INSTALL_DIR="/usr/local/bin"
+# shellcheck disable=SC1091
+source "${EGOHYGIENE_SHELL_ROOT}/lib/install/runtime.sh"
 
-# Detect platform
-OS="$(uname -s)"
-ARCH="$(uname -m)"
+export INSTALL_TOOL_NAME="dust"
+export INSTALL_OWNER="bootandy"
+export INSTALL_REPO="dust"
+export INSTALL_ASSET_TEMPLATE="dust-v{{version}}-{{arch}}-{{platform}}.tar.gz"
+export INSTALL_PLATFORM_LINUX="unknown-linux-gnu"
+export INSTALL_PLATFORM_DARWIN="apple-darwin"
+export INSTALL_ARCH_X86_64="x86_64"
+export INSTALL_ARCH_ARM64="aarch64"
+export INSTALL_ARCHIVE_FORMAT="tar.gz"
+export INSTALL_ARCHIVE_MEMBER_TEMPLATE="dust-v{{version}}-{{arch}}-{{platform}}/dust"
+export INSTALL_BIN_NAME="dust"
+# shellcheck disable=SC2034
+declare -a INSTALL_VERIFY_ARGS=(--version)
 
-case "$OS" in
-  Linux)  PLATFORM="unknown-linux-gnu" ;;
-  Darwin) PLATFORM="apple-darwin" ;;
-  *) echo "❌ Unsupported OS: $OS"; exit 1 ;;
-esac
-
-case "$ARCH" in
-  x86_64)        ARCH_LABEL="x86_64" ;;
-  arm64|aarch64) ARCH_LABEL="aarch64" ;;
-  *) echo "❌ Unsupported architecture: $ARCH"; exit 1 ;;
-esac
-
-# -----------------------------
-# Functions
-# -----------------------------
-
-get_latest_release() {
-  curl -s "https://api.github.com/repos/$OWNER/$REPO/releases/latest" \
-    | grep '"tag_name":' \
-    | sed -E 's/.*"v([^"]+)".*/\1/'
-}
-
-download_and_install() {
-  local version="$1"
-
-  FILENAME="dust-v${version}-${ARCH_LABEL}-${PLATFORM}.tar.gz"
-  DOWNLOAD_URL="https://github.com/${OWNER}/${REPO}/releases/download/v${version}/${FILENAME}"
-
-  echo "📦 Downloading dust v${version} from ${DOWNLOAD_URL}..."
-  curl -fsSL "$DOWNLOAD_URL" -o "/tmp/$FILENAME"
-
-  echo "📂 Extracting and installing to $INSTALL_DIR..."
-  tar -xzf "/tmp/$FILENAME" -C /tmp --strip-components=1 "dust-v${version}-${ARCH_LABEL}-${PLATFORM}/dust"
-  sudo mv "/tmp/dust" "$INSTALL_DIR/dust"
-  sudo chmod +x "$INSTALL_DIR/dust"
-  rm -f "/tmp/$FILENAME"
-
-  echo "✅ Installed dust v${version} at $(command -v dust)"
-  dust --version
-}
-
-# -----------------------------
-# Main
-# -----------------------------
-usage() {
-  echo "Usage: $0 [--version x.y.z] [--help]"
-  exit 1
-}
-
-VERSION=""
-
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --version)
-      VERSION="$2"
-      shift 2
-      ;;
-    --help|-h)
-      usage
-      ;;
-    *)
-      echo "❌ Unknown argument: $1"
-      usage
-      ;;
-  esac
-done
-
-if [[ -z "$VERSION" ]]; then
-  echo "🔍 Fetching latest dust release..."
-  VERSION=$(get_latest_release)
-fi
-
-download_and_install "$VERSION"
+install::github::main "$@"

@@ -1,17 +1,52 @@
-# 🧊 Reproducible APT Install for DevContainers
+# staged installers
 
-This project uses a frozen Ubuntu APT snapshot for repeatable builds across environments.
+This directory is the migration surface for Sanctuary's installation tooling.
 
-## 🔐 Freeze and Save
+## Current installer families
 
-To install packages and save the snapshot state:
+The staged installers currently cluster into a small set of repeated patterns:
 
-```bash
-./apt-install.sh --lock --packages-file ./shell/apt/base.packages
+- GitHub release downloads with platform and architecture detection
+- package manager installs (`apt`, `brew`, `pip`, and future distro-specific backends)
+- source builds with checksum verification, extraction, install, and cleanup
+
+That duplication now funnels through the shared install runtime in
+[`shell/lib/install/`](../../lib/install/).
+
+## Shared runtime layout
+
+```text
+shell/lib/install/
+├── runtime.sh          # shared entrypoint for installers
+├── platform.sh         # OS and architecture mapping
+├── package-manager.sh  # package manager detection
+├── download.sh         # network fetch helpers with retries
+├── checksum.sh         # SHA-256 / SHA-512 verification
+├── archive.sh          # raw, tar.gz, tar.xz, and zip extraction
+├── filesystem.sh       # temp directories, install, cleanup
+└── github.sh           # GitHub Releases orchestration
 ```
 
-To install packages from lock file and snapshot:
+## Thin-wrapper contract
 
-```bash
-./apt-install.sh --from-lock --snapshot $(cat snapshot.timestamp)
-```
+Installers should describe metadata and leave workflow details to the runtime:
+
+- tool name
+- GitHub owner and repository
+- release asset template
+- platform and architecture mapping
+- optional checksum asset
+- optional archive member to install
+
+## Migrated installers
+
+The following staged installers now use the shared runtime:
+
+- `install-dust`
+- `install-eza`
+- `install-shfmt`
+- `install-typos`
+
+These wrappers intentionally stay small so that future migrations can reuse the
+same runtime without re-implementing download, checksum, extraction, install,
+logging, or cleanup behavior.

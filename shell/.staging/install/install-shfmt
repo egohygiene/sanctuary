@@ -1,115 +1,23 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -Eeuo pipefail
 
-# ============================================
-# install-shfmt
-# Install shfmt (shell script formatter) from GitHub release.
-# Reference: https://github.com/mvdan/sh
-# Supports: latest, specific version
-# ============================================
+: "${EGOHYGIENE_SHELL_ROOT:=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." >/dev/null 2>&1 && pwd)}"
 
-# -----------------------------
-# Config
-# -----------------------------
-OWNER="mvdan"
-REPO="sh"
-INSTALL_DIR="/usr/local/bin"
+# shellcheck disable=SC1091
+source "${EGOHYGIENE_SHELL_ROOT}/lib/install/runtime.sh"
 
-# Detect platform
-OS="$(uname -s)"
-ARCH="$(uname -m)"
+export INSTALL_TOOL_NAME="shfmt"
+export INSTALL_OWNER="mvdan"
+export INSTALL_REPO="sh"
+export INSTALL_ASSET_TEMPLATE="shfmt_v{{version}}_{{platform}}_{{arch}}"
+export INSTALL_PLATFORM_LINUX="linux"
+export INSTALL_PLATFORM_DARWIN="darwin"
+export INSTALL_ARCH_X86_64="amd64"
+export INSTALL_ARCH_ARM64="arm64"
+export INSTALL_CHECKSUM_ASSET="sha256sums.txt"
+export INSTALL_ARCHIVE_FORMAT="raw"
+export INSTALL_BIN_NAME="shfmt"
+# shellcheck disable=SC2034
+declare -a INSTALL_VERIFY_ARGS=(--version)
 
-case "$OS" in
-  Linux)  PLATFORM="linux" ;;
-  Darwin) PLATFORM="darwin" ;;
-  *) echo "❌ Unsupported OS: $OS"; exit 1 ;;
-esac
-
-case "$ARCH" in
-  x86_64)        ARCH_LABEL="amd64" ;;
-  arm64|aarch64) ARCH_LABEL="arm64" ;;
-  *) echo "❌ Unsupported architecture: $ARCH"; exit 1 ;;
-esac
-
-# -----------------------------
-# Functions
-# -----------------------------
-
-get_latest_release() {
-  curl -s "https://api.github.com/repos/$OWNER/$REPO/releases/latest" \
-    | grep '"tag_name":' \
-    | sed -E 's/.*"v([^"]+)".*/\1/'
-}
-
-download_and_install() {
-  local version="$1"
-
-  BINARY="shfmt_v${version}_${PLATFORM}_${ARCH_LABEL}"
-  DOWNLOAD_URL="https://github.com/${OWNER}/${REPO}/releases/download/v${version}/${BINARY}"
-
-  echo "📦 Downloading shfmt v${version} from ${DOWNLOAD_URL}..."
-  curl -fsSL "$DOWNLOAD_URL" -o "/tmp/shfmt"
-
-  # Verify checksum if checksums file is available
-  CHECKSUMS_URL="https://github.com/${OWNER}/${REPO}/releases/download/v${version}/sha256sums.txt"
-  CHECKSUMS_FILE="/tmp/shfmt_sha256sums.txt"
-  if curl -fsSL "$CHECKSUMS_URL" -o "$CHECKSUMS_FILE" 2>/dev/null; then
-    EXPECTED=$(grep "${BINARY}$" "$CHECKSUMS_FILE" | awk '{print $1}' || true)
-    if [[ -n "$EXPECTED" ]]; then
-      echo "🔐 Verifying checksum..."
-      if command -v sha256sum >/dev/null 2>&1; then
-        echo "${EXPECTED}  /tmp/shfmt" | sha256sum --check --quiet
-      elif command -v shasum >/dev/null 2>&1; then
-        echo "${EXPECTED}  /tmp/shfmt" | shasum -a 256 --check --quiet
-      else
-        echo "⚠️  No sha256sum or shasum found; skipping checksum verification"
-      fi
-      echo "✅ Checksum verified"
-    fi
-    rm -f "$CHECKSUMS_FILE"
-  fi
-
-  echo "📂 Installing to $INSTALL_DIR..."
-  chmod +x "/tmp/shfmt"
-  if [[ "${EUID:-$(id -u)}" -ne 0 ]] && command -v sudo >/dev/null 2>&1; then
-    sudo mv "/tmp/shfmt" "$INSTALL_DIR/shfmt"
-  else
-    mv "/tmp/shfmt" "$INSTALL_DIR/shfmt"
-  fi
-
-  echo "✅ Installed shfmt v${version} at $(command -v shfmt)"
-  shfmt --version
-}
-
-# -----------------------------
-# Main
-# -----------------------------
-usage() {
-  echo "Usage: $0 [--version x.y.z] [--help]"
-  exit 1
-}
-
-VERSION=""
-
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --version)
-      VERSION="$2"
-      shift 2
-      ;;
-    --help|-h)
-      usage
-      ;;
-    *)
-      echo "❌ Unknown argument: $1"
-      usage
-      ;;
-  esac
-done
-
-if [[ -z "$VERSION" ]]; then
-  echo "🔍 Fetching latest shfmt release..."
-  VERSION=$(get_latest_release)
-fi
-
-download_and_install "$VERSION"
+install::github::main "$@"
