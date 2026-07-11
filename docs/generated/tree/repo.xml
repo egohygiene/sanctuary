@@ -14204,179 +14204,49 @@
           <file name="START HERE.md" path=".staging/realignment/obsidian/PARA_Starter_Kit_v2/START HERE.md" />
         </directory>
       </directory>
-      <directory name="scripts" path=".staging/realignment/scripts">
-        <directory name="bash" path=".staging/realignment/scripts/bash">
-          <file name="array" path=".staging/realignment/scripts/bash/array" />
-          <file name="check" path=".staging/realignment/scripts/bash/check" />
-          <file name="collection" path=".staging/realignment/scripts/bash/collection" />
-          <file name="date" path=".staging/realignment/scripts/bash/date" />
-          <file name="debug" path=".staging/realignment/scripts/bash/debug" />
-          <file name="file" path=".staging/realignment/scripts/bash/file" />
-          <file name="format" path=".staging/realignment/scripts/bash/format" />
-          <file name="interaction" path=".staging/realignment/scripts/bash/interaction" />
-          <file name="json" path=".staging/realignment/scripts/bash/json" />
-          <file name="logger" path=".staging/realignment/scripts/bash/logger" />
-          <file name="misc" path=".staging/realignment/scripts/bash/misc" />
-          <file name="os" path=".staging/realignment/scripts/bash/os" />
-          <file name="string" path=".staging/realignment/scripts/bash/string" />
-          <file name="terminal" path=".staging/realignment/scripts/bash/terminal" />
-          <file name="validation" path=".staging/realignment/scripts/bash/validation" />
-          <file name="variable" path=".staging/realignment/scripts/bash/variable" />
+      <directory name="react-vite" path=".staging/realignment/react-vite">
+        <directory name=".vitest" path=".staging/realignment/react-vite/.vitest">
+          <file name="setup.ts" path=".staging/realignment/react-vite/.vitest/setup.ts" />
         </directory>
-        <directory name="fish shell" path=".staging/realignment/scripts/fish shell">
-          <directory name="fish" path=".staging/realignment/scripts/fish shell/fish">
-            <directory name="completions" path=".staging/realignment/scripts/fish shell/fish/completions">
-              <file name="repo.fish" path=".staging/realignment/scripts/fish shell/fish/completions/repo.fish" />
-              <file name="repodir.fish" path=".staging/realignment/scripts/fish shell/fish/completions/repodir.fish" />
-            </directory>
-            <directory name="functions" path=".staging/realignment/scripts/fish shell/fish/functions">
-              <file name="abbrex.fish" path=".staging/realignment/scripts/fish shell/fish/functions/abbrex.fish" />
-              <file name="clear.fish" path=".staging/realignment/scripts/fish shell/fish/functions/clear.fish" />
-              <file name="emptytrash.fish" path=".staging/realignment/scripts/fish shell/fish/functions/emptytrash.fish" />
-              <file name="fish_greeting.fish" path=".staging/realignment/scripts/fish shell/fish/functions/fish_greeting.fish" />
-              <file name="fish_prompt.fish" path=".staging/realignment/scripts/fish shell/fish/functions/fish_prompt.fish" />
-              <file name="fisher.fish" path=".staging/realignment/scripts/fish shell/fish/functions/fisher.fish" />
-              <file name="forrepos.fish" path=".staging/realignment/scripts/fish shell/fish/functions/forrepos.fish" />
-              <file name="ls.fish" path=".staging/realignment/scripts/fish shell/fish/functions/ls.fish" />
-              <file name="manp.fish" path=".staging/realignment/scripts/fish shell/fish/functions/manp.fish" />
-              <file name="mvnpurge.fish" path=".staging/realignment/scripts/fish shell/fish/functions/mvnpurge.fish" />
-              <file name="pubkey.fish" path=".staging/realignment/scripts/fish shell/fish/functions/pubkey.fish" />
-              <file name="repo.fish" path=".staging/realignment/scripts/fish shell/fish/functions/repo.fish" />
-              <file name="repodir.fish" path=".staging/realignment/scripts/fish shell/fish/functions/repodir.fish" />
-              <file name="setup.fish" path=".staging/realignment/scripts/fish shell/fish/functions/setup.fish" />
-              <file name="update.fish" path=".staging/realignment/scripts/fish shell/fish/functions/update.fish" />
-              <file name="week.fish" path=".staging/realignment/scripts/fish shell/fish/functions/week.fish" />
-            </directory>
-            <file name="config.fish" path=".staging/realignment/scripts/fish shell/fish/config.fish" />
-            <file name="fishfile" path=".staging/realignment/scripts/fish shell/fish/fishfile" />
-            <file name="setup.sh" path=".staging/realignment/scripts/fish shell/fish/setup.sh" />
+        <directory name="apps" path=".staging/realignment/react-vite/apps">
+          <directory name="docs" path=".staging/realignment/react-vite/apps/docs">
+            <file name="tsconfig.app.json" path=".staging/realignment/react-vite/apps/docs/tsconfig.app.json" />
+          </directory>
+          <directory name="egohygiene.io" path=".staging/realignment/react-vite/apps/egohygiene.io">
+            <file name="tsconfig.app.json" path=".staging/realignment/react-vite/apps/egohygiene.io/tsconfig.app.json" />
+          </directory>
+          <directory name="playground" path=".staging/realignment/react-vite/apps/playground">
+            <file name="tsconfig.app.json" path=".staging/realignment/react-vite/apps/playground/tsconfig.app.json" />
+            <file name="tsconfig.storybook.json" path=".staging/realignment/react-vite/apps/playground/tsconfig.storybook.json" />
           </directory>
         </directory>
-        <directory name="gcloud" path=".staging/realignment/scripts/gcloud">
-          <directory name="commands" path=".staging/realignment/scripts/gcloud/commands">
-            <file name="create_instance" path=".staging/realignment/scripts/gcloud/commands/create_instance" />
-          </directory>
-          <directory name="scripts" path=".staging/realignment/scripts/gcloud/scripts">
-            <file name="create_vm" path=".staging/realignment/scripts/gcloud/scripts/create_vm" />
-            <file name="delete_vm" path=".staging/realignment/scripts/gcloud/scripts/delete_vm" />
-            <file name="reset_vm" path=".staging/realignment/scripts/gcloud/scripts/reset_vm" />
-            <file name="shutdown" path=".staging/realignment/scripts/gcloud/scripts/shutdown" />
-            <file name="startup" path=".staging/realignment/scripts/gcloud/scripts/startup" />
-          </directory>
-        </directory>
-        <directory name="hardening" path=".staging/realignment/scripts/hardening">
-          <file name="configure-sysctl" path=".staging/realignment/scripts/hardening/configure-sysctl" />
-          <file name="configure-systemd-limits" path=".staging/realignment/scripts/hardening/configure-systemd-limits" />
-          <file name="configure-timesyncd" path=".staging/realignment/scripts/hardening/configure-timesyncd" />
-          <file name="enable-firewall" path=".staging/realignment/scripts/hardening/enable-firewall" />
-          <file name="enable-usbguard" path=".staging/realignment/scripts/hardening/enable-usbguard" />
-          <file name="init-aide" path=".staging/realignment/scripts/hardening/init-aide" />
-          <file name="remove-legacy-users" path=".staging/realignment/scripts/hardening/remove-legacy-users" />
-          <file name="run-lynis" path=".staging/realignment/scripts/hardening/run-lynis" />
-          <file name="set-umask" path=".staging/realignment/scripts/hardening/set-umask" />
-          <file name="show-systemd-delta" path=".staging/realignment/scripts/hardening/show-systemd-delta" />
-        </directory>
-        <directory name="install" path=".staging/realignment/scripts/install">
-          <file name="apt-install" path=".staging/realignment/scripts/install/apt-install" />
-          <file name="base.packages" path=".staging/realignment/scripts/install/base.packages" />
-          <file name="gcloud.sh" path=".staging/realignment/scripts/install/gcloud.sh" />
-          <file name="install-addlicense" path=".staging/realignment/scripts/install/install-addlicense" />
-          <file name="install-apt-base" path=".staging/realignment/scripts/install/install-apt-base" />
-          <file name="install-asdf" path=".staging/realignment/scripts/install/install-asdf" />
-          <file name="install-calibre" path=".staging/realignment/scripts/install/install-calibre" />
-          <file name="install-ceres-solver" path=".staging/realignment/scripts/install/install-ceres-solver" />
-          <file name="install-crush" path=".staging/realignment/scripts/install/install-crush" />
-          <file name="install-docker-desktop.sh" path=".staging/realignment/scripts/install/install-docker-desktop.sh" />
-          <file name="install-dockerfmt" path=".staging/realignment/scripts/install/install-dockerfmt" />
-          <file name="install-dust" path=".staging/realignment/scripts/install/install-dust" />
-          <file name="install-e57format" path=".staging/realignment/scripts/install/install-e57format" />
-          <file name="install-eza" path=".staging/realignment/scripts/install/install-eza" />
-          <file name="install-git-sim" path=".staging/realignment/scripts/install/install-git-sim" />
-          <file name="install-gitinspector" path=".staging/realignment/scripts/install/install-gitinspector" />
-          <file name="install-google-fonts" path=".staging/realignment/scripts/install/install-google-fonts" />
-          <file name="install-httpie" path=".staging/realignment/scripts/install/install-httpie" />
-          <file name="install-image-optim" path=".staging/realignment/scripts/install/install-image-optim" />
-          <file name="install-imagemagick" path=".staging/realignment/scripts/install/install-imagemagick" />
-          <file name="install-java" path=".staging/realignment/scripts/install/install-java" />
-          <file name="install-linuxbrew" path=".staging/realignment/scripts/install/install-linuxbrew" />
-          <file name="install-lynis" path=".staging/realignment/scripts/install/install-lynis" />
-          <file name="install-mitmproxy" path=".staging/realignment/scripts/install/install-mitmproxy" />
-          <file name="install-nerd-fonts.sh" path=".staging/realignment/scripts/install/install-nerd-fonts.sh" />
-          <file name="install-nfpm" path=".staging/realignment/scripts/install/install-nfpm" />
-          <file name="install-pdal" path=".staging/realignment/scripts/install/install-pdal" />
-          <file name="install-scc" path=".staging/realignment/scripts/install/install-scc" />
-          <file name="install-shdoc" path=".staging/realignment/scripts/install/install-shdoc" />
-          <file name="install-shfmt" path=".staging/realignment/scripts/install/install-shfmt" />
-          <file name="install-sqlfluff" path=".staging/realignment/scripts/install/install-sqlfluff" />
-          <file name="install-talisman" path=".staging/realignment/scripts/install/install-talisman" />
-          <file name="install-taskfile" path=".staging/realignment/scripts/install/install-taskfile" />
-          <file name="install-terminus" path=".staging/realignment/scripts/install/install-terminus" />
-          <file name="install-typos" path=".staging/realignment/scripts/install/install-typos" />
-          <file name="install-vale" path=".staging/realignment/scripts/install/install-vale" />
-          <file name="install_imagemagick.bash" path=".staging/realignment/scripts/install/install_imagemagick.bash" />
-          <file name="install_lynis.sh" path=".staging/realignment/scripts/install/install_lynis.sh" />
-          <file name="install_pdal.sh" path=".staging/realignment/scripts/install/install_pdal.sh" />
-          <file name="README.md" path=".staging/realignment/scripts/install/README.md" />
-          <file name="repro-sources-list" path=".staging/realignment/scripts/install/repro-sources-list" />
-        </directory>
-        <directory name="macos" path=".staging/realignment/scripts/macos">
-          <file name=".aliases" path=".staging/realignment/scripts/macos/.aliases" />
-          <file name=".macos" path=".staging/realignment/scripts/macos/.macos" />
-          <file name=".zshrc" path=".staging/realignment/scripts/macos/.zshrc" />
-          <file name="sethidden" path=".staging/realignment/scripts/macos/sethidden" />
-          <file name="startup_settings.sh" path=".staging/realignment/scripts/macos/startup_settings.sh" />
-          <file name="togglehidden" path=".staging/realignment/scripts/macos/togglehidden" />
-        </directory>
-        <directory name="tests" path=".staging/realignment/scripts/tests">
-          <file name="test-gitinspector" path=".staging/realignment/scripts/tests/test-gitinspector" />
-          <file name="test-google-fonts" path=".staging/realignment/scripts/tests/test-google-fonts" />
-          <file name="test-imagemagick" path=".staging/realignment/scripts/tests/test-imagemagick" />
-          <file name="test-linuxbrew" path=".staging/realignment/scripts/tests/test-linuxbrew" />
-          <file name="test-talisman" path=".staging/realignment/scripts/tests/test-talisman" />
-          <file name="test-terminus" path=".staging/realignment/scripts/tests/test-terminus" />
-        </directory>
-        <directory name="vlc" path=".staging/realignment/scripts/vlc">
-          <file name="sbs.hlsl" path=".staging/realignment/scripts/vlc/sbs.hlsl" />
-        </directory>
-        <directory name="windows" path=".staging/realignment/scripts/windows">
-          <directory name="drive" path=".staging/realignment/scripts/windows/drive">
-            <directory name="Users" path=".staging/realignment/scripts/windows/drive/Users">
-              <directory name="user" path=".staging/realignment/scripts/windows/drive/Users/user">
-                <file name=".wslconfig" path=".staging/realignment/scripts/windows/drive/Users/user/.wslconfig" />
-              </directory>
+        <directory name="packages" path=".staging/realignment/react-vite/packages">
+          <directory name="cli" path=".staging/realignment/react-vite/packages/cli">
+            <directory name="create-theme" path=".staging/realignment/react-vite/packages/cli/create-theme">
+              <file name="tsconfig.cli.json" path=".staging/realignment/react-vite/packages/cli/create-theme/tsconfig.cli.json" />
             </directory>
           </directory>
-          <file name=".gitkeep" path=".staging/realignment/scripts/windows/.gitkeep" />
+          <directory name="components" path=".staging/realignment/react-vite/packages/components">
+            <file name="tsconfig.build.json" path=".staging/realignment/react-vite/packages/components/tsconfig.build.json" />
+          </directory>
+          <directory name="schemas" path=".staging/realignment/react-vite/packages/schemas">
+            <file name="tsconfig.build.json" path=".staging/realignment/react-vite/packages/schemas/tsconfig.build.json" />
+          </directory>
+          <directory name="themes" path=".staging/realignment/react-vite/packages/themes">
+            <file name="tsconfig.build.json" path=".staging/realignment/react-vite/packages/themes/tsconfig.build.json" />
+          </directory>
         </directory>
-        <file name="bash_commands" path=".staging/realignment/scripts/bash_commands" />
-        <file name="bash_options" path=".staging/realignment/scripts/bash_options" />
-        <file name="bcrypt-password" path=".staging/realignment/scripts/bcrypt-password" />
-        <file name="brightness" path=".staging/realignment/scripts/brightness" />
-        <file name="cleaner" path=".staging/realignment/scripts/cleaner" />
-        <file name="cleaner.sh" path=".staging/realignment/scripts/cleaner.sh" />
-        <file name="clear_port" path=".staging/realignment/scripts/clear_port" />
-        <file name="computer_info.sh" path=".staging/realignment/scripts/computer_info.sh" />
-        <file name="disable_password.sh" path=".staging/realignment/scripts/disable_password.sh" />
-        <file name="fake-user-agent" path=".staging/realignment/scripts/fake-user-agent" />
-        <file name="ffmpeg-loop" path=".staging/realignment/scripts/ffmpeg-loop" />
-        <file name="find_files_with_text.sh" path=".staging/realignment/scripts/find_files_with_text.sh" />
-        <file name="git_clone_orgs" path=".staging/realignment/scripts/git_clone_orgs" />
-        <file name="imgcat" path=".staging/realignment/scripts/imgcat" />
-        <file name="init.sh" path=".staging/realignment/scripts/init.sh" />
-        <file name="install_google_fonts.sh" path=".staging/realignment/scripts/install_google_fonts.sh" />
-        <file name="m3u8" path=".staging/realignment/scripts/m3u8" />
-        <file name="makepng" path=".staging/realignment/scripts/makepng" />
-        <file name="open_samba_ports.sh" path=".staging/realignment/scripts/open_samba_ports.sh" />
-        <file name="pre-shutdown" path=".staging/realignment/scripts/pre-shutdown" />
-        <file name="pre-shutdown.service" path=".staging/realignment/scripts/pre-shutdown.service" />
-        <file name="realpath" path=".staging/realignment/scripts/realpath" />
-        <file name="show_hidden_files" path=".staging/realignment/scripts/show_hidden_files" />
-        <file name="template.sh" path=".staging/realignment/scripts/template.sh" />
-        <file name="toptout" path=".staging/realignment/scripts/toptout" />
-        <file name="vpn" path=".staging/realignment/scripts/vpn" />
-        <file name="wget_commands.txt" path=".staging/realignment/scripts/wget_commands.txt" />
-        <file name="whats-in-port" path=".staging/realignment/scripts/whats-in-port" />
-        <file name="windows_share.sh" path=".staging/realignment/scripts/windows_share.sh" />
+        <directory name="public" path=".staging/realignment/react-vite/public">
+          <file name="llms.txt" path=".staging/realignment/react-vite/public/llms.txt" />
+          <file name="robots.txt" path=".staging/realignment/react-vite/public/robots.txt" />
+        </directory>
+        <file name="package.json" path=".staging/realignment/react-vite/package.json" />
+        <file name="tsconfig.base.json" path=".staging/realignment/react-vite/tsconfig.base.json" />
+        <file name="tsconfig.eslint.json" path=".staging/realignment/react-vite/tsconfig.eslint.json" />
+        <file name="tsconfig.node.json" path=".staging/realignment/react-vite/tsconfig.node.json" />
+        <file name="tsconfig.typecheck.json" path=".staging/realignment/react-vite/tsconfig.typecheck.json" />
+        <file name="tsconfig.vitest.json" path=".staging/realignment/react-vite/tsconfig.vitest.json" />
+        <file name="turbo.json" path=".staging/realignment/react-vite/turbo.json" />
       </directory>
       <directory name="universal" path=".staging/realignment/universal">
         <directory name="apps" path=".staging/realignment/universal/apps">
@@ -34886,33 +34756,204 @@
   </directory>
   <directory name="shell" path="shell">
     <directory name=".staging" path="shell/.staging">
+      <directory name="bash" path="shell/.staging/bash">
+        <file name="array" path="shell/.staging/bash/array" />
+        <file name="check" path="shell/.staging/bash/check" />
+        <file name="collection" path="shell/.staging/bash/collection" />
+        <file name="date" path="shell/.staging/bash/date" />
+        <file name="debug" path="shell/.staging/bash/debug" />
+        <file name="file" path="shell/.staging/bash/file" />
+        <file name="format" path="shell/.staging/bash/format" />
+        <file name="interaction" path="shell/.staging/bash/interaction" />
+        <file name="json" path="shell/.staging/bash/json" />
+        <file name="logger" path="shell/.staging/bash/logger" />
+        <file name="misc" path="shell/.staging/bash/misc" />
+        <file name="os" path="shell/.staging/bash/os" />
+        <file name="string" path="shell/.staging/bash/string" />
+        <file name="terminal" path="shell/.staging/bash/terminal" />
+        <file name="validation" path="shell/.staging/bash/validation" />
+        <file name="variable" path="shell/.staging/bash/variable" />
+      </directory>
+      <directory name="fish shell" path="shell/.staging/fish shell">
+        <directory name="fish" path="shell/.staging/fish shell/fish">
+          <directory name="completions" path="shell/.staging/fish shell/fish/completions">
+            <file name="repo.fish" path="shell/.staging/fish shell/fish/completions/repo.fish" />
+            <file name="repodir.fish" path="shell/.staging/fish shell/fish/completions/repodir.fish" />
+          </directory>
+          <directory name="functions" path="shell/.staging/fish shell/fish/functions">
+            <file name="abbrex.fish" path="shell/.staging/fish shell/fish/functions/abbrex.fish" />
+            <file name="clear.fish" path="shell/.staging/fish shell/fish/functions/clear.fish" />
+            <file name="emptytrash.fish" path="shell/.staging/fish shell/fish/functions/emptytrash.fish" />
+            <file name="fish_greeting.fish" path="shell/.staging/fish shell/fish/functions/fish_greeting.fish" />
+            <file name="fish_prompt.fish" path="shell/.staging/fish shell/fish/functions/fish_prompt.fish" />
+            <file name="fisher.fish" path="shell/.staging/fish shell/fish/functions/fisher.fish" />
+            <file name="forrepos.fish" path="shell/.staging/fish shell/fish/functions/forrepos.fish" />
+            <file name="ls.fish" path="shell/.staging/fish shell/fish/functions/ls.fish" />
+            <file name="manp.fish" path="shell/.staging/fish shell/fish/functions/manp.fish" />
+            <file name="mvnpurge.fish" path="shell/.staging/fish shell/fish/functions/mvnpurge.fish" />
+            <file name="pubkey.fish" path="shell/.staging/fish shell/fish/functions/pubkey.fish" />
+            <file name="repo.fish" path="shell/.staging/fish shell/fish/functions/repo.fish" />
+            <file name="repodir.fish" path="shell/.staging/fish shell/fish/functions/repodir.fish" />
+            <file name="setup.fish" path="shell/.staging/fish shell/fish/functions/setup.fish" />
+            <file name="update.fish" path="shell/.staging/fish shell/fish/functions/update.fish" />
+            <file name="week.fish" path="shell/.staging/fish shell/fish/functions/week.fish" />
+          </directory>
+          <file name="config.fish" path="shell/.staging/fish shell/fish/config.fish" />
+          <file name="fishfile" path="shell/.staging/fish shell/fish/fishfile" />
+          <file name="setup.sh" path="shell/.staging/fish shell/fish/setup.sh" />
+        </directory>
+      </directory>
+      <directory name="gcloud" path="shell/.staging/gcloud">
+        <directory name="commands" path="shell/.staging/gcloud/commands">
+          <file name="create_instance" path="shell/.staging/gcloud/commands/create_instance" />
+        </directory>
+        <directory name="scripts" path="shell/.staging/gcloud/scripts">
+          <file name="create_vm" path="shell/.staging/gcloud/scripts/create_vm" />
+          <file name="delete_vm" path="shell/.staging/gcloud/scripts/delete_vm" />
+          <file name="reset_vm" path="shell/.staging/gcloud/scripts/reset_vm" />
+          <file name="shutdown" path="shell/.staging/gcloud/scripts/shutdown" />
+          <file name="startup" path="shell/.staging/gcloud/scripts/startup" />
+        </directory>
+      </directory>
+      <directory name="hardening" path="shell/.staging/hardening">
+        <file name="configure-sysctl" path="shell/.staging/hardening/configure-sysctl" />
+        <file name="configure-systemd-limits" path="shell/.staging/hardening/configure-systemd-limits" />
+        <file name="configure-timesyncd" path="shell/.staging/hardening/configure-timesyncd" />
+        <file name="enable-firewall" path="shell/.staging/hardening/enable-firewall" />
+        <file name="enable-usbguard" path="shell/.staging/hardening/enable-usbguard" />
+        <file name="init-aide" path="shell/.staging/hardening/init-aide" />
+        <file name="remove-legacy-users" path="shell/.staging/hardening/remove-legacy-users" />
+        <file name="run-lynis" path="shell/.staging/hardening/run-lynis" />
+        <file name="set-umask" path="shell/.staging/hardening/set-umask" />
+        <file name="show-systemd-delta" path="shell/.staging/hardening/show-systemd-delta" />
+      </directory>
+      <directory name="install" path="shell/.staging/install">
+        <file name="apt-install" path="shell/.staging/install/apt-install" />
+        <file name="base.packages" path="shell/.staging/install/base.packages" />
+        <file name="gcloud.sh" path="shell/.staging/install/gcloud.sh" />
+        <file name="install-addlicense" path="shell/.staging/install/install-addlicense" />
+        <file name="install-apt-base" path="shell/.staging/install/install-apt-base" />
+        <file name="install-asdf" path="shell/.staging/install/install-asdf" />
+        <file name="install-calibre" path="shell/.staging/install/install-calibre" />
+        <file name="install-ceres-solver" path="shell/.staging/install/install-ceres-solver" />
+        <file name="install-crush" path="shell/.staging/install/install-crush" />
+        <file name="install-docker-desktop.sh" path="shell/.staging/install/install-docker-desktop.sh" />
+        <file name="install-dockerfmt" path="shell/.staging/install/install-dockerfmt" />
+        <file name="install-dust" path="shell/.staging/install/install-dust" />
+        <file name="install-e57format" path="shell/.staging/install/install-e57format" />
+        <file name="install-eza" path="shell/.staging/install/install-eza" />
+        <file name="install-git-sim" path="shell/.staging/install/install-git-sim" />
+        <file name="install-gitinspector" path="shell/.staging/install/install-gitinspector" />
+        <file name="install-google-fonts" path="shell/.staging/install/install-google-fonts" />
+        <file name="install-httpie" path="shell/.staging/install/install-httpie" />
+        <file name="install-image-optim" path="shell/.staging/install/install-image-optim" />
+        <file name="install-imagemagick" path="shell/.staging/install/install-imagemagick" />
+        <file name="install-java" path="shell/.staging/install/install-java" />
+        <file name="install-linuxbrew" path="shell/.staging/install/install-linuxbrew" />
+        <file name="install-lynis" path="shell/.staging/install/install-lynis" />
+        <file name="install-mitmproxy" path="shell/.staging/install/install-mitmproxy" />
+        <file name="install-nerd-fonts.sh" path="shell/.staging/install/install-nerd-fonts.sh" />
+        <file name="install-nfpm" path="shell/.staging/install/install-nfpm" />
+        <file name="install-pdal" path="shell/.staging/install/install-pdal" />
+        <file name="install-scc" path="shell/.staging/install/install-scc" />
+        <file name="install-shdoc" path="shell/.staging/install/install-shdoc" />
+        <file name="install-shfmt" path="shell/.staging/install/install-shfmt" />
+        <file name="install-sqlfluff" path="shell/.staging/install/install-sqlfluff" />
+        <file name="install-talisman" path="shell/.staging/install/install-talisman" />
+        <file name="install-taskfile" path="shell/.staging/install/install-taskfile" />
+        <file name="install-terminus" path="shell/.staging/install/install-terminus" />
+        <file name="install-typos" path="shell/.staging/install/install-typos" />
+        <file name="install-vale" path="shell/.staging/install/install-vale" />
+        <file name="install_imagemagick.bash" path="shell/.staging/install/install_imagemagick.bash" />
+        <file name="install_lynis.sh" path="shell/.staging/install/install_lynis.sh" />
+        <file name="install_pdal.sh" path="shell/.staging/install/install_pdal.sh" />
+        <file name="README.md" path="shell/.staging/install/README.md" />
+        <file name="repro-sources-list" path="shell/.staging/install/repro-sources-list" />
+      </directory>
+      <directory name="macos" path="shell/.staging/macos">
+        <file name=".aliases" path="shell/.staging/macos/.aliases" />
+        <file name=".macos" path="shell/.staging/macos/.macos" />
+        <file name=".zshrc" path="shell/.staging/macos/.zshrc" />
+        <file name="sethidden" path="shell/.staging/macos/sethidden" />
+        <file name="startup_settings.sh" path="shell/.staging/macos/startup_settings.sh" />
+        <file name="togglehidden" path="shell/.staging/macos/togglehidden" />
+      </directory>
+      <directory name="tests" path="shell/.staging/tests">
+        <file name="test-gitinspector" path="shell/.staging/tests/test-gitinspector" />
+        <file name="test-google-fonts" path="shell/.staging/tests/test-google-fonts" />
+        <file name="test-imagemagick" path="shell/.staging/tests/test-imagemagick" />
+        <file name="test-linuxbrew" path="shell/.staging/tests/test-linuxbrew" />
+        <file name="test-talisman" path="shell/.staging/tests/test-talisman" />
+        <file name="test-terminus" path="shell/.staging/tests/test-terminus" />
+      </directory>
+      <directory name="vlc" path="shell/.staging/vlc">
+        <file name="sbs.hlsl" path="shell/.staging/vlc/sbs.hlsl" />
+      </directory>
+      <directory name="windows" path="shell/.staging/windows">
+        <directory name="drive" path="shell/.staging/windows/drive">
+          <directory name="Users" path="shell/.staging/windows/drive/Users">
+            <directory name="user" path="shell/.staging/windows/drive/Users/user">
+              <file name=".wslconfig" path="shell/.staging/windows/drive/Users/user/.wslconfig" />
+            </directory>
+          </directory>
+        </directory>
+        <file name=".gitkeep" path="shell/.staging/windows/.gitkeep" />
+      </directory>
       <file name="apps-bin-path.sh" path="shell/.staging/apps-bin-path.sh" />
+      <file name="bash_commands" path="shell/.staging/bash_commands" />
+      <file name="bash_options" path="shell/.staging/bash_options" />
+      <file name="bcrypt-password" path="shell/.staging/bcrypt-password" />
+      <file name="brightness" path="shell/.staging/brightness" />
+      <file name="cleaner" path="shell/.staging/cleaner" />
+      <file name="cleaner.sh" path="shell/.staging/cleaner.sh" />
+      <file name="clear_port" path="shell/.staging/clear_port" />
+      <file name="computer_info.sh" path="shell/.staging/computer_info.sh" />
       <file name="devcontainer.sh" path="shell/.staging/devcontainer.sh" />
+      <file name="disable_password.sh" path="shell/.staging/disable_password.sh" />
       <file name="encrypt_volume.sh" path="shell/.staging/encrypt_volume.sh" />
+      <file name="fake-user-agent" path="shell/.staging/fake-user-agent" />
+      <file name="ffmpeg-loop" path="shell/.staging/ffmpeg-loop" />
+      <file name="find_files_with_text.sh" path="shell/.staging/find_files_with_text.sh" />
       <file name="freeze-apt" path="shell/.staging/freeze-apt" />
       <file name="freeze-github-release" path="shell/.staging/freeze-github-release" />
       <file name="get_pdf_title.py" path="shell/.staging/get_pdf_title.py" />
       <file name="ghlabels" path="shell/.staging/ghlabels" />
       <file name="git-summary.sh" path="shell/.staging/git-summary.sh" />
+      <file name="git_clone_orgs" path="shell/.staging/git_clone_orgs" />
       <file name="github-latest-release" path="shell/.staging/github-latest-release" />
+      <file name="imgcat" path="shell/.staging/imgcat" />
+      <file name="init.sh" path="shell/.staging/init.sh" />
+      <file name="install_google_fonts.sh" path="shell/.staging/install_google_fonts.sh" />
       <file name="json-pretty" path="shell/.staging/json-pretty" />
       <file name="list-fonts" path="shell/.staging/list-fonts" />
       <file name="list-packages" path="shell/.staging/list-packages" />
+      <file name="m3u8" path="shell/.staging/m3u8" />
+      <file name="makepng" path="shell/.staging/makepng" />
       <file name="megalinter.sh" path="shell/.staging/megalinter.sh" />
       <file name="nuke-docker" path="shell/.staging/nuke-docker" />
+      <file name="open_samba_ports.sh" path="shell/.staging/open_samba_ports.sh" />
       <file name="pandoc_emoji_filter.py" path="shell/.staging/pandoc_emoji_filter.py" />
       <file name="pipes" path="shell/.staging/pipes" />
       <file name="pre-shutdown" path="shell/.staging/pre-shutdown" />
+      <file name="pre-shutdown.service" path="shell/.staging/pre-shutdown.service" />
       <file name="process_files.py" path="shell/.staging/process_files.py" />
+      <file name="realpath" path="shell/.staging/realpath" />
       <file name="record-audio" path="shell/.staging/record-audio" />
       <file name="reinstall_google_drive.sh" path="shell/.staging/reinstall_google_drive.sh" />
       <file name="remove_password_pdf" path="shell/.staging/remove_password_pdf" />
       <file name="run_discovery" path="shell/.staging/run_discovery" />
       <file name="set-sys-uid-max" path="shell/.staging/set-sys-uid-max" />
       <file name="setup-asdf" path="shell/.staging/setup-asdf" />
+      <file name="show_hidden_files" path="shell/.staging/show_hidden_files" />
       <file name="storybook.sh" path="shell/.staging/storybook.sh" />
       <file name="tailwind-config-viewer.sh" path="shell/.staging/tailwind-config-viewer.sh" />
+      <file name="template.sh" path="shell/.staging/template.sh" />
+      <file name="toptout" path="shell/.staging/toptout" />
       <file name="uninstall_google_drive.sh" path="shell/.staging/uninstall_google_drive.sh" />
+      <file name="vpn" path="shell/.staging/vpn" />
+      <file name="wget_commands.txt" path="shell/.staging/wget_commands.txt" />
+      <file name="whats-in-port" path="shell/.staging/whats-in-port" />
+      <file name="windows_share.sh" path="shell/.staging/windows_share.sh" />
     </directory>
     <directory name=".vscode" path="shell/.vscode">
       <directory name="dictionaries" path="shell/.vscode/dictionaries">
@@ -34938,6 +34979,7 @@
       <file name="dockerhealth" path="shell/bin/dockerhealth" />
       <file name="generate-certs" path="shell/bin/generate-certs" />
       <file name="generate-password" path="shell/bin/generate-password" />
+      <file name="generate-pwa-icons" path="shell/bin/generate-pwa-icons" />
       <file name="generate-tree" path="shell/bin/generate-tree" />
       <file name="ghignore" path="shell/bin/ghignore" />
       <file name="ghprotect" path="shell/bin/ghprotect" />
@@ -34952,6 +34994,7 @@
       <file name="init.sh" path="shell/init/init.sh" />
       <file name="load-core.sh" path="shell/init/load-core.sh" />
       <file name="load-extensions.sh" path="shell/init/load-extensions.sh" />
+      <file name="load-platform-runtime.sh" path="shell/init/load-platform-runtime.sh" />
     </directory>
     <directory name="lib" path="shell/lib">
       <directory name="core" path="shell/lib/core">
@@ -34977,6 +35020,25 @@
       <file name="privacy.sh" path="shell/modules/privacy.sh" />
       <file name="tooling.sh" path="shell/modules/tooling.sh" />
       <file name="xdg.sh" path="shell/modules/xdg.sh" />
+    </directory>
+    <directory name="platforms" path="shell/platforms">
+      <file name="README.md" path="shell/platforms/README.md" />
+    </directory>
+    <directory name="runtime" path="shell/runtime">
+      <directory name="shared" path="shell/runtime/shared">
+        <file name="runtime.sh" path="shell/runtime/shared/runtime.sh" />
+      </directory>
+      <directory name="shells" path="shell/runtime/shells">
+        <directory name="bash" path="shell/runtime/shells/bash">
+          <file name="runtime.sh" path="shell/runtime/shells/bash/runtime.sh" />
+        </directory>
+        <directory name="posix" path="shell/runtime/shells/posix">
+          <file name="runtime.sh" path="shell/runtime/shells/posix/runtime.sh" />
+        </directory>
+        <directory name="zsh" path="shell/runtime/shells/zsh">
+          <file name="runtime.sh" path="shell/runtime/shells/zsh/runtime.sh" />
+        </directory>
+      </directory>
     </directory>
     <directory name="tests" path="shell/tests">
       <directory name="core" path="shell/tests/core">
@@ -35648,50 +35710,6 @@
   </directory>
   <directory name="templates" path="templates">
     <directory name="applications" path="templates/applications">
-      <directory name="react-vite" path="templates/applications/react-vite">
-        <directory name=".vitest" path="templates/applications/react-vite/.vitest">
-          <file name="setup.ts" path="templates/applications/react-vite/.vitest/setup.ts" />
-        </directory>
-        <directory name="apps" path="templates/applications/react-vite/apps">
-          <directory name="docs" path="templates/applications/react-vite/apps/docs">
-            <file name="tsconfig.app.json" path="templates/applications/react-vite/apps/docs/tsconfig.app.json" />
-          </directory>
-          <directory name="egohygiene.io" path="templates/applications/react-vite/apps/egohygiene.io">
-            <file name="tsconfig.app.json" path="templates/applications/react-vite/apps/egohygiene.io/tsconfig.app.json" />
-          </directory>
-          <directory name="playground" path="templates/applications/react-vite/apps/playground">
-            <file name="tsconfig.app.json" path="templates/applications/react-vite/apps/playground/tsconfig.app.json" />
-            <file name="tsconfig.storybook.json" path="templates/applications/react-vite/apps/playground/tsconfig.storybook.json" />
-          </directory>
-        </directory>
-        <directory name="packages" path="templates/applications/react-vite/packages">
-          <directory name="cli" path="templates/applications/react-vite/packages/cli">
-            <directory name="create-theme" path="templates/applications/react-vite/packages/cli/create-theme">
-              <file name="tsconfig.cli.json" path="templates/applications/react-vite/packages/cli/create-theme/tsconfig.cli.json" />
-            </directory>
-          </directory>
-          <directory name="components" path="templates/applications/react-vite/packages/components">
-            <file name="tsconfig.build.json" path="templates/applications/react-vite/packages/components/tsconfig.build.json" />
-          </directory>
-          <directory name="schemas" path="templates/applications/react-vite/packages/schemas">
-            <file name="tsconfig.build.json" path="templates/applications/react-vite/packages/schemas/tsconfig.build.json" />
-          </directory>
-          <directory name="themes" path="templates/applications/react-vite/packages/themes">
-            <file name="tsconfig.build.json" path="templates/applications/react-vite/packages/themes/tsconfig.build.json" />
-          </directory>
-        </directory>
-        <directory name="public" path="templates/applications/react-vite/public">
-          <file name="llms.txt" path="templates/applications/react-vite/public/llms.txt" />
-          <file name="robots.txt" path="templates/applications/react-vite/public/robots.txt" />
-        </directory>
-        <file name="package.json" path="templates/applications/react-vite/package.json" />
-        <file name="tsconfig.base.json" path="templates/applications/react-vite/tsconfig.base.json" />
-        <file name="tsconfig.eslint.json" path="templates/applications/react-vite/tsconfig.eslint.json" />
-        <file name="tsconfig.node.json" path="templates/applications/react-vite/tsconfig.node.json" />
-        <file name="tsconfig.typecheck.json" path="templates/applications/react-vite/tsconfig.typecheck.json" />
-        <file name="tsconfig.vitest.json" path="templates/applications/react-vite/tsconfig.vitest.json" />
-        <file name="turbo.json" path="templates/applications/react-vite/turbo.json" />
-      </directory>
       <file name="README.md" path="templates/applications/README.md" />
     </directory>
     <directory name="changesets" path="templates/changesets">
@@ -37581,6 +37599,7 @@
       <directory name="git" path="workstation/shared/git">
         <file name=".gitconfig" path="workstation/shared/git/.gitconfig" />
         <file name=".gitignore_global" path="workstation/shared/git/.gitignore_global" />
+        <file name="gitconfig" path="workstation/shared/git/gitconfig" />
       </directory>
       <directory name="npm" path="workstation/shared/npm">
         <file name=".npmrc" path="workstation/shared/npm/.npmrc" />

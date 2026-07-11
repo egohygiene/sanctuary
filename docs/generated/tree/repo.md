@@ -12694,162 +12694,37 @@ sanctuary/
 │       │       │       ├── Opinion How Not to Be Alone by Jonathan Safran Foer.md
 │       │       │       └── Writing.md
 │       │       └── START HERE.md
-│       ├── scripts/
-│       │   ├── bash/
-│       │   │   ├── array
-│       │   │   ├── check
-│       │   │   ├── collection
-│       │   │   ├── date
-│       │   │   ├── debug
-│       │   │   ├── file
-│       │   │   ├── format
-│       │   │   ├── interaction
-│       │   │   ├── json
-│       │   │   ├── logger
-│       │   │   ├── misc
-│       │   │   ├── os
-│       │   │   ├── string
-│       │   │   ├── terminal
-│       │   │   ├── validation
-│       │   │   └── variable
-│       │   ├── fish shell/
-│       │   │   └── fish/
-│       │   │       ├── completions/
-│       │   │       │   ├── repo.fish
-│       │   │       │   └── repodir.fish
-│       │   │       ├── functions/
-│       │   │       │   ├── abbrex.fish
-│       │   │       │   ├── clear.fish
-│       │   │       │   ├── emptytrash.fish
-│       │   │       │   ├── fish_greeting.fish
-│       │   │       │   ├── fish_prompt.fish
-│       │   │       │   ├── fisher.fish
-│       │   │       │   ├── forrepos.fish
-│       │   │       │   ├── ls.fish
-│       │   │       │   ├── manp.fish
-│       │   │       │   ├── mvnpurge.fish
-│       │   │       │   ├── pubkey.fish
-│       │   │       │   ├── repo.fish
-│       │   │       │   ├── repodir.fish
-│       │   │       │   ├── setup.fish
-│       │   │       │   ├── update.fish
-│       │   │       │   └── week.fish
-│       │   │       ├── config.fish
-│       │   │       ├── fishfile
-│       │   │       └── setup.sh
-│       │   ├── gcloud/
-│       │   │   ├── commands/
-│       │   │   │   └── create_instance
-│       │   │   └── scripts/
-│       │   │       ├── create_vm
-│       │   │       ├── delete_vm
-│       │   │       ├── reset_vm
-│       │   │       ├── shutdown
-│       │   │       └── startup
-│       │   ├── hardening/
-│       │   │   ├── configure-sysctl
-│       │   │   ├── configure-systemd-limits
-│       │   │   ├── configure-timesyncd
-│       │   │   ├── enable-firewall
-│       │   │   ├── enable-usbguard
-│       │   │   ├── init-aide
-│       │   │   ├── remove-legacy-users
-│       │   │   ├── run-lynis
-│       │   │   ├── set-umask
-│       │   │   └── show-systemd-delta
-│       │   ├── install/
-│       │   │   ├── apt-install
-│       │   │   ├── base.packages
-│       │   │   ├── gcloud.sh
-│       │   │   ├── install-addlicense
-│       │   │   ├── install-apt-base
-│       │   │   ├── install-asdf
-│       │   │   ├── install-calibre
-│       │   │   ├── install-ceres-solver
-│       │   │   ├── install-crush
-│       │   │   ├── install-docker-desktop.sh
-│       │   │   ├── install-dockerfmt
-│       │   │   ├── install-dust
-│       │   │   ├── install-e57format
-│       │   │   ├── install-eza
-│       │   │   ├── install-git-sim
-│       │   │   ├── install-gitinspector
-│       │   │   ├── install-google-fonts
-│       │   │   ├── install-httpie
-│       │   │   ├── install-image-optim
-│       │   │   ├── install-imagemagick
-│       │   │   ├── install-java
-│       │   │   ├── install-linuxbrew
-│       │   │   ├── install-lynis
-│       │   │   ├── install-mitmproxy
-│       │   │   ├── install-nerd-fonts.sh
-│       │   │   ├── install-nfpm
-│       │   │   ├── install-pdal
-│       │   │   ├── install-scc
-│       │   │   ├── install-shdoc
-│       │   │   ├── install-shfmt
-│       │   │   ├── install-sqlfluff
-│       │   │   ├── install-talisman
-│       │   │   ├── install-taskfile
-│       │   │   ├── install-terminus
-│       │   │   ├── install-typos
-│       │   │   ├── install-vale
-│       │   │   ├── install_imagemagick.bash
-│       │   │   ├── install_lynis.sh
-│       │   │   ├── install_pdal.sh
-│       │   │   ├── README.md
-│       │   │   └── repro-sources-list
-│       │   ├── macos/
-│       │   │   ├── .aliases
-│       │   │   ├── .macos
-│       │   │   ├── .zshrc
-│       │   │   ├── sethidden
-│       │   │   ├── startup_settings.sh
-│       │   │   └── togglehidden
-│       │   ├── tests/
-│       │   │   ├── test-gitinspector
-│       │   │   ├── test-google-fonts
-│       │   │   ├── test-imagemagick
-│       │   │   ├── test-linuxbrew
-│       │   │   ├── test-talisman
-│       │   │   └── test-terminus
-│       │   ├── vlc/
-│       │   │   └── sbs.hlsl
-│       │   ├── windows/
-│       │   │   ├── drive/
-│       │   │   │   └── Users/
-│       │   │   │       └── user/
-│       │   │   │           └── .wslconfig
-│       │   │   └── .gitkeep
-│       │   ├── bash_commands
-│       │   ├── bash_options
-│       │   ├── bcrypt-password
-│       │   ├── brightness
-│       │   ├── cleaner
-│       │   ├── cleaner.sh
-│       │   ├── clear_port
-│       │   ├── computer_info.sh
-│       │   ├── disable_password.sh
-│       │   ├── fake-user-agent
-│       │   ├── ffmpeg-loop
-│       │   ├── find_files_with_text.sh
-│       │   ├── git_clone_orgs
-│       │   ├── imgcat
-│       │   ├── init.sh
-│       │   ├── install_google_fonts.sh
-│       │   ├── m3u8
-│       │   ├── makepng
-│       │   ├── open_samba_ports.sh
-│       │   ├── pre-shutdown
-│       │   ├── pre-shutdown.service
-│       │   ├── realpath
-│       │   ├── show_hidden_files
-│       │   ├── template.sh
-│       │   ├── toptout
-│       │   ├── vpn
-│       │   ├── wget_commands.txt
-│       │   ├── whats-in-port
-│       │   └── windows_share.sh
+│       ├── react-vite/
+│       │   ├── .vitest/
+│       │   │   └── setup.ts
+│       │   ├── apps/
+│       │   │   ├── docs/
+│       │   │   │   └── tsconfig.app.json
+│       │   │   ├── egohygiene.io/
+│       │   │   │   └── tsconfig.app.json
+│       │   │   └── playground/
+│       │   │       ├── tsconfig.app.json
+│       │   │       └── tsconfig.storybook.json
+│       │   ├── packages/
+│       │   │   ├── cli/
+│       │   │   │   └── create-theme/
+│       │   │   │       └── tsconfig.cli.json
+│       │   │   ├── components/
+│       │   │   │   └── tsconfig.build.json
+│       │   │   ├── schemas/
+│       │   │   │   └── tsconfig.build.json
+│       │   │   └── themes/
+│       │   │       └── tsconfig.build.json
+│       │   ├── public/
+│       │   │   ├── llms.txt
+│       │   │   └── robots.txt
+│       │   ├── package.json
+│       │   ├── tsconfig.base.json
+│       │   ├── tsconfig.eslint.json
+│       │   ├── tsconfig.node.json
+│       │   ├── tsconfig.typecheck.json
+│       │   ├── tsconfig.vitest.json
+│       │   └── turbo.json
 │       ├── universal/
 │       │   ├── apps/
 │       │   │   ├── ui/
@@ -31349,33 +31224,187 @@ sanctuary/
 │   └── megalinter.sh
 ├── shell/
 │   ├── .staging/
+│   │   ├── bash/
+│   │   │   ├── array
+│   │   │   ├── check
+│   │   │   ├── collection
+│   │   │   ├── date
+│   │   │   ├── debug
+│   │   │   ├── file
+│   │   │   ├── format
+│   │   │   ├── interaction
+│   │   │   ├── json
+│   │   │   ├── logger
+│   │   │   ├── misc
+│   │   │   ├── os
+│   │   │   ├── string
+│   │   │   ├── terminal
+│   │   │   ├── validation
+│   │   │   └── variable
+│   │   ├── fish shell/
+│   │   │   └── fish/
+│   │   │       ├── completions/
+│   │   │       │   ├── repo.fish
+│   │   │       │   └── repodir.fish
+│   │   │       ├── functions/
+│   │   │       │   ├── abbrex.fish
+│   │   │       │   ├── clear.fish
+│   │   │       │   ├── emptytrash.fish
+│   │   │       │   ├── fish_greeting.fish
+│   │   │       │   ├── fish_prompt.fish
+│   │   │       │   ├── fisher.fish
+│   │   │       │   ├── forrepos.fish
+│   │   │       │   ├── ls.fish
+│   │   │       │   ├── manp.fish
+│   │   │       │   ├── mvnpurge.fish
+│   │   │       │   ├── pubkey.fish
+│   │   │       │   ├── repo.fish
+│   │   │       │   ├── repodir.fish
+│   │   │       │   ├── setup.fish
+│   │   │       │   ├── update.fish
+│   │   │       │   └── week.fish
+│   │   │       ├── config.fish
+│   │   │       ├── fishfile
+│   │   │       └── setup.sh
+│   │   ├── gcloud/
+│   │   │   ├── commands/
+│   │   │   │   └── create_instance
+│   │   │   └── scripts/
+│   │   │       ├── create_vm
+│   │   │       ├── delete_vm
+│   │   │       ├── reset_vm
+│   │   │       ├── shutdown
+│   │   │       └── startup
+│   │   ├── hardening/
+│   │   │   ├── configure-sysctl
+│   │   │   ├── configure-systemd-limits
+│   │   │   ├── configure-timesyncd
+│   │   │   ├── enable-firewall
+│   │   │   ├── enable-usbguard
+│   │   │   ├── init-aide
+│   │   │   ├── remove-legacy-users
+│   │   │   ├── run-lynis
+│   │   │   ├── set-umask
+│   │   │   └── show-systemd-delta
+│   │   ├── install/
+│   │   │   ├── apt-install
+│   │   │   ├── base.packages
+│   │   │   ├── gcloud.sh
+│   │   │   ├── install-addlicense
+│   │   │   ├── install-apt-base
+│   │   │   ├── install-asdf
+│   │   │   ├── install-calibre
+│   │   │   ├── install-ceres-solver
+│   │   │   ├── install-crush
+│   │   │   ├── install-docker-desktop.sh
+│   │   │   ├── install-dockerfmt
+│   │   │   ├── install-dust
+│   │   │   ├── install-e57format
+│   │   │   ├── install-eza
+│   │   │   ├── install-git-sim
+│   │   │   ├── install-gitinspector
+│   │   │   ├── install-google-fonts
+│   │   │   ├── install-httpie
+│   │   │   ├── install-image-optim
+│   │   │   ├── install-imagemagick
+│   │   │   ├── install-java
+│   │   │   ├── install-linuxbrew
+│   │   │   ├── install-lynis
+│   │   │   ├── install-mitmproxy
+│   │   │   ├── install-nerd-fonts.sh
+│   │   │   ├── install-nfpm
+│   │   │   ├── install-pdal
+│   │   │   ├── install-scc
+│   │   │   ├── install-shdoc
+│   │   │   ├── install-shfmt
+│   │   │   ├── install-sqlfluff
+│   │   │   ├── install-talisman
+│   │   │   ├── install-taskfile
+│   │   │   ├── install-terminus
+│   │   │   ├── install-typos
+│   │   │   ├── install-vale
+│   │   │   ├── install_imagemagick.bash
+│   │   │   ├── install_lynis.sh
+│   │   │   ├── install_pdal.sh
+│   │   │   ├── README.md
+│   │   │   └── repro-sources-list
+│   │   ├── macos/
+│   │   │   ├── .aliases
+│   │   │   ├── .macos
+│   │   │   ├── .zshrc
+│   │   │   ├── sethidden
+│   │   │   ├── startup_settings.sh
+│   │   │   └── togglehidden
+│   │   ├── tests/
+│   │   │   ├── test-gitinspector
+│   │   │   ├── test-google-fonts
+│   │   │   ├── test-imagemagick
+│   │   │   ├── test-linuxbrew
+│   │   │   ├── test-talisman
+│   │   │   └── test-terminus
+│   │   ├── vlc/
+│   │   │   └── sbs.hlsl
+│   │   ├── windows/
+│   │   │   ├── drive/
+│   │   │   │   └── Users/
+│   │   │   │       └── user/
+│   │   │   │           └── .wslconfig
+│   │   │   └── .gitkeep
 │   │   ├── apps-bin-path.sh
+│   │   ├── bash_commands
+│   │   ├── bash_options
+│   │   ├── bcrypt-password
+│   │   ├── brightness
+│   │   ├── cleaner
+│   │   ├── cleaner.sh
+│   │   ├── clear_port
+│   │   ├── computer_info.sh
 │   │   ├── devcontainer.sh
+│   │   ├── disable_password.sh
 │   │   ├── encrypt_volume.sh
+│   │   ├── fake-user-agent
+│   │   ├── ffmpeg-loop
+│   │   ├── find_files_with_text.sh
 │   │   ├── freeze-apt
 │   │   ├── freeze-github-release
 │   │   ├── get_pdf_title.py
 │   │   ├── ghlabels
 │   │   ├── git-summary.sh
+│   │   ├── git_clone_orgs
 │   │   ├── github-latest-release
+│   │   ├── imgcat
+│   │   ├── init.sh
+│   │   ├── install_google_fonts.sh
 │   │   ├── json-pretty
 │   │   ├── list-fonts
 │   │   ├── list-packages
+│   │   ├── m3u8
+│   │   ├── makepng
 │   │   ├── megalinter.sh
 │   │   ├── nuke-docker
+│   │   ├── open_samba_ports.sh
 │   │   ├── pandoc_emoji_filter.py
 │   │   ├── pipes
 │   │   ├── pre-shutdown
+│   │   ├── pre-shutdown.service
 │   │   ├── process_files.py
+│   │   ├── realpath
 │   │   ├── record-audio
 │   │   ├── reinstall_google_drive.sh
 │   │   ├── remove_password_pdf
 │   │   ├── run_discovery
 │   │   ├── set-sys-uid-max
 │   │   ├── setup-asdf
+│   │   ├── show_hidden_files
 │   │   ├── storybook.sh
 │   │   ├── tailwind-config-viewer.sh
-│   │   └── uninstall_google_drive.sh
+│   │   ├── template.sh
+│   │   ├── toptout
+│   │   ├── uninstall_google_drive.sh
+│   │   ├── vpn
+│   │   ├── wget_commands.txt
+│   │   ├── whats-in-port
+│   │   └── windows_share.sh
 │   ├── .vscode/
 │   │   ├── dictionaries/
 │   │   │   ├── backend-terms.dictionary
@@ -31398,6 +31427,7 @@ sanctuary/
 │   │   ├── dockerhealth
 │   │   ├── generate-certs
 │   │   ├── generate-password
+│   │   ├── generate-pwa-icons
 │   │   ├── generate-tree
 │   │   ├── ghignore
 │   │   ├── ghprotect
@@ -31410,7 +31440,8 @@ sanctuary/
 │   │   ├── bootstrap.sh
 │   │   ├── init.sh
 │   │   ├── load-core.sh
-│   │   └── load-extensions.sh
+│   │   ├── load-extensions.sh
+│   │   └── load-platform-runtime.sh
 │   ├── lib/
 │   │   ├── core/
 │   │   │   ├── bash.sh
@@ -31432,6 +31463,18 @@ sanctuary/
 │   │   ├── privacy.sh
 │   │   ├── tooling.sh
 │   │   └── xdg.sh
+│   ├── platforms/
+│   │   └── README.md
+│   ├── runtime/
+│   │   ├── shared/
+│   │   │   └── runtime.sh
+│   │   └── shells/
+│   │       ├── bash/
+│   │       │   └── runtime.sh
+│   │       ├── posix/
+│   │       │   └── runtime.sh
+│   │       └── zsh/
+│   │           └── runtime.sh
 │   ├── tests/
 │   │   ├── core/
 │   │   │   ├── bash.bats
@@ -31938,37 +31981,6 @@ sanctuary/
 │       └── SKILL.md
 ├── templates/
 │   ├── applications/
-│   │   ├── react-vite/
-│   │   │   ├── .vitest/
-│   │   │   │   └── setup.ts
-│   │   │   ├── apps/
-│   │   │   │   ├── docs/
-│   │   │   │   │   └── tsconfig.app.json
-│   │   │   │   ├── egohygiene.io/
-│   │   │   │   │   └── tsconfig.app.json
-│   │   │   │   └── playground/
-│   │   │   │       ├── tsconfig.app.json
-│   │   │   │       └── tsconfig.storybook.json
-│   │   │   ├── packages/
-│   │   │   │   ├── cli/
-│   │   │   │   │   └── create-theme/
-│   │   │   │   │       └── tsconfig.cli.json
-│   │   │   │   ├── components/
-│   │   │   │   │   └── tsconfig.build.json
-│   │   │   │   ├── schemas/
-│   │   │   │   │   └── tsconfig.build.json
-│   │   │   │   └── themes/
-│   │   │   │       └── tsconfig.build.json
-│   │   │   ├── public/
-│   │   │   │   ├── llms.txt
-│   │   │   │   └── robots.txt
-│   │   │   ├── package.json
-│   │   │   ├── tsconfig.base.json
-│   │   │   ├── tsconfig.eslint.json
-│   │   │   ├── tsconfig.node.json
-│   │   │   ├── tsconfig.typecheck.json
-│   │   │   ├── tsconfig.vitest.json
-│   │   │   └── turbo.json
 │   │   └── README.md
 │   ├── changesets/
 │   │   └── .changeset/
@@ -33522,7 +33534,8 @@ sanctuary/
 │   │   │   └── .curlrc
 │   │   ├── git/
 │   │   │   ├── .gitconfig
-│   │   │   └── .gitignore_global
+│   │   │   ├── .gitignore_global
+│   │   │   └── gitconfig
 │   │   ├── npm/
 │   │   │   └── .npmrc
 │   │   ├── python/
