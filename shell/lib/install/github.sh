@@ -7,6 +7,8 @@ fi
 
 export EGOHYGIENE_LIB_INSTALL_GITHUB_LOADED="true"
 
+readonly INSTALL_GITHUB_EXIT_HELP=64
+
 install::template::render() {
   local template="$1"
   local version="${2:-}"
@@ -139,7 +141,7 @@ install::github::parse_args() {
         ;;
       --help|-h)
         install::github::usage
-        return 64
+        return "${INSTALL_GITHUB_EXIT_HELP}"
         ;;
       *)
         log::error "Unknown argument: $1"
@@ -183,6 +185,7 @@ install::github::main() {
   local install_path
   local destination_name
   local archive_format
+  local verify_args_declaration
   local -a verify_args=()
 
   install::github::assert_config || return 1
@@ -190,7 +193,7 @@ install::github::main() {
   install::github::parse_args "$@"
   parse_status=$?
   if [[ "${parse_status}" -ne 0 ]]; then
-    if [[ "${parse_status}" -eq 64 ]]; then
+    if [[ "${parse_status}" -eq "${INSTALL_GITHUB_EXIT_HELP}" ]]; then
       return 0
     fi
     return "${parse_status}"
@@ -309,7 +312,8 @@ install::github::main() {
       "${destination_name}"
   )" || return 1
 
-  if declare -p INSTALL_VERIFY_ARGS >/dev/null 2>&1; then
+  verify_args_declaration="$(declare -p INSTALL_VERIFY_ARGS 2>/dev/null || true)"
+  if [[ "${verify_args_declaration}" == "declare -a"* ]]; then
     # INSTALL_VERIFY_ARGS is optional and may not be defined by every wrapper.
     # shellcheck disable=SC2206
     verify_args=("${INSTALL_VERIFY_ARGS[@]}")

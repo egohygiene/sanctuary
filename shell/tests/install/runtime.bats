@@ -61,13 +61,14 @@ EOF
     INSTALL_CHECKSUM_ASSET='sha256sums.txt'
     INSTALL_ARCHIVE_FORMAT='raw'
     INSTALL_BIN_NAME='shfmt'
+    expected_checksum_url='https://github.com/mvdan/sh/releases/download/v9.9.9/sha256sums.txt'
 
     install::github::resolve_version() { printf '9.9.9\n'; }
     install::download::file() {
       local url=\"\$1\"
       local output_path=\"\$2\"
 
-      if [[ \${url} == 'https://github.com/mvdan/sh/releases/download/v9.9.9/sha256sums.txt' ]]; then
+      if [[ \${url} == \${expected_checksum_url} ]]; then
         printf '%s\n' \"\${url}\" > '${TEST_HOME}/checksum-download-url.txt'
         printf 'expected-sha  shfmt_v9.9.9_linux_amd64\n' > \"\${output_path}\"
       else
