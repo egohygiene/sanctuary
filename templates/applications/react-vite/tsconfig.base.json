@@ -1,71 +1,37 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    // 🧠 Strictest Type Checking
+    // Language baseline
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+
+    // Module and bundler compatibility
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    // Type safety
     "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "exactOptionalPropertyTypes": true,
-    "alwaysStrict": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "useUnknownInCatchVariables": true,
-
-    // 📦 Module Resolution
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "moduleDetection": "auto",
-    "preserveSymlinks": true,
-    "resolveJsonModule": true,
-    "resolvePackageJsonExports": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "baseUrl": ".",
-    "paths": {
-      "@egohygiene/*": ["packages/*/src"]
-    },
-    "rootDirs": ["packages"],
-    "rewriteRelativeImportExtensions": true,
-
-    // 📚 Libraries
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-
-    // 🧱 Project-level behavior
-    "composite": true,
-    "incremental": true,
-    "tsBuildInfoFile": "generated/tsconfig.tsbuildinfo",
-
-    // 👁 Debugging & Diagnostics
-    "pretty": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-
-    // 🚫 JS support turned off
-    "allowJs": false,
-    "checkJs": false,
-
-    // 🔒 Safety
-    "allowUmdGlobalAccess": false,
-    "allowArbitraryExtensions": false,
-    "allowImportingTsExtensions": false,
     "noUncheckedSideEffectImports": true,
 
-    // 🧪 Disable emit globally
-    "noEmit": true
-  },
+    // Code hygiene
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
 
-  "exclude": ["node_modules", "dist"],
+    // Build behavior
+    "noEmit": true,
 
-  "watchOptions": {
-    "excludeDirectories": ["**/node_modules", "_build", "temp/*"]
+    // Consistency and dependency compatibility
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   }
 }
