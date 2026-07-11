@@ -112,7 +112,7 @@ Migrated and modernized from `.staging/fish shell/fish/`.
 
 | Staged file | Decision | Reason |
 |---|---|---|
-| `config.fish` | Rewritten | Replaced macOS/Homebrew paths with XDG env conf.d fragment |
+| `config.fish` | Rewritten | Replaced macOS/Homebrew paths with XDG environment conf.d fragment |
 | `fishfile` | Removed | Empty; plugin management is user responsibility |
 | `functions/abbrex.fish` | Migrated | Modernized with `string` builtins |
 | `functions/clear.fish` | Migrated | Unchanged behaviour |

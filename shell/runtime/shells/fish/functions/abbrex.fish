@@ -26,7 +26,8 @@ function abbrex --description 'Expand an abbreviation or echo arguments unchange
     # abbr --show prints lines like:
     #   abbr -a -- WORD 'expansion'
     # Use string match to find a matching entry.
-    set -l expansion (abbr --show | string match --regex -- "^abbr -a.*-- $word '?(.*?)'?\$" | string replace --regex -- "^abbr -a.*-- $word '?(.*?)'?\$" '$1')
+    set -l abbr_pattern "^abbr -a.*-- $word '?(.*?)'?\$"
+    set -l expansion (abbr --show | string match --regex -- $abbr_pattern | string replace --regex -- $abbr_pattern '$1')
 
     if test -n "$expansion"
         echo $expansion $rest

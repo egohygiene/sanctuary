@@ -6,7 +6,7 @@
 # Set fish_greeting to an empty string to silence it entirely.
 #
 function fish_greeting --description 'Display a greeting at shell startup'
-    if set -q fish_greeting
+    if set -q fish_greeting; and test -z "$fish_greeting"
         # Respect an empty universal variable (user opted out).
         return 0
     end

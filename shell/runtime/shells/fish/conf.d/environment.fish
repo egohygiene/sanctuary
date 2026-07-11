@@ -83,7 +83,7 @@ end
 # --------------------------------------------
 # 🗂️ PATH — user directories
 #
-# Append user-local bin directories so they
+# Prepend user-local bin directories so they
 # take precedence over system paths.
 # fish_add_path is idempotent: it only adds a
 # path if it is not already present.
