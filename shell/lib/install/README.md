@@ -1,22 +1,24 @@
-# staged installers
+# install runtime
 
-This directory is the migration surface for Sanctuary's installation tooling.
+Sanctuary's installer runtime lives in `shell/lib/install/`, and the executable
+installer entrypoints now live in `shell/bin/`.
 
-## Current installer families
+## Installer families
 
-The staged installers currently cluster into a small set of repeated patterns:
+The shell installers currently cluster into a small set of repeated patterns:
 
 - GitHub release downloads with platform and architecture detection
 - package manager installs (`apt`, `brew`, `pip`, and future distro-specific backends)
 - source builds with checksum verification, extraction, install, and cleanup
 
-That duplication now funnels through the shared install runtime in
-[`shell/lib/install/`](../../lib/install/).
+That duplication now funnels through the shared install runtime in this
+directory.
 
-## Shared runtime layout
+## Runtime layout
 
 ```text
 shell/lib/install/
+├── README.md           # installer runtime overview
 ├── runtime.sh          # shared entrypoint for installers
 ├── platform.sh         # OS and architecture mapping
 ├── package-manager.sh  # package manager detection
@@ -29,7 +31,8 @@ shell/lib/install/
 
 ## Thin-wrapper contract
 
-Installers should describe metadata and leave workflow details to the runtime:
+Installers in `shell/bin/` should describe metadata and leave workflow details
+to the runtime:
 
 - tool name
 - GitHub owner and repository
@@ -38,9 +41,9 @@ Installers should describe metadata and leave workflow details to the runtime:
 - optional checksum asset
 - optional archive member to install
 
-## Migrated installers
+## Runtime-backed wrappers
 
-The following staged installers now use the shared runtime:
+The following installer entrypoints currently use the shared runtime:
 
 - `install-dust`
 - `install-eza`

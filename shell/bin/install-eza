@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-: "${EGOHYGIENE_SHELL_ROOT:=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." >/dev/null 2>&1 && pwd)}"
+: "${EGOHYGIENE_SHELL_ROOT:=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." >/dev/null 2>&1 && pwd)}"
 
 # shellcheck disable=SC1091
 source "${EGOHYGIENE_SHELL_ROOT}/lib/install/runtime.sh"

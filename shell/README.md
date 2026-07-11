@@ -6,9 +6,10 @@ Canonical Sanctuary shell bootstrap and utility library.
 
 ```text
 shell/
-├── bin/             # User-facing commands exposed on PATH
+├── bin/             # User-facing commands exposed on PATH, including installers
 ├── init/            # Bootstrap entrypoints and orchestration
 ├── lib/core/        # Runtime detection primitives and compatibility libraries
+├── lib/install/     # Shared installer runtime and installer documentation
 ├── lib/extensions/  # Optional integrations loaded on demand
 ├── runtime/         # Shared and shell-specific runtime layers
 ├── modules/         # Higher-level environment modules
@@ -65,3 +66,7 @@ Run the shell audit checks from the repository root:
 shellcheck shell/**/*.sh shell/bin/* || true
 bats shell/tests || true
 ```
+
+See [`lib/install/README.md`](lib/install/README.md) for the canonical installer
+runtime layout and the thin-wrapper contract used by the `install-*` commands in
+`shell/bin/`.
