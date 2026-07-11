@@ -286,14 +286,14 @@ install::github::main() {
     source_path="${artifact_path}"
   else
     install::archive::extract "${artifact_path}" "${extract_dir}" "${archive_member}" "${archive_format}"
-    source_path="${extract_dir}/${destination_name}"
+    if [[ -n "${archive_member}" ]]; then
+      source_path="${extract_dir}/${archive_member}"
 
-    if [[ ! -f "${source_path}" && -n "${archive_member}" ]]; then
-      if [[ -f "${extract_dir}/${archive_member}" ]]; then
-        source_path="${extract_dir}/${archive_member}"
-      else
+      if [[ ! -f "${source_path}" ]]; then
         source_path="${extract_dir}/${archive_member##*/}"
       fi
+    else
+      source_path="${extract_dir}/${destination_name}"
     fi
   fi
 

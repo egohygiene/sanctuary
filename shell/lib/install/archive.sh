@@ -35,7 +35,7 @@ install::archive::extract() {
         return 1
       fi
 
-      copied_path="${destination_dir}/$(basename "${member_path:-${archive_path}}")"
+      copied_path="${destination_dir}/$(basename "${archive_path}")"
       cp "${archive_path}" "${copied_path}"
       ;;
     tar.gz)

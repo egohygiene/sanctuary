@@ -64,12 +64,15 @@ EOF
 
     install::github::resolve_version() { printf '9.9.9\n'; }
     install::download::file() {
-      if [[ \$1 == */sha256sums.txt ]]; then
-        printf '%s\n' \"\$1\" > '${TEST_HOME}/checksum-download-url.txt'
-        printf 'expected-sha  shfmt_v9.9.9_linux_amd64\n' > \"\$2\"
+      local url=\"\$1\"
+      local output_path=\"\$2\"
+
+      if [[ \${url} == */sha256sums.txt ]]; then
+        printf '%s\n' \"\${url}\" > '${TEST_HOME}/checksum-download-url.txt'
+        printf 'expected-sha  shfmt_v9.9.9_linux_amd64\n' > \"\${output_path}\"
       else
-        printf '%s\n' \"\$1\" > '${TEST_HOME}/download-url.txt'
-        cat <<'EOF' > \"\$2\"
+        printf '%s\n' \"\${url}\" > '${TEST_HOME}/download-url.txt'
+        cat <<'EOF' > \"\${output_path}\"
 #!/usr/bin/env bash
 printf 'shfmt version 9.9.9\n'
 EOF
@@ -110,13 +113,16 @@ EOF
 
     install::github::resolve_version() { printf '1.2.3\n'; }
     install::download::file() {
-      printf '%s\n' \"\$1\" > '${TEST_HOME}/archive-download-url.txt'
+      local url=\"\$1\"
+      local output_path=\"\$2\"
+
+      printf '%s\n' \"\${url}\" > '${TEST_HOME}/archive-download-url.txt'
       mkdir -p '${TEST_HOME}/archive-root/dust-v1.2.3-x86_64-unknown-linux-gnu'
       cat <<'EOF' > '${TEST_HOME}/archive-root/dust-v1.2.3-x86_64-unknown-linux-gnu/dust'
 #!/usr/bin/env bash
 printf 'dust 1.2.3\n'
 EOF
-      tar -czf \"\$2\" -C '${TEST_HOME}/archive-root' 'dust-v1.2.3-x86_64-unknown-linux-gnu'
+      tar -czf \"\${output_path}\" -C '${TEST_HOME}/archive-root' 'dust-v1.2.3-x86_64-unknown-linux-gnu'
     }
 
     install::github::main --install-dir '${TEST_HOME}/bin'
