@@ -21,17 +21,17 @@ shared_runtime_library_file_list=(
   "time.sh"
 )
 
-for shared_runtime_library_file in "${shared_runtime_library_file_list[@]}"; do
-  shared_runtime_library_path="${EGOHYGIENE_SHELL_ROOT}/lib/core/${shared_runtime_library_file}"
+for shared_runtime_library in "${shared_runtime_library_file_list[@]}"; do
+  shared_runtime_library_path="${EGOHYGIENE_SHELL_ROOT}/lib/core/${shared_runtime_library}"
 
   if [[ -f "${shared_runtime_library_path}" && -r "${shared_runtime_library_path}" ]]; then
     # shellcheck disable=SC1090
     source "${shared_runtime_library_path}"
   else
-    printf "[warn] shared runtime: missing library: %s\n" "${shared_runtime_library_file}" >&2
+    printf "[warn] shared runtime: missing library: %s\n" "${shared_runtime_library}" >&2
   fi
 done
 
-unset shared_runtime_library_file
+unset shared_runtime_library
 unset shared_runtime_library_file_list
 unset shared_runtime_library_path

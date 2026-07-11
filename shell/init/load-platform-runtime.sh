@@ -19,7 +19,13 @@ if [[ -z "${EGOHYGIENE_SHELL_ROOT:-}" ]]; then
   return 1
 fi
 
-platform_runtime_path="${EGOHYGIENE_SHELL_ROOT}/platforms/${OS_FAMILY:-unknown}/runtime.sh"
+platform_runtime_family="${OS_FAMILY:-}"
+if [[ -z "${platform_runtime_family}" ]] && declare -F os::detect >/dev/null; then
+  platform_runtime_family="$(os::detect)"
+fi
+platform_runtime_family="${platform_runtime_family:-unknown}"
+
+platform_runtime_path="${EGOHYGIENE_SHELL_ROOT}/platforms/${platform_runtime_family}/runtime.sh"
 
 if [[ -f "${platform_runtime_path}" && -r "${platform_runtime_path}" ]]; then
   # shellcheck disable=SC1090
@@ -29,3 +35,4 @@ else
 fi
 
 unset platform_runtime_path
+unset platform_runtime_family
