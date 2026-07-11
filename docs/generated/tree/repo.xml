@@ -35029,6 +35029,25 @@
         <directory name="bash" path="shell/runtime/shells/bash">
           <file name="runtime.sh" path="shell/runtime/shells/bash/runtime.sh" />
         </directory>
+        <directory name="fish" path="shell/runtime/shells/fish">
+          <directory name="completions" path="shell/runtime/shells/fish/completions">
+            <file name="README.md" path="shell/runtime/shells/fish/completions/README.md" />
+          </directory>
+          <directory name="conf.d" path="shell/runtime/shells/fish/conf.d">
+            <file name="abbreviations.fish" path="shell/runtime/shells/fish/conf.d/abbreviations.fish" />
+            <file name="environment.fish" path="shell/runtime/shells/fish/conf.d/environment.fish" />
+          </directory>
+          <directory name="functions" path="shell/runtime/shells/fish/functions">
+            <file name="abbrex.fish" path="shell/runtime/shells/fish/functions/abbrex.fish" />
+            <file name="clear.fish" path="shell/runtime/shells/fish/functions/clear.fish" />
+            <file name="fish_greeting.fish" path="shell/runtime/shells/fish/functions/fish_greeting.fish" />
+            <file name="fish_prompt.fish" path="shell/runtime/shells/fish/functions/fish_prompt.fish" />
+            <file name="ls.fish" path="shell/runtime/shells/fish/functions/ls.fish" />
+            <file name="week.fish" path="shell/runtime/shells/fish/functions/week.fish" />
+          </directory>
+          <file name="README.md" path="shell/runtime/shells/fish/README.md" />
+          <file name="runtime.fish" path="shell/runtime/shells/fish/runtime.fish" />
+        </directory>
         <directory name="posix" path="shell/runtime/shells/posix">
           <file name="runtime.sh" path="shell/runtime/shells/posix/runtime.sh" />
         </directory>
