@@ -67,7 +67,7 @@ EOF
       local url=\"\$1\"
       local output_path=\"\$2\"
 
-      if [[ \${url} == */sha256sums.txt ]]; then
+      if [[ \${url} == 'https://github.com/mvdan/sh/releases/download/v9.9.9/sha256sums.txt' ]]; then
         printf '%s\n' \"\${url}\" > '${TEST_HOME}/checksum-download-url.txt'
         printf 'expected-sha  shfmt_v9.9.9_linux_amd64\n' > \"\${output_path}\"
       else

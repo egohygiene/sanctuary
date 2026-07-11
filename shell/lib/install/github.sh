@@ -44,7 +44,7 @@ install::github::latest_version() {
   local metadata_file
   local latest_tag
 
-  metadata_file="$(mktemp "${TMPDIR:-/tmp}/egohygiene-release.XXXXXX.json")"
+  metadata_file="$(mktemp "${TMPDIR:-/tmp}/egohygiene-release-XXXXXX")"
   install::download::file \
     "https://api.github.com/repos/${owner}/${repo}/releases/latest" \
     "${metadata_file}"
@@ -91,7 +91,7 @@ install::github::checksum_from_release() {
   local checksum_file
   local expected_checksum
 
-  checksum_file="$(mktemp "${TMPDIR:-/tmp}/egohygiene-checksum.XXXXXX.txt")"
+  checksum_file="$(mktemp "${TMPDIR:-/tmp}/egohygiene-checksum-XXXXXX")"
 
   if ! install::download::file \
     "$(install::github::release_asset_url "${owner}" "${repo}" "${tag}" "${checksum_asset}")" \
@@ -238,8 +238,8 @@ install::github::main() {
   )"
 
   tmpdir="$(install::fs::tempdir)"
-  # shellcheck disable=SC2064
-  trap "install::fs::cleanup '${tmpdir}'" EXIT
+  EGOHYGIENE_INSTALL_RUNTIME_TMPDIR="${tmpdir}"
+  trap 'install::fs::cleanup "${EGOHYGIENE_INSTALL_RUNTIME_TMPDIR:-}"' EXIT
 
   artifact_path="${tmpdir}/${asset}"
   extract_dir="${tmpdir}/extract"
@@ -321,5 +321,6 @@ install::github::main() {
   log::success "Installed ${INSTALL_TOOL_NAME} ${version} to ${install_path}"
 
   install::fs::cleanup "${tmpdir}"
+  unset EGOHYGIENE_INSTALL_RUNTIME_TMPDIR
   trap - EXIT
 }
