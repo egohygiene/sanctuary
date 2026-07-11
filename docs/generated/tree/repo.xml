@@ -34809,49 +34809,6 @@
         <file name="set-umask" path="shell/.staging/hardening/set-umask" />
         <file name="show-systemd-delta" path="shell/.staging/hardening/show-systemd-delta" />
       </directory>
-      <directory name="install" path="shell/.staging/install">
-        <file name="apt-install" path="shell/.staging/install/apt-install" />
-        <file name="base.packages" path="shell/.staging/install/base.packages" />
-        <file name="gcloud.sh" path="shell/.staging/install/gcloud.sh" />
-        <file name="install-addlicense" path="shell/.staging/install/install-addlicense" />
-        <file name="install-apt-base" path="shell/.staging/install/install-apt-base" />
-        <file name="install-asdf" path="shell/.staging/install/install-asdf" />
-        <file name="install-calibre" path="shell/.staging/install/install-calibre" />
-        <file name="install-ceres-solver" path="shell/.staging/install/install-ceres-solver" />
-        <file name="install-crush" path="shell/.staging/install/install-crush" />
-        <file name="install-docker-desktop.sh" path="shell/.staging/install/install-docker-desktop.sh" />
-        <file name="install-dockerfmt" path="shell/.staging/install/install-dockerfmt" />
-        <file name="install-dust" path="shell/.staging/install/install-dust" />
-        <file name="install-e57format" path="shell/.staging/install/install-e57format" />
-        <file name="install-eza" path="shell/.staging/install/install-eza" />
-        <file name="install-git-sim" path="shell/.staging/install/install-git-sim" />
-        <file name="install-gitinspector" path="shell/.staging/install/install-gitinspector" />
-        <file name="install-google-fonts" path="shell/.staging/install/install-google-fonts" />
-        <file name="install-httpie" path="shell/.staging/install/install-httpie" />
-        <file name="install-image-optim" path="shell/.staging/install/install-image-optim" />
-        <file name="install-imagemagick" path="shell/.staging/install/install-imagemagick" />
-        <file name="install-java" path="shell/.staging/install/install-java" />
-        <file name="install-linuxbrew" path="shell/.staging/install/install-linuxbrew" />
-        <file name="install-lynis" path="shell/.staging/install/install-lynis" />
-        <file name="install-mitmproxy" path="shell/.staging/install/install-mitmproxy" />
-        <file name="install-nerd-fonts.sh" path="shell/.staging/install/install-nerd-fonts.sh" />
-        <file name="install-nfpm" path="shell/.staging/install/install-nfpm" />
-        <file name="install-pdal" path="shell/.staging/install/install-pdal" />
-        <file name="install-scc" path="shell/.staging/install/install-scc" />
-        <file name="install-shdoc" path="shell/.staging/install/install-shdoc" />
-        <file name="install-shfmt" path="shell/.staging/install/install-shfmt" />
-        <file name="install-sqlfluff" path="shell/.staging/install/install-sqlfluff" />
-        <file name="install-talisman" path="shell/.staging/install/install-talisman" />
-        <file name="install-taskfile" path="shell/.staging/install/install-taskfile" />
-        <file name="install-terminus" path="shell/.staging/install/install-terminus" />
-        <file name="install-typos" path="shell/.staging/install/install-typos" />
-        <file name="install-vale" path="shell/.staging/install/install-vale" />
-        <file name="install_imagemagick.bash" path="shell/.staging/install/install_imagemagick.bash" />
-        <file name="install_lynis.sh" path="shell/.staging/install/install_lynis.sh" />
-        <file name="install_pdal.sh" path="shell/.staging/install/install_pdal.sh" />
-        <file name="README.md" path="shell/.staging/install/README.md" />
-        <file name="repro-sources-list" path="shell/.staging/install/repro-sources-list" />
-      </directory>
       <directory name="macos" path="shell/.staging/macos">
         <file name=".aliases" path="shell/.staging/macos/.aliases" />
         <file name=".macos" path="shell/.staging/macos/.macos" />
@@ -34952,6 +34909,7 @@
       <file name="tasks.json" path="shell/.vscode/tasks.json" />
     </directory>
     <directory name="bin" path="shell/bin">
+      <file name="apt-install" path="shell/bin/apt-install" />
       <file name="capitalize-folders" path="shell/bin/capitalize-folders" />
       <file name="cb" path="shell/bin/cb" />
       <file name="convert-to-ico" path="shell/bin/convert-to-ico" />
@@ -34959,6 +34917,7 @@
       <file name="dlsite" path="shell/bin/dlsite" />
       <file name="dockerbak" path="shell/bin/dockerbak" />
       <file name="dockerhealth" path="shell/bin/dockerhealth" />
+      <file name="gcloud.sh" path="shell/bin/gcloud.sh" />
       <file name="generate-certs" path="shell/bin/generate-certs" />
       <file name="generate-password" path="shell/bin/generate-password" />
       <file name="generate-pwa-icons" path="shell/bin/generate-pwa-icons" />
@@ -34966,7 +34925,44 @@
       <file name="ghignore" path="shell/bin/ghignore" />
       <file name="ghprotect" path="shell/bin/ghprotect" />
       <file name="git-remove-exec-no-shebang" path="shell/bin/git-remove-exec-no-shebang" />
+      <file name="install-addlicense" path="shell/bin/install-addlicense" />
+      <file name="install-apt-base" path="shell/bin/install-apt-base" />
+      <file name="install-asdf" path="shell/bin/install-asdf" />
+      <file name="install-calibre" path="shell/bin/install-calibre" />
+      <file name="install-ceres-solver" path="shell/bin/install-ceres-solver" />
+      <file name="install-crush" path="shell/bin/install-crush" />
+      <file name="install-docker-desktop.sh" path="shell/bin/install-docker-desktop.sh" />
+      <file name="install-dockerfmt" path="shell/bin/install-dockerfmt" />
+      <file name="install-dust" path="shell/bin/install-dust" />
+      <file name="install-e57format" path="shell/bin/install-e57format" />
+      <file name="install-eza" path="shell/bin/install-eza" />
+      <file name="install-git-sim" path="shell/bin/install-git-sim" />
+      <file name="install-gitinspector" path="shell/bin/install-gitinspector" />
+      <file name="install-google-fonts" path="shell/bin/install-google-fonts" />
+      <file name="install-httpie" path="shell/bin/install-httpie" />
+      <file name="install-image-optim" path="shell/bin/install-image-optim" />
+      <file name="install-imagemagick" path="shell/bin/install-imagemagick" />
+      <file name="install-java" path="shell/bin/install-java" />
+      <file name="install-linuxbrew" path="shell/bin/install-linuxbrew" />
+      <file name="install-lynis" path="shell/bin/install-lynis" />
+      <file name="install-mitmproxy" path="shell/bin/install-mitmproxy" />
+      <file name="install-nerd-fonts.sh" path="shell/bin/install-nerd-fonts.sh" />
+      <file name="install-nfpm" path="shell/bin/install-nfpm" />
+      <file name="install-pdal" path="shell/bin/install-pdal" />
+      <file name="install-scc" path="shell/bin/install-scc" />
+      <file name="install-shdoc" path="shell/bin/install-shdoc" />
+      <file name="install-shfmt" path="shell/bin/install-shfmt" />
+      <file name="install-sqlfluff" path="shell/bin/install-sqlfluff" />
+      <file name="install-talisman" path="shell/bin/install-talisman" />
+      <file name="install-taskfile" path="shell/bin/install-taskfile" />
+      <file name="install-terminus" path="shell/bin/install-terminus" />
+      <file name="install-typos" path="shell/bin/install-typos" />
+      <file name="install-vale" path="shell/bin/install-vale" />
+      <file name="install_imagemagick.bash" path="shell/bin/install_imagemagick.bash" />
+      <file name="install_lynis.sh" path="shell/bin/install_lynis.sh" />
+      <file name="install_pdal.sh" path="shell/bin/install_pdal.sh" />
       <file name="is-executable" path="shell/bin/is-executable" />
+      <file name="repro-sources-list" path="shell/bin/repro-sources-list" />
       <file name="rotate_video" path="shell/bin/rotate_video" />
       <file name="sysinfo" path="shell/bin/sysinfo" />
       <file name="ytdlp-channel" path="shell/bin/ytdlp-channel" />
@@ -35007,6 +35003,17 @@
       <directory name="extensions" path="shell/lib/extensions">
         <file name="fonts.sh" path="shell/lib/extensions/fonts.sh" />
         <file name="github.sh" path="shell/lib/extensions/github.sh" />
+      </directory>
+      <directory name="install" path="shell/lib/install">
+        <file name="archive.sh" path="shell/lib/install/archive.sh" />
+        <file name="checksum.sh" path="shell/lib/install/checksum.sh" />
+        <file name="download.sh" path="shell/lib/install/download.sh" />
+        <file name="filesystem.sh" path="shell/lib/install/filesystem.sh" />
+        <file name="github.sh" path="shell/lib/install/github.sh" />
+        <file name="package-manager.sh" path="shell/lib/install/package-manager.sh" />
+        <file name="platform.sh" path="shell/lib/install/platform.sh" />
+        <file name="README.md" path="shell/lib/install/README.md" />
+        <file name="runtime.sh" path="shell/lib/install/runtime.sh" />
       </directory>
       <file name="modules.sh" path="shell/lib/modules.sh" />
     </directory>
@@ -35069,6 +35076,9 @@
       </directory>
       <directory name="extensions" path="shell/tests/extensions">
         <file name="github.bats" path="shell/tests/extensions/github.bats" />
+      </directory>
+      <directory name="install" path="shell/tests/install">
+        <file name="runtime.bats" path="shell/tests/install/runtime.bats" />
       </directory>
       <file name="bootstrap.bats" path="shell/tests/bootstrap.bats" />
       <file name="cb.bats" path="shell/tests/cb.bats" />
