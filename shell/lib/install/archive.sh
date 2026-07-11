@@ -30,6 +30,11 @@ install::archive::extract() {
 
   case "${archive_format}" in
     raw)
+      if [[ -n "${member_path}" ]]; then
+        log::error "Raw assets do not support archive member extraction"
+        return 1
+      fi
+
       copied_path="${destination_dir}/$(basename "${member_path:-${archive_path}}")"
       cp "${archive_path}" "${copied_path}"
       ;;

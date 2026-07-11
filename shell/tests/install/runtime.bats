@@ -64,7 +64,7 @@ EOF
 
     install::github::resolve_version() { printf '9.9.9\n'; }
     install::download::file() {
-      if [[ \$1 == *sha256sums.txt ]]; then
+      if [[ \$1 == */sha256sums.txt ]]; then
         printf '%s\n' \"\$1\" > '${TEST_HOME}/checksum-download-url.txt'
         printf 'expected-sha  shfmt_v9.9.9_linux_amd64\n' > \"\$2\"
       else

@@ -50,7 +50,9 @@ install::github::latest_version() {
     "${metadata_file}"
 
   latest_tag="$(
-    sed -n 's/.*"tag_name":[[:space:]]*"\([^"]*\)".*/\1/p' "${metadata_file}" | head -n 1
+    grep -Eo '"tag_name"[[:space:]]*:[[:space:]]*"[^"]+"' "${metadata_file}" \
+      | head -n 1 \
+      | sed -E 's/.*"([^"]+)"$/\1/'
   )"
   rm -f "${metadata_file}"
 
@@ -99,7 +101,18 @@ install::github::checksum_from_release() {
   fi
 
   expected_checksum="$(
-    awk -v asset="${target_asset}" '$NF == asset { print $1; exit }' "${checksum_file}"
+    awk -v asset="${target_asset}" '
+      {
+        candidate = $NF
+        sub(/^\.\//, "", candidate)
+        sub(/^\*/, "", candidate)
+
+        if (candidate == asset) {
+          print $1
+          exit
+        }
+      }
+    ' "${checksum_file}"
   )"
   rm -f "${checksum_file}"
 
