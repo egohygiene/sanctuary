@@ -19,10 +19,12 @@ teardown() {
     declare -F bash::is_interactive >/dev/null
     declare -F bash::path >/dev/null
     declare -F bash::is_min_version >/dev/null
+    printf 'bash_runtime=%s\n' \"\${EGOHYGIENE_RUNTIME_BASH_LOADED}\"
     printf 'bash_helpers=yes\n'
   "
 
   [ "${status}" -eq 0 ]
+  assert_line "bash_runtime=true"
   assert_line "bash_helpers=yes"
 }
 
