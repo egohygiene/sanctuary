@@ -1488,11 +1488,3056 @@ sanctuary/
 │   │   ├── contributors/
 │   │   │   ├── action.yml
 │   │   │   └── README.md
-│   │   └── generate-repository-intelligence/
-│   │       ├── action.yml
-│   │       └── generate_repository_intelligence.py
+│   │   ├── generate-repository-intelligence/
+│   │   │   ├── action.yml
+│   │   │   └── generate_repository_intelligence.py
+│   │   └── setup-environment/
+│   │       └── action.yml
 │   ├── agents/
+│   │   ├── copilot/
+│   │   │   └── awesome-copilot/
+│   │   │       ├── .github/
+│   │   │       │   ├── agents/
+│   │   │       │   │   └── agentic-workflows.md
+│   │   │       │   ├── aw/
+│   │   │       │   │   └── actions-lock.json
+│   │   │       │   ├── extensions/
+│   │   │       │   │   └── external-plugins-board/
+│   │   │       │   │       ├── extension.mjs
+│   │   │       │   │       ├── package-lock.json
+│   │   │       │   │       └── package.json
+│   │   │       │   ├── ISSUE_TEMPLATE/
+│   │   │       │   │   └── external-plugin.yml
+│   │   │       │   ├── plugin/
+│   │   │       │   │   └── marketplace.json
+│   │   │       │   ├── skills/
+│   │   │       │   │   └── agentic-workflows/
+│   │   │       │   │       └── SKILL.md
+│   │   │       │   ├── workflows/
+│   │   │       │   │   ├── build-website.yml
+│   │   │       │   │   ├── check-line-endings.yml
+│   │   │       │   │   ├── check-plugin-structure.yml
+│   │   │       │   │   ├── cli-for-beginners-sync.lock.yml
+│   │   │       │   │   ├── cli-for-beginners-sync.md
+│   │   │       │   │   ├── codeowner-update.lock.yml
+│   │   │       │   │   ├── codeowner-update.md
+│   │   │       │   │   ├── codespell.yml
+│   │   │       │   │   ├── contributor-check.yml
+│   │   │       │   │   ├── contributors.yml
+│   │   │       │   │   ├── copilot-setup-steps.yml
+│   │   │       │   │   ├── deploy-website.yml
+│   │   │       │   │   ├── duplicate-resource-detector.lock.yml
+│   │   │       │   │   ├── duplicate-resource-detector.md
+│   │   │       │   │   ├── external-plugin-approval-command.yml
+│   │   │       │   │   ├── external-plugin-command-router.yml
+│   │   │       │   │   ├── external-plugin-intake.yml
+│   │   │       │   │   ├── external-plugin-pr-quality-gates.yml
+│   │   │       │   │   ├── external-plugin-quality-gates.yml
+│   │   │       │   │   ├── external-plugin-rereview-command.yml
+│   │   │       │   │   ├── external-plugin-rereview.yml
+│   │   │       │   │   ├── label-pr-intent.yml
+│   │   │       │   │   ├── learning-hub-updater.lock.yml
+│   │   │       │   │   ├── learning-hub-updater.md
+│   │   │       │   │   ├── pr-duplicate-check.lock.yml
+│   │   │       │   │   ├── pr-duplicate-check.md
+│   │   │       │   │   ├── pr-risk-scan-comment.yml
+│   │   │       │   │   ├── pr-risk-scan.yml
+│   │   │       │   │   ├── publish.yml
+│   │   │       │   │   ├── resource-staleness-report.lock.yml
+│   │   │       │   │   ├── resource-staleness-report.md
+│   │   │       │   │   ├── setup-labels.yml
+│   │   │       │   │   ├── skill-check-comment.yml
+│   │   │       │   │   ├── skill-check.yml
+│   │   │       │   │   ├── skill-quality-report.yml
+│   │   │       │   │   ├── traffic-reporting.yml
+│   │   │       │   │   ├── validate-agentic-workflows-pr.yml
+│   │   │       │   │   ├── validate-canvas-extensions.yml
+│   │   │       │   │   ├── validate-readme.yml
+│   │   │       │   │   └── webhook-caller.yml
+│   │   │       │   ├── copilot-instructions.md
+│   │   │       │   └── pull_request_template.md
+│   │   │       ├── .schemas/
+│   │   │       │   ├── collection.schema.json
+│   │   │       │   ├── cookbook.schema.json
+│   │   │       │   └── tools.schema.json
+│   │   │       ├── .vscode/
+│   │   │       │   ├── extensions.json
+│   │   │       │   ├── mcp.json
+│   │   │       │   ├── settings.json
+│   │   │       │   └── tasks.json
+│   │   │       ├── agents/
+│   │   │       │   ├── accessibility-runtime-tester.agent.md
+│   │   │       │   ├── accessibility.agent.md
+│   │   │       │   ├── address-comments.agent.md
+│   │   │       │   ├── adr-generator.agent.md
+│   │   │       │   ├── aem-frontend-specialist.agent.md
+│   │   │       │   ├── agent-governance-reviewer.agent.md
+│   │   │       │   ├── ai-readiness-reporter.agent.md
+│   │   │       │   ├── ai-team-dev.agent.md
+│   │   │       │   ├── ai-team-producer.agent.md
+│   │   │       │   ├── ai-team-qa.agent.md
+│   │   │       │   ├── amplitude-experiment-implementation.agent.md
+│   │   │       │   ├── api-architect.agent.md
+│   │   │       │   ├── apify-integration-expert.agent.md
+│   │   │       │   ├── arch-linux-expert.agent.md
+│   │   │       │   ├── arch.agent.md
+│   │   │       │   ├── arm-migration.agent.md
+│   │   │       │   ├── atlassian-requirements-to-jira.agent.md
+│   │   │       │   ├── aws-cloud-expert.agent.md
+│   │   │       │   ├── aws-incident-triage.agent.md
+│   │   │       │   ├── aws-principal-architect.agent.md
+│   │   │       │   ├── aws-serverless-architect.agent.md
+│   │   │       │   ├── azure-iac-exporter.agent.md
+│   │   │       │   ├── azure-iac-generator.agent.md
+│   │   │       │   ├── azure-logic-apps-expert.agent.md
+│   │   │       │   ├── azure-policy-analyzer.agent.md
+│   │   │       │   ├── azure-principal-architect.agent.md
+│   │   │       │   ├── azure-saas-architect.agent.md
+│   │   │       │   ├── azure-smart-city-iot-architect.agent.md
+│   │   │       │   ├── azure-verified-modules-bicep.agent.md
+│   │   │       │   ├── azure-verified-modules-owner-triage.agent.md
+│   │   │       │   ├── azure-verified-modules-terraform.agent.md
+│   │   │       │   ├── bicep-implement.agent.md
+│   │   │       │   ├── bicep-plan.agent.md
+│   │   │       │   ├── blueprint-mode.agent.md
+│   │   │       │   ├── cast-imaging-impact-analysis.agent.md
+│   │   │       │   ├── cast-imaging-software-discovery.agent.md
+│   │   │       │   ├── cast-imaging-structural-quality-advisor.agent.md
+│   │   │       │   ├── caveman-mode.agent.md
+│   │   │       │   ├── centos-linux-expert.agent.md
+│   │   │       │   ├── clojure-interactive-programming.agent.md
+│   │   │       │   ├── code-tour.agent.md
+│   │   │       │   ├── comet-opik.agent.md
+│   │   │       │   ├── context-architect.agent.md
+│   │   │       │   ├── context7.agent.md
+│   │   │       │   ├── critical-thinking.agent.md
+│   │   │       │   ├── csharp-dotnet-janitor.agent.md
+│   │   │       │   ├── csharp-mcp-expert.agent.md
+│   │   │       │   ├── CSharpExpert.agent.md
+│   │   │       │   ├── custom-agent-foundry.agent.md
+│   │   │       │   ├── debian-linux-expert.agent.md
+│   │   │       │   ├── debug.agent.md
+│   │   │       │   ├── declarative-agents-architect.agent.md
+│   │   │       │   ├── defender-scout-kql.agent.md
+│   │   │       │   ├── delphi-expert.agent.md
+│   │   │       │   ├── demonstrate-understanding.agent.md
+│   │   │       │   ├── devils-advocate.agent.md
+│   │   │       │   ├── devops-expert.agent.md
+│   │   │       │   ├── devtools-regression-investigator.agent.md
+│   │   │       │   ├── diffblue-cover.agent.md
+│   │   │       │   ├── dotnet-fullstack-mentor.agent.md
+│   │   │       │   ├── dotnet-maui.agent.md
+│   │   │       │   ├── dotnet-self-learning-architect.agent.md
+│   │   │       │   ├── dotnet-upgrade.agent.md
+│   │   │       │   ├── doublecheck.agent.md
+│   │   │       │   ├── droid.agent.md
+│   │   │       │   ├── drupal-expert.agent.md
+│   │   │       │   ├── dynatrace-expert.agent.md
+│   │   │       │   ├── elasticsearch-observability.agent.md
+│   │   │       │   ├── electron-angular-native.agent.md
+│   │   │       │   ├── ember.agent.md
+│   │   │       │   ├── expert-cpp-software-engineer.agent.md
+│   │   │       │   ├── expert-dotnet-software-engineer.agent.md
+│   │   │       │   ├── expert-embedded-c-engineer.agent.md
+│   │   │       │   ├── expert-nextjs-developer.agent.md
+│   │   │       │   ├── expert-react-frontend-engineer.agent.md
+│   │   │       │   ├── fedora-linux-expert.agent.md
+│   │   │       │   ├── frontend-performance-investigator.agent.md
+│   │   │       │   ├── gem-browser-tester.agent.md
+│   │   │       │   ├── gem-code-simplifier.agent.md
+│   │   │       │   ├── gem-critic.agent.md
+│   │   │       │   ├── gem-debugger.agent.md
+│   │   │       │   ├── gem-designer-mobile.agent.md
+│   │   │       │   ├── gem-designer.agent.md
+│   │   │       │   ├── gem-devops.agent.md
+│   │   │       │   ├── gem-documentation-writer.agent.md
+│   │   │       │   ├── gem-implementer-mobile.agent.md
+│   │   │       │   ├── gem-implementer.agent.md
+│   │   │       │   ├── gem-mobile-tester.agent.md
+│   │   │       │   ├── gem-orchestrator.agent.md
+│   │   │       │   ├── gem-planner.agent.md
+│   │   │       │   ├── gem-researcher.agent.md
+│   │   │       │   ├── gem-reviewer.agent.md
+│   │   │       │   ├── gem-skill-creator.agent.md
+│   │   │       │   ├── gilfoyle.agent.md
+│   │   │       │   ├── github-actions-expert.agent.md
+│   │   │       │   ├── github-actions-node-upgrade.agent.md
+│   │   │       │   ├── go-mcp-expert.agent.md
+│   │   │       │   ├── hlbpa.agent.md
+│   │   │       │   ├── implementation-plan.agent.md
+│   │   │       │   ├── insiders-a11y-tracker.agent.md
+│   │   │       │   ├── interview-prep.agent.md
+│   │   │       │   ├── janitor.agent.md
+│   │   │       │   ├── java-mcp-expert.agent.md
+│   │   │       │   ├── jfrog-sec.agent.md
+│   │   │       │   ├── kotlin-mcp-expert.agent.md
+│   │   │       │   ├── kubestellar-console.agent.md
+│   │   │       │   ├── kusto-assistant.agent.md
+│   │   │       │   ├── laravel-expert-agent.agent.md
+│   │   │       │   ├── launchdarkly-flag-cleanup.agent.md
+│   │   │       │   ├── lingodotdev-i18n.agent.md
+│   │   │       │   ├── linkedin-post-writer.agent.md
+│   │   │       │   ├── markdown-accessibility-assistant.agent.md
+│   │   │       │   ├── mcp-m365-agent-expert.agent.md
+│   │   │       │   ├── mentor.agent.md
+│   │   │       │   ├── mentoring-juniors.agent.md
+│   │   │       │   ├── meta-agentic-project-scaffold.agent.md
+│   │   │       │   ├── microsoft-study-mode.agent.md
+│   │   │       │   ├── microsoft_learn_contributor.agent.md
+│   │   │       │   ├── modernization.agent.md
+│   │   │       │   ├── monday-bug-fixer.agent.md
+│   │   │       │   ├── mongodb-performance-advisor.agent.md
+│   │   │       │   ├── ms-sql-dba.agent.md
+│   │   │       │   ├── neo4j-docker-client-generator.agent.md
+│   │   │       │   ├── neon-migration-specialist.agent.md
+│   │   │       │   ├── neon-optimization-analyzer.agent.md
+│   │   │       │   ├── new-relic-incident-response.agent.md
+│   │   │       │   ├── nuxt-expert.agent.md
+│   │   │       │   ├── octopus-deploy-release-notes-mcp.agent.md
+│   │   │       │   ├── one-shot-feature-issue-planner.agent.md
+│   │   │       │   ├── openapi-to-application.agent.md
+│   │   │       │   ├── oracle-to-postgres-migration-expert.agent.md
+│   │   │       │   ├── pagerduty-incident-responder.agent.md
+│   │   │       │   ├── php-mcp-expert.agent.md
+│   │   │       │   ├── pimcore-expert.agent.md
+│   │   │       │   ├── plan.agent.md
+│   │   │       │   ├── planner.agent.md
+│   │   │       │   ├── platform-sre-kubernetes.agent.md
+│   │   │       │   ├── playwright-tester.agent.md
+│   │   │       │   ├── postgresql-dba.agent.md
+│   │   │       │   ├── power-bi-data-modeling-expert.agent.md
+│   │   │       │   ├── power-bi-dax-expert.agent.md
+│   │   │       │   ├── power-bi-performance-expert.agent.md
+│   │   │       │   ├── power-bi-visualization-expert.agent.md
+│   │   │       │   ├── power-platform-expert.agent.md
+│   │   │       │   ├── power-platform-mcp-integration-expert.agent.md
+│   │   │       │   ├── prd.agent.md
+│   │   │       │   ├── principal-software-engineer.agent.md
+│   │   │       │   ├── project-architecture-planner.agent.md
+│   │   │       │   ├── project-documenter.agent.md
+│   │   │       │   ├── prompt-builder.agent.md
+│   │   │       │   ├── prompt-engineer.agent.md
+│   │   │       │   ├── python-mcp-expert.agent.md
+│   │   │       │   ├── python-notebook-sample-builder.agent.md
+│   │   │       │   ├── python-win-arm64-gha-wheel-builder.agent.md
+│   │   │       │   ├── qa-subagent.agent.md
+│   │   │       │   ├── quality-playbook.agent.md
+│   │   │       │   ├── react18-auditor.agent.md
+│   │   │       │   ├── react18-batching-fixer.agent.md
+│   │   │       │   ├── react18-class-surgeon.agent.md
+│   │   │       │   ├── react18-commander.agent.md
+│   │   │       │   ├── react18-dep-surgeon.agent.md
+│   │   │       │   ├── react18-test-guardian.agent.md
+│   │   │       │   ├── react19-auditor.agent.md
+│   │   │       │   ├── react19-commander.agent.md
+│   │   │       │   ├── react19-dep-surgeon.agent.md
+│   │   │       │   ├── react19-migrator.agent.md
+│   │   │       │   ├── react19-test-guardian.agent.md
+│   │   │       │   ├── reepl-linkedin.agent.md
+│   │   │       │   ├── refine-issue.agent.md
+│   │   │       │   ├── repo-architect.agent.md
+│   │   │       │   ├── research-technical-spike.agent.md
+│   │   │       │   ├── ruby-mcp-expert.agent.md
+│   │   │       │   ├── rug-orchestrator.agent.md
+│   │   │       │   ├── rust-mcp-expert.agent.md
+│   │   │       │   ├── salesforce-apex-triggers.agent.md
+│   │   │       │   ├── salesforce-aura-lwc.agent.md
+│   │   │       │   ├── salesforce-expert.agent.md
+│   │   │       │   ├── salesforce-flow.agent.md
+│   │   │       │   ├── salesforce-visualforce.agent.md
+│   │   │       │   ├── sast-sca-security-analyzer.agent.md
+│   │   │       │   ├── scientific-paper-research.agent.md
+│   │   │       │   ├── se-gitops-ci-specialist.agent.md
+│   │   │       │   ├── se-product-manager-advisor.agent.md
+│   │   │       │   ├── se-responsible-ai-code.agent.md
+│   │   │       │   ├── se-security-reviewer.agent.md
+│   │   │       │   ├── se-system-architecture-reviewer.agent.md
+│   │   │       │   ├── se-technical-writer.agent.md
+│   │   │       │   ├── se-ux-ui-designer.agent.md
+│   │   │       │   ├── search-ai-optimization-expert.agent.md
+│   │   │       │   ├── shopify-expert.agent.md
+│   │   │       │   ├── simple-app-idea-generator.agent.md
+│   │   │       │   ├── software-engineer-agent-v1.agent.md
+│   │   │       │   ├── spark-performance.agent.md
+│   │   │       │   ├── specification.agent.md
+│   │   │       │   ├── stackhawk-security-onboarding.agent.md
+│   │   │       │   ├── swe-subagent.agent.md
+│   │   │       │   ├── swift-mcp-expert.agent.md
+│   │   │       │   ├── task-planner.agent.md
+│   │   │       │   ├── task-researcher.agent.md
+│   │   │       │   ├── taxcore-technical-writer.agent.md
+│   │   │       │   ├── tdd-green.agent.md
+│   │   │       │   ├── tdd-red.agent.md
+│   │   │       │   ├── tdd-refactor.agent.md
+│   │   │       │   ├── tech-debt-remediation-plan.agent.md
+│   │   │       │   ├── technical-content-evaluator.agent.md
+│   │   │       │   ├── terminal-helper.agent.md
+│   │   │       │   ├── terraform-aws-implement.agent.md
+│   │   │       │   ├── terraform-aws-planning.agent.md
+│   │   │       │   ├── terraform-azure-implement.agent.md
+│   │   │       │   ├── terraform-azure-planning.agent.md
+│   │   │       │   ├── terraform-iac-reviewer.agent.md
+│   │   │       │   ├── terraform.agent.md
+│   │   │       │   ├── terratest-module-testing.agent.md
+│   │   │       │   ├── Thinking-Beast-Mode.agent.md
+│   │   │       │   ├── typescript-mcp-expert.agent.md
+│   │   │       │   ├── Ultimate-Transparent-Thinking-Beast-Mode.agent.md
+│   │   │       │   ├── vuejs-expert.agent.md
+│   │   │       │   ├── wg-code-alchemist.agent.md
+│   │   │       │   ├── wg-code-sentinel.agent.md
+│   │   │       │   └── WinFormsExpert.agent.md
+│   │   │       ├── cookbook/
+│   │   │       │   ├── copilot-sdk/
+│   │   │       │   │   ├── dotnet/
+│   │   │       │   │   │   ├── recipe/
+│   │   │       │   │   │   │   ├── accessibility-report.cs
+│   │   │       │   │   │   │   ├── error-handling.cs
+│   │   │       │   │   │   │   ├── managing-local-files.cs
+│   │   │       │   │   │   │   ├── multiple-sessions.cs
+│   │   │       │   │   │   │   ├── persisting-sessions.cs
+│   │   │       │   │   │   │   ├── pr-visualization.cs
+│   │   │       │   │   │   │   ├── ralph-loop.cs
+│   │   │       │   │   │   │   └── README.md
+│   │   │       │   │   │   ├── accessibility-report.md
+│   │   │       │   │   │   ├── error-handling.md
+│   │   │       │   │   │   ├── managing-local-files.md
+│   │   │       │   │   │   ├── multiple-sessions.md
+│   │   │       │   │   │   ├── persisting-sessions.md
+│   │   │       │   │   │   ├── pr-visualization.md
+│   │   │       │   │   │   ├── ralph-loop.md
+│   │   │       │   │   │   └── README.md
+│   │   │       │   │   ├── go/
+│   │   │       │   │   │   ├── recipe/
+│   │   │       │   │   │   │   ├── accessibility-report.go
+│   │   │       │   │   │   │   ├── error-handling.go
+│   │   │       │   │   │   │   ├── managing-local-files.go
+│   │   │       │   │   │   │   ├── multiple-sessions.go
+│   │   │       │   │   │   │   ├── persisting-sessions.go
+│   │   │       │   │   │   │   ├── pr-visualization.go
+│   │   │       │   │   │   │   ├── ralph-loop.go
+│   │   │       │   │   │   │   └── README.md
+│   │   │       │   │   │   ├── accessibility-report.md
+│   │   │       │   │   │   ├── error-handling.md
+│   │   │       │   │   │   ├── managing-local-files.md
+│   │   │       │   │   │   ├── multiple-sessions.md
+│   │   │       │   │   │   ├── persisting-sessions.md
+│   │   │       │   │   │   ├── pr-visualization.md
+│   │   │       │   │   │   ├── ralph-loop.md
+│   │   │       │   │   │   └── README.md
+│   │   │       │   │   ├── java/
+│   │   │       │   │   │   ├── recipe/
+│   │   │       │   │   │   │   ├── AccessibilityReport.java
+│   │   │       │   │   │   │   ├── ErrorHandling.java
+│   │   │       │   │   │   │   ├── ManagingLocalFiles.java
+│   │   │       │   │   │   │   ├── MultipleSessions.java
+│   │   │       │   │   │   │   ├── PersistingSessions.java
+│   │   │       │   │   │   │   ├── PRVisualization.java
+│   │   │       │   │   │   │   ├── RalphLoop.java
+│   │   │       │   │   │   │   └── README.md
+│   │   │       │   │   │   ├── accessibility-report.md
+│   │   │       │   │   │   ├── error-handling.md
+│   │   │       │   │   │   ├── managing-local-files.md
+│   │   │       │   │   │   ├── multiple-sessions.md
+│   │   │       │   │   │   ├── persisting-sessions.md
+│   │   │       │   │   │   ├── pr-visualization.md
+│   │   │       │   │   │   ├── ralph-loop.md
+│   │   │       │   │   │   └── README.md
+│   │   │       │   │   ├── nodejs/
+│   │   │       │   │   │   ├── recipe/
+│   │   │       │   │   │   │   ├── accessibility-report.ts
+│   │   │       │   │   │   │   ├── error-handling.ts
+│   │   │       │   │   │   │   ├── managing-local-files.ts
+│   │   │       │   │   │   │   ├── multiple-sessions.ts
+│   │   │       │   │   │   │   ├── package-lock.json
+│   │   │       │   │   │   │   ├── package.json
+│   │   │       │   │   │   │   ├── persisting-sessions.ts
+│   │   │       │   │   │   │   ├── pr-visualization.ts
+│   │   │       │   │   │   │   ├── ralph-loop.ts
+│   │   │       │   │   │   │   └── README.md
+│   │   │       │   │   │   ├── accessibility-report.md
+│   │   │       │   │   │   ├── error-handling.md
+│   │   │       │   │   │   ├── managing-local-files.md
+│   │   │       │   │   │   ├── multiple-sessions.md
+│   │   │       │   │   │   ├── persisting-sessions.md
+│   │   │       │   │   │   ├── pr-visualization.md
+│   │   │       │   │   │   ├── ralph-loop.md
+│   │   │       │   │   │   └── README.md
+│   │   │       │   │   ├── python/
+│   │   │       │   │   │   ├── recipe/
+│   │   │       │   │   │   │   ├── accessibility_report.py
+│   │   │       │   │   │   │   ├── error_handling.py
+│   │   │       │   │   │   │   ├── error_recovery_hooks.py
+│   │   │       │   │   │   │   ├── managing_local_files.py
+│   │   │       │   │   │   │   ├── multiple_sessions.py
+│   │   │       │   │   │   │   ├── persisting_sessions.py
+│   │   │       │   │   │   │   ├── pr_visualization.py
+│   │   │       │   │   │   │   ├── pyinstaller_frozen_build.py
+│   │   │       │   │   │   │   ├── ralph_loop.py
+│   │   │       │   │   │   │   ├── README.md
+│   │   │       │   │   │   │   └── requirements.txt
+│   │   │       │   │   │   ├── accessibility-report.md
+│   │   │       │   │   │   ├── error-handling.md
+│   │   │       │   │   │   ├── error-recovery-hooks.md
+│   │   │       │   │   │   ├── managing-local-files.md
+│   │   │       │   │   │   ├── multiple-sessions.md
+│   │   │       │   │   │   ├── persisting-sessions.md
+│   │   │       │   │   │   ├── pr-visualization.md
+│   │   │       │   │   │   ├── pyinstaller-frozen-build.md
+│   │   │       │   │   │   ├── ralph-loop.md
+│   │   │       │   │   │   └── README.md
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── cookbook.yml
+│   │   │       │   └── README.md
+│   │   │       ├── docs/
+│   │   │       │   ├── .gitkeep
+│   │   │       │   ├── README.agents.md
+│   │   │       │   ├── README.hooks.md
+│   │   │       │   ├── README.instructions.md
+│   │   │       │   ├── README.plugins.md
+│   │   │       │   ├── README.skills.md
+│   │   │       │   └── README.workflows.md
+│   │   │       ├── eng/
+│   │   │       │   ├── utils/
+│   │   │       │   │   ├── git-dates.mjs
+│   │   │       │   │   └── graceful-shutdown.mjs
+│   │   │       │   ├── add-missing-contributors.mjs
+│   │   │       │   ├── clean-materialized-plugins.mjs
+│   │   │       │   ├── constants.mjs
+│   │   │       │   ├── contributor-report.mjs
+│   │   │       │   ├── create-plugin.mjs
+│   │   │       │   ├── create-skill.mjs
+│   │   │       │   ├── delete-gone-branches.sh
+│   │   │       │   ├── external-plugin-approval.mjs
+│   │   │       │   ├── external-plugin-intake-state.mjs
+│   │   │       │   ├── external-plugin-intake.mjs
+│   │   │       │   ├── external-plugin-pr-quality-gates.mjs
+│   │   │       │   ├── external-plugin-quality-gates.mjs
+│   │   │       │   ├── external-plugin-rereview.mjs
+│   │   │       │   ├── external-plugin-validation.mjs
+│   │   │       │   ├── fix-line-endings.sh
+│   │   │       │   ├── generate-marketplace.mjs
+│   │   │       │   ├── generate-open-pr-report.mjs
+│   │   │       │   ├── generate-website-data.mjs
+│   │   │       │   ├── materialize-plugins.mjs
+│   │   │       │   ├── pr-risk-scan.mjs
+│   │   │       │   ├── README.md
+│   │   │       │   ├── update-readme.mjs
+│   │   │       │   ├── validate-plugins.mjs
+│   │   │       │   ├── validate-skills.mjs
+│   │   │       │   └── yaml-parser.mjs
+│   │   │       ├── extensions/
+│   │   │       │   ├── accessibility-kanban/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── public/
+│   │   │       │   │   │   └── index.html
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   └── package.json
+│   │   │       │   ├── arcade-canvas/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   ├── cosmic-rocks/
+│   │   │       │   │   │   │   └── sounds/
+│   │   │       │   │   │   │       ├── sfx_explosion.ogg
+│   │   │       │   │   │   │       ├── sfx_laser1.ogg
+│   │   │       │   │   │   │       ├── sfx_lose.ogg
+│   │   │       │   │   │   │       └── sfx_twoTone.ogg
+│   │   │       │   │   │   ├── defender/
+│   │   │       │   │   │   │   ├── sounds/
+│   │   │       │   │   │   │   │   ├── sound_baiterwarning.ogg
+│   │   │       │   │   │   │   │   ├── sound_bonus.ogg
+│   │   │       │   │   │   │   │   ├── sound_enemydead.ogg
+│   │   │       │   │   │   │   │   ├── sound_enemyshoot.ogg
+│   │   │       │   │   │   │   │   ├── sound_enemyshoot2.ogg
+│   │   │       │   │   │   │   │   ├── sound_explode.ogg
+│   │   │       │   │   │   │   │   ├── sound_humanoiddead.ogg
+│   │   │       │   │   │   │   │   ├── sound_laser.ogg
+│   │   │       │   │   │   │   │   ├── sound_player1up.ogg
+│   │   │       │   │   │   │   │   ├── sound_playerdead.ogg
+│   │   │       │   │   │   │   │   ├── sound_start.ogg
+│   │   │       │   │   │   │   │   ├── sound_thurst.ogg
+│   │   │       │   │   │   │   │   └── sound_warning.ogg
+│   │   │       │   │   │   │   ├── baiter.png
+│   │   │       │   │   │   │   ├── bomber.png
+│   │   │       │   │   │   │   ├── humanoid.png
+│   │   │       │   │   │   │   ├── lander.png
+│   │   │       │   │   │   │   ├── mutant.png
+│   │   │       │   │   │   │   ├── planet-guard-sprites.png
+│   │   │       │   │   │   │   ├── pod.png
+│   │   │       │   │   │   │   ├── ship.png
+│   │   │       │   │   │   │   ├── ship_left.png
+│   │   │       │   │   │   │   └── swarmer.png
+│   │   │       │   │   │   ├── galaxy-blaster/
+│   │   │       │   │   │   │   ├── sounds/
+│   │   │       │   │   │   │   │   ├── sfx_explosion.ogg
+│   │   │       │   │   │   │   │   ├── sfx_laser1.ogg
+│   │   │       │   │   │   │   │   ├── sfx_laser2.ogg
+│   │   │       │   │   │   │   │   ├── sfx_lose.ogg
+│   │   │       │   │   │   │   │   ├── sfx_shieldDown.ogg
+│   │   │       │   │   │   │   │   ├── sfx_shieldUp.ogg
+│   │   │       │   │   │   │   │   ├── sfx_twoTone.ogg
+│   │   │       │   │   │   │   │   └── sfx_zap.ogg
+│   │   │       │   │   │   │   ├── space_bg.png
+│   │   │       │   │   │   │   ├── space_sheet-2-black.png
+│   │   │       │   │   │   │   ├── space_sheet-2.png
+│   │   │       │   │   │   │   ├── space_sheet-2.xml
+│   │   │       │   │   │   │   ├── space_sheet.png
+│   │   │       │   │   │   │   └── space_sheet.xml
+│   │   │       │   │   │   ├── ninja-runner/
+│   │   │       │   │   │   │   ├── sounds/
+│   │   │       │   │   │   │   │   ├── SoundBlowClub.m4a
+│   │   │       │   │   │   │   │   ├── SoundBlowDull.m4a
+│   │   │       │   │   │   │   │   ├── SoundBonus.m4a
+│   │   │       │   │   │   │   │   ├── SoundBounce.m4a
+│   │   │       │   │   │   │   │   ├── SoundClick.m4a
+│   │   │       │   │   │   │   │   ├── SoundCoin.m4a
+│   │   │       │   │   │   │   │   ├── SoundCountdown.m4a
+│   │   │       │   │   │   │   │   ├── SoundDeath.m4a
+│   │   │       │   │   │   │   │   ├── SoundEnemyDeath.m4a
+│   │   │       │   │   │   │   │   ├── SoundEnemyHit.m4a
+│   │   │       │   │   │   │   │   ├── SoundEnemyShot.m4a
+│   │   │       │   │   │   │   │   ├── SoundExplosionLarge.m4a
+│   │   │       │   │   │   │   │   ├── SoundExplosionSmall.m4a
+│   │   │       │   │   │   │   │   ├── SoundFallDull.m4a
+│   │   │       │   │   │   │   │   ├── SoundFallLoud.m4a
+│   │   │       │   │   │   │   │   ├── SoundFlapHeavy.m4a
+│   │   │       │   │   │   │   │   ├── SoundFlapLight.m4a
+│   │   │       │   │   │   │   │   ├── SoundGameOver.m4a
+│   │   │       │   │   │   │   │   ├── SoundHurryUp.m4a
+│   │   │       │   │   │   │   │   ├── SoundJump1.m4a
+│   │   │       │   │   │   │   │   ├── SoundJump2.m4a
+│   │   │       │   │   │   │   │   ├── SoundJumpHah.m4a
+│   │   │       │   │   │   │   │   ├── SoundLand1.m4a
+│   │   │       │   │   │   │   │   ├── SoundLand2.m4a
+│   │   │       │   │   │   │   │   ├── SoundLandHeavy.m4a
+│   │   │       │   │   │   │   │   ├── SoundLaser.m4a
+│   │   │       │   │   │   │   │   ├── SoundMechanism.m4a
+│   │   │       │   │   │   │   │   ├── SoundMissile.m4a
+│   │   │       │   │   │   │   │   ├── SoundObjectFall.m4a
+│   │   │       │   │   │   │   │   ├── SoundOpenDoor.m4a
+│   │   │       │   │   │   │   │   ├── SoundPlayerHit.m4a
+│   │   │       │   │   │   │   │   ├── SoundReachGoal.m4a
+│   │   │       │   │   │   │   │   ├── SoundShootDull.m4a
+│   │   │       │   │   │   │   │   ├── SoundShootRegular.m4a
+│   │   │       │   │   │   │   │   ├── SoundSlide.m4a
+│   │   │       │   │   │   │   │   ├── SoundSpecialSkill.m4a
+│   │   │       │   │   │   │   │   ├── SoundStartLevel.m4a
+│   │   │       │   │   │   │   │   ├── SoundSwim.m4a
+│   │   │       │   │   │   │   │   ├── SoundWandMagic.m4a
+│   │   │       │   │   │   │   │   └── SoundWind.m4a
+│   │   │       │   │   │   │   ├── background.png
+│   │   │       │   │   │   │   ├── big_bush.png
+│   │   │       │   │   │   │   ├── bridge.png
+│   │   │       │   │   │   │   ├── brown_block.png
+│   │   │       │   │   │   │   ├── clouds.png
+│   │   │       │   │   │   │   ├── coin_sheet.png
+│   │   │       │   │   │   │   ├── dirt_block.png
+│   │   │       │   │   │   │   ├── enemy_short_strip.png
+│   │   │       │   │   │   │   ├── enemy_strip.png
+│   │   │       │   │   │   │   ├── enemy_tall_strip.png
+│   │   │       │   │   │   │   ├── flag.png
+│   │   │       │   │   │   │   ├── grass_block.png
+│   │   │       │   │   │   │   ├── heart_sheet.png
+│   │   │       │   │   │   │   ├── hill_0.png
+│   │   │       │   │   │   │   ├── hill_1.png
+│   │   │       │   │   │   │   ├── impact_sheet.png
+│   │   │       │   │   │   │   ├── platform.png
+│   │   │       │   │   │   │   ├── player_strip.png
+│   │   │       │   │   │   │   ├── qblock_new.png
+│   │   │       │   │   │   │   ├── small_bush.png
+│   │   │       │   │   │   │   └── spikes.png
+│   │   │       │   │   │   ├── sounds/
+│   │   │       │   │   │   │   └── agent-arcade-voice.mp3
+│   │   │       │   │   │   ├── asset-.md
+│   │   │       │   │   │   ├── canvas-background.webp
+│   │   │       │   │   │   ├── icon.png
+│   │   │       │   │   │   ├── preview.png
+│   │   │       │   │   │   ├── tray_icon.png
+│   │   │       │   │   │   └── tray_icon_small.png
+│   │   │       │   │   ├── game/
+│   │   │       │   │   │   ├── scenes/
+│   │   │       │   │   │   │   ├── AlienOnslaught.js
+│   │   │       │   │   │   │   ├── BaseScene.js
+│   │   │       │   │   │   │   ├── CosmicRocks.js
+│   │   │       │   │   │   │   ├── GalaxyBlaster.js
+│   │   │       │   │   │   │   ├── NinjaRunner.js
+│   │   │       │   │   │   │   └── PlanetGuardian.js
+│   │   │       │   │   │   ├── game.js
+│   │   │       │   │   │   ├── hud.js
+│   │   │       │   │   │   ├── index.html
+│   │   │       │   │   │   ├── phaser.min.js
+│   │   │       │   │   │   └── phaser.min.js.gz
+│   │   │       │   │   ├── copilot-extension.json
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package-lock.json
+│   │   │       │   │   ├── package.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── backlog-swipe-triage/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package-lock.json
+│   │   │       │   │   ├── package.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── chromium-control-canvas/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── copilot-extension.json
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── index.html
+│   │   │       │   │   ├── package-lock.json
+│   │   │       │   │   ├── package.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── color-orb/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package-lock.json
+│   │   │       │   │   └── package.json
+│   │   │       │   ├── diagram-viewer/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── public/
+│   │   │       │   │   │   └── index.html
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package-lock.json
+│   │   │       │   │   └── package.json
+│   │   │       │   ├── external-assets/
+│   │   │       │   │   └── coffilot-preview.png
+│   │   │       │   ├── feedback-themes/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── data/
+│   │   │       │   │   │   └── signals.json
+│   │   │       │   │   ├── public/
+│   │   │       │   │   │   └── index.html
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package-lock.json
+│   │   │       │   │   └── package.json
+│   │   │       │   ├── gesture-review/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package-lock.json
+│   │   │       │   │   └── package.json
+│   │   │       │   ├── java-modernization-studio/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── test/
+│   │   │       │   │   │   └── cockpit.test.mjs
+│   │   │       │   │   ├── .gitignore
+│   │   │       │   │   ├── autopilot.mjs
+│   │   │       │   │   ├── catalog.mjs
+│   │   │       │   │   ├── doctor.mjs
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package.json
+│   │   │       │   │   ├── prompts.mjs
+│   │   │       │   │   ├── README.md
+│   │   │       │   │   ├── renderer.mjs
+│   │   │       │   │   ├── scan.mjs
+│   │   │       │   │   └── server.mjs
+│   │   │       │   ├── release-notes-showcase/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package-lock.json
+│   │   │       │   │   ├── package.json
+│   │   │       │   │   ├── README.md
+│   │   │       │   │   └── releaseNotesShowcase.mjs
+│   │   │       │   ├── repo-actions-hub/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── copilot-extension.json
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── site-studio/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   └── package.json
+│   │   │       │   ├── tiny-tool-town-submitter/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── lib/
+│   │   │       │   │   │   ├── analyzer.mjs
+│   │   │       │   │   │   ├── copy-generator.mjs
+│   │   │       │   │   │   └── renderer.mjs
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── token-pacman/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   ├── preview.png
+│   │   │       │   │   │   └── token-pacman.jpg
+│   │   │       │   │   ├── copilot-extension.json
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── where-was-i/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   └── package.json
+│   │   │       │   ├── work-hub/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── preview.png
+│   │   │       │   │   ├── data.mjs
+│   │   │       │   │   ├── extension.mjs
+│   │   │       │   │   ├── package.json
+│   │   │       │   │   ├── README.md
+│   │   │       │   │   └── renderer.mjs
+│   │   │       │   └── external.json
+│   │   │       ├── hooks/
+│   │   │       │   ├── dependency-license-checker/
+│   │   │       │   │   ├── check-licenses.sh
+│   │   │       │   │   ├── hooks.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── fix-broken-links/
+│   │   │       │   │   ├── hooks.json
+│   │   │       │   │   ├── link-fix.ps1
+│   │   │       │   │   ├── link-fix.sh
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── governance-audit/
+│   │   │       │   │   ├── audit-prompt.sh
+│   │   │       │   │   ├── audit-session-end.sh
+│   │   │       │   │   ├── audit-session-start.sh
+│   │   │       │   │   ├── hooks.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── secrets-scanner/
+│   │   │       │   │   ├── hooks.json
+│   │   │       │   │   ├── README.md
+│   │   │       │   │   └── scan-secrets.sh
+│   │   │       │   ├── session-auto-commit/
+│   │   │       │   │   ├── auto-commit.sh
+│   │   │       │   │   ├── hooks.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── session-logger/
+│   │   │       │   │   ├── hooks.json
+│   │   │       │   │   ├── log-prompt.sh
+│   │   │       │   │   ├── log-session-end.sh
+│   │   │       │   │   ├── log-session-start.sh
+│   │   │       │   │   └── README.md
+│   │   │       │   └── tool-guardian/
+│   │   │       │       ├── guard-tool.sh
+│   │   │       │       ├── hooks.json
+│   │   │       │       └── README.md
+│   │   │       ├── instructions/
+│   │   │       │   ├── a11y.instructions.md
+│   │   │       │   ├── agent-safety.instructions.md
+│   │   │       │   ├── agent-skills.instructions.md
+│   │   │       │   ├── agents.instructions.md
+│   │   │       │   ├── ai-prompt-engineering-safety-best-practices.instructions.md
+│   │   │       │   ├── ansible.instructions.md
+│   │   │       │   ├── apex.instructions.md
+│   │   │       │   ├── arch-linux.instructions.md
+│   │   │       │   ├── aspnet-rest-apis.instructions.md
+│   │   │       │   ├── astro.instructions.md
+│   │   │       │   ├── aws-appsync.instructions.md
+│   │   │       │   ├── azure-devops-pipelines.instructions.md
+│   │   │       │   ├── azure-durable-functions-csharp.instructions.md
+│   │   │       │   ├── azure-functions-csharp.instructions.md
+│   │   │       │   ├── azure-functions-typescript.instructions.md
+│   │   │       │   ├── azure-iot-edge-architecture.instructions.md
+│   │   │       │   ├── azure-logic-apps-power-automate.instructions.md
+│   │   │       │   ├── azure-naming.instructions.md
+│   │   │       │   ├── azure-verified-modules-bicep.instructions.md
+│   │   │       │   ├── azure-verified-modules-terraform.instructions.md
+│   │   │       │   ├── bicep-code-best-practices.instructions.md
+│   │   │       │   ├── blazor.instructions.md
+│   │   │       │   ├── caveman-mode.instructions.md
+│   │   │       │   ├── centos-linux.instructions.md
+│   │   │       │   ├── clojure.instructions.md
+│   │   │       │   ├── cmake-vcpkg.instructions.md
+│   │   │       │   ├── code-review-generic.instructions.md
+│   │   │       │   ├── codexer.instructions.md
+│   │   │       │   ├── coldfusion-cfc.instructions.md
+│   │   │       │   ├── coldfusion-cfm.instructions.md
+│   │   │       │   ├── containerization-docker-best-practices.instructions.md
+│   │   │       │   ├── context-engineering.instructions.md
+│   │   │       │   ├── context7.instructions.md
+│   │   │       │   ├── convert-cassandra-to-spring-data-cosmos.instructions.md
+│   │   │       │   ├── convert-jpa-to-spring-data-cosmos.instructions.md
+│   │   │       │   ├── copilot-sdk-csharp.instructions.md
+│   │   │       │   ├── copilot-sdk-go.instructions.md
+│   │   │       │   ├── copilot-sdk-java.instructions.md
+│   │   │       │   ├── copilot-sdk-nodejs.instructions.md
+│   │   │       │   ├── copilot-sdk-python.instructions.md
+│   │   │       │   ├── copilot-thought-logging.instructions.md
+│   │   │       │   ├── cpp-language-service-tools.instructions.md
+│   │   │       │   ├── csharp-ja.instructions.md
+│   │   │       │   ├── csharp-ko.instructions.md
+│   │   │       │   ├── csharp-mcp-server.instructions.md
+│   │   │       │   ├── csharp-razorpages.instructions.md
+│   │   │       │   ├── csharp.instructions.md
+│   │   │       │   ├── dart-n-flutter.instructions.md
+│   │   │       │   ├── dataverse-python-advanced-features.instructions.md
+│   │   │       │   ├── dataverse-python-agentic-workflows.instructions.md
+│   │   │       │   ├── dataverse-python-api-reference.instructions.md
+│   │   │       │   ├── dataverse-python-authentication-security.instructions.md
+│   │   │       │   ├── dataverse-python-best-practices.instructions.md
+│   │   │       │   ├── dataverse-python-error-handling.instructions.md
+│   │   │       │   ├── dataverse-python-file-operations.instructions.md
+│   │   │       │   ├── dataverse-python-modules.instructions.md
+│   │   │       │   ├── dataverse-python-pandas-integration.instructions.md
+│   │   │       │   ├── dataverse-python-performance-optimization.instructions.md
+│   │   │       │   ├── dataverse-python-real-world-usecases.instructions.md
+│   │   │       │   ├── dataverse-python-sdk.instructions.md
+│   │   │       │   ├── dataverse-python-testing-debugging.instructions.md
+│   │   │       │   ├── dataverse-python.instructions.md
+│   │   │       │   ├── debian-linux.instructions.md
+│   │   │       │   ├── declarative-agents-microsoft365.instructions.md
+│   │   │       │   ├── devbox-image-definition.instructions.md
+│   │   │       │   ├── devops-core-principles.instructions.md
+│   │   │       │   ├── dotnet-architecture-good-practices.instructions.md
+│   │   │       │   ├── dotnet-framework.instructions.md
+│   │   │       │   ├── dotnet-maui-9-to-dotnet-maui-10-upgrade.instructions.md
+│   │   │       │   ├── dotnet-maui.instructions.md
+│   │   │       │   ├── dotnet-upgrade.instructions.md
+│   │   │       │   ├── dotnet-wpf.instructions.md
+│   │   │       │   ├── draw-io.instructions.md
+│   │   │       │   ├── exclude-prompt-data.instructions.md
+│   │   │       │   ├── fedora-linux.instructions.md
+│   │   │       │   ├── genaiscript.instructions.md
+│   │   │       │   ├── generate-modern-terraform-code-for-azure.instructions.md
+│   │   │       │   ├── gilfoyle-code-review.instructions.md
+│   │   │       │   ├── github-actions-ci-cd-best-practices.instructions.md
+│   │   │       │   ├── go-mcp-server.instructions.md
+│   │   │       │   ├── go.instructions.md
+│   │   │       │   ├── hooks.instructions.md
+│   │   │       │   ├── html-css-style-color-guide.instructions.md
+│   │   │       │   ├── instructions.instructions.md
+│   │   │       │   ├── java-11-to-java-17-upgrade.instructions.md
+│   │   │       │   ├── java-17-to-java-21-upgrade.instructions.md
+│   │   │       │   ├── java-21-to-java-25-upgrade.instructions.md
+│   │   │       │   ├── java-junit5-assertions.instructions.md
+│   │   │       │   ├── java-mcp-server.instructions.md
+│   │   │       │   ├── joyride-user-project.instructions.md
+│   │   │       │   ├── joyride-workspace-automation.instructions.md
+│   │   │       │   ├── kotlin-mcp-server.instructions.md
+│   │   │       │   ├── kubernetes-deployment-best-practices.instructions.md
+│   │   │       │   ├── kubernetes-manifests.instructions.md
+│   │   │       │   ├── langchain-python.instructions.md
+│   │   │       │   ├── localization.instructions.md
+│   │   │       │   ├── lwc.instructions.md
+│   │   │       │   ├── makefile.instructions.md
+│   │   │       │   ├── markdown-accessibility.instructions.md
+│   │   │       │   ├── markdown-content-creation.instructions.md
+│   │   │       │   ├── markdown-gfm.instructions.md
+│   │   │       │   ├── markdown.instructions.md
+│   │   │       │   ├── mcp-m365-copilot.instructions.md
+│   │   │       │   ├── memory-bank.instructions.md
+│   │   │       │   ├── mongo-dba.instructions.md
+│   │   │       │   ├── moodle.instructions.md
+│   │   │       │   ├── ms-sql-dba.instructions.md
+│   │   │       │   ├── mvvm-toolkit.instructions.md
+│   │   │       │   ├── nestjs.instructions.md
+│   │   │       │   ├── nextjs-tailwind.instructions.md
+│   │   │       │   ├── nextjs.instructions.md
+│   │   │       │   ├── no-heredoc.instructions.md
+│   │   │       │   ├── nodejs-javascript-vitest.instructions.md
+│   │   │       │   ├── object-calisthenics.instructions.md
+│   │   │       │   ├── oop-design-patterns.instructions.md
+│   │   │       │   ├── oqtane.instructions.md
+│   │   │       │   ├── pcf-alm.instructions.md
+│   │   │       │   ├── pcf-api-reference.instructions.md
+│   │   │       │   ├── pcf-best-practices.instructions.md
+│   │   │       │   ├── pcf-canvas-apps.instructions.md
+│   │   │       │   ├── pcf-code-components.instructions.md
+│   │   │       │   ├── pcf-community-resources.instructions.md
+│   │   │       │   ├── pcf-dependent-libraries.instructions.md
+│   │   │       │   ├── pcf-events.instructions.md
+│   │   │       │   ├── pcf-fluent-modern-theming.instructions.md
+│   │   │       │   ├── pcf-limitations.instructions.md
+│   │   │       │   ├── pcf-manifest-schema.instructions.md
+│   │   │       │   ├── pcf-model-driven-apps.instructions.md
+│   │   │       │   ├── pcf-overview.instructions.md
+│   │   │       │   ├── pcf-power-pages.instructions.md
+│   │   │       │   ├── pcf-react-platform-libraries.instructions.md
+│   │   │       │   ├── pcf-sample-components.instructions.md
+│   │   │       │   ├── pcf-tooling.instructions.md
+│   │   │       │   ├── performance-optimization.instructions.md
+│   │   │       │   ├── php-mcp-server.instructions.md
+│   │   │       │   ├── php-symfony.instructions.md
+│   │   │       │   ├── playwright-dotnet.instructions.md
+│   │   │       │   ├── playwright-python.instructions.md
+│   │   │       │   ├── playwright-typescript.instructions.md
+│   │   │       │   ├── power-apps-canvas-yaml.instructions.md
+│   │   │       │   ├── power-apps-code-apps.instructions.md
+│   │   │       │   ├── power-bi-custom-visuals-development.instructions.md
+│   │   │       │   ├── power-bi-data-modeling-best-practices.instructions.md
+│   │   │       │   ├── power-bi-dax-best-practices.instructions.md
+│   │   │       │   ├── power-bi-devops-alm-best-practices.instructions.md
+│   │   │       │   ├── power-bi-report-design-best-practices.instructions.md
+│   │   │       │   ├── power-bi-security-rls-best-practices.instructions.md
+│   │   │       │   ├── power-platform-connector.instructions.md
+│   │   │       │   ├── power-platform-mcp-development.instructions.md
+│   │   │       │   ├── powershell-pester-5.instructions.md
+│   │   │       │   ├── powershell.instructions.md
+│   │   │       │   ├── prompt.instructions.md
+│   │   │       │   ├── python-mcp-server.instructions.md
+│   │   │       │   ├── qa-engineering-best-practices.instructions.md
+│   │   │       │   ├── quarkus-mcp-server-sse.instructions.md
+│   │   │       │   ├── quarkus.instructions.md
+│   │   │       │   ├── r.instructions.md
+│   │   │       │   ├── ruby-mcp-server.instructions.md
+│   │   │       │   ├── ruby-on-rails.instructions.md
+│   │   │       │   ├── rust-mcp-server.instructions.md
+│   │   │       │   ├── rust.instructions.md
+│   │   │       │   ├── scala-spark.instructions.md
+│   │   │       │   ├── scala2.instructions.md
+│   │   │       │   ├── security-and-owasp.instructions.md
+│   │   │       │   ├── self-explanatory-code-commenting.instructions.md
+│   │   │       │   ├── shell.instructions.md
+│   │   │       │   ├── spec-driven-workflow-v1.instructions.md
+│   │   │       │   ├── springboot-4-migration.instructions.md
+│   │   │       │   ├── springboot.instructions.md
+│   │   │       │   ├── sql-sp-generation.instructions.md
+│   │   │       │   ├── svelte.instructions.md
+│   │   │       │   ├── swift-mcp-server.instructions.md
+│   │   │       │   ├── tailwind-v4-vite.instructions.md
+│   │   │       │   ├── taming-copilot.instructions.md
+│   │   │       │   ├── tanstack-start-shadcn-tailwind.instructions.md
+│   │   │       │   ├── task-implementation.instructions.md
+│   │   │       │   ├── tasksync.instructions.md
+│   │   │       │   ├── terraform-azure.instructions.md
+│   │   │       │   ├── terraform-sap-btp.instructions.md
+│   │   │       │   ├── terraform.instructions.md
+│   │   │       │   ├── typescript-mcp-server.instructions.md
+│   │   │       │   ├── typespec-m365-copilot.instructions.md
+│   │   │       │   ├── update-code-from-shorthand.instructions.md
+│   │   │       │   ├── update-docs-on-code-change.instructions.md
+│   │   │       │   ├── use-cliche-data-in-docs.instructions.md
+│   │   │       │   ├── vsixtoolkit.instructions.md
+│   │   │       │   ├── vue.instructions.md
+│   │   │       │   ├── winui3.instructions.md
+│   │   │       │   └── wordpress.instructions.md
+│   │   │       ├── plugins/
+│   │   │       │   ├── acreadiness-cockpit/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── ai-team-orchestration/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── arize-ax/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── automate-this/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── awesome-copilot/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── aws-cloud-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── azure-cloud-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── cast-imaging/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── clojure-interactive-programming/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── cms-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── context-engineering/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── context-matic/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── .mcp.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── copilot-sdk/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── csharp-dotnet-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── database-data-management/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── dataverse-sdk-for-python/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── devops-oncall/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── doublecheck/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── edge-ai-tasks/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── ember/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── eyeball/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── fastah-ip-geo-tools/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── flowstudio-power-automate/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── frontend-web-dev/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── gem-team/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── go-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── java-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── java-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── kotlin-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── mcp-m365-copilot/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── napkin/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── noob-mode/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── openapi-to-application-csharp-dotnet/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── openapi-to-application-go/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── openapi-to-application-java-spring-boot/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── openapi-to-application-nodejs-nestjs/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── openapi-to-application-python-fastapi/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── oracle-to-postgres-migration-expert/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── ospo-sponsorship/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── partners/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── pcf-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── phoenix/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── php-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── power-apps-code-apps/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── power-bi-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── power-platform-architect/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── power-platform-mcp-connector-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── project-documenter/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── project-planning/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── python-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── react18-upgrade/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── react19-upgrade/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── roundup/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── ruby-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── rug-agentic-workflow/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── rust-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── salesforce-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── security-best-practices/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── skill-image-gen/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── software-engineering-team/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── structured-autonomy/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── swift-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── technical-spike/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── testing-automation/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── typescript-mcp-development/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── typespec-m365-copilot/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   └── README.md
+│   │   │       │   ├── visual-pr/
+│   │   │       │   │   ├── .github/
+│   │   │       │   │   │   └── plugin/
+│   │   │       │   │   │       └── plugin.json
+│   │   │       │   │   ├── demo/
+│   │   │       │   │   │   ├── after.png
+│   │   │       │   │   │   ├── before.png
+│   │   │       │   │   │   ├── debug.png
+│   │   │       │   │   │   └── multi.png
+│   │   │       │   │   └── README.md
+│   │   │       │   └── external.json
+│   │   │       ├── skills/
+│   │   │       │   ├── acquire-codebase-knowledge/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── templates/
+│   │   │       │   │   │       ├── ARCHITECTURE.md
+│   │   │       │   │   │       ├── CONCERNS.md
+│   │   │       │   │   │       ├── CONVENTIONS.md
+│   │   │       │   │   │       ├── INTEGRATIONS.md
+│   │   │       │   │   │       ├── STACK.md
+│   │   │       │   │   │       ├── STRUCTURE.md
+│   │   │       │   │   │       └── TESTING.md
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── inquiry-checkpoints.md
+│   │   │       │   │   │   └── stack-detection.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   └── scan.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── acreadiness-assess/
+│   │   │       │   │   ├── report-template.html
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── acreadiness-generate-instructions/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── acreadiness-policy/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── add-educational-comments/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── adobe-illustrator-scripting/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── object-model-quick-reference.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── batch-export-png.jsx
+│   │   │       │   │   │   ├── create-color-grid.jsx
+│   │   │       │   │   │   └── find-replace-text.jsx
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── agent-governance/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── agent-owasp-compliance/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── agent-supply-chain/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── agentic-eval/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── ai-prompt-engineering-safety-review/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── ai-ready/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── ai-team-orchestration/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── anti-patterns.md
+│   │   │       │   │   │   ├── brainstorm-format.md
+│   │   │       │   │   │   ├── project-brief-template.md
+│   │   │       │   │   │   └── sprint-plan-template.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── appinsights-instrumentation/
+│   │   │       │   │   ├── examples/
+│   │   │       │   │   │   └── appinsights.bicep
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ASPNETCORE.md
+│   │   │       │   │   │   ├── AUTO.md
+│   │   │       │   │   │   ├── NODEJS.md
+│   │   │       │   │   │   └── PYTHON.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   └── appinsights.ps1
+│   │   │       │   │   ├── LICENSE.txt
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── apple-appstore-reviewer/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arch-linux-triage/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── architecture-blueprint-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arduino-azure-iot-edge-integration/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── arduino-iot-checklist.md
+│   │   │       │   │   │   └── arduino-official-best-practices.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-ai-provider-integration/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ax-profiles.md
+│   │   │       │   │   │   └── ax-setup.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-annotation/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ax-profiles.md
+│   │   │       │   │   │   └── ax-setup.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-dataset/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ax-profiles.md
+│   │   │       │   │   │   └── ax-setup.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-evaluator/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ax-profiles.md
+│   │   │       │   │   │   └── ax-setup.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-experiment/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ax-profiles.md
+│   │   │       │   │   │   └── ax-setup.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-instrumentation/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── ax-profiles.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-link/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── EXAMPLES.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-prompt-optimization/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ax-profiles.md
+│   │   │       │   │   │   └── ax-setup.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── arize-trace/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ax-profiles.md
+│   │   │       │   │   │   └── ax-setup.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── aspire/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── architecture.md
+│   │   │       │   │   │   ├── cli-reference.md
+│   │   │       │   │   │   ├── dashboard.md
+│   │   │       │   │   │   ├── deployment.md
+│   │   │       │   │   │   ├── integrations-catalog.md
+│   │   │       │   │   │   ├── mcp-server.md
+│   │   │       │   │   │   ├── polyglot-apis.md
+│   │   │       │   │   │   ├── testing.md
+│   │   │       │   │   │   └── troubleshooting.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── aspnet-minimal-api-openapi/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── audit-integrity/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── anti-rationalization-guard.md
+│   │   │       │   │   │   ├── clarification-protocol.md
+│   │   │       │   │   │   ├── non-negotiable-behaviors.md
+│   │   │       │   │   │   ├── retry-protocol.md
+│   │   │       │   │   │   ├── self-critique-loop.md
+│   │   │       │   │   │   ├── self-learning-system.md
+│   │   │       │   │   │   └── self-reflection-quality-gate.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── automate-this/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── autoresearch/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── aws-cdk-python-setup/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── aws-cloudwatch-investigation/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── aws-cost-optimize/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── aws-resource-health-diagnose/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── aws-resource-query/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── aws-well-architected-review/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── az-cost-optimize/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-architecture-autopilot/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   ├── 06-architecture-diagram.png
+│   │   │       │   │   │   ├── 07-azure-portal-resources.png
+│   │   │       │   │   │   └── 08-deployment-succeeded.png
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ai-data.md
+│   │   │       │   │   │   ├── architecture-guidance-sources.md
+│   │   │       │   │   │   ├── azure-common-patterns.md
+│   │   │       │   │   │   ├── azure-dynamic-sources.md
+│   │   │       │   │   │   ├── bicep-generator.md
+│   │   │       │   │   │   ├── bicep-reviewer.md
+│   │   │       │   │   │   ├── phase0-scanner.md
+│   │   │       │   │   │   ├── phase1-advisor.md
+│   │   │       │   │   │   ├── phase4-deployer.md
+│   │   │       │   │   │   └── service-gotchas.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── cli.py
+│   │   │       │   │   │   ├── generator.py
+│   │   │       │   │   │   └── icons.py
+│   │   │       │   │   ├── .gitignore
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-deployment-preflight/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ERROR-HANDLING.md
+│   │   │       │   │   │   ├── REPORT-TEMPLATE.md
+│   │   │       │   │   │   └── VALIDATION-COMMANDS.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-devops-cli/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── advanced-usage.md
+│   │   │       │   │   │   ├── boards-and-iterations.md
+│   │   │       │   │   │   ├── long-comments-on-windows.md
+│   │   │       │   │   │   ├── org-and-security.md
+│   │   │       │   │   │   ├── pipelines-and-builds.md
+│   │   │       │   │   │   ├── repos-and-prs.md
+│   │   │       │   │   │   ├── variables-and-agents.md
+│   │   │       │   │   │   └── workflows-and-patterns.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-pricing/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── COPILOT-STUDIO-RATES.md
+│   │   │       │   │   │   ├── COST-ESTIMATOR.md
+│   │   │       │   │   │   ├── REGIONS.md
+│   │   │       │   │   │   └── SERVICE-NAMES.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-resource-health-diagnose/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-resource-visualizer/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── template-architecture.md
+│   │   │       │   │   ├── LICENSE.txt
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-role-selector/
+│   │   │       │   │   ├── LICENSE.txt
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-smart-city-iot-solution-builder/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── smart-city-solution-template.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── azure-static-web-apps/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── batch-files/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   ├── executable.txt
+│   │   │       │   │   │   ├── library.txt
+│   │   │       │   │   │   └── task.txt
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── batch-files-and-functions.md
+│   │   │       │   │   │   ├── cygwin.md
+│   │   │       │   │   │   ├── msys2.md
+│   │   │       │   │   │   ├── tools-and-resources.md
+│   │   │       │   │   │   ├── windows-commands.md
+│   │   │       │   │   │   └── windows-subsystem-on-linux.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── bigquery-pipeline-audit/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── boost-prompt/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── brag-sheet/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── breakdown-epic-arch/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── breakdown-epic-pm/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── breakdown-feature-implementation/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── breakdown-feature-prd/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── breakdown-plan/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── breakdown-test/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── centos-linux-triage/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── chrome-devtools/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── cli-mastery/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── final-exam.md
+│   │   │       │   │   │   ├── module-1-slash-commands.md
+│   │   │       │   │   │   ├── module-2-keyboard-shortcuts.md
+│   │   │       │   │   │   ├── module-3-modes.md
+│   │   │       │   │   │   ├── module-4-agents.md
+│   │   │       │   │   │   ├── module-5-skills.md
+│   │   │       │   │   │   ├── module-6-mcp.md
+│   │   │       │   │   │   ├── module-7-advanced.md
+│   │   │       │   │   │   ├── module-8-configuration.md
+│   │   │       │   │   │   └── scenarios.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── cloud-design-patterns/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── architecture-design.md
+│   │   │       │   │   │   ├── azure-service-mappings.md
+│   │   │       │   │   │   ├── best-practices.md
+│   │   │       │   │   │   ├── deployment-operational.md
+│   │   │       │   │   │   ├── event-driven.md
+│   │   │       │   │   │   ├── messaging-integration.md
+│   │   │       │   │   │   ├── performance.md
+│   │   │       │   │   │   ├── reliability-resilience.md
+│   │   │       │   │   │   └── security.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── code-exemplars-blueprint-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── code-tour/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── codetour-schema.json
+│   │   │       │   │   │   └── examples.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── generate_from_docs.py
+│   │   │       │   │   │   └── validate_tour.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── codeql/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── alert-management.md
+│   │   │       │   │   │   ├── cli-commands.md
+│   │   │       │   │   │   ├── compiled-languages.md
+│   │   │       │   │   │   ├── sarif-output.md
+│   │   │       │   │   │   ├── troubleshooting.md
+│   │   │       │   │   │   └── workflow-configuration.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── comment-code-generate-a-tutorial/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── commit-message-storyteller/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── conventional-commits-guide.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── containerize-aspnet-framework/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── containerize-aspnetcore/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── content-management-systems/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── cms-platform-workflows.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── context-map/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── conventional-branch/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── conventional-commit/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── convert-plaintext-to-md/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── copilot-cli-quickstart/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── copilot-instructions-blueprint-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── copilot-pr-autopilot/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── 01-request-review.md
+│   │   │       │   │   │   ├── 02-wait.md
+│   │   │       │   │   │   ├── 03-list-threads.md
+│   │   │       │   │   │   ├── 04-triage.md
+│   │   │       │   │   │   ├── 05-fix.md
+│   │   │       │   │   │   ├── 06-build-test.md
+│   │   │       │   │   │   ├── 07-commit-push.md
+│   │   │       │   │   │   ├── 08-reply-resolve.md
+│   │   │       │   │   │   ├── 09-convergence.md
+│   │   │       │   │   │   ├── 10-cleanup.md
+│   │   │       │   │   │   ├── api-quirks.md
+│   │   │       │   │   │   └── orchestration.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── 01-request-review.ps1
+│   │   │       │   │   │   ├── 02-check-review-status.ps1
+│   │   │       │   │   │   ├── 03-list-open-threads.ps1
+│   │   │       │   │   │   ├── 08-reply-and-resolve.ps1
+│   │   │       │   │   │   ├── 09-review-round.ps1
+│   │   │       │   │   │   ├── 10-cleanup-outdated.ps1
+│   │   │       │   │   │   └── _lib.ps1
+│   │   │       │   │   ├── templates/
+│   │   │       │   │   │   ├── reply-decline.md
+│   │   │       │   │   │   ├── reply-drift.md
+│   │   │       │   │   │   ├── reply-fix.md
+│   │   │       │   │   │   └── reply-partial.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── copilot-sdk/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── copilot-spaces/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── copilot-usage-metrics/
+│   │   │       │   │   ├── get-enterprise-metrics.sh
+│   │   │       │   │   ├── get-enterprise-user-metrics.sh
+│   │   │       │   │   ├── get-org-metrics.sh
+│   │   │       │   │   ├── get-org-user-metrics.sh
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── cosmosdb-datamodeling/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-agentsmd/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-architectural-decision-record/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-github-action-workflow-specification/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-github-issue-feature-from-specification/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-github-issues-feature-from-implementation-plan/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-github-issues-for-unmet-specification-requirements/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-implementation-plan/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-llms/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-readme/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-specification/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-spring-boot-java-project/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-spring-boot-kotlin-project/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-technical-spike/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── create-tldr-page/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── creating-oracle-to-postgres-master-migration-plan/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── creating-oracle-to-postgres-migration-bug-report/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── BUG-REPORT-TEMPLATE.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── creating-oracle-to-postgres-migration-integration-tests/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── csharp-async/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── csharp-docs/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── csharp-mstest/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── csharp-nunit/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── csharp-tunit/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── csharp-xunit/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── daily-prep/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── data-breach-blast-radius/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── blast-radius-calculator.md
+│   │   │       │   │   │   ├── data-classification.md
+│   │   │       │   │   │   ├── hardening-playbook.md
+│   │   │       │   │   │   ├── regulatory-impact.md
+│   │   │       │   │   │   ├── report-format.md
+│   │   │       │   │   │   └── SOURCES.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── datanalysis-credit-risk/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── analysis.py
+│   │   │       │   │   │   └── func.py
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   └── example.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dataverse-python-advanced-patterns/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dataverse-python-production-code/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dataverse-python-quickstart/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dataverse-python-usecase-builder/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── debian-linux-triage/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── declarative-agents/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dependabot/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── dependabot-yml-reference.md
+│   │   │       │   │   │   ├── example-configs.md
+│   │   │       │   │   │   └── pr-commands.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── devops-rollout-plan/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── diagnose/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── documentation-writer/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dotnet-best-practices/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dotnet-design-pattern-review/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dotnet-mcp-builder/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── client.md
+│   │   │       │   │   │   ├── elicitation.md
+│   │   │       │   │   │   ├── mcp-apps.md
+│   │   │       │   │   │   ├── packages.md
+│   │   │       │   │   │   ├── prompt-primitive.md
+│   │   │       │   │   │   ├── resource-primitive.md
+│   │   │       │   │   │   ├── roots.md
+│   │   │       │   │   │   ├── sampling.md
+│   │   │       │   │   │   ├── server-features.md
+│   │   │       │   │   │   ├── testing.md
+│   │   │       │   │   │   ├── tool-primitive.md
+│   │   │       │   │   │   ├── transport-http.md
+│   │   │       │   │   │   └── transport-stdio.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dotnet-timezone/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── code-patterns.md
+│   │   │       │   │   │   └── timezone-index.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── dotnet-upgrade/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── doublecheck/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── verification-report-template.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── draw-io-diagram-generator/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── templates/
+│   │   │       │   │   │       ├── architecture.drawio
+│   │   │       │   │   │       ├── er-diagram.drawio
+│   │   │       │   │   │       ├── flowchart.drawio
+│   │   │       │   │   │       ├── sequence.drawio
+│   │   │       │   │   │       └── uml-class.drawio
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── drawio-xml-schema.md
+│   │   │       │   │   │   ├── shape-libraries.md
+│   │   │       │   │   │   └── style-reference.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── .gitignore
+│   │   │       │   │   │   ├── add-shape.py
+│   │   │       │   │   │   ├── README.md
+│   │   │       │   │   │   └── validate-drawio.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── drawio/
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── drawio-to-png.mjs
+│   │   │       │   │   │   └── package.json
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── editorconfig/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── ef-core/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── efcore-d2-db-diagram/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── d2-erd-style.md
+│   │   │       │   │   │   ├── efcore-model-extraction.md
+│   │   │       │   │   │   ├── grouping-modes.md
+│   │   │       │   │   │   ├── quality-gate.md
+│   │   │       │   │   │   └── relationship-rules.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── em-dash/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── email-drafter/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── entra-agent-user/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── eval-driven-dev/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── runnable-examples/
+│   │   │       │   │   │   │   ├── cli-app.md
+│   │   │       │   │   │   │   ├── fastapi-web-server.md
+│   │   │       │   │   │   │   └── standalone-function.md
+│   │   │       │   │   │   ├── 1-a-project-analysis.md
+│   │   │       │   │   │   ├── 1-b-entry-point.md
+│   │   │       │   │   │   ├── 1-c-eval-criteria.md
+│   │   │       │   │   │   ├── 2a-instrumentation.md
+│   │   │       │   │   │   ├── 2b-implement-runnable.md
+│   │   │       │   │   │   ├── 2c-capture-and-verify-trace.md
+│   │   │       │   │   │   ├── 3-define-evaluators.md
+│   │   │       │   │   │   ├── 4-build-dataset.md
+│   │   │       │   │   │   ├── 5-run-tests.md
+│   │   │       │   │   │   ├── 6-analyze-outcomes.md
+│   │   │       │   │   │   ├── evaluators.md
+│   │   │       │   │   │   ├── testing-api.md
+│   │   │       │   │   │   └── wrap-api.md
+│   │   │       │   │   ├── resources/
+│   │   │       │   │   │   ├── setup.sh
+│   │   │       │   │   │   └── verify_step6_completion.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── exam-ready/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── excalidraw-diagram-generator/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── element-types.md
+│   │   │       │   │   │   └── excalidraw-schema.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── .gitignore
+│   │   │       │   │   │   ├── add-arrow.py
+│   │   │       │   │   │   ├── add-icon-to-diagram.py
+│   │   │       │   │   │   ├── README.md
+│   │   │       │   │   │   └── split-excalidraw-library.py
+│   │   │       │   │   ├── templates/
+│   │   │       │   │   │   ├── business-flow-swimlane-template.excalidraw
+│   │   │       │   │   │   ├── class-diagram-template.excalidraw
+│   │   │       │   │   │   ├── data-flow-diagram-template.excalidraw
+│   │   │       │   │   │   ├── er-diagram-template.excalidraw
+│   │   │       │   │   │   ├── flowchart-template.excalidraw
+│   │   │       │   │   │   ├── mindmap-template.excalidraw
+│   │   │       │   │   │   ├── relationship-template.excalidraw
+│   │   │       │   │   │   └── sequence-diagram-template.excalidraw
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── eyeball/
+│   │   │       │   │   ├── tools/
+│   │   │       │   │   │   └── eyeball.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── fabric-lakehouse/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── getdata.md
+│   │   │       │   │   │   └── pyspark.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── fedora-linux-triage/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── finalize-agent-prompt/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── finnish-humanizer/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── patterns.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── first-ask/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── flowstudio-power-automate-build/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── action-patterns-connectors.md
+│   │   │       │   │   │   ├── action-patterns-core.md
+│   │   │       │   │   │   ├── action-patterns-data.md
+│   │   │       │   │   │   ├── build-patterns.md
+│   │   │       │   │   │   ├── flow-schema.md
+│   │   │       │   │   │   └── trigger-types.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── flowstudio-power-automate-debug/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── common-errors.md
+│   │   │       │   │   │   └── debug-workflow.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── flowstudio-power-automate-governance/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── flowstudio-power-automate-mcp/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── action-types.md
+│   │   │       │   │   │   ├── connection-references.md
+│   │   │       │   │   │   ├── MCP-BOOTSTRAP.md
+│   │   │       │   │   │   └── tool-reference.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── flowstudio-power-automate-monitoring/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── fluentui-blazor/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── DATAGRID.md
+│   │   │       │   │   │   ├── LAYOUT-AND-NAVIGATION.md
+│   │   │       │   │   │   ├── SETUP.md
+│   │   │       │   │   │   └── THEMING.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── folder-structure-blueprint-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── foundry-agent-sync/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── freecad-scripts/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── geometry-and-shapes.md
+│   │   │       │   │   │   ├── gui-and-interface.md
+│   │   │       │   │   │   ├── parametric-objects.md
+│   │   │       │   │   │   ├── scripting-fundamentals.md
+│   │   │       │   │   │   └── workbenches-and-advanced.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── from-the-other-side-anitta/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── from-the-other-side-quinn/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── from-the-other-side-vega/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── from-the-other-side-wiggins/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── game-engine/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   ├── 2d-maze-game.md
+│   │   │       │   │   │   ├── 2d-platform-game.md
+│   │   │       │   │   │   ├── gameBase-template-repo.md
+│   │   │       │   │   │   ├── paddle-game-template.md
+│   │   │       │   │   │   └── simple-2d-engine.md
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── 3d-web-games.md
+│   │   │       │   │   │   ├── algorithms.md
+│   │   │       │   │   │   ├── basics.md
+│   │   │       │   │   │   ├── game-control-mechanisms.md
+│   │   │       │   │   │   ├── game-engine-core-principles.md
+│   │   │       │   │   │   ├── game-publishing.md
+│   │   │       │   │   │   ├── techniques.md
+│   │   │       │   │   │   ├── terminology.md
+│   │   │       │   │   │   └── web-apis.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gdpr-compliant/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── data-rights.md
+│   │   │       │   │   │   └── Security.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gen-specs-as-issues/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── generate-custom-instructions-from-codebase/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── generate-image/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── geofeed-tuner/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   ├── example/
+│   │   │       │   │   │   │   └── 01-user-input-rfc8805-feed.csv
+│   │   │       │   │   │   ├── iso3166-1.json
+│   │   │       │   │   │   ├── iso3166-2.json
+│   │   │       │   │   │   └── small-territories.json
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── rfc8805.txt
+│   │   │       │   │   │   └── snippets-python3.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   └── templates/
+│   │   │       │   │   │       └── index.html
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── git-commit/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── git-flow-branch-creator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── github-actions-efficiency/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── actions.md
+│   │   │       │   │   │   ├── patterns.md
+│   │   │       │   │   │   ├── reporting.md
+│   │   │       │   │   │   └── review-rubric.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── github-actions-hardening/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── injection.md
+│   │   │       │   │   │   ├── permissions-and-tokens.md
+│   │   │       │   │   │   ├── report-format.md
+│   │   │       │   │   │   ├── supply-chain.md
+│   │   │       │   │   │   └── triggers-and-privilege.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── github-actions-runtime-upgrade-conventions/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── github-codespaces-efficiency/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── codespaces.md
+│   │   │       │   │   │   └── review-rubric.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── github-copilot-starter/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── github-issues/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── dependencies.md
+│   │   │       │   │   │   ├── images.md
+│   │   │       │   │   │   ├── issue-fields.md
+│   │   │       │   │   │   ├── issue-types.md
+│   │   │       │   │   │   ├── projects.md
+│   │   │       │   │   │   ├── search.md
+│   │   │       │   │   │   ├── sub-issues.md
+│   │   │       │   │   │   └── templates.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── github-release/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── commit-classification.md
+│   │   │       │   │   │   └── semver-rules.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── go-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gsap-framer-scroll-animation/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── framer.md
+│   │   │       │   │   │   └── gsap.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-0-to-1-launch/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-ai-gtm/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-board-and-investor-communication/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-developer-ecosystem/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-enterprise-account-planning/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-enterprise-onboarding/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-operating-cadence/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-partnership-architecture/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-positioning-strategy/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-product-led-growth/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── gtm-technical-product-pricing/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── harness-engineering/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── image-annotations/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── image-manipulation-image-magick/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── impediment-prioritization/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── scoring-rubric.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── import-infrastructure-as-code/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── incident-postmortem/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── integrate-context-matic/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── issue-fields-migration/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── issue-fields-api.md
+│   │   │       │   │   │   ├── labels-api.md
+│   │   │       │   │   │   └── projects-api.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── java-add-graalvm-native-image-support/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── java-docs/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── java-junit/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── java-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── java-refactoring-extract-method/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── java-refactoring-remove-parameter/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── java-springboot/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── javascript-typescript-jest/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── javax-to-jakarta-migration/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── kotlin-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── kotlin-springboot/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── legacy-circuit-mockups/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── 28256-eeprom.md
+│   │   │       │   │   │   ├── 555.md
+│   │   │       │   │   │   ├── 6502.md
+│   │   │       │   │   │   ├── 6522.md
+│   │   │       │   │   │   ├── 6C62256.md
+│   │   │       │   │   │   ├── 7400-series.md
+│   │   │       │   │   │   ├── assembly-compiler.md
+│   │   │       │   │   │   ├── assembly-language.md
+│   │   │       │   │   │   ├── basic-electronic-components.md
+│   │   │       │   │   │   ├── breadboard.md
+│   │   │       │   │   │   ├── common-breadboard-components.md
+│   │   │       │   │   │   ├── connecting-electronic-components.md
+│   │   │       │   │   │   ├── emulator-28256-eeprom.md
+│   │   │       │   │   │   ├── emulator-6502.md
+│   │   │       │   │   │   ├── emulator-6522.md
+│   │   │       │   │   │   ├── emulator-6C62256.md
+│   │   │       │   │   │   ├── emulator-lcd.md
+│   │   │       │   │   │   ├── lcd.md
+│   │   │       │   │   │   ├── minipro.md
+│   │   │       │   │   │   └── t48eeprom-programmer.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── linkedin-post-formatter/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── unicode-charmap.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── lsp-setup/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── lsp-servers.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── make-repo-contribution/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   ├── issue-template.md
+│   │   │       │   │   │   └── pr-template.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── markdown-to-html/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── basic-markdown-to-html.md
+│   │   │       │   │   │   ├── basic-markdown.md
+│   │   │       │   │   │   ├── code-blocks-to-html.md
+│   │   │       │   │   │   ├── code-blocks.md
+│   │   │       │   │   │   ├── collapsed-sections-to-html.md
+│   │   │       │   │   │   ├── collapsed-sections.md
+│   │   │       │   │   │   ├── gomarkdown.md
+│   │   │       │   │   │   ├── hugo.md
+│   │   │       │   │   │   ├── jekyll.md
+│   │   │       │   │   │   ├── marked.md
+│   │   │       │   │   │   ├── pandoc.md
+│   │   │       │   │   │   ├── tables-to-html.md
+│   │   │       │   │   │   ├── tables.md
+│   │   │       │   │   │   ├── writing-mathematical-expressions-to-html.md
+│   │   │       │   │   │   └── writing-mathematical-expressions.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mcp-cli/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mcp-copilot-studio-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mcp-create-adaptive-cards/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mcp-create-declarative-agent/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mcp-deploy-manage-agents/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mcp-security-audit/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── md-to-docx/
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── md-to-docx.mjs
+│   │   │       │   │   │   └── package.json
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── meeting-minutes/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── memory-merger/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mentoring-juniors/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── microsoft-agent-framework/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── dotnet.md
+│   │   │       │   │   │   └── python.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── microsoft-code-reference/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── microsoft-docs/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── microsoft-skill-creator/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── skill-templates.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── migrating-oracle-to-postgres-stored-procedures/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── minecraft-plugin-development/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── bootstrap-registration.md
+│   │   │       │   │   │   ├── build-test-and-runtime-validation.md
+│   │   │       │   │   │   ├── config-data-and-async.md
+│   │   │       │   │   │   ├── maps-heroes-and-feature-modules.md
+│   │   │       │   │   │   ├── minigame-instance-flow.md
+│   │   │       │   │   │   ├── persistent-progression-and-events.md
+│   │   │       │   │   │   ├── project-patterns.md
+│   │   │       │   │   │   └── state-sessions-and-phases.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mini-context-graph/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── ingestion.md
+│   │   │       │   │   │   ├── lint.md
+│   │   │       │   │   │   ├── ontology.md
+│   │   │       │   │   │   └── retrieval.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── tools/
+│   │   │       │   │   │   │   ├── __init__.py
+│   │   │       │   │   │   │   ├── documents_store.py
+│   │   │       │   │   │   │   ├── graph_store.py
+│   │   │       │   │   │   │   ├── index_store.py
+│   │   │       │   │   │   │   ├── ontology_store.py
+│   │   │       │   │   │   │   ├── retrieval_engine.py
+│   │   │       │   │   │   │   └── wiki_store.py
+│   │   │       │   │   │   ├── config.py
+│   │   │       │   │   │   ├── contextgraph.py
+│   │   │       │   │   │   └── template_agent_workflow.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mkdocs-translations/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── msgraph-sdk/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── dotnet.md
+│   │   │       │   │   │   ├── python.md
+│   │   │       │   │   │   └── typescript.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── msstore-cli/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── multi-stage-dockerfile/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mvvm-toolkit/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── end-to-end-walkthrough.md
+│   │   │       │   │   │   ├── relaycommand-cookbook.md
+│   │   │       │   │   │   ├── source-generators.md
+│   │   │       │   │   │   ├── troubleshooting.md
+│   │   │       │   │   │   └── validation.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mvvm-toolkit-di/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── dependency-injection.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── mvvm-toolkit-messenger/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── messenger-patterns.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── namecheap/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── namecheap-api.md
+│   │   │       │   │   ├── namecheap.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── nano-banana-pro-openrouter/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── SYSTEM_TEMPLATE
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   └── generate_image.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── napkin/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   ├── napkin.html
+│   │   │       │   │   │   ├── step1-activate.svg
+│   │   │       │   │   │   ├── step2-whiteboard.svg
+│   │   │       │   │   │   ├── step3-draw.svg
+│   │   │       │   │   │   ├── step4-share.svg
+│   │   │       │   │   │   └── step5-response.svg
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── next-intl-add-language/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── noob-mode/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── examples.md
+│   │   │       │   │   │   └── glossary.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── nuget-manager/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── onboard-context-matic/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── oo-component-documentation/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── documentation-template.md
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── create-mode.md
+│   │   │       │   │   │   └── update-mode.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── openapi-to-application-code/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── optimize-simplicite-logs/
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── simplicite-log2json.py
+│   │   │       │   │   │   └── SimpliciteLog2Json.ps1
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── pdftk-server/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── download.md
+│   │   │       │   │   │   ├── pdftk-cli-examples.md
+│   │   │       │   │   │   ├── pdftk-man-page.md
+│   │   │       │   │   │   ├── pdftk-server-license.md
+│   │   │       │   │   │   └── third-party-materials.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── penpot-uiux-design/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── accessibility.md
+│   │   │       │   │   │   ├── component-patterns.md
+│   │   │       │   │   │   ├── platform-guidelines.md
+│   │   │       │   │   │   └── setup-troubleshooting.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── performance-review-writer/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── pester-migration/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── v3-to-v4.md
+│   │   │       │   │   │   ├── v4-to-v5.md
+│   │   │       │   │   │   └── v5-to-v6.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── pester-should-migration/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── assertion-map.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── phoenix-cli/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── axial-coding.md
+│   │   │       │   │   │   └── open-coding.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── phoenix-evals/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── axial-coding.md
+│   │   │       │   │   │   ├── common-mistakes-python.md
+│   │   │       │   │   │   ├── error-analysis-multi-turn.md
+│   │   │       │   │   │   ├── error-analysis.md
+│   │   │       │   │   │   ├── evaluate-dataframe-python.md
+│   │   │       │   │   │   ├── evaluators-code-python.md
+│   │   │       │   │   │   ├── evaluators-code-typescript.md
+│   │   │       │   │   │   ├── evaluators-custom-templates.md
+│   │   │       │   │   │   ├── evaluators-llm-python.md
+│   │   │       │   │   │   ├── evaluators-llm-typescript.md
+│   │   │       │   │   │   ├── evaluators-overview.md
+│   │   │       │   │   │   ├── evaluators-pre-built.md
+│   │   │       │   │   │   ├── evaluators-rag.md
+│   │   │       │   │   │   ├── experiments-datasets-python.md
+│   │   │       │   │   │   ├── experiments-datasets-typescript.md
+│   │   │       │   │   │   ├── experiments-overview.md
+│   │   │       │   │   │   ├── experiments-running-python.md
+│   │   │       │   │   │   ├── experiments-running-typescript.md
+│   │   │       │   │   │   ├── experiments-synthetic-python.md
+│   │   │       │   │   │   ├── experiments-synthetic-typescript.md
+│   │   │       │   │   │   ├── fundamentals-anti-patterns.md
+│   │   │       │   │   │   ├── fundamentals-model-selection.md
+│   │   │       │   │   │   ├── fundamentals.md
+│   │   │       │   │   │   ├── observe-sampling-python.md
+│   │   │       │   │   │   ├── observe-sampling-typescript.md
+│   │   │       │   │   │   ├── observe-tracing-setup.md
+│   │   │       │   │   │   ├── production-continuous.md
+│   │   │       │   │   │   ├── production-guardrails.md
+│   │   │       │   │   │   ├── production-overview.md
+│   │   │       │   │   │   ├── setup-python.md
+│   │   │       │   │   │   ├── setup-typescript.md
+│   │   │       │   │   │   ├── validation-evaluators-python.md
+│   │   │       │   │   │   ├── validation-evaluators-typescript.md
+│   │   │       │   │   │   └── validation.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── phoenix-tracing/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── annotations-overview.md
+│   │   │       │   │   │   ├── annotations-python.md
+│   │   │       │   │   │   ├── annotations-typescript.md
+│   │   │       │   │   │   ├── fundamentals-flattening.md
+│   │   │       │   │   │   ├── fundamentals-overview.md
+│   │   │       │   │   │   ├── fundamentals-required-attributes.md
+│   │   │       │   │   │   ├── fundamentals-universal-attributes.md
+│   │   │       │   │   │   ├── instrumentation-auto-python.md
+│   │   │       │   │   │   ├── instrumentation-auto-typescript.md
+│   │   │       │   │   │   ├── instrumentation-manual-python.md
+│   │   │       │   │   │   ├── instrumentation-manual-typescript.md
+│   │   │       │   │   │   ├── metadata-python.md
+│   │   │       │   │   │   ├── metadata-typescript.md
+│   │   │       │   │   │   ├── production-python.md
+│   │   │       │   │   │   ├── production-typescript.md
+│   │   │       │   │   │   ├── projects-python.md
+│   │   │       │   │   │   ├── projects-typescript.md
+│   │   │       │   │   │   ├── sessions-python.md
+│   │   │       │   │   │   ├── sessions-typescript.md
+│   │   │       │   │   │   ├── setup-python.md
+│   │   │       │   │   │   ├── setup-typescript.md
+│   │   │       │   │   │   ├── span-agent.md
+│   │   │       │   │   │   ├── span-chain.md
+│   │   │       │   │   │   ├── span-embedding.md
+│   │   │       │   │   │   ├── span-evaluator.md
+│   │   │       │   │   │   ├── span-guardrail.md
+│   │   │       │   │   │   ├── span-llm.md
+│   │   │       │   │   │   ├── span-reranker.md
+│   │   │       │   │   │   ├── span-retriever.md
+│   │   │       │   │   │   └── span-tool.md
+│   │   │       │   │   ├── README.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── php-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── pinecone-rag/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── planning-oracle-to-postgres-migration-integration-testing/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── plantuml-ascii/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── playwright-automation-fill-in-form/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── playwright-explore-website/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── playwright-generate-test/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── postgresql-code-review/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── postgresql-optimization/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── power-apps-code-app-scaffold/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── power-bi-dax-optimization/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── power-bi-model-design-review/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── power-bi-performance-troubleshooting/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── power-bi-report-design-consultation/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── power-platform-architect/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── power-platform-mcp-connector-suite/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── powerbi-modeling/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── MEASURES-DAX.md
+│   │   │       │   │   │   ├── PERFORMANCE.md
+│   │   │       │   │   │   ├── RELATIONSHIPS.md
+│   │   │       │   │   │   ├── RLS.md
+│   │   │       │   │   │   └── STAR-SCHEMA.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── pr-dashboard/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── dashboard.html
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── lib/
+│   │   │       │   │   │   │   └── utils.mjs
+│   │   │       │   │   │   └── pr-dashboard-cli.mjs
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── pr-screenshots/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── prd/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── premium-frontend-ui/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── project-workflow-analysis-blueprint-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── prompt-optimizer/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── publish-to-pages/
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── convert-pdf.py
+│   │   │       │   │   │   ├── convert-pptx.py
+│   │   │       │   │   │   └── publish.sh
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── pytest-coverage/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── python-azure-iot-edge-modules/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── python-edge-module-template.md
+│   │   │       │   │   │   └── python-official-best-practices.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── python-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── python-pypi-package-builder/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── architecture-patterns.md
+│   │   │       │   │   │   ├── ci-publishing.md
+│   │   │       │   │   │   ├── community-docs.md
+│   │   │       │   │   │   ├── library-patterns.md
+│   │   │       │   │   │   ├── pyproject-toml.md
+│   │   │       │   │   │   ├── release-governance.md
+│   │   │       │   │   │   ├── testing-quality.md
+│   │   │       │   │   │   ├── tooling-ruff.md
+│   │   │       │   │   │   └── versioning-strategy.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   └── scaffold.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── qdrant-clients-sdk/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── qdrant-deployment-options/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── qdrant-model-migration/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── qdrant-monitoring/
+│   │   │       │   │   ├── debugging/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   ├── setup/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── qdrant-performance-optimization/
+│   │   │       │   │   ├── indexing-performance-optimization/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   ├── memory-usage-optimization/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   ├── search-speed-optimization/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── qdrant-scaling/
+│   │   │       │   │   ├── minimize-latency/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   ├── scaling-data-volume/
+│   │   │       │   │   │   ├── horizontal-scaling/
+│   │   │       │   │   │   │   └── SKILL.md
+│   │   │       │   │   │   ├── sliding-time-window/
+│   │   │       │   │   │   │   └── SKILL.md
+│   │   │       │   │   │   ├── tenant-scaling/
+│   │   │       │   │   │   │   └── SKILL.md
+│   │   │       │   │   │   ├── vertical-scaling/
+│   │   │       │   │   │   │   └── SKILL.md
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   ├── scaling-qps/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   ├── scaling-query-volume/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── qdrant-search-quality/
+│   │   │       │   │   ├── diagnosis/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   ├── search-strategies/
+│   │   │       │   │   │   └── SKILL.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── qdrant-version-upgrade/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── quality-playbook/
+│   │   │       │   │   ├── agents/
+│   │   │       │   │   │   ├── calibration_orchestrator.md
+│   │   │       │   │   │   ├── quality-playbook-claude.agent.md
+│   │   │       │   │   │   └── quality-playbook.agent.md
+│   │   │       │   │   ├── phase_prompts/
+│   │   │       │   │   │   ├── iteration.md
+│   │   │       │   │   │   ├── phase1.md
+│   │   │       │   │   │   ├── phase2.md
+│   │   │       │   │   │   ├── phase3.md
+│   │   │       │   │   │   ├── phase4.md
+│   │   │       │   │   │   ├── phase5.md
+│   │   │       │   │   │   ├── phase6.md
+│   │   │       │   │   │   ├── README.md
+│   │   │       │   │   │   └── single_pass.md
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── challenge_gate.md
+│   │   │       │   │   │   ├── code-only-mode.md
+│   │   │       │   │   │   ├── constitution.md
+│   │   │       │   │   │   ├── defensive_patterns.md
+│   │   │       │   │   │   ├── exploration_patterns.md
+│   │   │       │   │   │   ├── functional_tests.md
+│   │   │       │   │   │   ├── iteration.md
+│   │   │       │   │   │   ├── orchestrator_protocol.md
+│   │   │       │   │   │   ├── requirements_pipeline.md
+│   │   │       │   │   │   ├── requirements_refinement.md
+│   │   │       │   │   │   ├── requirements_review.md
+│   │   │       │   │   │   ├── review_protocols.md
+│   │   │       │   │   │   ├── run_state_schema.md
+│   │   │       │   │   │   ├── schema_mapping.md
+│   │   │       │   │   │   ├── spec_audit.md
+│   │   │       │   │   │   └── verification.md
+│   │   │       │   │   ├── LICENSE.txt
+│   │   │       │   │   ├── quality_gate.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── quasi-coder/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react-audit-grep-patterns/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── dep-scans.md
+│   │   │       │   │   │   ├── react18-scans.md
+│   │   │       │   │   │   ├── react19-scans.md
+│   │   │       │   │   │   └── test-scans.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react-container-presentation-component/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── component-architecture.md
+│   │   │       │   │   │   └── typescript-and-scss-rules.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react18-batching-patterns/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── batching-categories.md
+│   │   │       │   │   │   └── flushSync-guide.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react18-dep-compatibility/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── apollo-details.md
+│   │   │       │   │   │   └── router-migration.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react18-enzyme-to-rtl/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── async-patterns.md
+│   │   │       │   │   │   └── enzyme-api-map.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react18-legacy-context/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── context-file-template.md
+│   │   │       │   │   │   ├── multi-context.md
+│   │   │       │   │   │   └── single-context.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react18-lifecycle-patterns/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── componentWillMount.md
+│   │   │       │   │   │   ├── componentWillReceiveProps.md
+│   │   │       │   │   │   └── componentWillUpdate.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react18-string-refs/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── patterns.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react19-concurrent-patterns/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── react19-actions.md
+│   │   │       │   │   │   ├── react19-suspense.md
+│   │   │       │   │   │   └── react19-use.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react19-source-patterns/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── api-migrations.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── react19-test-patterns/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── readme-blueprint-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── refactor/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── refactor-method-complexity-reduce/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── refactor-plan/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── remember/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── remember-interactive-programming/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── repo-story-time/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── resemble-detect/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── api-reference.md
+│   │   │       │   │   ├── LICENSE
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── review-and-refactor/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── reviewing-oracle-to-postgres-migration/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── empty-strings-handling.md
+│   │   │       │   │   │   ├── no-data-found-exceptions.md
+│   │   │       │   │   │   ├── oracle-parentheses-from-clause.md
+│   │   │       │   │   │   ├── oracle-to-postgres-sorting.md
+│   │   │       │   │   │   ├── oracle-to-postgres-timestamp-timezone.md
+│   │   │       │   │   │   ├── oracle-to-postgres-to-char-numeric.md
+│   │   │       │   │   │   ├── oracle-to-postgres-type-coercion.md
+│   │   │       │   │   │   ├── postgres-concurrent-transactions.md
+│   │   │       │   │   │   ├── postgres-refcursor-handling.md
+│   │   │       │   │   │   └── REFERENCE.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── rhino3d-scripts/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── macros-and-loading.md
+│   │   │       │   │   │   ├── rhinocommon-map.md
+│   │   │       │   │   │   ├── rhinoscriptsyntax-cheatsheet.md
+│   │   │       │   │   │   └── vbscript-quirks.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── roundup/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── roundup-setup/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── config-template.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── ruby-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── ruff-recursive-fix/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── rust-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── salesforce-apex-quality/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── salesforce-component-standards/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── salesforce-flow-design/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── sandbox-npm-install/
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   └── install.sh
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── scaffolding-oracle-to-postgres-migration-test-project/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── scoutqa-test/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── screen-recording/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── secret-scanning/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── alerts-and-remediation.md
+│   │   │       │   │   │   ├── custom-patterns.md
+│   │   │       │   │   │   └── push-protection.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── security-review/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── language-patterns.md
+│   │   │       │   │   │   ├── report-format.md
+│   │   │       │   │   │   ├── secret-patterns.md
+│   │   │       │   │   │   ├── vuln-categories.md
+│   │   │       │   │   │   └── vulnerable-packages.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── semantic-kernel/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── dotnet.md
+│   │   │       │   │   │   └── python.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── setup-my-iq/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── templates/
+│   │   │       │   │   │       ├── AGENTS.md
+│   │   │       │   │   │       ├── communication-style.md
+│   │   │       │   │   │       ├── identity.md
+│   │   │       │   │   │       ├── preferences-and-constraints.md
+│   │   │       │   │   │       ├── role-and-responsibilities.md
+│   │   │       │   │   │       ├── team.md
+│   │   │       │   │   │       └── tools-systems-and-config.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── shuffle-json-data/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── slang-shader-engineer/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── language-reference.md
+│   │   │       │   │   │   ├── rules-and-patterns.md
+│   │   │       │   │   │   └── slang-documentation-full.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── snowflake-semanticview/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── sponsor-finder/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── spring-boot-testing/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── assertj-basics.md
+│   │   │       │   │   │   ├── assertj-collections.md
+│   │   │       │   │   │   ├── context-caching.md
+│   │   │       │   │   │   ├── datajpatest.md
+│   │   │       │   │   │   ├── instancio.md
+│   │   │       │   │   │   ├── mockitobean.md
+│   │   │       │   │   │   ├── mockmvc-classic.md
+│   │   │       │   │   │   ├── mockmvc-tester.md
+│   │   │       │   │   │   ├── restclienttest.md
+│   │   │       │   │   │   ├── resttestclient.md
+│   │   │       │   │   │   ├── sb4-migration.md
+│   │   │       │   │   │   ├── test-slices-overview.md
+│   │   │       │   │   │   ├── testcontainers-jdbc.md
+│   │   │       │   │   │   └── webmvctest.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── sql-code-review/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── sql-optimization/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── sql-server-table-reconciliation/
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   └── reconcile.py
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── ssma-console/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── structured-autonomy-generate/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── structured-autonomy-implement/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── structured-autonomy-plan/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── suggest-awesome-github-copilot-agents/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── suggest-awesome-github-copilot-instructions/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── suggest-awesome-github-copilot-skills/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── swift-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── technical-job-search/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── technology-stack-blueprint-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── terraform-azurerm-set-diff-analyzer/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── azurerm_set_attributes.json
+│   │   │       │   │   │   └── azurerm_set_attributes.md
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── .gitignore
+│   │   │       │   │   │   ├── analyze_plan.py
+│   │   │       │   │   │   └── README.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── threat-model-analyst/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── skeletons/
+│   │   │       │   │   │   │   ├── skeleton-architecture.md
+│   │   │       │   │   │   │   ├── skeleton-assessment.md
+│   │   │       │   │   │   │   ├── skeleton-dfd.md
+│   │   │       │   │   │   │   ├── skeleton-findings.md
+│   │   │       │   │   │   │   ├── skeleton-incremental-html.md
+│   │   │       │   │   │   │   ├── skeleton-inventory.md
+│   │   │       │   │   │   │   ├── skeleton-stride-analysis.md
+│   │   │       │   │   │   │   ├── skeleton-summary-dfd.md
+│   │   │       │   │   │   │   └── skeleton-threatmodel.md
+│   │   │       │   │   │   ├── analysis-principles.md
+│   │   │       │   │   │   ├── diagram-conventions.md
+│   │   │       │   │   │   ├── incremental-orchestrator.md
+│   │   │       │   │   │   ├── orchestrator.md
+│   │   │       │   │   │   ├── output-formats.md
+│   │   │       │   │   │   ├── tmt-element-taxonomy.md
+│   │   │       │   │   │   └── verification-checklist.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── tiny-stepping/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── tldr-prompt/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── transloadit-media-processing/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── typescript-mcp-server-generator/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── typespec-api-operations/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── typespec-create-agent/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── typespec-create-api-plugin/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── ui-screenshots/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── unit-test-vue-pinia/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   └── pinia-patterns.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── update-avm-modules-in-bicep/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── update-implementation-plan/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── update-llms/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── update-markdown-file-index/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── update-specification/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── vardoger-analyze/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── vscode-ext-commands/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── vscode-ext-localization/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── web-design-reviewer/
+│   │   │       │   │   ├── references/
+│   │   │       │   │   │   ├── framework-fixes.md
+│   │   │       │   │   │   └── visual-checklist.md
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── webapp-testing/
+│   │   │       │   │   ├── assets/
+│   │   │       │   │   │   └── test-helper.js
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── what-context-needed/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── winmd-api-search/
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── cache-generator/
+│   │   │       │   │   │   │   ├── CacheGenerator.csproj
+│   │   │       │   │   │   │   ├── Directory.Build.props
+│   │   │       │   │   │   │   ├── Directory.Build.targets
+│   │   │       │   │   │   │   ├── Directory.Packages.props
+│   │   │       │   │   │   │   └── Program.cs
+│   │   │       │   │   │   ├── Invoke-WinMdQuery.ps1
+│   │   │       │   │   │   └── Update-WinMdCache.ps1
+│   │   │       │   │   ├── LICENSE.txt
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── winui3-migration-guide/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── workiq-copilot/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   ├── write-coding-standards-from-file/
+│   │   │       │   │   └── SKILL.md
+│   │   │       │   └── x-twitter-scraper/
+│   │   │       │       └── SKILL.md
+│   │   │       ├── website/
+│   │   │       │   ├── data/
+│   │   │       │   │   └── tools.yml
+│   │   │       │   ├── public/
+│   │   │       │   │   ├── fonts/
+│   │   │       │   │   │   └── MonaspaceArgonNF-Regular.woff2
+│   │   │       │   │   ├── images/
+│   │   │       │   │   │   ├── learning-hub/
+│   │   │       │   │   │   │   └── copilot-cli-for-beginners/
+│   │   │       │   │   │   │       ├── 00/
+│   │   │       │   │   │   │       │   └── …
+│   │   │       │   │   │   │       ├── 01/
+│   │   │       │   │   │   │       │   └── …
+│   │   │       │   │   │   │       ├── 02/
+│   │   │       │   │   │   │       │   └── …
+│   │   │       │   │   │   │       ├── 03/
+│   │   │       │   │   │   │       │   └── …
+│   │   │       │   │   │   │       ├── 04/
+│   │   │       │   │   │   │       │   └── …
+│   │   │       │   │   │   │       ├── 05/
+│   │   │       │   │   │   │       │   └── …
+│   │   │       │   │   │   │       ├── 06/
+│   │   │       │   │   │   │       │   └── …
+│   │   │       │   │   │   │       ├── 07/
+│   │   │       │   │   │   │       │   └── …
+│   │   │       │   │   │   │       └── overview/
+│   │   │       │   │   │   │           └── …
+│   │   │       │   │   │   ├── awesome-copilot.png
+│   │   │       │   │   │   ├── Copilot_Icon_Black.svg
+│   │   │       │   │   │   ├── Copilot_Icon_White.svg
+│   │   │       │   │   │   ├── favicon.svg
+│   │   │       │   │   │   └── social-image.png
+│   │   │       │   │   └── _CNAME
+│   │   │       │   ├── scripts/
+│   │   │       │   │   └── a11y-audit.mjs
+│   │   │       │   ├── src/
+│   │   │       │   │   ├── components/
+│   │   │       │   │   │   ├── BackToTop.astro
+│   │   │       │   │   │   ├── ContributeCTA.astro
+│   │   │       │   │   │   ├── EmbeddedPageData.astro
+│   │   │       │   │   │   ├── Footer.astro
+│   │   │       │   │   │   ├── Head.astro
+│   │   │       │   │   │   ├── Icon.astro
+│   │   │       │   │   │   ├── Modal.astro
+│   │   │       │   │   │   ├── PageHeader.astro
+│   │   │       │   │   │   ├── Search.astro
+│   │   │       │   │   │   └── ThemeToggle.astro
+│   │   │       │   │   ├── content/
+│   │   │       │   │   │   └── docs/
+│   │   │       │   │   │       └── learning-hub/
+│   │   │       │   │   │           ├── cli-for-beginners/
+│   │   │       │   │   │           │   └── …
+│   │   │       │   │   │           ├── agentic-workflows.md
+│   │   │       │   │   │           ├── agents-and-subagents.md
+│   │   │       │   │   │           ├── automating-with-hooks.md
+│   │   │       │   │   │           ├── before-after-customization-examples.md
+│   │   │       │   │   │           ├── building-custom-agents.md
+│   │   │       │   │   │           ├── copilot-configuration-basics.md
+│   │   │       │   │   │           ├── creating-effective-skills.md
+│   │   │       │   │   │           ├── defining-custom-instructions.md
+│   │   │       │   │   │           ├── github-copilot-app.md
+│   │   │       │   │   │           ├── github-copilot-terminology-glossary.md
+│   │   │       │   │   │           ├── index.md
+│   │   │       │   │   │           ├── installing-and-using-plugins.md
+│   │   │       │   │   │           ├── understanding-copilot-context.md
+│   │   │       │   │   │           ├── understanding-mcp-servers.md
+│   │   │       │   │   │           ├── using-automations-in-copilot-app.md
+│   │   │       │   │   │           ├── using-copilot-coding-agent.md
+│   │   │       │   │   │           ├── what-are-agents-skills-instructions.md
+│   │   │       │   │   │           └── working-with-canvas-extensions.md
+│   │   │       │   │   ├── integrations/
+│   │   │       │   │   │   └── pagefind-resources.ts
+│   │   │       │   │   ├── pages/
+│   │   │       │   │   │   ├── learning-hub/
+│   │   │       │   │   │   │   └── cookbook/
+│   │   │       │   │   │   │       └── index.astro
+│   │   │       │   │   │   ├── agents.astro
+│   │   │       │   │   │   ├── contributors.astro
+│   │   │       │   │   │   ├── extensions.astro
+│   │   │       │   │   │   ├── hooks.astro
+│   │   │       │   │   │   ├── index.astro
+│   │   │       │   │   │   ├── instructions.astro
+│   │   │       │   │   │   ├── llms.txt.ts
+│   │   │       │   │   │   ├── plugins.astro
+│   │   │       │   │   │   ├── skills.astro
+│   │   │       │   │   │   ├── tools.astro
+│   │   │       │   │   │   └── workflows.astro
+│   │   │       │   │   ├── scripts/
+│   │   │       │   │   │   ├── pages/
+│   │   │       │   │   │   │   ├── agents-render.ts
+│   │   │       │   │   │   │   ├── agents.ts
+│   │   │       │   │   │   │   ├── card-render.ts
+│   │   │       │   │   │   │   ├── extensions-render.ts
+│   │   │       │   │   │   │   ├── extensions.ts
+│   │   │       │   │   │   │   ├── hooks-render.ts
+│   │   │       │   │   │   │   ├── hooks.ts
+│   │   │       │   │   │   │   ├── index.ts
+│   │   │       │   │   │   │   ├── instructions-render.ts
+│   │   │       │   │   │   │   ├── instructions.ts
+│   │   │       │   │   │   │   ├── plugins-render.ts
+│   │   │       │   │   │   │   ├── plugins.ts
+│   │   │       │   │   │   │   ├── samples-render.ts
+│   │   │       │   │   │   │   ├── samples.ts
+│   │   │       │   │   │   │   ├── select-utils.ts
+│   │   │       │   │   │   │   ├── skills-render.ts
+│   │   │       │   │   │   │   ├── skills.ts
+│   │   │       │   │   │   │   ├── tools-render.ts
+│   │   │       │   │   │   │   ├── tools.ts
+│   │   │       │   │   │   │   ├── workflows-render.ts
+│   │   │       │   │   │   │   └── workflows.ts
+│   │   │       │   │   │   ├── choices.ts
+│   │   │       │   │   │   ├── embedded-data.ts
+│   │   │       │   │   │   ├── jszip.ts
+│   │   │       │   │   │   ├── listing-flyouts.ts
+│   │   │       │   │   │   ├── modal.ts
+│   │   │       │   │   │   ├── search.ts
+│   │   │       │   │   │   └── utils.ts
+│   │   │       │   │   ├── styles/
+│   │   │       │   │   │   ├── global.css
+│   │   │       │   │   │   └── starlight-overrides.css
+│   │   │       │   │   ├── content.config.ts
+│   │   │       │   │   └── env.d.ts
+│   │   │       │   ├── astro.config.mjs
+│   │   │       │   ├── package-lock.json
+│   │   │       │   ├── package.json
+│   │   │       │   ├── README.md
+│   │   │       │   └── tsconfig.json
+│   │   │       ├── workflows/
+│   │   │       │   ├── daily-issues-report.md
+│   │   │       │   ├── ospo-contributors-report.md
+│   │   │       │   ├── ospo-org-health.md
+│   │   │       │   ├── ospo-release-compliance-checker.md
+│   │   │       │   ├── ospo-stale-repos.md
+│   │   │       │   ├── relevance-check.md
+│   │   │       │   ├── relevance-summary.md
+│   │   │       │   └── weekly-comment-sync.md
+│   │   │       ├── .all-contributorsrc
+│   │   │       ├── .codespellrc
+│   │   │       ├── .editorconfig
+│   │   │       ├── .gitattributes
+│   │   │       ├── .gitignore
+│   │   │       ├── AGENTS.md
+│   │   │       ├── CODE_OF_CONDUCT.md
+│   │   │       ├── CODEOWNERS
+│   │   │       ├── context7.json
+│   │   │       ├── CONTRIBUTING.md
+│   │   │       ├── LICENSE
+│   │   │       ├── package-lock.json
+│   │   │       ├── package.json
+│   │   │       ├── README.md
+│   │   │       ├── SECURITY.md
+│   │   │       └── SUPPORT.md
 │   │   ├── arxiv-publisher.agent.md
+│   │   ├── cleanup-specialist.agent.md
+│   │   ├── flutter-architect.agent.md
+│   │   ├── flutter-engineer.agent.md
 │   │   └── specfile-creator.agent.md
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── architecture.yml
@@ -1531,6 +4576,9 @@ sanctuary/
 │   │       └── threejs-textures/
 │   │           └── SKILL.md
 │   ├── specs/
+│   │   ├── arxiv.spec.md
+│   │   ├── knowledge-extract.spec.md
+│   │   ├── reflector.spec.md
 │   │   ├── repository-evolution.spec.md
 │   │   └── specfile.spec.md
 │   ├── workflows/
@@ -1576,7 +4624,9 @@ sanctuary/
 │       ├── actions/
 │       │   ├── autofix.yml
 │       │   ├── benchmark.yml
+│       │   ├── build-paper.yml
 │       │   ├── bump-version.yml
+│       │   ├── commitlint.yml
 │       │   ├── devcontainer.yml
 │       │   ├── docs.yml
 │       │   ├── image-optim.yml
@@ -1585,8 +4635,11 @@ sanctuary/
 │       │   ├── metrics.yml
 │       │   ├── monitor-base-image.yml
 │       │   ├── nsfw-detection.yml
+│       │   ├── pages.yml
 │       │   ├── publish.yml
 │       │   ├── release-notes.yml
+│       │   ├── release-paper.yml
+│       │   ├── release-please.yml
 │       │   ├── release.yml
 │       │   ├── semantic-release.yml
 │       │   ├── test-examples.yml
@@ -1640,509 +4693,401 @@ sanctuary/
 │       │   ├── docker-compose.yml
 │       │   ├── Dockerfile
 │       │   └── Dockerfile1
-│       ├── egohygiene/
-│       │   ├── apps/
-│       │   │   ├── docs/
-│       │   │   │   └── tsconfig.app.json
-│       │   │   ├── egohygiene.io/
-│       │   │   │   └── tsconfig.app.json
-│       │   │   └── playground/
-│       │   │       ├── tsconfig.app.json
-│       │   │       └── tsconfig.storybook.json
-│       │   ├── packages/
-│       │   │   ├── cli/
-│       │   │   │   └── create-theme/
-│       │   │   │       └── tsconfig.cli.json
-│       │   │   ├── components/
-│       │   │   │   └── tsconfig.build.json
-│       │   │   ├── schemas/
-│       │   │   │   └── tsconfig.build.json
-│       │   │   └── themes/
-│       │   │       └── tsconfig.build.json
-│       │   ├── .gitignore
-│       │   ├── package.json
-│       │   ├── README.md
-│       │   ├── tsconfig.base.json
-│       │   ├── tsconfig.eslint.json
-│       │   ├── tsconfig.node.json
-│       │   ├── tsconfig.typecheck.json
-│       │   ├── tsconfig.vitest.json
-│       │   └── turbo.json
-│       ├── flutter-foundation/
-│       ├── homelab-private/
-│       │   ├── jupyter/
-│       │   │   ├── themes/
-│       │   │   │   └── @jupyterlab/
-│       │   │   │       ├── theme-dark-extension/
-│       │   │   │       │   ├── index.css
-│       │   │   │       │   └── index.js
-│       │   │   │       └── theme-light-extension/
-│       │   │   │           ├── index.css
-│       │   │   │           └── index.js
-│       │   │   ├── user-settings/
-│       │   │   │   ├── @hadim/
-│       │   │   │   │   └── jupyter-archive/
-│       │   │   │   │       └── archive.jupyterlab-settings
-│       │   │   │   ├── @jlab-enhanced/
-│       │   │   │   │   ├── favorites/
-│       │   │   │   │   │   └── favorites.jupyterlab-settings
-│       │   │   │   │   └── recents/
-│       │   │   │   │       └── plugin.jupyterlab-settings
-│       │   │   │   └── @jupyterlab/
-│       │   │   │       ├── apputils-extension/
-│       │   │   │       │   ├── notification.jupyterlab-settings
-│       │   │   │       │   └── themes.jupyterlab-settings
-│       │   │   │       ├── extensionmanager-extension/
-│       │   │   │       │   └── plugin.jupyterlab-settings
-│       │   │   │       ├── filebrowser-extension/
-│       │   │   │       │   └── browser.jupyterlab-settings
-│       │   │   │       ├── github/
-│       │   │   │       │   └── drive.jupyterlab-settings
-│       │   │   │       └── notebook-extension/
-│       │   │   │           └── tracker.jupyterlab-settings
-│       │   │   └── .gitignore
-│       │   └── resources/
-│       │       ├── gcloud/
-│       │       │   ├── commands/
-│       │       │   │   └── create_instance
-│       │       │   └── scripts/
-│       │       │       ├── create_vm
-│       │       │       ├── delete_vm
-│       │       │       ├── reset_vm
-│       │       │       ├── shutdown
-│       │       │       └── startup
-│       │       └── os/
-│       │           ├── macos/
-│       │           │   ├── .aliases
-│       │           │   ├── .macos
-│       │           │   ├── .zshrc
-│       │           │   ├── sethidden
-│       │           │   ├── startup_settings.sh
-│       │           │   └── togglehidden
-│       │           └── windows/
-│       │               ├── drive/
-│       │               │   └── Users/
-│       │               │       └── user/
-│       │               │           └── .wslconfig
-│       │               └── .gitkeep
-│       ├── latex/
-│       │   ├── structure.tex
-│       │   ├── student_template.tex
-│       │   └── teacher_template.tex
 │       ├── linux/
-│       │   ├── home/
-│       │   │   ├── linuxbrew/
-│       │   │   │   └── .linuxbrew/
-│       │   │   │       └── share/
-│       │   │   │           └── xdg-ninja/
-│       │   │   │               └── programs/
-│       │   │   │                   ├── abook.json
-│       │   │   │                   ├── ack.json
-│       │   │   │                   ├── alsa.json
-│       │   │   │                   ├── android-studio.json
-│       │   │   │                   ├── anki.json
-│       │   │   │                   ├── ansible.json
-│       │   │   │                   ├── antimicrox.json
-│       │   │   │                   ├── apvlv.json
-│       │   │   │                   ├── arandr.json
-│       │   │   │                   ├── arduino.json
-│       │   │   │                   ├── aria2.json
-│       │   │   │                   ├── asdf-vm.json
-│       │   │   │                   ├── aspell.json
-│       │   │   │                   ├── asunder.json
-│       │   │   │                   ├── atom.json
-│       │   │   │                   ├── audacity.json
-│       │   │   │                   ├── avidemux.json
-│       │   │   │                   ├── awesome.json
-│       │   │   │                   ├── aws-cli.json
-│       │   │   │                   ├── bash-completion.json
-│       │   │   │                   ├── bash.json
-│       │   │   │                   ├── bashdb.json
-│       │   │   │                   ├── bazaar.json
-│       │   │   │                   ├── bindle.json
-│       │   │   │                   ├── binwalk.json
-│       │   │   │                   ├── bm.json
-│       │   │   │                   ├── boto.json
-│       │   │   │                   ├── bpython.json
-│       │   │   │                   ├── bubblewrap.json
-│       │   │   │                   ├── burpsuite.json
-│       │   │   │                   ├── byobu.json
-│       │   │   │                   ├── cabal.json
-│       │   │   │                   ├── calc.json
-│       │   │   │                   ├── cargo.json
-│       │   │   │                   ├── ccache.json
-│       │   │   │                   ├── cd-bookmark.json
-│       │   │   │                   ├── cgdb.json
-│       │   │   │                   ├── chez.json
-│       │   │   │                   ├── cinelerra.json
-│       │   │   │                   ├── clang-format.json
-│       │   │   │                   ├── claws-mail.json
-│       │   │   │                   ├── clojure.json
-│       │   │   │                   ├── clusterssh.json
-│       │   │   │                   ├── conky.json
-│       │   │   │                   ├── crawl.json
-│       │   │   │                   ├── ctags.json
-│       │   │   │                   ├── cuda.json
-│       │   │   │                   ├── curl.json
-│       │   │   │                   ├── dbus.json
-│       │   │   │                   ├── dict.json
-│       │   │   │                   ├── distcc.json
-│       │   │   │                   ├── dm.json
-│       │   │   │                   ├── docker-machine.json
-│       │   │   │                   ├── docker.json
-│       │   │   │                   ├── doom-emacs
-│       │   │   │                   ├── dosbox.json
-│       │   │   │                   ├── dotnet.json
-│       │   │   │                   ├── dwarffortress.json
-│       │   │   │                   ├── electrum.json
-│       │   │   │                   ├── elinks.json
-│       │   │   │                   ├── elixir.json
-│       │   │   │                   ├── elm.json
-│       │   │   │                   ├── emacs.json
-│       │   │   │                   ├── everdev.json
-│       │   │   │                   ├── expo.json
-│       │   │   │                   ├── fceux.json
-│       │   │   │                   ├── feh.json
-│       │   │   │                   ├── ffmpeg.json
-│       │   │   │                   ├── firefox.json
-│       │   │   │                   ├── fontconfig.json
-│       │   │   │                   ├── fonts.json
-│       │   │   │                   ├── FreeCAD.json
-│       │   │   │                   ├── gcalcli.json
-│       │   │   │                   ├── gdb.json
-│       │   │   │                   ├── gef.json
-│       │   │   │                   ├── gem.json
-│       │   │   │                   ├── get_iplayer.json
-│       │   │   │                   ├── getmail.json
-│       │   │   │                   ├── ghcup.json
-│       │   │   │                   ├── gimp.json
-│       │   │   │                   ├── git.json
-│       │   │   │                   ├── gliv.json
-│       │   │   │                   ├── gnu-screen.json
-│       │   │   │                   ├── gnupg.json
-│       │   │   │                   ├── gnuplot.json
-│       │   │   │                   ├── go.json
-│       │   │   │                   ├── goobookrc.json
-│       │   │   │                   ├── google-cloud-sdk.json
-│       │   │   │                   ├── gq-ldap-client.json
-│       │   │   │                   ├── gradle.json
-│       │   │   │                   ├── gramps.json
-│       │   │   │                   ├── grip.json
-│       │   │   │                   ├── gtk-1.json
-│       │   │   │                   ├── gtk-2.json
-│       │   │   │                   ├── hledger.json
-│       │   │   │                   ├── httpie.json
-│       │   │   │                   ├── icons.json
-│       │   │   │                   ├── ideavim.json
-│       │   │   │                   ├── imapfilter.json
-│       │   │   │                   ├── intellij.json
-│       │   │   │                   ├── ipfs.json
-│       │   │   │                   ├── ipython.json
-│       │   │   │                   ├── irssi.json
-│       │   │   │                   ├── isync.json
-│       │   │   │                   ├── julia.json
-│       │   │   │                   ├── jupyter.json
-│       │   │   │                   ├── k9s.json
-│       │   │   │                   ├── kde.json
-│       │   │   │                   ├── keychain.json
-│       │   │   │                   ├── kite.json
-│       │   │   │                   ├── kodi.json
-│       │   │   │                   ├── kscript.json
-│       │   │   │                   ├── kubernetes.json
-│       │   │   │                   ├── latexmk.json
-│       │   │   │                   ├── ledger.json
-│       │   │   │                   ├── leiningen.json
-│       │   │   │                   ├── less.json
-│       │   │   │                   ├── libdvdcss.json
-│       │   │   │                   ├── libice.json
-│       │   │   │                   ├── libx11.json
-│       │   │   │                   ├── links.json
-│       │   │   │                   ├── lnav.json
-│       │   │   │                   ├── logseq.json
-│       │   │   │                   ├── ltrace.json
-│       │   │   │                   ├── lua.json
-│       │   │   │                   ├── lyrics.json
-│       │   │   │                   ├── mame.json
-│       │   │   │                   ├── mapscii.json
-│       │   │   │                   ├── mathematica.json
-│       │   │   │                   ├── mathomatic.json
-│       │   │   │                   ├── maxima.json
-│       │   │   │                   ├── mcfly.json
-│       │   │   │                   ├── mednafen.json
-│       │   │   │                   ├── mercurial.json
-│       │   │   │                   ├── minecraft.json
-│       │   │   │                   ├── minikube.json
-│       │   │   │                   ├── mitmproxy.json
-│       │   │   │                   ├── moc.json
-│       │   │   │                   ├── monero.json
-│       │   │   │                   ├── mono.json
-│       │   │   │                   ├── most.json
-│       │   │   │                   ├── mp3split-gtk.json
-│       │   │   │                   ├── mplayer.json
-│       │   │   │                   ├── msmtp.json
-│       │   │   │                   ├── mujoco.json
-│       │   │   │                   ├── mypy.json
-│       │   │   │                   ├── mysql-workbench.json
-│       │   │   │                   ├── mysql.json
-│       │   │   │                   ├── nb.json
-│       │   │   │                   ├── ncmpc.json
-│       │   │   │                   ├── ncurses.json
-│       │   │   │                   ├── netbeans.json
-│       │   │   │                   ├── newsboat.json
-│       │   │   │                   ├── nodejs.json
-│       │   │   │                   ├── notion.json
-│       │   │   │                   ├── notmuch.json
-│       │   │   │                   ├── npm.json
-│       │   │   │                   ├── nss.json
-│       │   │   │                   ├── nuget.json
-│       │   │   │                   ├── nvidia-glcache.json
-│       │   │   │                   ├── nvidia-settings.json
-│       │   │   │                   ├── nvm.json
-│       │   │   │                   ├── nwinkler.json
-│       │   │   │                   ├── ohmyzsh.json
-│       │   │   │                   ├── opam.json
-│       │   │   │                   ├── openjdk.json
-│       │   │   │                   ├── openssh.json
-│       │   │   │                   ├── osmos.json
-│       │   │   │                   ├── pandoc.json
-│       │   │   │                   ├── parallel.json
-│       │   │   │                   ├── pass.json
-│       │   │   │                   ├── pdb.json
-│       │   │   │                   ├── pex.json
-│       │   │   │                   ├── pidgin.json
-│       │   │   │                   ├── platformio.json
-│       │   │   │                   ├── pnpm.json
-│       │   │   │                   ├── postgresql.json
-│       │   │   │                   ├── profile.json
-│       │   │   │                   ├── pulseaudio.json
-│       │   │   │                   ├── putty.json
-│       │   │   │                   ├── pyenv.json
-│       │   │   │                   ├── pylint.json
-│       │   │   │                   ├── pytest.json
-│       │   │   │                   ├── python-azure-cliAU.json
-│       │   │   │                   ├── python-poetry.json
-│       │   │   │                   ├── python-setuptools.json
-│       │   │   │                   ├── python-tensorflow.json
-│       │   │   │                   ├── python.json
-│       │   │   │                   ├── qrcp.json
-│       │   │   │                   ├── quickemu.json
-│       │   │   │                   ├── racket.json
-│       │   │   │                   ├── rbenv.json
-│       │   │   │                   ├── readline.json
-│       │   │   │                   ├── recoll.json
-│       │   │   │                   ├── redis.json
-│       │   │   │                   ├── revive.json
-│       │   │   │                   ├── rtorrent.json
-│       │   │   │                   ├── ruby-bundler.json
-│       │   │   │                   ├── ruby-travis.json
-│       │   │   │                   ├── rustup.json
-│       │   │   │                   ├── sagemath.json
-│       │   │   │                   ├── sandboxd.json
-│       │   │   │                   ├── sc.json
-│       │   │   │                   ├── scummvm.json
-│       │   │   │                   ├── sdkman.json
-│       │   │   │                   ├── simplescreenrecorder.json
-│       │   │   │                   ├── since.json
-│       │   │   │                   ├── skrooge.json
-│       │   │   │                   ├── slime.json
-│       │   │   │                   ├── solargraph.json
-│       │   │   │                   ├── spacevim.json
-│       │   │   │                   ├── sqlite.json
-│       │   │   │                   ├── stack.json
-│       │   │   │                   ├── steam.json
-│       │   │   │                   ├── subversion.json
-│       │   │   │                   ├── surf.json
-│       │   │   │                   ├── swap.json
-│       │   │   │                   ├── taskwarrior.json
-│       │   │   │                   ├── telegram-cli.json
-│       │   │   │                   ├── texmacs.json
-│       │   │   │                   ├── texmf.json
-│       │   │   │                   ├── themes.json
-│       │   │   │                   ├── thunderbird.json
-│       │   │   │                   ├── tig.json
-│       │   │   │                   ├── tigervnc.json
-│       │   │   │                   ├── tlauncher.json
-│       │   │   │                   ├── tmux.json
-│       │   │   │                   ├── trash.json
-│       │   │   │                   ├── uncrustify.json
-│       │   │   │                   ├── unison.json
-│       │   │   │                   ├── units.json
-│       │   │   │                   ├── urxvtd.json
-│       │   │   │                   ├── vagrant.json
-│       │   │   │                   ├── vesta.json
-│       │   │   │                   ├── vim.json
-│       │   │   │                   ├── virtualbox.json
-│       │   │   │                   ├── virtualenv.json
-│       │   │   │                   ├── volta.json
-│       │   │   │                   ├── vscode.json
-│       │   │   │                   ├── w3m.json
-│       │   │   │                   ├── weechat.json
-│       │   │   │                   ├── wget.json
-│       │   │   │                   ├── when.json
-│       │   │   │                   ├── wine.json
-│       │   │   │                   ├── x2go.json
-│       │   │   │                   ├── xbindkeys.json
-│       │   │   │                   ├── xcompose.json
-│       │   │   │                   ├── xinit.json
-│       │   │   │                   ├── xmobar.json
-│       │   │   │                   ├── xmonad.json
-│       │   │   │                   ├── xonsh.json
-│       │   │   │                   ├── xorg-xauth.json
-│       │   │   │                   ├── xorg-xrdb.json
-│       │   │   │                   ├── xorg.json
-│       │   │   │                   ├── xscreensaver.json
-│       │   │   │                   ├── yarn.json
-│       │   │   │                   ├── z.json
-│       │   │   │                   ├── zoom.json
-│       │   │   │                   ├── zotero.json
-│       │   │   │                   ├── zplug.json
-│       │   │   │                   └── zsh.json
-│       │   │   └── user/
-│       │   │       ├── .config/
-│       │   │       │   ├── asdf/
-│       │   │       │   │   └── asdfrc
-│       │   │       │   ├── asunder/
-│       │   │       │   │   └── asunder
-│       │   │       │   ├── autostart/
-│       │   │       │   │   ├── disable-screen-blank.desktop
-│       │   │       │   │   ├── ignore-lid-switch-tweak.desktop
-│       │   │       │   │   └── show-hidden-files.desktop
-│       │   │       │   ├── bleachbit/
-│       │   │       │   │   └── bleachbit.ini
-│       │   │       │   ├── bpython/
-│       │   │       │   │   └── config
-│       │   │       │   ├── clojure/
-│       │   │       │   │   └── .gitkeep
-│       │   │       │   ├── emacs/
-│       │   │       │   │   └── init.el
-│       │   │       │   ├── emscripten/
-│       │   │       │   │   └── config
-│       │   │       │   ├── fontconfig/
-│       │   │       │   │   └── fonts.conf
-│       │   │       │   ├── gdb/
-│       │   │       │   │   └── init
-│       │   │       │   ├── git/
-│       │   │       │   │   ├── .gitignore.global
-│       │   │       │   │   ├── config
-│       │   │       │   │   └── credentials
-│       │   │       │   ├── gtk-2.0/
-│       │   │       │   │   └── gtkfilechooser.ini
-│       │   │       │   ├── hg/
-│       │   │       │   │   └── hgrc
-│       │   │       │   ├── ideavim/
-│       │   │       │   │   └── ideavimrc
-│       │   │       │   ├── latexmk/
-│       │   │       │   │   └── latexmkrc
-│       │   │       │   ├── msmtp/
-│       │   │       │   │   └── config
-│       │   │       │   ├── nautilus/
-│       │   │       │   │   └── search-metadata
-│       │   │       │   ├── pulse/
-│       │   │       │   │   └── cookie
-│       │   │       │   ├── qrcp/
-│       │   │       │   │   └── config.json
-│       │   │       │   ├── revive/
-│       │   │       │   │   └── revive.toml
-│       │   │       │   ├── rtorrent/
-│       │   │       │   │   └── rtorrent.rc
-│       │   │       │   ├── sandboxd/
-│       │   │       │   │   └── sandboxrc
-│       │   │       │   ├── scummvm/
-│       │   │       │   │   └── scummvm.ini
-│       │   │       │   ├── sway/
-│       │   │       │   │   └── config
-│       │   │       │   ├── tig/
-│       │   │       │   │   └── tigrc
-│       │   │       │   ├── xmobar/
-│       │   │       │   │   └── xmobarrc
-│       │   │       │   ├── zsh/
-│       │   │       │   │   ├── .zlogin
-│       │   │       │   │   ├── .zshenv
-│       │   │       │   │   └── .zshrc
-│       │   │       │   ├── byobu
-│       │   │       │   ├── gem
-│       │   │       │   ├── goobookrc
-│       │   │       │   ├── lnav
-│       │   │       │   ├── luarocks
-│       │   │       │   ├── racket
-│       │   │       │   ├── user-dirs.dirs
-│       │   │       │   └── user-dirs.locale
-│       │   │       ├── .files/
-│       │   │       │   ├── resources/
-│       │   │       │   │   └── themes/
-│       │   │       │   │       ├── keycloak/
-│       │   │       │   │       │   └── material-keycloak-theme/
-│       │   │       │   │       │       └── …
-│       │   │       │   │       └── os/
-│       │   │       │   │           ├── bigsur-ventoy-theme.zip
-│       │   │       │   │           └── dracula.qbtheme
-│       │   │       │   └── sys/
-│       │   │       │       ├── config/
-│       │   │       │       │   ├── act/
-│       │   │       │       │   │   └── actrc
-│       │   │       │       │   ├── android-studio/
-│       │   │       │       │   │   ├── early-access-registry.txt
-│       │   │       │       │   │   ├── idea.properties
-│       │   │       │       │   │   └── studio.vmoptions
-│       │   │       │       │   ├── bash/
-│       │   │       │       │   │   ├── bash-completion/
-│       │   │       │       │   │   │   └── …
-│       │   │       │       │   │   └── .gitkeep
-│       │   │       │       │   ├── curl/
-│       │   │       │       │   │   └── .curlrc
-│       │   │       │       │   ├── docker/
-│       │   │       │       │   │   ├── config.json
-│       │   │       │       │   │   └── daemon.json
-│       │   │       │       │   ├── gtk-2.0/
-│       │   │       │       │   │   ├── gtkrc/
-│       │   │       │       │   │   │   └── …
-│       │   │       │       │   │   └── .gtkrc-2.0
-│       │   │       │       │   ├── intellij/
-│       │   │       │       │   │   ├── early-access-registry.txt
-│       │   │       │       │   │   ├── idea.properties
-│       │   │       │       │   │   └── idea.vmoptions
-│       │   │       │       │   ├── mpv/
-│       │   │       │       │   │   ├── scripts/
-│       │   │       │       │   │   │   └── …
-│       │   │       │       │   │   ├── scripts-opts/
-│       │   │       │       │   │   │   └── …
-│       │   │       │       │   │   ├── input.conf
-│       │   │       │       │   │   └── mpv.conf
-│       │   │       │       │   ├── npm/
-│       │   │       │       │   │   └── .npmrc
-│       │   │       │       │   ├── nvidia/
-│       │   │       │       │   │   └── .nvidia-settings-rc
-│       │   │       │       │   ├── pip/
-│       │   │       │       │   │   └── pip.conf
-│       │   │       │       │   ├── python/
-│       │   │       │       │   │   ├── .pythonrc
-│       │   │       │       │   │   └── .pythonrc.py
-│       │   │       │       │   ├── screenrc/
-│       │   │       │       │   │   └── .screenrc
-│       │   │       │       │   ├── vlc/
-│       │   │       │       │   │   └── vlcrc
-│       │   │       │       │   ├── wget/
-│       │   │       │       │   │   └── .wgetrc
-│       │   │       │       │   ├── .aliases
-│       │   │       │       │   ├── .configuration
-│       │   │       │       │   ├── .data
-│       │   │       │       │   ├── .dircolors
-│       │   │       │       │   ├── .general
-│       │   │       │       │   └── .telemetry
-│       │   │       │       ├── .environment
-│       │   │       │       └── .gitignore
-│       │   │       ├── snap/
-│       │   │       │   └── snap_settings
-│       │   │       └── synaptic/
-│       │   │           ├── internal_options.sh
-│       │   │           └── internals.list
-│       │   └── shell/
-│       │       └── etc/
-│       │           └── profile.d/
-│       │               ├── 90-banner.sh
-│       │               ├── banner.txt
-│       │               ├── disable-telemetry.sh
-│       │               └── xdg.sh
+│       │   └── home/
+│       │       ├── linuxbrew/
+│       │       │   └── .linuxbrew/
+│       │       │       └── share/
+│       │       │           └── xdg-ninja/
+│       │       │               └── programs/
+│       │       │                   ├── abook.json
+│       │       │                   ├── ack.json
+│       │       │                   ├── alsa.json
+│       │       │                   ├── android-studio.json
+│       │       │                   ├── anki.json
+│       │       │                   ├── ansible.json
+│       │       │                   ├── antimicrox.json
+│       │       │                   ├── apvlv.json
+│       │       │                   ├── arandr.json
+│       │       │                   ├── arduino.json
+│       │       │                   ├── aria2.json
+│       │       │                   ├── asdf-vm.json
+│       │       │                   ├── aspell.json
+│       │       │                   ├── asunder.json
+│       │       │                   ├── atom.json
+│       │       │                   ├── audacity.json
+│       │       │                   ├── avidemux.json
+│       │       │                   ├── awesome.json
+│       │       │                   ├── aws-cli.json
+│       │       │                   ├── bash-completion.json
+│       │       │                   ├── bash.json
+│       │       │                   ├── bashdb.json
+│       │       │                   ├── bazaar.json
+│       │       │                   ├── bindle.json
+│       │       │                   ├── binwalk.json
+│       │       │                   ├── bm.json
+│       │       │                   ├── boto.json
+│       │       │                   ├── bpython.json
+│       │       │                   ├── bubblewrap.json
+│       │       │                   ├── burpsuite.json
+│       │       │                   ├── byobu.json
+│       │       │                   ├── cabal.json
+│       │       │                   ├── calc.json
+│       │       │                   ├── cargo.json
+│       │       │                   ├── ccache.json
+│       │       │                   ├── cd-bookmark.json
+│       │       │                   ├── cgdb.json
+│       │       │                   ├── chez.json
+│       │       │                   ├── cinelerra.json
+│       │       │                   ├── clang-format.json
+│       │       │                   ├── claws-mail.json
+│       │       │                   ├── clojure.json
+│       │       │                   ├── clusterssh.json
+│       │       │                   ├── conky.json
+│       │       │                   ├── crawl.json
+│       │       │                   ├── ctags.json
+│       │       │                   ├── cuda.json
+│       │       │                   ├── curl.json
+│       │       │                   ├── dbus.json
+│       │       │                   ├── dict.json
+│       │       │                   ├── distcc.json
+│       │       │                   ├── dm.json
+│       │       │                   ├── docker-machine.json
+│       │       │                   ├── docker.json
+│       │       │                   ├── doom-emacs
+│       │       │                   ├── dosbox.json
+│       │       │                   ├── dotnet.json
+│       │       │                   ├── dwarffortress.json
+│       │       │                   ├── electrum.json
+│       │       │                   ├── elinks.json
+│       │       │                   ├── elixir.json
+│       │       │                   ├── elm.json
+│       │       │                   ├── emacs.json
+│       │       │                   ├── everdev.json
+│       │       │                   ├── expo.json
+│       │       │                   ├── fceux.json
+│       │       │                   ├── feh.json
+│       │       │                   ├── ffmpeg.json
+│       │       │                   ├── firefox.json
+│       │       │                   ├── fontconfig.json
+│       │       │                   ├── fonts.json
+│       │       │                   ├── FreeCAD.json
+│       │       │                   ├── gcalcli.json
+│       │       │                   ├── gdb.json
+│       │       │                   ├── gef.json
+│       │       │                   ├── gem.json
+│       │       │                   ├── get_iplayer.json
+│       │       │                   ├── getmail.json
+│       │       │                   ├── ghcup.json
+│       │       │                   ├── gimp.json
+│       │       │                   ├── git.json
+│       │       │                   ├── gliv.json
+│       │       │                   ├── gnu-screen.json
+│       │       │                   ├── gnupg.json
+│       │       │                   ├── gnuplot.json
+│       │       │                   ├── go.json
+│       │       │                   ├── goobookrc.json
+│       │       │                   ├── google-cloud-sdk.json
+│       │       │                   ├── gq-ldap-client.json
+│       │       │                   ├── gradle.json
+│       │       │                   ├── gramps.json
+│       │       │                   ├── grip.json
+│       │       │                   ├── gtk-1.json
+│       │       │                   ├── gtk-2.json
+│       │       │                   ├── hledger.json
+│       │       │                   ├── httpie.json
+│       │       │                   ├── icons.json
+│       │       │                   ├── ideavim.json
+│       │       │                   ├── imapfilter.json
+│       │       │                   ├── intellij.json
+│       │       │                   ├── ipfs.json
+│       │       │                   ├── ipython.json
+│       │       │                   ├── irssi.json
+│       │       │                   ├── isync.json
+│       │       │                   ├── julia.json
+│       │       │                   ├── jupyter.json
+│       │       │                   ├── k9s.json
+│       │       │                   ├── kde.json
+│       │       │                   ├── keychain.json
+│       │       │                   ├── kite.json
+│       │       │                   ├── kodi.json
+│       │       │                   ├── kscript.json
+│       │       │                   ├── kubernetes.json
+│       │       │                   ├── latexmk.json
+│       │       │                   ├── ledger.json
+│       │       │                   ├── leiningen.json
+│       │       │                   ├── less.json
+│       │       │                   ├── libdvdcss.json
+│       │       │                   ├── libice.json
+│       │       │                   ├── libx11.json
+│       │       │                   ├── links.json
+│       │       │                   ├── lnav.json
+│       │       │                   ├── logseq.json
+│       │       │                   ├── ltrace.json
+│       │       │                   ├── lua.json
+│       │       │                   ├── lyrics.json
+│       │       │                   ├── mame.json
+│       │       │                   ├── mapscii.json
+│       │       │                   ├── mathematica.json
+│       │       │                   ├── mathomatic.json
+│       │       │                   ├── maxima.json
+│       │       │                   ├── mcfly.json
+│       │       │                   ├── mednafen.json
+│       │       │                   ├── mercurial.json
+│       │       │                   ├── minecraft.json
+│       │       │                   ├── minikube.json
+│       │       │                   ├── mitmproxy.json
+│       │       │                   ├── moc.json
+│       │       │                   ├── monero.json
+│       │       │                   ├── mono.json
+│       │       │                   ├── most.json
+│       │       │                   ├── mp3split-gtk.json
+│       │       │                   ├── mplayer.json
+│       │       │                   ├── msmtp.json
+│       │       │                   ├── mujoco.json
+│       │       │                   ├── mypy.json
+│       │       │                   ├── mysql-workbench.json
+│       │       │                   ├── mysql.json
+│       │       │                   ├── nb.json
+│       │       │                   ├── ncmpc.json
+│       │       │                   ├── ncurses.json
+│       │       │                   ├── netbeans.json
+│       │       │                   ├── newsboat.json
+│       │       │                   ├── nodejs.json
+│       │       │                   ├── notion.json
+│       │       │                   ├── notmuch.json
+│       │       │                   ├── npm.json
+│       │       │                   ├── nss.json
+│       │       │                   ├── nuget.json
+│       │       │                   ├── nvidia-glcache.json
+│       │       │                   ├── nvidia-settings.json
+│       │       │                   ├── nvm.json
+│       │       │                   ├── nwinkler.json
+│       │       │                   ├── ohmyzsh.json
+│       │       │                   ├── opam.json
+│       │       │                   ├── openjdk.json
+│       │       │                   ├── openssh.json
+│       │       │                   ├── osmos.json
+│       │       │                   ├── pandoc.json
+│       │       │                   ├── parallel.json
+│       │       │                   ├── pass.json
+│       │       │                   ├── pdb.json
+│       │       │                   ├── pex.json
+│       │       │                   ├── pidgin.json
+│       │       │                   ├── platformio.json
+│       │       │                   ├── pnpm.json
+│       │       │                   ├── postgresql.json
+│       │       │                   ├── profile.json
+│       │       │                   ├── pulseaudio.json
+│       │       │                   ├── putty.json
+│       │       │                   ├── pyenv.json
+│       │       │                   ├── pylint.json
+│       │       │                   ├── pytest.json
+│       │       │                   ├── python-azure-cliAU.json
+│       │       │                   ├── python-poetry.json
+│       │       │                   ├── python-setuptools.json
+│       │       │                   ├── python-tensorflow.json
+│       │       │                   ├── python.json
+│       │       │                   ├── qrcp.json
+│       │       │                   ├── quickemu.json
+│       │       │                   ├── racket.json
+│       │       │                   ├── rbenv.json
+│       │       │                   ├── readline.json
+│       │       │                   ├── recoll.json
+│       │       │                   ├── redis.json
+│       │       │                   ├── revive.json
+│       │       │                   ├── rtorrent.json
+│       │       │                   ├── ruby-bundler.json
+│       │       │                   ├── ruby-travis.json
+│       │       │                   ├── rustup.json
+│       │       │                   ├── sagemath.json
+│       │       │                   ├── sandboxd.json
+│       │       │                   ├── sc.json
+│       │       │                   ├── scummvm.json
+│       │       │                   ├── sdkman.json
+│       │       │                   ├── simplescreenrecorder.json
+│       │       │                   ├── since.json
+│       │       │                   ├── skrooge.json
+│       │       │                   ├── slime.json
+│       │       │                   ├── solargraph.json
+│       │       │                   ├── spacevim.json
+│       │       │                   ├── sqlite.json
+│       │       │                   ├── stack.json
+│       │       │                   ├── steam.json
+│       │       │                   ├── subversion.json
+│       │       │                   ├── surf.json
+│       │       │                   ├── swap.json
+│       │       │                   ├── taskwarrior.json
+│       │       │                   ├── telegram-cli.json
+│       │       │                   ├── texmacs.json
+│       │       │                   ├── texmf.json
+│       │       │                   ├── themes.json
+│       │       │                   ├── thunderbird.json
+│       │       │                   ├── tig.json
+│       │       │                   ├── tigervnc.json
+│       │       │                   ├── tlauncher.json
+│       │       │                   ├── tmux.json
+│       │       │                   ├── trash.json
+│       │       │                   ├── uncrustify.json
+│       │       │                   ├── unison.json
+│       │       │                   ├── units.json
+│       │       │                   ├── urxvtd.json
+│       │       │                   ├── vagrant.json
+│       │       │                   ├── vesta.json
+│       │       │                   ├── vim.json
+│       │       │                   ├── virtualbox.json
+│       │       │                   ├── virtualenv.json
+│       │       │                   ├── volta.json
+│       │       │                   ├── vscode.json
+│       │       │                   ├── w3m.json
+│       │       │                   ├── weechat.json
+│       │       │                   ├── wget.json
+│       │       │                   ├── when.json
+│       │       │                   ├── wine.json
+│       │       │                   ├── x2go.json
+│       │       │                   ├── xbindkeys.json
+│       │       │                   ├── xcompose.json
+│       │       │                   ├── xinit.json
+│       │       │                   ├── xmobar.json
+│       │       │                   ├── xmonad.json
+│       │       │                   ├── xonsh.json
+│       │       │                   ├── xorg-xauth.json
+│       │       │                   ├── xorg-xrdb.json
+│       │       │                   ├── xorg.json
+│       │       │                   ├── xscreensaver.json
+│       │       │                   ├── yarn.json
+│       │       │                   ├── z.json
+│       │       │                   ├── zoom.json
+│       │       │                   ├── zotero.json
+│       │       │                   ├── zplug.json
+│       │       │                   └── zsh.json
+│       │       └── user/
+│       │           ├── .config/
+│       │           │   ├── asunder/
+│       │           │   │   └── asunder
+│       │           │   ├── autostart/
+│       │           │   │   ├── disable-screen-blank.desktop
+│       │           │   │   ├── ignore-lid-switch-tweak.desktop
+│       │           │   │   └── show-hidden-files.desktop
+│       │           │   ├── bleachbit/
+│       │           │   │   └── bleachbit.ini
+│       │           │   ├── bpython/
+│       │           │   │   └── config
+│       │           │   ├── clojure/
+│       │           │   │   └── .gitkeep
+│       │           │   ├── emacs/
+│       │           │   │   └── init.el
+│       │           │   ├── emscripten/
+│       │           │   │   └── config
+│       │           │   ├── fontconfig/
+│       │           │   │   └── fonts.conf
+│       │           │   ├── gdb/
+│       │           │   │   └── init
+│       │           │   ├── git/
+│       │           │   │   ├── .gitignore.global
+│       │           │   │   ├── config
+│       │           │   │   └── credentials
+│       │           │   ├── gtk-2.0/
+│       │           │   │   └── gtkfilechooser.ini
+│       │           │   ├── hg/
+│       │           │   │   └── hgrc
+│       │           │   ├── ideavim/
+│       │           │   │   └── ideavimrc
+│       │           │   ├── latexmk/
+│       │           │   │   └── latexmkrc
+│       │           │   ├── msmtp/
+│       │           │   │   └── config
+│       │           │   ├── nautilus/
+│       │           │   │   └── search-metadata
+│       │           │   ├── pulse/
+│       │           │   │   └── cookie
+│       │           │   ├── qrcp/
+│       │           │   │   └── config.json
+│       │           │   ├── revive/
+│       │           │   │   └── revive.toml
+│       │           │   ├── rtorrent/
+│       │           │   │   └── rtorrent.rc
+│       │           │   ├── sandboxd/
+│       │           │   │   └── sandboxrc
+│       │           │   ├── scummvm/
+│       │           │   │   └── scummvm.ini
+│       │           │   ├── sway/
+│       │           │   │   └── config
+│       │           │   ├── tig/
+│       │           │   │   └── tigrc
+│       │           │   ├── xmobar/
+│       │           │   │   └── xmobarrc
+│       │           │   ├── zsh/
+│       │           │   │   ├── .zlogin
+│       │           │   │   ├── .zshenv
+│       │           │   │   └── .zshrc
+│       │           │   ├── byobu
+│       │           │   ├── gem
+│       │           │   ├── goobookrc
+│       │           │   ├── lnav
+│       │           │   ├── luarocks
+│       │           │   ├── racket
+│       │           │   ├── user-dirs.dirs
+│       │           │   └── user-dirs.locale
+│       │           ├── .files/
+│       │           │   ├── resources/
+│       │           │   │   └── themes/
+│       │           │   │       └── os/
+│       │           │   │           ├── bigsur-ventoy-theme.zip
+│       │           │   │           └── dracula.qbtheme
+│       │           │   └── sys/
+│       │           │       ├── config/
+│       │           │       │   ├── act/
+│       │           │       │   │   └── actrc
+│       │           │       │   ├── android-studio/
+│       │           │       │   │   ├── early-access-registry.txt
+│       │           │       │   │   ├── idea.properties
+│       │           │       │   │   └── studio.vmoptions
+│       │           │       │   ├── bash/
+│       │           │       │   │   ├── bash-completion/
+│       │           │       │   │   │   └── …
+│       │           │       │   │   └── .gitkeep
+│       │           │       │   ├── curl/
+│       │           │       │   │   └── .curlrc
+│       │           │       │   ├── docker/
+│       │           │       │   │   ├── config.json
+│       │           │       │   │   └── daemon.json
+│       │           │       │   ├── gtk-2.0/
+│       │           │       │   │   ├── gtkrc/
+│       │           │       │   │   │   └── …
+│       │           │       │   │   └── .gtkrc-2.0
+│       │           │       │   ├── intellij/
+│       │           │       │   │   ├── early-access-registry.txt
+│       │           │       │   │   ├── idea.properties
+│       │           │       │   │   └── idea.vmoptions
+│       │           │       │   ├── mpv/
+│       │           │       │   │   ├── scripts/
+│       │           │       │   │   │   └── …
+│       │           │       │   │   ├── scripts-opts/
+│       │           │       │   │   │   └── …
+│       │           │       │   │   ├── input.conf
+│       │           │       │   │   └── mpv.conf
+│       │           │       │   ├── nvidia/
+│       │           │       │   │   └── .nvidia-settings-rc
+│       │           │       │   ├── pip/
+│       │           │       │   │   └── pip.conf
+│       │           │       │   ├── python/
+│       │           │       │   │   ├── .pythonrc
+│       │           │       │   │   └── .pythonrc.py
+│       │           │       │   ├── screenrc/
+│       │           │       │   │   └── .screenrc
+│       │           │       │   ├── vlc/
+│       │           │       │   │   └── vlcrc
+│       │           │       │   ├── .aliases
+│       │           │       │   ├── .configuration
+│       │           │       │   ├── .data
+│       │           │       │   ├── .dircolors
+│       │           │       │   ├── .general
+│       │           │       │   └── .telemetry
+│       │           │       └── .gitignore
+│       │           └── synaptic/
+│       │               ├── internal_options.sh
+│       │               └── internals.list
 │       ├── misc/
 │       │   ├── .ssh/
 │       │   │   └── config
@@ -9621,26 +12566,13 @@ sanctuary/
 │       │   │   ├── package-lock.json
 │       │   │   ├── package.json
 │       │   │   └── precache-emojis.js
-│       │   ├── .asdfrc
-│       │   ├── .bandit
 │       │   ├── .clang-format
-│       │   ├── .curlrc
 │       │   ├── .environment
-│       │   ├── .gitconfig
 │       │   ├── .gitignore
-│       │   ├── .gitignore_global
-│       │   ├── .gitignore_global2
-│       │   ├── .gitignore_global3
-│       │   ├── .npmrc
-│       │   ├── .npmrc2
-│       │   ├── .npmrc3
-│       │   ├── .pnpmfile.cjs
-│       │   ├── .pre-commit-config.yaml
+│       │   ├── .latexmkrc
 │       │   ├── .pylintrc
-│       │   ├── .pythonrc.py
+│       │   ├── .releaserc.json
 │       │   ├── .releaserc.yml
-│       │   ├── .wgetrc
-│       │   ├── .wgetrc2
 │       │   ├── aliases
 │       │   ├── base.apt.lock
 │       │   ├── biome.json
@@ -9651,6 +12583,7 @@ sanctuary/
 │       │   ├── httpd-vhosts.conf
 │       │   ├── idea64.vmoptions
 │       │   ├── lerna.json
+│       │   ├── lint.yml
 │       │   ├── log4j2.xml
 │       │   ├── nfpm.yaml
 │       │   ├── package.default.json
@@ -9761,7 +12694,6 @@ sanctuary/
 │       │       │       ├── Opinion How Not to Be Alone by Jonathan Safran Foer.md
 │       │       │       └── Writing.md
 │       │       └── START HERE.md
-│       ├── papers/
 │       ├── scripts/
 │       │   ├── bash/
 │       │   │   ├── array
@@ -9805,6 +12737,15 @@ sanctuary/
 │       │   │       ├── config.fish
 │       │   │       ├── fishfile
 │       │   │       └── setup.sh
+│       │   ├── gcloud/
+│       │   │   ├── commands/
+│       │   │   │   └── create_instance
+│       │   │   └── scripts/
+│       │   │       ├── create_vm
+│       │   │       ├── delete_vm
+│       │   │       ├── reset_vm
+│       │   │       ├── shutdown
+│       │   │       └── startup
 │       │   ├── hardening/
 │       │   │   ├── configure-sysctl
 │       │   │   ├── configure-systemd-limits
@@ -9858,10 +12799,13 @@ sanctuary/
 │       │   │   ├── install_pdal.sh
 │       │   │   ├── README.md
 │       │   │   └── repro-sources-list
-│       │   ├── lib/
-│       │   │   ├── libfs.bash
-│       │   │   ├── liblog.bash
-│       │   │   └── libos.bash
+│       │   ├── macos/
+│       │   │   ├── .aliases
+│       │   │   ├── .macos
+│       │   │   ├── .zshrc
+│       │   │   ├── sethidden
+│       │   │   ├── startup_settings.sh
+│       │   │   └── togglehidden
 │       │   ├── tests/
 │       │   │   ├── test-gitinspector
 │       │   │   ├── test-google-fonts
@@ -9871,20 +12815,21 @@ sanctuary/
 │       │   │   └── test-terminus
 │       │   ├── vlc/
 │       │   │   └── sbs.hlsl
+│       │   ├── windows/
+│       │   │   ├── drive/
+│       │   │   │   └── Users/
+│       │   │   │       └── user/
+│       │   │   │           └── .wslconfig
+│       │   │   └── .gitkeep
 │       │   ├── bash_commands
 │       │   ├── bash_options
 │       │   ├── bcrypt-password
 │       │   ├── brightness
-│       │   ├── capitalize_folders
 │       │   ├── cleaner
 │       │   ├── cleaner.sh
 │       │   ├── clear_port
-│       │   ├── clfavs.sh
 │       │   ├── computer_info.sh
 │       │   ├── disable_password.sh
-│       │   ├── dlsite
-│       │   ├── download_entire_website.sh
-│       │   ├── download_html_as_pdf.sh
 │       │   ├── fake-user-agent
 │       │   ├── ffmpeg-loop
 │       │   ├── find_files_with_text.sh
@@ -9898,20 +12843,13 @@ sanctuary/
 │       │   ├── pre-shutdown
 │       │   ├── pre-shutdown.service
 │       │   ├── realpath
-│       │   ├── rotate_video
 │       │   ├── show_hidden_files
 │       │   ├── template.sh
-│       │   ├── to_icon
-│       │   ├── to_mp4.sh
 │       │   ├── toptout
 │       │   ├── vpn
 │       │   ├── wget_commands.txt
 │       │   ├── whats-in-port
-│       │   ├── windows_share.sh
-│       │   └── yt-dlp-channel
-│       ├── tasks/
-│       │   ├── lint.yml
-│       │   └── utils.yml
+│       │   └── windows_share.sh
 │       ├── universal/
 │       │   ├── apps/
 │       │   │   ├── ui/
@@ -10296,20 +13234,11 @@ sanctuary/
 │       │   │       ├── config_local.py
 │       │   │       ├── healthcheck.py
 │       │   │       └── servers.json
-│       │   ├── .latexmkrc
-│       │   ├── .pre-commit-config.yaml
 │       │   ├── apt-packages.lock
 │       │   ├── Cargo.toml
 │       │   ├── Taskfile.yml
 │       │   └── universal.base.yml
 │       ├── website/
-│       │   ├── .github/
-│       │   │   ├── workflows/
-│       │   │   │   └── deploy.yml
-│       │   │   └── FUNDING.yml
-│       │   ├── .vscode/
-│       │   │   ├── extensions.json
-│       │   │   └── settings.json
 │       │   ├── egohygiene.io/
 │       │   │   ├── .storybook/
 │       │   │   │   ├── main.ts
@@ -10464,7 +13393,6 @@ sanctuary/
 │       │   │   ├── package.json
 │       │   │   ├── README.md
 │       │   │   ├── tsconfig.app.json
-│       │   │   ├── tsconfig.base.json
 │       │   │   ├── tsconfig.build.json
 │       │   │   ├── tsconfig.cli.json
 │       │   │   ├── tsconfig.docs.json
@@ -10477,31 +13405,16 @@ sanctuary/
 │       │   │   ├── tsconfig.typecheck.json
 │       │   │   ├── tsconfig.types.json
 │       │   │   └── tsconfig.vitest.json
-│       │   ├── scripts/
-│       │   │   ├── clean_html.py
-│       │   │   ├── generate_map.py
-│       │   │   └── validate-data.ts
-│       │   ├── .editorconfig
-│       │   ├── .gitattributes
-│       │   ├── .gitignore
-│       │   ├── .npmrc
-│       │   ├── .tool-versions
-│       │   ├── init-schemas.sh
-│       │   ├── LICENSE
-│       │   ├── package.json
-│       │   ├── pnpm-lock.yaml
-│       │   ├── pnpm-workspace.yaml
-│       │   ├── poetry.lock
-│       │   ├── poetry.toml
-│       │   ├── pyproject.toml
-│       │   ├── README.md
-│       │   ├── tsconfig.json
-│       │   └── website.code-workspace
+│       │   └── scripts/
+│       │       ├── clean_html.py
+│       │       ├── generate_map.py
+│       │       └── validate-data.ts
 │       ├── .gitattributes
 │       ├── temp.json
-│       └── The _llms.txt file – llms-txt.pdf
+│       └── tsconfig.base.json
 ├── .taskfile/
 │   ├── git.yml
+│   ├── lint.yml
 │   └── security.yml
 ├── .vscode/
 │   ├── cspell.json
@@ -19921,6 +22834,57 @@ sanctuary/
 │   │   ├── Yii.gitignore
 │   │   ├── ZendFramework.gitignore
 │   │   └── Zephir.gitignore
+│   ├── keycloak/
+│   │   └── material-keycloak-theme/
+│   │       ├── material/
+│   │       │   └── login/
+│   │       │       ├── messages/
+│   │       │       │   ├── messages_en.properties
+│   │       │       │   └── messages_fr.properties
+│   │       │       ├── resources/
+│   │       │       │   ├── css/
+│   │       │       │   │   ├── bootstrap-material-design-alerts.css
+│   │       │       │   │   ├── material-components-web.min.css
+│   │       │       │   │   └── material-keycloak-theme.css
+│   │       │       │   ├── img/
+│   │       │       │   │   ├── android-chrome-192x192.png
+│   │       │       │   │   ├── android-chrome-512x512.png
+│   │       │       │   │   ├── apple-touch-icon.png
+│   │       │       │   │   ├── browserconfig.xml
+│   │       │       │   │   ├── favicon-16x16.png
+│   │       │       │   │   ├── favicon-32x32.png
+│   │       │       │   │   ├── favicon.ico
+│   │       │       │   │   ├── mstile-144x144.png
+│   │       │       │   │   ├── mstile-150x150.png
+│   │       │       │   │   ├── mstile-310x150.png
+│   │       │       │   │   ├── mstile-310x310.png
+│   │       │       │   │   ├── mstile-70x70.png
+│   │       │       │   │   └── site.webmanifest
+│   │       │       │   ├── js/
+│   │       │       │   │   ├── polyfill/
+│   │       │       │   │   │   └── nodelist-foreach.js
+│   │       │       │   │   ├── material-components-web.min.js
+│   │       │       │   │   └── material-keycloak-theme.js
+│   │       │       │   └── package.json
+│   │       │       ├── error.ftl
+│   │       │       ├── login-config-totp.ftl
+│   │       │       ├── login-reset-password.ftl
+│   │       │       ├── login-totp.ftl
+│   │       │       ├── login-update-password.ftl
+│   │       │       ├── login-update-profile.ftl
+│   │       │       ├── login.ftl
+│   │       │       ├── register.ftl
+│   │       │       ├── template.ftl
+│   │       │       └── theme.properties
+│   │       ├── screenshots/
+│   │       │   ├── complex.png
+│   │       │   ├── forgot-password.png
+│   │       │   ├── register.png
+│   │       │   └── simple.png
+│   │       ├── .gitignore
+│   │       ├── .prettierrc.json
+│   │       ├── LICENSE
+│   │       └── README.md
 │   ├── licenses/
 │   │   ├── Apache License 2.0
 │   │   ├── Boost Software License 1.0
@@ -28307,6 +31271,7 @@ sanctuary/
 │   │   ├── puppet/
 │   │   │   └── .puppet-lint.rc
 │   │   ├── python/
+│   │   │   ├── .bandit.toml
 │   │   │   ├── .bandit.yml
 │   │   │   ├── .isort.cfg
 │   │   │   ├── .mypy.ini
@@ -28368,20 +31333,27 @@ sanctuary/
 │   │       ├── .v8rrc.yml
 │   │       └── .yamllint.yml
 │   └── .megalinter.yml
+├── notebooks/
+│   ├── jupyter/
+│   │   ├── themes/
+│   │   │   └── @jupyterlab/
+│   │   │       ├── theme-dark-extension/
+│   │   │       │   ├── index.css
+│   │   │       │   └── index.js
+│   │   │       └── theme-light-extension/
+│   │   │           ├── index.css
+│   │   │           └── index.js
+│   │   └── .gitignore
+│   └── README.md
 ├── scripts/
 │   └── megalinter.sh
 ├── shell/
 │   ├── .staging/
 │   │   ├── apps-bin-path.sh
-│   │   ├── backup-container.sh
-│   │   ├── backup.sh
-│   │   ├── check_health.sh
 │   │   ├── devcontainer.sh
-│   │   ├── devtools.sh
 │   │   ├── encrypt_volume.sh
 │   │   ├── freeze-apt
 │   │   ├── freeze-github-release
-│   │   ├── generate-pwa-icons
 │   │   ├── get_pdf_title.py
 │   │   ├── ghlabels
 │   │   ├── git-summary.sh
@@ -28395,14 +31367,12 @@ sanctuary/
 │   │   ├── pipes
 │   │   ├── pre-shutdown
 │   │   ├── process_files.py
-│   │   ├── README.md
 │   │   ├── record-audio
 │   │   ├── reinstall_google_drive.sh
 │   │   ├── remove_password_pdf
 │   │   ├── run_discovery
 │   │   ├── set-sys-uid-max
 │   │   ├── setup-asdf
-│   │   ├── setup-git-aliases.sh
 │   │   ├── storybook.sh
 │   │   ├── tailwind-config-viewer.sh
 │   │   └── uninstall_google_drive.sh
@@ -28419,8 +31389,13 @@ sanctuary/
 │   │   ├── settings.json
 │   │   └── tasks.json
 │   ├── bin/
+│   │   ├── capitalize-folders
 │   │   ├── cb
 │   │   ├── convert-to-ico
+│   │   ├── convert-to-mp4
+│   │   ├── dlsite
+│   │   ├── dockerbak
+│   │   ├── dockerhealth
 │   │   ├── generate-certs
 │   │   ├── generate-password
 │   │   ├── generate-tree
@@ -28428,7 +31403,9 @@ sanctuary/
 │   │   ├── ghprotect
 │   │   ├── git-remove-exec-no-shebang
 │   │   ├── is-executable
-│   │   └── sysinfo
+│   │   ├── rotate_video
+│   │   ├── sysinfo
+│   │   └── ytdlp-channel
 │   ├── init/
 │   │   ├── bootstrap.sh
 │   │   ├── init.sh
@@ -28964,10 +31941,34 @@ sanctuary/
 │   │   ├── react-vite/
 │   │   │   ├── .vitest/
 │   │   │   │   └── setup.ts
+│   │   │   ├── apps/
+│   │   │   │   ├── docs/
+│   │   │   │   │   └── tsconfig.app.json
+│   │   │   │   ├── egohygiene.io/
+│   │   │   │   │   └── tsconfig.app.json
+│   │   │   │   └── playground/
+│   │   │   │       ├── tsconfig.app.json
+│   │   │   │       └── tsconfig.storybook.json
+│   │   │   ├── packages/
+│   │   │   │   ├── cli/
+│   │   │   │   │   └── create-theme/
+│   │   │   │   │       └── tsconfig.cli.json
+│   │   │   │   ├── components/
+│   │   │   │   │   └── tsconfig.build.json
+│   │   │   │   ├── schemas/
+│   │   │   │   │   └── tsconfig.build.json
+│   │   │   │   └── themes/
+│   │   │   │       └── tsconfig.build.json
 │   │   │   ├── public/
 │   │   │   │   ├── llms.txt
 │   │   │   │   └── robots.txt
-│   │   │   └── package.json
+│   │   │   ├── package.json
+│   │   │   ├── tsconfig.base.json
+│   │   │   ├── tsconfig.eslint.json
+│   │   │   ├── tsconfig.node.json
+│   │   │   ├── tsconfig.typecheck.json
+│   │   │   ├── tsconfig.vitest.json
+│   │   │   └── turbo.json
 │   │   └── README.md
 │   ├── changesets/
 │   │   └── .changeset/
@@ -29488,6 +32489,415 @@ sanctuary/
 │           │       ├── placeholder.jpg
 │           │       ├── README.pdf
 │           │       └── sample.bib
+│           ├── Cover Letters/
+│           │   ├── freeman-cover-letter/
+│           │   │   ├── Fonts/
+│           │   │   │   ├── EBGaramond-Bold.ttf
+│           │   │   │   ├── EBGaramond-BoldItalic.ttf
+│           │   │   │   ├── EBGaramond-Italic.ttf
+│           │   │   │   ├── EBGaramond-License
+│           │   │   │   ├── EBGaramond-Regular.ttf
+│           │   │   │   ├── EBGaramond-SC.ttf
+│           │   │   │   ├── FontAwesome.md
+│           │   │   │   ├── FontAwesome.otf
+│           │   │   │   ├── fontawesome.pdf
+│           │   │   │   ├── fontawesomesymbols-xeluatex.tex
+│           │   │   │   ├── Freebooterscript-license.txt
+│           │   │   │   ├── freebooterscript.ttf
+│           │   │   │   ├── Libertinus-OFL-license.txt
+│           │   │   │   ├── LibertinusSans-Bold.otf
+│           │   │   │   ├── LibertinusSans-Italic.otf
+│           │   │   │   └── LibertinusSans-Regular.otf
+│           │   │   ├── FreemanCV.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── lined-cover-letter/
+│           │   │   ├── logo.pdf
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── plain-cover-letter/
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   └── stefano-cover-letter/
+│           │       ├── README.pdf
+│           │       └── template.tex
+│           ├── CVs and Resumes/
+│           │   ├── Academic CV LaTeX Resume Template/
+│           │   │   ├── ieee_collabratec_icon.png
+│           │   │   └── main.tex
+│           │   ├── AI & ML Engineer LaTeX Resume Template/
+│           │   │   └── resume.tex
+│           │   ├── AltaCV/
+│           │   │   ├── legacy/
+│           │   │   │   ├── p1sidebar.tex
+│           │   │   │   ├── page2sidebar.tex
+│           │   │   │   ├── sample-old.pdf
+│           │   │   │   └── sample-old.tex
+│           │   │   ├── altacv.cls
+│           │   │   ├── CHANGELOG.md
+│           │   │   ├── Globe_High.png
+│           │   │   ├── LICENSE.md
+│           │   │   ├── mmayer-wikipedia-cc-by-2_0.jpg
+│           │   │   ├── mmayer.jpg
+│           │   │   ├── mmayer.pdf
+│           │   │   ├── mmayer.png
+│           │   │   ├── mmayer.tex
+│           │   │   ├── nicethings_icons_readme.txt
+│           │   │   ├── pubs-authoryear.cfg
+│           │   │   ├── pubs-num.cfg
+│           │   │   ├── README.md
+│           │   │   ├── sample.bib
+│           │   │   ├── sample.pdf
+│           │   │   ├── sample.png
+│           │   │   ├── sample.tex
+│           │   │   ├── Suitcase_High.png
+│           │   │   ├── tweet-that-started-this.png
+│           │   │   └── Yacht_High.png
+│           │   ├── ASU Resume Template/
+│           │   │   ├── resume.cls
+│           │   │   └── resume.tex
+│           │   ├── ATS friendly - LaTeX Resume Template/
+│           │   │   └── ATS-friendly-Resume.tex
+│           │   ├── Awesome-CV/
+│           │   │   ├── .github/
+│           │   │   │   ├── workflows/
+│           │   │   │   │   ├── integration.yaml
+│           │   │   │   │   ├── main.yml
+│           │   │   │   │   ├── pull-request-labeler.yaml
+│           │   │   │   │   ├── sync-labels.yaml
+│           │   │   │   │   └── welcome.yaml
+│           │   │   │   ├── CODEOWNERS
+│           │   │   │   ├── dependabot.yml
+│           │   │   │   ├── labeler.yaml
+│           │   │   │   └── labels.yaml
+│           │   │   ├── examples/
+│           │   │   │   ├── cv/
+│           │   │   │   │   ├── certificates.tex
+│           │   │   │   │   ├── committees.tex
+│           │   │   │   │   ├── education.tex
+│           │   │   │   │   ├── experience.tex
+│           │   │   │   │   ├── extracurricular.tex
+│           │   │   │   │   ├── honors.tex
+│           │   │   │   │   ├── presentation.tex
+│           │   │   │   │   ├── skills.tex
+│           │   │   │   │   └── writing.tex
+│           │   │   │   ├── resume/
+│           │   │   │   │   ├── certificates.tex
+│           │   │   │   │   ├── committees.tex
+│           │   │   │   │   ├── education.tex
+│           │   │   │   │   ├── experience.tex
+│           │   │   │   │   ├── extracurricular.tex
+│           │   │   │   │   ├── honors.tex
+│           │   │   │   │   ├── presentation.tex
+│           │   │   │   │   ├── summary.tex
+│           │   │   │   │   └── writing.tex
+│           │   │   │   ├── awesome-cv.cls
+│           │   │   │   ├── coverletter-0.png
+│           │   │   │   ├── coverletter-1.png
+│           │   │   │   ├── coverletter.pdf
+│           │   │   │   ├── coverletter.tex
+│           │   │   │   ├── cv.pdf
+│           │   │   │   ├── cv.tex
+│           │   │   │   ├── profile.png
+│           │   │   │   ├── resume-0.png
+│           │   │   │   ├── resume-1.png
+│           │   │   │   ├── resume.pdf
+│           │   │   │   └── resume.tex
+│           │   │   ├── .gitignore
+│           │   │   ├── .yamllint.yaml
+│           │   │   ├── awesome-cv.cls
+│           │   │   ├── icon.png
+│           │   │   ├── LICENCE
+│           │   │   ├── Makefile
+│           │   │   └── README.md
+│           │   ├── awesome-resume-cv/
+│           │   │   ├── cv-sections/
+│           │   │   │   ├── committees.tex
+│           │   │   │   ├── education.tex
+│           │   │   │   ├── experience.tex
+│           │   │   │   ├── extracurricular.tex
+│           │   │   │   ├── honors.tex
+│           │   │   │   ├── presentation.tex
+│           │   │   │   ├── skills.tex
+│           │   │   │   └── writing.tex
+│           │   │   ├── fonts/
+│           │   │   │   ├── FontAwesome.otf
+│           │   │   │   ├── Roboto-Bold.ttf
+│           │   │   │   ├── Roboto-BoldItalic.ttf
+│           │   │   │   ├── Roboto-Italic.ttf
+│           │   │   │   ├── Roboto-Light.ttf
+│           │   │   │   ├── Roboto-LightItalic.ttf
+│           │   │   │   ├── Roboto-Medium.ttf
+│           │   │   │   ├── Roboto-MediumItalic.ttf
+│           │   │   │   ├── Roboto-Regular.ttf
+│           │   │   │   ├── Roboto-Thin.ttf
+│           │   │   │   ├── Roboto-ThinItalic.ttf
+│           │   │   │   ├── SourceSansPro-Bold.otf
+│           │   │   │   ├── SourceSansPro-BoldIt.otf
+│           │   │   │   ├── SourceSansPro-It.otf
+│           │   │   │   ├── SourceSansPro-Light.otf
+│           │   │   │   ├── SourceSansPro-LightIt.otf
+│           │   │   │   ├── SourceSansPro-Regular.otf
+│           │   │   │   ├── SourceSansPro-Semibold.otf
+│           │   │   │   └── SourceSansPro-SemiboldIt.otf
+│           │   │   ├── awesome-cv.cls
+│           │   │   ├── cover_letter.tex
+│           │   │   ├── fontawesome.sty
+│           │   │   ├── README.pdf
+│           │   │   └── resume_cv.tex
+│           │   ├── cies-cv/
+│           │   │   ├── cv_11.tex
+│           │   │   ├── README.pdf
+│           │   │   └── structure.tex
+│           │   ├── classicthesis-styled-cv/
+│           │   │   ├── cv_8.tex
+│           │   │   └── README.pdf
+│           │   ├── compact-academic-cv/
+│           │   │   ├── main.tex
+│           │   │   ├── README.pdf
+│           │   │   └── structure.tex
+│           │   ├── CS : IT & SWE Latex Template/
+│           │   │   └── main.tex
+│           │   ├── CV Template for Phd application/
+│           │   │   └── main.tex
+│           │   ├── data-science-tech-resume-template/
+│           │   │   ├── .github/
+│           │   │   │   └── assets/
+│           │   │   │       ├── v1/
+│           │   │   │       │   └── data_science_tech_resume_template1024_1.png
+│           │   │   │       ├── v2/
+│           │   │   │       │   ├── data_science_tech_resume_template-1.png
+│           │   │   │       │   └── data_science_tech_resume_template-2.png
+│           │   │   │       └── v3/
+│           │   │   │           ├── data_science_tech_resume_template-1.png
+│           │   │   │           └── data_science_tech_resume_template-2.png
+│           │   │   ├── .vscode/
+│           │   │   │   ├── extensions.json
+│           │   │   │   └── settings.json
+│           │   │   ├── sections/
+│           │   │   │   ├── activities.tex
+│           │   │   │   ├── education.tex
+│           │   │   │   ├── experience.tex
+│           │   │   │   ├── objective.tex
+│           │   │   │   └── skills.tex
+│           │   │   ├── .gitignore
+│           │   │   ├── _header.tex
+│           │   │   ├── data_science_tech_resume_template.pdf
+│           │   │   ├── LICENSE.txt
+│           │   │   ├── README.md
+│           │   │   ├── resume.tex
+│           │   │   └── TLCresume.sty
+│           │   ├── Deedy-Resume/
+│           │   │   ├── MacFonts/
+│           │   │   │   ├── deedy-resume.cls
+│           │   │   │   ├── deedy_resume.pdf
+│           │   │   │   ├── deedy_resume.xtx
+│           │   │   │   ├── publications.bib
+│           │   │   │   └── sample-image.png
+│           │   │   ├── OpenFonts/
+│           │   │   │   ├── fonts/
+│           │   │   │   │   ├── lato/
+│           │   │   │   │   │   ├── Lato-Bla.ttf
+│           │   │   │   │   │   ├── Lato-BlaIta.ttf
+│           │   │   │   │   │   ├── Lato-Bol.ttf
+│           │   │   │   │   │   ├── Lato-BolIta.ttf
+│           │   │   │   │   │   ├── Lato-Hai.ttf
+│           │   │   │   │   │   ├── Lato-HaiIta.ttf
+│           │   │   │   │   │   ├── Lato-Lig.ttf
+│           │   │   │   │   │   ├── Lato-LigIta.ttf
+│           │   │   │   │   │   ├── Lato-Reg.ttf
+│           │   │   │   │   │   └── Lato-RegIta.ttf
+│           │   │   │   │   └── raleway/
+│           │   │   │   │       ├── Raleway-Bold.otf
+│           │   │   │   │       ├── Raleway-ExtraBold.otf
+│           │   │   │   │       ├── Raleway-ExtraLight.otf
+│           │   │   │   │       ├── Raleway-Heavy.otf
+│           │   │   │   │       ├── Raleway-Light.otf
+│           │   │   │   │       ├── Raleway-Medium.otf
+│           │   │   │   │       ├── Raleway-Regular.otf
+│           │   │   │   │       ├── Raleway-SemiBold.otf
+│           │   │   │   │       └── Raleway-Thin.otf
+│           │   │   │   ├── deedy-resume-openfont.cls
+│           │   │   │   ├── deedy_resume-openfont.pdf
+│           │   │   │   ├── deedy_resume-openfont.xtx
+│           │   │   │   ├── publications.bib
+│           │   │   │   └── sample-image.png
+│           │   │   ├── .gitignore
+│           │   │   ├── LICENSE
+│           │   │   └── README.md
+│           │   ├── deedy-resume-cv/
+│           │   │   ├── fonts/
+│           │   │   │   ├── lato/
+│           │   │   │   │   ├── Lato-Bla.ttf
+│           │   │   │   │   ├── Lato-BlaIta.ttf
+│           │   │   │   │   ├── Lato-Bol.ttf
+│           │   │   │   │   ├── Lato-BolIta.ttf
+│           │   │   │   │   ├── Lato-Hai.ttf
+│           │   │   │   │   ├── Lato-HaiIta.ttf
+│           │   │   │   │   ├── Lato-Lig.ttf
+│           │   │   │   │   ├── Lato-LigIta.ttf
+│           │   │   │   │   ├── Lato-Reg.ttf
+│           │   │   │   │   └── Lato-RegIta.ttf
+│           │   │   │   └── raleway/
+│           │   │   │       ├── Raleway-Bold.otf
+│           │   │   │       ├── Raleway-ExtraBold.otf
+│           │   │   │       ├── Raleway-ExtraLight.otf
+│           │   │   │       ├── Raleway-Heavy.otf
+│           │   │   │       ├── Raleway-Light.otf
+│           │   │   │       ├── Raleway-Medium.otf
+│           │   │   │       ├── Raleway-Regular.otf
+│           │   │   │       ├── Raleway-SemiBold.otf
+│           │   │   │       └── Raleway-Thin.otf
+│           │   │   ├── cv_12.tex
+│           │   │   ├── deedy-resume.cls
+│           │   │   └── README.pdf
+│           │   ├── developer-cv/
+│           │   │   ├── developercv.cls
+│           │   │   ├── fontawesome5.pdf
+│           │   │   ├── LICENSE.md
+│           │   │   ├── main.tex
+│           │   │   └── README.pdf
+│           │   ├── Faang Resume Template/
+│           │   │   ├── resume.cls
+│           │   │   └── resume_faangpath.tex
+│           │   ├── freeman-cv/
+│           │   │   ├── Fonts/
+│           │   │   │   ├── EBGaramond-Bold.ttf
+│           │   │   │   ├── EBGaramond-BoldItalic.ttf
+│           │   │   │   ├── EBGaramond-Italic.ttf
+│           │   │   │   ├── EBGaramond-License
+│           │   │   │   ├── EBGaramond-Regular.ttf
+│           │   │   │   ├── EBGaramond-SC.ttf
+│           │   │   │   ├── FontAwesome.md
+│           │   │   │   ├── FontAwesome.otf
+│           │   │   │   ├── fontawesome.pdf
+│           │   │   │   ├── fontawesomesymbols-xeluatex.tex
+│           │   │   │   ├── Freebooterscript-license.txt
+│           │   │   │   ├── freebooterscript.ttf
+│           │   │   │   ├── Libertinus-OFL-license.txt
+│           │   │   │   ├── LibertinusSans-Bold.otf
+│           │   │   │   ├── LibertinusSans-Italic.otf
+│           │   │   │   └── LibertinusSans-Regular.otf
+│           │   │   ├── FreemanCV.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── Harvard Resume Template/
+│           │   │   └── main.tex
+│           │   ├── IIT kharagpur resume template/
+│           │   │   ├── kgp_logo.png
+│           │   │   ├── main.tex
+│           │   │   └── profile-pic.jpg
+│           │   ├── Jakes Resume Template/
+│           │   │   └── main.tex
+│           │   ├── long-professional-cv/
+│           │   │   ├── cv_1.tex
+│           │   │   ├── README.pdf
+│           │   │   └── res.cls
+│           │   ├── medium-length-graduate-cv/
+│           │   │   ├── cv_2.tex
+│           │   │   ├── README.pdf
+│           │   │   └── res.cls
+│           │   ├── medium-length-professional-cv/
+│           │   │   ├── README.pdf
+│           │   │   ├── resume.cls
+│           │   │   └── template.tex
+│           │   ├── Modern CV - Latex Template/
+│           │   │   ├── picture.jpg
+│           │   │   ├── publications.bib
+│           │   │   └── template.tex
+│           │   ├── modern-deedy/
+│           │   │   ├── fonts/
+│           │   │   │   ├── Lato/
+│           │   │   │   │   ├── Lato-Black.ttf
+│           │   │   │   │   ├── Lato-BlackItalic.ttf
+│           │   │   │   │   ├── Lato-Bold.ttf
+│           │   │   │   │   ├── Lato-BoldItalic.ttf
+│           │   │   │   │   ├── Lato-Italic.ttf
+│           │   │   │   │   ├── Lato-Light.ttf
+│           │   │   │   │   ├── Lato-LightItalic.ttf
+│           │   │   │   │   ├── Lato-Regular.ttf
+│           │   │   │   │   ├── Lato-Thin.ttf
+│           │   │   │   │   └── Lato-ThinItalic.ttf
+│           │   │   │   └── Raleway/
+│           │   │   │       ├── Raleway-Bold.otf
+│           │   │   │       ├── Raleway-ExtraBold.otf
+│           │   │   │       ├── Raleway-ExtraLight.otf
+│           │   │   │       ├── Raleway-Heavy.otf
+│           │   │   │       ├── Raleway-Light.otf
+│           │   │   │       ├── Raleway-Medium.otf
+│           │   │   │       ├── Raleway-Regular.otf
+│           │   │   │       ├── Raleway-SemiBold.otf
+│           │   │   │       └── Raleway-Thin.otf
+│           │   │   ├── font-color.sty
+│           │   │   ├── lato-font.sty
+│           │   │   ├── LICENSE
+│           │   │   ├── raleway-font.sty
+│           │   │   ├── README.md
+│           │   │   ├── resume-openfont.cls
+│           │   │   └── resume.tex
+│           │   ├── moderncv-cv-and-cover-letter/
+│           │   │   ├── pictures/
+│           │   │   │   └── picture.jpg
+│           │   │   ├── cv_7.tex
+│           │   │   ├── moderncv.cls
+│           │   │   ├── moderncvcolorblack.sty
+│           │   │   ├── moderncvcolorblue.sty
+│           │   │   ├── moderncvcolorgreen.sty
+│           │   │   ├── moderncvcolorgrey.sty
+│           │   │   ├── moderncvcolororange.sty
+│           │   │   ├── moderncvcolorpurple.sty
+│           │   │   ├── moderncvcolorred.sty
+│           │   │   ├── moderncvcompatibility.sty
+│           │   │   ├── moderncvstylebanking.sty
+│           │   │   ├── moderncvstylecasual.sty
+│           │   │   ├── moderncvstyleclassic.sty
+│           │   │   ├── moderncvstyleempty.sty
+│           │   │   ├── moderncvstyleoldstyle.sty
+│           │   │   ├── README.pdf
+│           │   │   └── tweaklist.sty
+│           │   ├── plasmati-cv/
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── RenderCV Latex Resume Template/
+│           │   │   └── main.tex
+│           │   ├── Resume Templates for Freshers/
+│           │   │   └── main.tex
+│           │   ├── Rover Resume Latex Template/
+│           │   │   ├── dwight.png
+│           │   │   └── office-rover.tex
+│           │   ├── Software engineer - Developer/
+│           │   │   └── main.tex
+│           │   ├── stylish-cv/
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── SWE Resume Template/
+│           │   │   ├── custom-commands.tex
+│           │   │   └── resume.tex
+│           │   ├── Technical Resume Template/
+│           │   │   └── main.tex
+│           │   ├── twenty-seconds-resumecv/
+│           │   │   ├── alice.jpeg
+│           │   │   ├── LICENSE
+│           │   │   ├── README.pdf
+│           │   │   ├── template.tex
+│           │   │   └── twentysecondcv.cls
+│           │   ├── wenneker-resume-cv/
+│           │   │   ├── cv_15.tex
+│           │   │   ├── photo.jpg
+│           │   │   ├── README.pdf
+│           │   │   └── structure.tex
+│           │   └── wilson-resume-cv/
+│           │       ├── fonts/
+│           │       │   ├── Erewhon README.txt
+│           │       │   ├── Erewhon-Bold.otf
+│           │       │   ├── Erewhon-BoldItalic.otf
+│           │       │   ├── Erewhon-BoldSlanted.otf
+│           │       │   ├── Erewhon-Italic.otf
+│           │       │   ├── Erewhon-Regular.otf
+│           │       │   └── Erewhon-RegularSlanted.otf
+│           │       ├── cv_13.tex
+│           │       ├── README.pdf
+│           │       └── structure.tex
 │           ├── Essays/
 │           │   ├── diaz-essay/
 │           │   │   ├── Figures/
@@ -29542,6 +32952,112 @@ sanctuary/
 │           │       ├── lab_book_1.tex
 │           │       ├── labbook.cls
 │           │       └── README.pdf
+│           ├── Laboratory Reports/
+│           │   └── university-school-laboratory-report/
+│           │       ├── Figures/
+│           │       │   └── placeholder.jpg
+│           │       ├── CSUniSchoolLabReport.cls
+│           │       ├── README.pdf
+│           │       ├── sample.bib
+│           │       └── template.tex
+│           ├── Miscellaneous/
+│           │   ├── article-notes/
+│           │   │   ├── article_notes.tex
+│           │   │   ├── README.pdf
+│           │   │   ├── sample.bib
+│           │   │   └── structure.tex
+│           │   ├── canadian-forces-memo/
+│           │   │   ├── CF_memo.tex
+│           │   │   └── README.pdf
+│           │   ├── cheatsheet/
+│           │   │   ├── cheatsheet.tex
+│           │   │   ├── LICENSE
+│           │   │   └── README.pdf
+│           │   ├── chemical-equations/
+│           │   │   ├── chemical_equations.tex
+│           │   │   └── README.pdf
+│           │   ├── code-snippet/
+│           │   │   ├── Scripts/
+│           │   │   │   └── example.pl
+│           │   │   ├── Listings Package Documentation.pdf
+│           │   │   ├── main.tex
+│           │   │   └── README.pdf
+│           │   ├── conference-booklet/
+│           │   │   ├── images/
+│           │   │   │   ├── logos/
+│           │   │   │   │   └── Partnerlogos/
+│           │   │   │   │       └── LancasterHelium.jpg
+│           │   │   │   ├── amcos_map.jpeg
+│           │   │   │   ├── cover.jpg
+│           │   │   │   └── map.png
+│           │   │   ├── conferencebooklet.cls
+│           │   │   ├── LICENSE
+│           │   │   ├── main.tex
+│           │   │   └── README.pdf
+│           │   ├── contract/
+│           │   │   ├── contract.tex
+│           │   │   ├── README.pdf
+│           │   │   └── structure.tex
+│           │   ├── custom-class/
+│           │   │   ├── example.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── dictionary/
+│           │   │   ├── dictionary.tex
+│           │   │   └── README.pdf
+│           │   ├── drake-certificate/
+│           │   │   ├── CSDrakeCertificate.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── engineering-calculation-paper/
+│           │   │   ├── EngCalcPaper.tex
+│           │   │   ├── logo.png
+│           │   │   └── README.pdf
+│           │   ├── frequently-asked-questions/
+│           │   │   ├── faq.tex
+│           │   │   └── README.pdf
+│           │   ├── memo/
+│           │   │   ├── logo.png
+│           │   │   ├── memo.tex
+│           │   │   ├── README.pdf
+│           │   │   └── texMemo.cls
+│           │   ├── minimal-memo/
+│           │   │   ├── CSMinimalMemo.cls
+│           │   │   ├── README.pdf
+│           │   │   └── template.tex
+│           │   ├── nih-grant-proposal/
+│           │   │   ├── Figures/
+│           │   │   │   ├── Fig1.jpg
+│           │   │   │   └── Fig2.pdf
+│           │   │   ├── NIHGrant.bib
+│           │   │   ├── NIHGrant.tex
+│           │   │   ├── nihunsrt.bst
+│           │   │   └── README.pdf
+│           │   ├── poems/
+│           │   │   ├── poems.tex
+│           │   │   ├── README.pdf
+│           │   │   └── verse.pdf
+│           │   ├── press-release/
+│           │   │   ├── fancyhdr.sty
+│           │   │   ├── logo.png
+│           │   │   ├── press_release.tex
+│           │   │   ├── prsrls.tex
+│           │   │   └── README.pdf
+│           │   ├── professional-table/
+│           │   │   ├── README.pdf
+│           │   │   └── table.tex
+│           │   └── ryo-menu/
+│           │       ├── Fonts/
+│           │       │   ├── Lato-Black.ttf
+│           │       │   ├── Lato-BlackItalic.ttf
+│           │       │   ├── Lato-Bold.ttf
+│           │       │   ├── Lato-BoldItalic.ttf
+│           │       │   ├── Lato-Italic.ttf
+│           │       │   ├── Lato-Regular.ttf
+│           │       │   └── SIL Open Font License.txt
+│           │       ├── CSRyoMenu.cls
+│           │       ├── README.pdf
+│           │       └── template.tex
 │           ├── Newsletters/
 │           │   ├── professional-newsletter/
 │           │   │   ├── logo.png
@@ -29730,6 +33246,8 @@ sanctuary/
 │               └── stylish-title-page/
 │                   ├── main.tex
 │                   └── README.pdf
+├── tools/
+│   └── ROADMAP.md
 ├── workstation/
 │   ├── linux/
 │   │   ├── aide/
@@ -29998,11 +33516,24 @@ sanctuary/
 │   │   │   └── alacritty.toml
 │   │   ├── aria2/
 │   │   │   └── aria2.conf
+│   │   ├── asdf/
+│   │   │   └── .asdfrc
+│   │   ├── curl/
+│   │   │   └── .curlrc
+│   │   ├── git/
+│   │   │   ├── .gitconfig
+│   │   │   └── .gitignore_global
+│   │   ├── npm/
+│   │   │   └── .npmrc
+│   │   ├── python/
+│   │   │   └── .pythonrc.py
 │   │   ├── readline/
 │   │   │   └── .inputrc
 │   │   ├── shell/
 │   │   │   ├── .bash_logout
 │   │   │   └── .hushlogin
+│   │   ├── wget/
+│   │   │   └── .wgetrc
 │   │   └── README.md
 │   └── README.md
 ├── .actrc
@@ -30012,7 +33543,9 @@ sanctuary/
 ├── .editorconfig
 ├── .gitignore
 ├── .mailmap
+├── .pnpmfile.cjs
 ├── .pnpmignore
+├── .pre-commit-config.yaml
 ├── .talismanrc
 ├── .typos.toml
 ├── CODE_OF_CONDUCT.md
