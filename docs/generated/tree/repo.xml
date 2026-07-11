@@ -34756,24 +34756,6 @@
   </directory>
   <directory name="shell" path="shell">
     <directory name=".staging" path="shell/.staging">
-      <directory name="bash" path="shell/.staging/bash">
-        <file name="array" path="shell/.staging/bash/array" />
-        <file name="check" path="shell/.staging/bash/check" />
-        <file name="collection" path="shell/.staging/bash/collection" />
-        <file name="date" path="shell/.staging/bash/date" />
-        <file name="debug" path="shell/.staging/bash/debug" />
-        <file name="file" path="shell/.staging/bash/file" />
-        <file name="format" path="shell/.staging/bash/format" />
-        <file name="interaction" path="shell/.staging/bash/interaction" />
-        <file name="json" path="shell/.staging/bash/json" />
-        <file name="logger" path="shell/.staging/bash/logger" />
-        <file name="misc" path="shell/.staging/bash/misc" />
-        <file name="os" path="shell/.staging/bash/os" />
-        <file name="string" path="shell/.staging/bash/string" />
-        <file name="terminal" path="shell/.staging/bash/terminal" />
-        <file name="validation" path="shell/.staging/bash/validation" />
-        <file name="variable" path="shell/.staging/bash/variable" />
-      </directory>
       <directory name="fish shell" path="shell/.staging/fish shell">
         <directory name="fish" path="shell/.staging/fish shell/fish">
           <directory name="completions" path="shell/.staging/fish shell/fish/completions">
@@ -34997,6 +34979,21 @@
       <file name="load-platform-runtime.sh" path="shell/init/load-platform-runtime.sh" />
     </directory>
     <directory name="lib" path="shell/lib">
+      <directory name="bash" path="shell/lib/bash">
+        <file name="array.sh" path="shell/lib/bash/array.sh" />
+        <file name="collection.sh" path="shell/lib/bash/collection.sh" />
+        <file name="date.sh" path="shell/lib/bash/date.sh" />
+        <file name="debug.sh" path="shell/lib/bash/debug.sh" />
+        <file name="file.sh" path="shell/lib/bash/file.sh" />
+        <file name="format.sh" path="shell/lib/bash/format.sh" />
+        <file name="interaction.sh" path="shell/lib/bash/interaction.sh" />
+        <file name="json.sh" path="shell/lib/bash/json.sh" />
+        <file name="misc.sh" path="shell/lib/bash/misc.sh" />
+        <file name="string.sh" path="shell/lib/bash/string.sh" />
+        <file name="terminal.sh" path="shell/lib/bash/terminal.sh" />
+        <file name="validation.sh" path="shell/lib/bash/validation.sh" />
+        <file name="variable.sh" path="shell/lib/bash/variable.sh" />
+      </directory>
       <directory name="core" path="shell/lib/core">
         <file name="bash.sh" path="shell/lib/core/bash.sh" />
         <file name="colors.sh" path="shell/lib/core/colors.sh" />
@@ -35041,6 +35038,12 @@
       </directory>
     </directory>
     <directory name="tests" path="shell/tests">
+      <directory name="bash" path="shell/tests/bash">
+        <file name="array.bats" path="shell/tests/bash/array.bats" />
+        <file name="string.bats" path="shell/tests/bash/string.bats" />
+        <file name="validation.bats" path="shell/tests/bash/validation.bats" />
+        <file name="variable.bats" path="shell/tests/bash/variable.bats" />
+      </directory>
       <directory name="core" path="shell/tests/core">
         <file name="bash.bats" path="shell/tests/core/bash.bats" />
         <file name="time.bats" path="shell/tests/core/time.bats" />
