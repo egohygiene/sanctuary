@@ -139,16 +139,20 @@ EOF
 
 @test "runtime-backed install wrappers resolve shell root from shell/bin" {
   run_in_clean_shell "${TEST_HOME}" "
-    unset EGOHYGIENE_SHELL_ROOT
-    '${REPO_ROOT}/bin/install-dust' --help
-    '${REPO_ROOT}/bin/install-eza' --help
-    '${REPO_ROOT}/bin/install-shfmt' --help
-    '${REPO_ROOT}/bin/install-typos' --help
+    for tool in dust eza shfmt typos; do
+      unset EGOHYGIENE_SHELL_ROOT
+      source '${REPO_ROOT}/bin/install-'\${tool} --help || true
+      printf '%s_root=%s\n' \"\${tool}\" \"\${EGOHYGIENE_SHELL_ROOT}\"
+    done
   "
 
-  [ "${status}" -eq 64 ]
+  [ "${status}" -eq 0 ]
   assert_output_contains "Usage: install-dust [--version x.y.z] [--install-dir DIR] [--help]"
   assert_output_contains "Usage: install-eza [--version x.y.z] [--install-dir DIR] [--help]"
   assert_output_contains "Usage: install-shfmt [--version x.y.z] [--install-dir DIR] [--help]"
   assert_output_contains "Usage: install-typos [--version x.y.z] [--install-dir DIR] [--help]"
+  assert_line "dust_root=${REPO_ROOT}"
+  assert_line "eza_root=${REPO_ROOT}"
+  assert_line "shfmt_root=${REPO_ROOT}"
+  assert_line "typos_root=${REPO_ROOT}"
 }

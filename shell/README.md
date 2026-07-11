@@ -69,4 +69,4 @@ bats shell/tests || true
 
 See [`lib/install/README.md`](lib/install/README.md) for the canonical installer
 runtime layout and the thin-wrapper contract used by the `install-*` commands in
-`shell/bin/`.
+`shell/bin`.

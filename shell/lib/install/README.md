@@ -1,6 +1,6 @@
 # install runtime
 
-Sanctuary's installer runtime lives in `shell/lib/install/`, and the executable
+The installer runtime lives in `shell/lib/install/`, and the executable
 installer entrypoints now live in `shell/bin/`.
 
 ## Installer families
