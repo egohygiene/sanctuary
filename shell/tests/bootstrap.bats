@@ -14,11 +14,15 @@ teardown() {
   run_in_clean_shell "${TEST_HOME}" "
     source '${REPO_ROOT}/.shellrc'
     printf 'root=%s\n' \"\${EGOHYGIENE_SHELL_ROOT}\"
+    printf 'runtime_environment=%s\n' \"\${EGOHYGIENE_RUNTIME_ENVIRONMENT}\"
+    printf 'platform_runtime=%s\n' \"\${EGOHYGIENE_PLATFORM_RUNTIME:-none}\"
     printf 'modules=%s\n' \"\${EGOHYGIENE_SHELL_LOADED_MODULES}\"
   "
 
   [ "${status}" -eq 0 ]
   assert_line "root=${REPO_ROOT}"
+  assert_line "runtime_environment=local"
+  assert_line "platform_runtime=none"
   assert_line "modules=xdg environment tooling history privacy cache"
 }
 

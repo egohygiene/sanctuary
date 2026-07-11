@@ -8,21 +8,30 @@ Canonical Sanctuary shell bootstrap and utility library.
 shell/
 ├── bin/             # User-facing commands exposed on PATH
 ├── init/            # Bootstrap entrypoints and orchestration
-├── lib/core/        # Minimal reusable primitives and runtime detection
+├── lib/core/        # Runtime detection primitives and compatibility libraries
 ├── lib/extensions/  # Optional integrations loaded on demand
+├── runtime/         # Shared and shell-specific runtime layers
 ├── modules/         # Higher-level environment modules
+├── platforms/       # Reserved for future OS-specific runtime layers
 └── tests/           # Bats coverage for bootstrap, modules, and commands
 ```
 
 ## Bootstrap flow
 
 1. `shell/.shellrc` resolves `EGOHYGIENE_SHELL_ROOT`.
-2. `shell/init/init.sh` loads core libraries, optional extensions, and the module loader.
-3. `shell/init/bootstrap.sh` applies the canonical module order:
+2. `shell/init/load-core.sh` performs deterministic runtime staging:
+   - environment detection (`EGOHYGIENE_RUNTIME_ENVIRONMENT`)
+   - OS detection (`lib/core/os.sh`)
+   - shell detection (`lib/core/shell.sh`)
+   - shared runtime (`runtime/shared/runtime.sh`)
+   - shell runtime (`runtime/shells/<shell>/runtime.sh`)
+3. `shell/init/load-platform-runtime.sh` loads an optional future platform runtime.
+4. `shell/init/load-extensions.sh` loads optional extensions.
+5. `shell/init/bootstrap.sh` applies the canonical module order:
    `xdg → environment → tooling → history → privacy → cache`.
-4. Shell-specific code is guarded by the detected runtime:
+6. Shell-specific code is guarded by the detected runtime:
    - `lib/core/shell.sh` identifies the active shell as `bash`, `zsh`, or `unknown`
-   - `lib/core/bash.sh` loads only for Bash sessions
+   - `runtime/shells/bash/runtime.sh` loads Bash-only helpers
    - shell-specific modules only load when a matching file exists in `modules/`
 
 ## Portability notes

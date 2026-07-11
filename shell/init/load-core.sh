@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 #
 # ============================================
-# 📦 EgoHygiene Shell — Core Library Loader
+# 📦 EgoHygiene Shell — Runtime Loader
 # ============================================
 #
-# Loads foundational shell libraries in a strict,
-# deterministic order.
+# Loads runtime layers in a strict, deterministic order:
+# environment → os → shell → shared runtime → shell runtime
 #
 # Responsibilities:
-# - Load core libraries required by the system
-# - Ensure predictable initialization order
-# - Avoid side effects beyond sourcing files
+# - Detect the execution environment category
+# - Load runtime detection primitives
+# - Source shared runtime libraries
+# - Source shell-specific runtime libraries
 #
 # Notes:
 # - Order matters — dependencies must be respected
 # - Missing files are tolerated (non-fatal)
-# - No module logic should exist here
+# - No module bootstrap logic should exist here
 #
 
 # --------------------------------------------
@@ -27,57 +28,87 @@ if [[ -z "${EGOHYGIENE_SHELL_ROOT:-}" ]]; then
 fi
 
 # --------------------------------------------
-# 📚 Core Library Load Order
+# 🌐 Environment Detection
 # --------------------------------------------
-#
-# Order is intentional:
-# 1. shell    → active shell detection
-# 2. os       → environment detection
-# 3. colors   → terminal formatting
-# 4. logging  → structured output
-# 5. guards   → safety + assertions
-# 6. core     → shared helpers
-# 7. time     → time helpers
-#
+if [[ -n "${GITHUB_ACTIONS:-}" ]]; then
+  EGOHYGIENE_RUNTIME_ENVIRONMENT="ci"
+elif [[ -n "${CODESPACES:-}" ]]; then
+  EGOHYGIENE_RUNTIME_ENVIRONMENT="codespaces"
+elif [[ -n "${DEVCONTAINER:-}" || -n "${REMOTE_CONTAINERS:-}" ]]; then
+  EGOHYGIENE_RUNTIME_ENVIRONMENT="devcontainer"
+elif [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
+  EGOHYGIENE_RUNTIME_ENVIRONMENT="wsl"
+else
+  EGOHYGIENE_RUNTIME_ENVIRONMENT="local"
+fi
+export EGOHYGIENE_RUNTIME_ENVIRONMENT
 
-core_library_file_list=(
-  "shell.sh"
+# --------------------------------------------
+# 🧠 Runtime Detection Primitives
+# --------------------------------------------
+detection_library_file_list=(
   "os.sh"
-  "colors.sh"
-  "logging.sh"
-  "guards.sh"
-  "core.sh"
-  "time.sh"
+  "shell.sh"
 )
 
 # --------------------------------------------
-# 🔄 Load Libraries
+# 🔄 Load Detection Libraries
 # --------------------------------------------
-for core_library_file in "${core_library_file_list[@]}"; do
-  core_library_path="${EGOHYGIENE_SHELL_ROOT}/lib/core/${core_library_file}"
+for detection_library_file in "${detection_library_file_list[@]}"; do
+  detection_library_path="${EGOHYGIENE_SHELL_ROOT}/lib/core/${detection_library_file}"
 
-  if [[ -f "${core_library_path}" && -r "${core_library_path}" ]]; then
+  if [[ -f "${detection_library_path}" && -r "${detection_library_path}" ]]; then
     # shellcheck disable=SC1090
-    source "${core_library_path}"
+    source "${detection_library_path}"
   else
-    printf "[warn] load-core.sh: missing core library: %s\n" "${core_library_file}" >&2
+    printf "[warn] load-core.sh: missing runtime detection library: %s\n" "${detection_library_file}" >&2
   fi
 done
 
-if shell::is_bash; then
-  core_library_path="${EGOHYGIENE_SHELL_ROOT}/lib/core/bash.sh"
+# --------------------------------------------
+# 📚 Shared Runtime
+# --------------------------------------------
+shared_runtime_path="${EGOHYGIENE_SHELL_ROOT}/runtime/shared/runtime.sh"
 
-  if [[ -f "${core_library_path}" && -r "${core_library_path}" ]]; then
-    # shellcheck disable=SC1090
-    source "${core_library_path}"
-  else
-    printf "[warn] load-core.sh: missing bash library: bash.sh\n" >&2
-  fi
+if [[ -f "${shared_runtime_path}" && -r "${shared_runtime_path}" ]]; then
+  # shellcheck disable=SC1090
+  source "${shared_runtime_path}"
+else
+  printf "[warn] load-core.sh: missing shared runtime: %s\n" "${shared_runtime_path}" >&2
+fi
+
+# --------------------------------------------
+# 🐚 Shell Runtime
+# --------------------------------------------
+if [[ -z "${EGOHYGIENE_SHELL_NAME:-}" ]]; then
+  EGOHYGIENE_SHELL_NAME="unknown"
+  export EGOHYGIENE_SHELL_NAME
+  printf "[warn] load-core.sh: shell detection library did not set EGOHYGIENE_SHELL_NAME\n" >&2
+fi
+
+posix_shell_runtime_path="${EGOHYGIENE_SHELL_ROOT}/runtime/shells/posix/runtime.sh"
+if [[ -f "${posix_shell_runtime_path}" && -r "${posix_shell_runtime_path}" ]]; then
+  # shellcheck disable=SC1090
+  source "${posix_shell_runtime_path}"
+else
+  printf "[warn] load-core.sh: missing shell runtime: %s\n" "${posix_shell_runtime_path}" >&2
+fi
+
+shell_runtime_path="${EGOHYGIENE_SHELL_ROOT}/runtime/shells/${EGOHYGIENE_SHELL_NAME}/runtime.sh"
+
+if [[ -f "${shell_runtime_path}" && -r "${shell_runtime_path}" ]]; then
+  # shellcheck disable=SC1090
+  source "${shell_runtime_path}"
+else
+  printf "[warn] load-core.sh: missing shell runtime: %s\n" "${shell_runtime_path}" >&2
 fi
 
 # --------------------------------------------
 # 🧹 Cleanup
 # --------------------------------------------
-unset core_library_file
-unset core_library_path
-unset core_library_file_list
+unset detection_library_file
+unset detection_library_file_list
+unset detection_library_path
+unset shared_runtime_path
+unset posix_shell_runtime_path
+unset shell_runtime_path
