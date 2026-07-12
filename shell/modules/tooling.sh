@@ -87,8 +87,16 @@ export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
 export PYTHONPATH="${XDG_DATA_HOME}/python/lib"
 export PIP_CACHE_DIR="${XDG_CACHE_HOME}/pip"
 export PIPX_HOME="${XDG_DATA_HOME}/pipx"
+export PIPX_BIN_DIR="${PIPX_HOME}/bin"
 export POETRY_HOME="${XDG_DATA_HOME}/poetry"
 export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
+
+# --------------------------------------------
+# 🟢 Golang
+# --------------------------------------------
+
+export GOPATH="${XDG_DATA_HOME}/go"
+export GOMODCACHE="${GOPATH}/pkg/mod"
 
 # --------------------------------------------
 # 🟢 JavaScript / Node
@@ -161,3 +169,4 @@ export ANKI_DIR="${XDG_DATA_HOME}/anki"
 export LEDGER_FILE="${XDG_DATA_HOME}/hledger/.hledger.journal"
 export NB_DIR="${XDG_DATA_HOME}/nb"
 export WINEPREFIX="${XDG_DATA_HOME}/wine"
+export BOGOFILTER_DIR="${XDG_DATA_HOME}/bogofilter"
