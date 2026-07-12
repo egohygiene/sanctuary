@@ -65,7 +65,8 @@
         ".wgetrc": "properties",
         ".gitignore_global": "ignore",
         "gitignore_global": "ignore",
-        ".npmrc": "properties"
+        ".npmrc": "properties",
+        ".ideavimrc": "viml"
     },
 
     // --- Terminal ---
