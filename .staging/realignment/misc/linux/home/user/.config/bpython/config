@@ -1,4 +1,0 @@
-# General section tag
-[general]
-
-hist_file = $XDG_DATA_HOME/bpython/bpythonhistory
