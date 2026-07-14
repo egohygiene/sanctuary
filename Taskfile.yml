@@ -4,16 +4,16 @@ version: "3"
 
 includes:
   git:
-    taskfile: ".taskfile/git.yml"
+    taskfile: ".engineering/tasks/git.yml"
     description: Git-related tasks
     optional: true
 
   lint:
-    taskfile: ".taskfile/lint.yml"
+    taskfile: ".engineering/tasks/lint.yml"
     description: Linting tasks
     optional: true
 
   security:
-    taskfile: ".taskfile/security.yml"
+    taskfile: ".engineering/tasks/security.yml"
     description: Security-related tasks
     optional: true
