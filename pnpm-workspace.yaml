@@ -9,4 +9,4 @@ packages:
 
 catalogs:
   # Define a catalog of version ranges for the workspace.
-  workspace:
+  # workspace:

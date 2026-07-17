@@ -600,3 +600,5 @@ alias week='date +"%Y-W%V"'
 
 # Gets weekday number.
 alias weekday='date +"%u"'
+
+

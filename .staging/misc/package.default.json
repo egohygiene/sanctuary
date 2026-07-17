@@ -186,9 +186,6 @@
     // Specifies that your code only runs on certain CPU architectures
     "cpu": ["x64", "arm64"],
 
-    // DEPRECATED: Used to trigger an npm warning if the package is not installed globally
-    "preferGlobal": false,
-
     // If true, npm will refuse to publish it
     "private": false,
 
