@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Show Hidden Files
-Exec=sh -c "gsettings set org.gtk.Settings.FileChooser show-hidden true"
-X-GNOME-Autostart-enabled=true
-Comment=Always show hidden files in the file explorer

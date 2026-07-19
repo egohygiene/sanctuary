@@ -68,7 +68,11 @@
         ".npmrc": "properties",
         ".ideavimrc": "viml",
         ".browserslistrc": "properties",
-        ".nvidia-settings-rc": "properties"
+        ".nvidia-settings-rc": "properties",
+        ".gdbinit": "gdb",
+        "gdbinit": "gdb",
+        "*.gdb": "gdb",
+        "*.gdbinit": "gdb"
     },
 
     // --- Terminal ---

@@ -1,0 +1,449 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+PROGRAM_NAME="${0##*/}"
+
+# -----------------------------------------------------------------------------
+# Defaults
+# -----------------------------------------------------------------------------
+
+remote="origin"
+base_branch="main"
+output_file=""
+copy_to_clipboard=true
+list_only=false
+keep_branch=false
+stash_changes=false
+update_branch=true
+pr_branch=""
+pathspecs=()
+
+working_directory=""
+original_branch=""
+original_commit=""
+target_local_branch=""
+target_remote_ref=""
+temporary_directory=""
+stash_created=false
+switched_branch=false
+
+# -----------------------------------------------------------------------------
+# Output helpers
+# -----------------------------------------------------------------------------
+
+info() {
+  printf '[%s] %s\n' "${PROGRAM_NAME}" "$*" >&2
+}
+
+warn() {
+  printf '[%s] warning: %s\n' "${PROGRAM_NAME}" "$*" >&2
+}
+
+die() {
+  printf '[%s] error: %s\n' "${PROGRAM_NAME}" "$*" >&2
+  exit 1
+}
+
+usage() {
+  cat <<'EOF'
+Create a corpus from the files changed by a pull-request branch.
+
+The command fetches the requested branch, switches to it, compares it against
+the configured base branch, creates a corpus from the changed files, copies the
+corpus to the clipboard, and then restores the original branch.
+
+Usage:
+  git-pr-corpus [options] <pr-branch> [-- pathspec...]
+
+Arguments:
+  pr-branch                 Remote branch associated with the pull request.
+
+Options:
+  -r, --remote NAME         Git remote name.
+                            Default: origin
+
+  -b, --base BRANCH         Base branch used for the three-dot comparison.
+                            Default: main
+
+  -o, --output FILE         Also write the generated corpus to FILE.
+
+  -n, --no-copy             Print the corpus instead of copying it.
+
+  -l, --list                List matching changed files without creating a corpus.
+
+  -s, --stash               Temporarily stash tracked and untracked changes.
+
+  -k, --keep-branch         Remain on the PR branch after completion.
+
+      --no-update           Do not fast-forward an existing local PR branch.
+
+  -h, --help                Show this help.
+
+Examples:
+  git-pr-corpus copilot/audit-publication-template-readiness
+
+  git-pr-corpus copilot/audit-publication-template-readiness -- 'audits/*.md'
+
+  git-pr-corpus feature/publication-fix -- \
+    audits/ \
+    template/ \
+    '.github/workflows/*.yml'
+
+  git-pr-corpus --stash feature/publication-fix
+
+  git-pr-corpus \
+    --output /tmp/publication-review.txt \
+    feature/publication-fix
+
+  git-pr-corpus \
+    --base develop \
+    --remote upstream \
+    feature/publication-fix
+EOF
+}
+
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# -----------------------------------------------------------------------------
+# Cleanup and restoration
+# -----------------------------------------------------------------------------
+
+restore_repository() {
+  local original_status=$?
+
+  trap - EXIT INT TERM
+  set +e
+
+  if [[ "${keep_branch}" != true && "${switched_branch}" == true ]]; then
+    if [[ -n "${original_branch}" ]]; then
+      info "Switching back to ${original_branch}..."
+      git switch --quiet "${original_branch}"
+
+      if [[ $? -ne 0 ]]; then
+        warn "Could not switch back to ${original_branch}."
+        original_status=1
+      fi
+    else
+      info "Restoring detached HEAD at ${original_commit}..."
+      git switch --quiet --detach "${original_commit}"
+
+      if [[ $? -ne 0 ]]; then
+        warn "Could not restore detached HEAD at ${original_commit}."
+        original_status=1
+      fi
+    fi
+  fi
+
+  if [[ "${stash_created}" == true ]]; then
+    info "Restoring stashed working-tree changes..."
+    git stash pop --index
+
+    if [[ $? -ne 0 ]]; then
+      warn "The stash could not be applied automatically."
+      warn "Your changes remain available through: git stash list"
+      original_status=1
+    fi
+  fi
+
+  if [[ -n "${temporary_directory}" && -d "${temporary_directory}" ]]; then
+    rm -rf "${temporary_directory}"
+  fi
+
+  exit "${original_status}"
+}
+
+trap restore_repository EXIT INT TERM
+
+# -----------------------------------------------------------------------------
+# Argument parsing
+# -----------------------------------------------------------------------------
+
+while (($# > 0)); do
+  case "$1" in
+    -r|--remote)
+      (($# >= 2)) || die "$1 requires a remote name"
+      remote="$2"
+      shift 2
+      ;;
+
+    -b|--base)
+      (($# >= 2)) || die "$1 requires a branch name"
+      base_branch="$2"
+      shift 2
+      ;;
+
+    -o|--output)
+      (($# >= 2)) || die "$1 requires a file path"
+      output_file="$2"
+      shift 2
+      ;;
+
+    -n|--no-copy)
+      copy_to_clipboard=false
+      shift
+      ;;
+
+    -l|--list)
+      list_only=true
+      shift
+      ;;
+
+    -s|--stash)
+      stash_changes=true
+      shift
+      ;;
+
+    -k|--keep-branch)
+      keep_branch=true
+      shift
+      ;;
+
+    --no-update)
+      update_branch=false
+      shift
+      ;;
+
+    -h|--help)
+      usage
+      exit 0
+      ;;
+
+    --)
+      shift
+      pathspecs=("$@")
+      break
+      ;;
+
+    -*)
+      die "unknown option: $1"
+      ;;
+
+    *)
+      if [[ -z "${pr_branch}" ]]; then
+        pr_branch="$1"
+      else
+        pathspecs+=("$1")
+      fi
+      shift
+      ;;
+  esac
+done
+
+[[ -n "${pr_branch}" ]] || {
+  usage >&2
+  die "a PR branch is required"
+}
+
+# Allow either:
+#
+#   copilot/example
+#   origin/copilot/example
+#
+remote_prefix="${remote}/"
+if [[ "${pr_branch}" == "${remote_prefix}"* ]]; then
+  pr_branch="${pr_branch#${remote_prefix}}"
+fi
+
+[[ -n "${pr_branch}" ]] || die "invalid PR branch"
+
+target_local_branch="${pr_branch}"
+target_remote_ref="${remote}/${pr_branch}"
+base_remote_ref="${remote}/${base_branch}"
+
+# -----------------------------------------------------------------------------
+# Dependency and repository validation
+# -----------------------------------------------------------------------------
+
+command_exists git || die "git is required"
+command_exists create-corpus || die "create-corpus was not found in PATH"
+
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 \
+  || die "run this command inside a Git repository"
+
+working_directory="$(git rev-parse --show-toplevel)"
+cd "${working_directory}"
+
+original_commit="$(git rev-parse HEAD)"
+original_branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)"
+
+temporary_directory="$(
+  mktemp -d "${TMPDIR:-/tmp}/${PROGRAM_NAME}.XXXXXX"
+)"
+
+changed_files_list="${temporary_directory}/changed-files"
+corpus_file="${temporary_directory}/corpus.txt"
+
+# -----------------------------------------------------------------------------
+# Working-tree safety
+# -----------------------------------------------------------------------------
+
+if [[ -n "$(git status --porcelain=v1)" ]]; then
+  if [[ "${stash_changes}" != true ]]; then
+    die "the working tree has uncommitted changes. Commit them or rerun with --stash"
+  fi
+
+  info "Stashing tracked and untracked working-tree changes..."
+
+  stash_output="$(
+    git stash push \
+      --include-untracked \
+      --message "${PROGRAM_NAME}: temporary stash before reviewing ${pr_branch}"
+  )"
+
+  if [[ "${stash_output}" != *"No local changes to save"* ]]; then
+    stash_created=true
+  fi
+fi
+
+# -----------------------------------------------------------------------------
+# Fetch base and PR branches
+# -----------------------------------------------------------------------------
+
+info "Fetching ${remote}/${base_branch}..."
+
+git fetch \
+  --prune \
+  "${remote}" \
+  "+refs/heads/${base_branch}:refs/remotes/${remote}/${base_branch}"
+
+info "Fetching ${remote}/${pr_branch}..."
+
+git fetch \
+  "${remote}" \
+  "+refs/heads/${pr_branch}:refs/remotes/${remote}/${pr_branch}"
+
+git rev-parse --verify "${base_remote_ref}^{commit}" >/dev/null 2>&1 \
+  || die "base branch was not found: ${base_remote_ref}"
+
+git rev-parse --verify "${target_remote_ref}^{commit}" >/dev/null 2>&1 \
+  || die "PR branch was not found: ${target_remote_ref}"
+
+# -----------------------------------------------------------------------------
+# Switch to the PR branch
+# -----------------------------------------------------------------------------
+
+current_branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)"
+
+if [[ "${current_branch}" == "${target_local_branch}" ]]; then
+  info "Already on ${target_local_branch}."
+else
+  if git show-ref --verify --quiet "refs/heads/${target_local_branch}"; then
+    info "Switching to existing local branch ${target_local_branch}..."
+    git switch "${target_local_branch}"
+  else
+    info "Creating local tracking branch ${target_local_branch}..."
+    git switch \
+      --track \
+      --create "${target_local_branch}" \
+      "${target_remote_ref}"
+  fi
+
+  switched_branch=true
+fi
+
+# Fast-forward the local branch to the fetched PR branch.
+if [[ "${update_branch}" == true ]]; then
+  info "Updating ${target_local_branch} from ${target_remote_ref}..."
+
+  if ! git merge --ff-only "${target_remote_ref}"; then
+    die "local branch ${target_local_branch} has diverged from ${target_remote_ref}"
+  fi
+fi
+
+# -----------------------------------------------------------------------------
+# Resolve changed files
+# -----------------------------------------------------------------------------
+
+diff_arguments=(
+  diff
+  --name-only
+  --diff-filter=ACMRTUXB
+  -z
+  "${base_remote_ref}...HEAD"
+)
+
+if ((${#pathspecs[@]} > 0)); then
+  diff_arguments+=(-- "${pathspecs[@]}")
+fi
+
+git "${diff_arguments[@]}" > "${changed_files_list}"
+
+changed_files=()
+
+while IFS= read -r -d '' file; do
+  if [[ -f "${file}" ]]; then
+    changed_files+=("${file}")
+  fi
+done < "${changed_files_list}"
+
+if ((${#changed_files[@]} == 0)); then
+  die "no matching changed files were found between ${base_remote_ref} and HEAD"
+fi
+
+info "Found ${#changed_files[@]} changed file(s)."
+
+# -----------------------------------------------------------------------------
+# List-only mode
+# -----------------------------------------------------------------------------
+
+if [[ "${list_only}" == true ]]; then
+  printf '%s\n' "${changed_files[@]}"
+  exit 0
+fi
+
+# -----------------------------------------------------------------------------
+# Corpus generation
+# -----------------------------------------------------------------------------
+
+info "Creating corpus..."
+
+create-corpus "${changed_files[@]}" > "${corpus_file}"
+
+[[ -s "${corpus_file}" ]] \
+  || die "create-corpus produced an empty result"
+
+# -----------------------------------------------------------------------------
+# Optional file output
+# -----------------------------------------------------------------------------
+
+if [[ -n "${output_file}" ]]; then
+  output_directory="$(dirname "${output_file}")"
+  mkdir -p "${output_directory}"
+
+  cp "${corpus_file}" "${output_file}"
+  info "Corpus written to ${output_file}."
+fi
+
+# -----------------------------------------------------------------------------
+# Clipboard or stdout output
+# -----------------------------------------------------------------------------
+
+if [[ "${copy_to_clipboard}" == true ]]; then
+  if command_exists pbcopy; then
+    pbcopy < "${corpus_file}"
+  elif command_exists wl-copy; then
+    wl-copy < "${corpus_file}"
+  elif command_exists xclip; then
+    xclip -selection clipboard < "${corpus_file}"
+  else
+    warn "No supported clipboard command was found."
+    warn "Printing the corpus to stdout instead."
+    cat "${corpus_file}"
+    exit 0
+  fi
+
+  corpus_bytes="$(wc -c < "${corpus_file}" | tr -d '[:space:]')"
+
+  info "Copied ${#changed_files[@]} file(s) to the clipboard."
+  info "Corpus size: ${corpus_bytes} bytes."
+else
+  cat "${corpus_file}"
+fi
+
+if [[ "${keep_branch}" == true ]]; then
+  info "Remaining on ${target_local_branch}."
+fi
+
