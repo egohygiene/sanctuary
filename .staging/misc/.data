@@ -1,15 +1,7 @@
 #!/bin/sh
-##########################################
-# Set application data directories.      #
-#                                        #
-# Author: Alan Szmyt                     #
-# Date: 09/11/2023                       # 
-##########################################
-
 # Set Java directory.
 # https://www.java.com/
 export JAVA_HOME="$USER_SYS_APPS/java/jdks/openjdk17"
-
 
 # Set the JDK for Intellij.
 export IDEA_JDK="$JAVA_HOME"
@@ -35,9 +27,6 @@ export STUDIO_PROPERTIES="$STUDIO_CONFIG_DIR/idea.properties"
 export STUDIO_JDK="$JAVA_HOME"
 export STUDIO_GRADLE_JDK="$JAVA_HOME"
 
-# Set Flutter home directory.
-export FLUTTER_HOME="$USER_SYS_APPS/flutter"
-
 # Set gradle home directory.
 export GRADLE_USER_HOME="$USER_SYS_APPS/.gradle"
 
@@ -58,35 +47,19 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# ansible
-# https://www.ansible.com/
-export ANSIBLE_HOME="$USER_SYS_APPS/ansible"
-
 # Blender configuration.
 # https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html#command-line-args-environment-variables
 export BLENDER_USER_RESOURCES="$USER_SYS_APPS/blender"
 
-# Set dotnet home directory.
-export DOTNET_CLI_HOME="$USER_SYS_APPS/dotnet"
-
 # Set Visual Studio Code data and extensions directories.
 export VS_CODE_DATA_DIR="$USER_SYS_APPS/vscode/data"
 export VS_CODE_EXTENSIONS_DIR="$USER_SYS_APPS/vscode/extensions"
-
-# atom: https://github.com/atom/atom
-export ATOM_HOME="$USER_SYS_APPS/.atom"
 
 # kodi
 export KODI_DATA="$USER_SYS_APPS/kodi"
 
 # rbenv
 export RBENV_ROOT="$USER_SYS_APPS/rbenv"
-
-# rustup
-export RUSTUP_HOME="$USER_SYS_APPS/rustup"
-
-# minikube
-export MINIKUBE_HOME="$USER_SYS_APPS/minikube"
 
 # ncurses
 export TERMINFO="$USER_SYS_APPS/terminfo"
@@ -97,9 +70,6 @@ export MUJOCO_PY_MUJOCO_PATH="$USER_SYS_APPS/mujoco"
 
 # asdf
 export ASDF_DATA_DIR="$USER_SYS_APPS/asdf"
-
-# xmonad
-export XMONAD_DATA_DIR="$USER_SYS_APPS/xmonad"
 
 # bindle
 export BINDLEPATH="$USER_SYS_APPS/bindle"
@@ -148,12 +118,6 @@ export OSH="$USER_SYS_APPS/oh-my-bash"
 # opam
 export OPAMROOT="$USER_SYS_APPS/opam"
 
-# platformio
-export PLATFORMIO_CORE_DIR="$USER_SYS_APPS/platformio"
-
-# ipfs
-export IPFS_PATH="$USER_SYS_APPS/ipfs"
-
 # audacity
 # https://manpages.ubuntu.com/manpages/lunar/en/man1/audacity.1.html
 export AUDACITY_PATH="$USER_SYS_APPS/audacity"
@@ -188,9 +152,6 @@ export WINEPREFIX="$USER_SYS_APPS/wine"
 # sagemath directory:
 export DOT_SAGE="$USER_SYS_APPS/sagemath/sage"
 
-# stack directory:
-export STACK_ROOT="$USER_SYS_APPS/stack"
-
 # since directory:
 export SINCE="$USER_SYS_APPS/since"
 
@@ -209,14 +170,10 @@ export TEXMACS_HOME_PATH="$USER_SYS_APPS/texmacs"
 # Volta:
 export VOLTA_HOME="$USER_SYS_APPS/volta"
 
-# ZPLUG_HOME: 
-export ZPLUG_HOME="$USER_SYS_APPS/zplug"
-
 # sdkman: 
 export SDKMAN_DIR="$USER_SYS_APPS/sdkman"
 
 # https://www.gnu.org/software/parallel/man.html
-export PARALLEL_HOME="$USER_SYS_APPS/.parallel"
 
 # distcc: https://linux.die.net/man/1/distcc
 export DISTCC_DIR="$USER_SYS_APPS/.distcc"
@@ -249,7 +206,6 @@ export TEXLIVE_INSTALL_PREFIX="$USER_SYS_APPS/texlive"
 export TEXMFHOME="$TEXLIVE_INSTALL_PREFIX/texmf"
 export TEXMFVAR="$TEXLIVE_INSTALL_PREFIX/.texlive/texmf-var"
 export TEXMFCONFIG="$TEXLIVE_INSTALL_PREFIX/.texlive/texmf-config"
-
 
 # Set all locale settings to use en_US.UTF-8.
 export LANG="en_US"
@@ -335,9 +291,6 @@ export GTK2_RC_FILES="$USER_SYS_CONFIG/gtk-2.0/gtkrc"
 # Set python startup script location.
 export PYTHONSTARTUP="$USER_SYS_CONFIG/python/.pythonrc"
 
-# Set IPython's data directory.
-export IPYTHONDIR="$USER_SYS_CONFIG/.ipython"
-
 # Set the Jupyter configuration directory.
 export JUPYTER_CONFIG_DIR="$USER_SYS_CONFIG/jupyter"
 
@@ -367,9 +320,6 @@ export MAXIMA_USERDIR="$USER_SYS_CONFIG/maxima"
 # k9s
 export K9SCONFIG="$USER_SYS_CONFIG/k9s"
 
-# nb
-export NBRC_PATH="$USER_SYS_CONFIG/nbrc"
-
 # Xcompose
 export XCOMPOSEFILE="$USER_SYS_CONFIG/X11/xcompose"
 
@@ -379,14 +329,8 @@ export JUPYTER_CONFIG_DIR="$USER_SYS_CONFIG/jupyter"
 # openjdk
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot='$USER_SYS_CONFIG/java' -Djavafx.cachedir='$XDG_CACHE_HOME/openjfx'"
 
-# mplayer
-export MPLAYER_HOME="$USER_SYS_CONFIG/mplayer"
-
 # Azure
 export AZURE_CONFIG_DIR="$USER_SYS_CONFIG/azure"
-
-# mednafen
-export MEDNAFEN_HOME="$USER_SYS_CONFIG/mednafen"
 
 # mathematica
 export MATHEMATICA_USERBASE="$USER_SYS_CONFIG/mathematica"
@@ -413,9 +357,6 @@ export RECOLL_CONFDIR="$USER_SYS_CONFIG/recoll"
 
 # bindle
 export BINDLERC="$USER_SYS_CONFIG/bindlerc"
-
-# weechat
-export WEECHAT_HOME="$USER_SYS_CONFIG/weechat"
 
 # aspell
 export ASPELL_CONF="per-conf $USER_SYS_CONFIG/aspell/aspell.conf; personal $USER_SYS_CONFIG/aspell/en.pws; repl $USER_SYS_CONFIG/aspell/en.prepl"
@@ -452,20 +393,11 @@ export ZDOTDIR="$USER_SYS_CONFIG/zsh"
 # GEF
 export GEF_RC="$USER_SYS_CONFIG/gef/.gef.rc"
 
-# kde:
-export KDEHOME="$USER_SYS_CONFIG/kde"
-
 # ack: https://linux.die.net/man/1/ack
 export ACKRC="$USER_SYS_CONFIG/ack/.ackrc"
 
-# doom-emacs: 
-export DOOMDIR="$USER_SYS_CONFIG/doom"
-
 # conky
 export CONKY_CONFIG="$USER_SYS_CONFIG/conky/conkyrc"
-
-# cgdb
-export CGDB_DIR="$USER_SYS_CONFIG/cgdb"
 
 # claw-mails
 export CLAWS_MAIL_CONFIG="$USER_SYS_CONFIG/claw-mails"
@@ -483,8 +415,6 @@ export CIN_CONFIG="$USER_SYS_CONFIG/cinelerra/bcast5"
 # https://manpages.ubuntu.com/manpages/lunar/en/man1/most.1.html
 export MOST_INITFILE="$USER_SYS_CONFIG/most/mostrc"
 
-# elm
-export ELM_HOME="$USER_SYS_CONFIG/elm"
 
 # fceux
 export FCEUX_HOME="$USER_SYS_CONFIG/fceux"
@@ -532,21 +462,12 @@ export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 
 [ -d "$WAKATIME_HOME" ] || mkdir -p "$WAKATIME_HOME"
 
-export W3M_DIR="$XDG_STATE_HOME/w3m"
 
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
 
 export SINGULARITY_CONFIGDIR="$XDG_CONFIG_HOME/singularity"
 
-export DOT_SAGE="$XDG_CONFIG_HOME/sage"
-
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
-
-export GRIPHOME="$XDG_CONFIG_HOME/grip"
-
-export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
-
-export OMNISHARPHOME="$XDG_CONFIG_HOME/omnisharp"
 
 export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
 
@@ -556,10 +477,7 @@ export LYNX_CFG_PATH="$XDG_CONFIG_HOME/lynx.cfg"
 
 export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
 
-export GPODDER_HOME="$XDG_CONFIG_HOME/gpodder"
-
 export GR_PREFS_PATH="$XDG_CONFIG_HOME/gnuradio"
 
 export EM_CONFIG="$XDG_CONFIG_HOME/emscripten/config"
 
-export DUB_HOME="$XDG_CONFIG_HOME/dub"
