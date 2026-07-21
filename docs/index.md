@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Sanctuary](#sanctuary)
+  - [Generated Artifacts](#generated-artifacts)
+  - [Star History](#star-history)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Sanctuary
 
 This site publishes generated repository intelligence artifacts for the repository.

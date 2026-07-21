@@ -1,3 +1,26 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [🤖 GitHub Copilot Cloud Agent Allowlist](#-github-copilot-cloud-agent-allowlist)
+  - [Purpose](#purpose)
+  - [Recommended Configuration](#recommended-configuration)
+    - [Enable the Recommended Allowlist](#enable-the-recommended-allowlist)
+  - [Repository Setup Steps](#repository-setup-steps)
+  - [Repository Custom Allowlist](#repository-custom-allowlist)
+    - [Current Repository Additions](#current-repository-additions)
+      - [Poetry](#poetry)
+      - [Trivy](#trivy)
+      - [Goss](#goss)
+  - [Security Guidelines](#security-guidelines)
+    - [Preferred](#preferred)
+    - [Avoid](#avoid)
+  - [Troubleshooting](#troubleshooting)
+    - [Firewall Blocked Connection](#firewall-blocked-connection)
+  - [References](#references)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 🤖 GitHub Copilot Cloud Agent Allowlist
 
 ## Purpose

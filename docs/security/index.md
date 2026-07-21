@@ -1,3 +1,22 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Security](#security)
+  - [Supply Chain Security Overview](#supply-chain-security-overview)
+  - [CodeQL](#codeql)
+  - [Dependency Review](#dependency-review)
+  - [OSV Scanner](#osv-scanner)
+  - [OpenSSF Scorecard](#openssf-scorecard)
+  - [Dependabot](#dependabot)
+  - [REUSE Compliance](#reuse-compliance)
+  - [Future Integrations](#future-integrations)
+  - [OSS-Fuzz Evaluation](#oss-fuzz-evaluation)
+    - [Findings](#findings)
+  - [Reusability](#reusability)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Security
 
 This section documents the security tooling, supply chain protections, and vulnerability
