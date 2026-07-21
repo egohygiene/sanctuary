@@ -1,4 +1,49 @@
 #!/bin/sh
+
+export GHCUP_USE_XDG_DIRS="true"
+export PYTHONIOENCODING="UTF-8"
+export PYTHONUTF8=1
+export POETRY_PREVIEW=1
+export PIPENV_VENV_IN_PROJECT=1
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
+
+# Colorize GCC warnings and errors.
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Avoid issues with `gpg` as installed via Homebrew.
+# https://stackoverflow.com/a/42265848/96656
+export GPG_TTY=$(tty);
+
+export CLICOLOR=1
+
+export MAVEN_OPTS="-Dmaven.repo.local=$M2_HOME/repos"
+
+[ -s "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"
+[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"
+[ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"
+
+[ -d "$WAKATIME_HOME" ] || mkdir -p "$WAKATIME_HOME"
+
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Need to set reports directory for all
+export NODE_OPTIONS="--max-old-space-size=4096 --report-directory=$USER_SYS_REPORTS/node"
+
+
+
+
+
+
+
+
+
+
+
+
 # Set Java directory.
 # https://www.java.com/
 export JAVA_HOME="$USER_SYS_APPS/java/jdks/openjdk17"
@@ -27,222 +72,23 @@ export STUDIO_PROPERTIES="$STUDIO_CONFIG_DIR/idea.properties"
 export STUDIO_JDK="$JAVA_HOME"
 export STUDIO_GRADLE_JDK="$JAVA_HOME"
 
-# Set gradle home directory.
-export GRADLE_USER_HOME="$USER_SYS_APPS/.gradle"
-
 # Dart server directory.
 export ANALYZER_STATE_LOCATION_OVERRIDE="$USER_SYS_APPS/dart/.dartServer"
 
-# nvm
-export NVM_DIR="$USER_SYS_APPS/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# nvm end
-
-# pnpm
-export PNPM_HOME="$USER_SYS_APPS/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# Blender configuration.
-# https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html#command-line-args-environment-variables
-export BLENDER_USER_RESOURCES="$USER_SYS_APPS/blender"
-
-# Set Visual Studio Code data and extensions directories.
-export VS_CODE_DATA_DIR="$USER_SYS_APPS/vscode/data"
-export VS_CODE_EXTENSIONS_DIR="$USER_SYS_APPS/vscode/extensions"
-
-# kodi
-export KODI_DATA="$USER_SYS_APPS/kodi"
-
-# rbenv
-export RBENV_ROOT="$USER_SYS_APPS/rbenv"
-
-# ncurses
-export TERMINFO="$USER_SYS_APPS/terminfo"
-export TERMINFO_DIRS="$USER_SYS_APPS/terminfo:/usr/share/terminfo"
-
-# mujoco
-export MUJOCO_PY_MUJOCO_PATH="$USER_SYS_APPS/mujoco"
-
-# asdf
-export ASDF_DATA_DIR="$USER_SYS_APPS/asdf"
-
-# bindle
-export BINDLEPATH="$USER_SYS_APPS/bindle"
-
-# Vagrant
-export VAGRANT_HOME="$USER_SYS_APPS/vagrant"
-export VAGRANT_ALIAS_FILE="$VAGRANT_HOME/aliases"
-
-# ruby bundler
-export BUNDLE_USER_PLUGIN="$USER_SYS_APPS/bundle"
-
-# gq-ldap-client
-export GQSTATE="$USER_SYS_APPS/gq/gq-state"
-
-# cabal
-export CABAL_DIR="$USER_SYS_APPS/cabal"
-
-# ohmyzsh
-export ZSH="$USER_SYS_APPS/oh-my-zsh"
-
-# Set the gnupg home directory.
-export GNUPGHOME="$USER_SYS_APPS/gnupg"
-
-# VLC configuration.
-export VLC_DATA_PATH="$USER_SYS_APPS/vlc/data"
-export VLC_PLUGIN_PATH="$USER_SYS_APPS/vlc/plugins"
 
 # Nuget packages directory.
 export NUGET_PACKAGES="$USER_SYS_APPS/.nuget/packages"
 
-# abook
-export ABOOK_DATA="$USER_SYS_APPS/abook/addressbook"
-
-# Set Ruby gems home directory.
-export GEM_HOME="$USER_SYS_APPS/ruby/gems"
-
-# Set yarn install directory.
-export YARN_GLOBAL_FOLDER="$USER_SYS_APPS/yarn"
-
-# get_iplayer
-export GETIPLAYERUSERPREFS="$USER_SYS_APP/get_iplayer"
-
-# oh-my-bash
-export OSH="$USER_SYS_APPS/oh-my-bash"
-
-# opam
-export OPAMROOT="$USER_SYS_APPS/opam"
-
-# audacity
-# https://manpages.ubuntu.com/manpages/lunar/en/man1/audacity.1.html
-export AUDACITY_PATH="$USER_SYS_APPS/audacity"
-
-# virtualenv
-export WORKON_HOME="$USER_SYS_APPS/virtualenvs"
-
-# imapfilter
-# https://manpages.ubuntu.com/manpages/impish/man1/imapfilter.1.html
-export IMAPFILTER_HOME="$USER_SYS_APPS/imapfilter"
-
-# z
-# https://github.com/rupa/z
-export _Z_DATA="$USER_SYS_APPS/z"
-
-# nb
-export NB_DIR="$USER_SYS_APPS/nb"
-
-# anki
-# https://manpages.ubuntu.com/manpages/focal/en/man1/anki.1.html
-export ANKI_DIR="$USER_SYS_APPS/anki"
 
 # hledger file.
 export LEDGER_FILE="$USER_SYS_APPS/hledger/.hledger.journal"
 
-# unison: 
-export UNISON="$USER_SYS_APPS/unison"
-
 # wine:
 export WINEPREFIX="$USER_SYS_APPS/wine"
 
-# sagemath directory:
-export DOT_SAGE="$USER_SYS_APPS/sagemath/sage"
-
-# since directory:
-export SINCE="$USER_SYS_APPS/since"
-
-# grip directory:
-export GRIPHOME="$USER_SYS_APPS/grip"
-
-# Electrum: 
-export ELECTRUMDIR="$USER_SYS_APPS/.electrum"
-
-# Password store:
-export PASSWORD_STORE_DIR="$USER_SYS_APPS/.password-store"
-
-# TeXmacs:
-export TEXMACS_HOME_PATH="$USER_SYS_APPS/texmacs"
-
-# Volta:
-export VOLTA_HOME="$USER_SYS_APPS/volta"
-
-# sdkman: 
-export SDKMAN_DIR="$USER_SYS_APPS/sdkman"
-
-# https://www.gnu.org/software/parallel/man.html
-
-# distcc: https://linux.die.net/man/1/distcc
-export DISTCC_DIR="$USER_SYS_APPS/.distcc"
-
-# ffmpeg: https://linux.die.net/man/1/ffmpeg
-export FFMPEG_DATADIR="$USER_SYS_APPS/.ffmpeg"
-
-# ccache: https://linux.die.net/man/1/ccache
-export CCACHE_DIR="$USER_SYS_APPS/.ccache"
-
-# Set home directory for tensorflow.
-export KERAS_HOME="$XDG_STATE_HOME/keras"
-
-# Dungeon Crawl: http://www.dungeoncrawl.org/
-export CRAWL_DIR="$USER_SYS_APPS/.crawl/"
-
-# leiningen
-export LEIN_HOME="$USER_SYS_APPS/lein"
-
-# Rust configuration.
-# https://doc.rust-lang.org/cargo/guide/cargo-home.html
-export CARGO_HOME="$USER_SYS_APPS/.cargo"
-[ -s "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"  # This loads Cargo environment
 
 # julia
 export JULIA_DEPOT_PATH="$USER_SYS_APPS/julia:$JULIA_DEPOT_PATH" 
-
-# Set texlive directories.
-export TEXLIVE_INSTALL_PREFIX="$USER_SYS_APPS/texlive"
-export TEXMFHOME="$TEXLIVE_INSTALL_PREFIX/texmf"
-export TEXMFVAR="$TEXLIVE_INSTALL_PREFIX/.texlive/texmf-var"
-export TEXMFCONFIG="$TEXLIVE_INSTALL_PREFIX/.texlive/texmf-config"
-
-# Set all locale settings to use en_US.UTF-8.
-export LANG="en_US"
-export LC_ALL="en_US.UTF-8"
-
-# Avoid issues with `gpg` as installed via Homebrew.
-# https://stackoverflow.com/a/42265848/96656
-export GPG_TTY=$(tty);
-
-export CLICOLOR=1
-
-# Colorize GCC warnings and errors.
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Set the max memory size for nodeJS in megabytes.
-export NODE_OPTIONS="--max-old-space-size=4096 --report-directory=$USER_SYS_REPORTS/node"
-
-# ghcup
-export GHCUP_USE_XDG_DIRS="true"
-
-#########################################
-# PYTHON SETTINGS.
-# https://docs.python.org/3/using/cmdline.html#environment-variables
-#########################################
-
-# Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
-export PYTHONIOENCODING="UTF-8"
-
-# Set python encoding to utf-8.
-export PYTHONUTF8=1
-
-# Install pre-release version of poetry.
-export POETRY_PREVIEW=1
-
-# Set pipenv to install virtual environments in the project directory.
-export PIPENV_VENV_IN_PROJECT=1
-
 
 # Set the pip configuration file.
 export PIP_CONFIG_FILE="$USER_SYS_CONFIG/pip/pip.conf"
@@ -250,15 +96,8 @@ export PIP_CONFIG_FILE="$USER_SYS_CONFIG/pip/pip.conf"
 # Set docker client configuration file.
 export DOCKER_CONFIG="$USER_SYS_CONFIG/docker"
 
-# boto
-# https://cloud.google.com/storage/docs/boto-gsutil
-export BOTO_CONFIG="$USER_SYS_CONFIG/boto"
-
 # Location of curl configuration file.
 export CURLRC="$USER_SYS_CONFIG/curl/.curlrc"
-
-# Location of VLC configuration file.
-export VLCRC="$USER_SYS_CONFIG/vlc/vlcrc"
 
 # Set the location of the wget startup file.
 export WGETRC="$USER_SYS_CONFIG/wget/.wgetrc"
@@ -300,28 +139,9 @@ export IDEA_VM_OPTIONS="$USER_SYS_CONFIG/intellij/idea.vmoptions"
 # Set Intellij's platform properties overrides file.
 export IDEA_PROPERTIES="$USER_SYS_CONFIG/intellij/idea.properties"
 
-# notmuchmail
-# https://notmuchmail.org/manpages/notmuch-config-1/
-export NOTMUCH_CONFIG="$USER_SYS_CONFIG/notmuch/.notmuch-config"
-
 # Amazon Web Services (AWS) - aws-cli
 export AWS_SHARED_CREDENTIALS_FILE="$USER_SYS_CONFIG/aws/credentials"
 export AWS_CONFIG_FILE="$USER_SYS_CONFIG/aws/config"
-
-# Travis
-export TRAVIS_CONFIG_PATH="$USER_SYS_CONFIG/travis"
-
-# uncrustify
-export UNCRUSTIFY_CONFIG="$USER_SYS_CONFIG/uncrustify/uncrustify.cfg"
-
-# maxima
-export MAXIMA_USERDIR="$USER_SYS_CONFIG/maxima"
-
-# k9s
-export K9SCONFIG="$USER_SYS_CONFIG/k9s"
-
-# Xcompose
-export XCOMPOSEFILE="$USER_SYS_CONFIG/X11/xcompose"
 
 # jupyter
 export JUPYTER_CONFIG_DIR="$USER_SYS_CONFIG/jupyter"
@@ -329,66 +149,14 @@ export JUPYTER_CONFIG_DIR="$USER_SYS_CONFIG/jupyter"
 # openjdk
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot='$USER_SYS_CONFIG/java' -Djavafx.cachedir='$XDG_CACHE_HOME/openjfx'"
 
-# Azure
-export AZURE_CONFIG_DIR="$USER_SYS_CONFIG/azure"
-
-# mathematica
-export MATHEMATICA_USERBASE="$USER_SYS_CONFIG/mathematica"
-
 # asdf
 export ASDF_CONFIG_FILE="$USER_SYS_CONFIG/asdf/asdfrc"
-
-# xmonad
-export XMONAD_CONFIG_DIR="$USER_SYS_CONFIG/xmonad"
-
-# xinit
-export XINITRC="$USER_SYS_CONFIG/X11/xinitrc"
-export XSERVERRC="$USER_SYS_CONFIG/X11/xserverrc"
-
-# abook configuration and data files.
-# https://manpages.ubuntu.com/manpages/jammy/en/man1/abook.1.html
-export ABOOK_RC="$USER_SYS_CONFIG/.abook/abookrc"
-
-# dict: https://linux.die.net/man/8/dictd
-export DICTD_RC="$USER_SYS_CONFIG/.dictd/.dictrc"
-
-# Recoll configuration directory:
-export RECOLL_CONFDIR="$USER_SYS_CONFIG/recoll"
-
-# bindle
-export BINDLERC="$USER_SYS_CONFIG/bindlerc"
 
 # aspell
 export ASPELL_CONF="per-conf $USER_SYS_CONFIG/aspell/aspell.conf; personal $USER_SYS_CONFIG/aspell/en.pws; repl $USER_SYS_CONFIG/aspell/en.prepl"
 
-# tig
-export TIGRC_USER="$USER_SYS_CONFIG/tig/tigrc"
-
-# ruby bundler
-export BUNDLE_USER_CONFIG="$USER_SYS_CONFIG/bundle"
-
-# gq-ldap-client
-export GQRC="$USER_SYS_CONFIG/gq/gqrc"
-
 # bash-completion
 export BASH_COMPLETION_USER_FILE="$USER_SYS_CONFIG/bash-completion/bash_completion"
-
-# cabal
-export CABAL_CONFIG="$USER_SYS_CONFIG/cabal/config"
-
-# maven
-export MAVEN_OPTS="-Dmaven.repo.local=$M2_HOME/repos"
-
-# rediscli
-export REDISCLI_RCFILE="$USER_SYS_CONFIG/redis/redisclirc"
-
-# postgresql
-export PSQLRC="$USER_SYS_CONFIG/pg/psqlrc"
-export PGPASSFILE="$USER_SYS_CONFIG/pg/pgpass"
-export PGSERVICEFILE="$USER_SYS_CONFIG/pg/pg_service.conf"
-
-# zsh
-export ZDOTDIR="$USER_SYS_CONFIG/zsh"
 
 # GEF
 export GEF_RC="$USER_SYS_CONFIG/gef/.gef.rc"
@@ -396,31 +164,9 @@ export GEF_RC="$USER_SYS_CONFIG/gef/.gef.rc"
 # ack: https://linux.die.net/man/1/ack
 export ACKRC="$USER_SYS_CONFIG/ack/.ackrc"
 
-# conky
-export CONKY_CONFIG="$USER_SYS_CONFIG/conky/conkyrc"
-
-# claw-mails
-export CLAWS_MAIL_CONFIG="$USER_SYS_CONFIG/claw-mails"
-
-# subversion
-export SVN_CONFIG_DIR="$USER_SYS_CONFIG/subversion"
-
-# cd-bookmark
-export CD_BOOKMARK_FILE="$USER_SYS_CONFIG/cd-bookmark/bookmarks"
-
-# cinelerra
-export CIN_CONFIG="$USER_SYS_CONFIG/cinelerra/bcast5"
-
 # most
 # https://manpages.ubuntu.com/manpages/lunar/en/man1/most.1.html
 export MOST_INITFILE="$USER_SYS_CONFIG/most/mostrc"
-
-
-# fceux
-export FCEUX_HOME="$USER_SYS_CONFIG/fceux"
-
-# elinks
-export ELINKS_CONFDIR="$USER_SYS_CONFIG/elinks"
 
 # ncmpc
 # https://manpages.ubuntu.com/manpages/lunar/en/man1/ncmpc.1.html
@@ -446,38 +192,4 @@ export HOMEBREW_TEMP="$USER_SYS_TEMP/homebrew"
 export GVIMINIT='let $MYGVIMRC="$USER_SYS_CONFIG/vim/gvimrc" | source $MYGVIMRC'
 export VIMINIT='let $MYVIMRC="$USER_SYS_CONFIG/vim/vimrc" | source $MYVIMRC'
 
-export VIMPERATOR_RUNTIME="$XDG_CONFIG_HOME/vimperator"
-export VIMPERATOR_INIT=":source $XDG_CONFIG_HOME/vimperator/vimperatorrc"
-
-export TS3_CONFIG_DIR="$XDG_CONFIG_HOME/ts3client"
-
-export R_HOME_USER="$XDG_CONFIG_HOME/R"
-export R_PROFILE_USER="$XDG_CONFIG_HOME/R/profile"
-export R_HISTFILE="$XDG_CONFIG_HOME/R/history"
-
-export X3270PRO="$XDG_CONFIG_HOME/x3270/config"
-export C3270PRO="$XDG_CONFIG_HOME/c3270/config"
-
-export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
-
-[ -d "$WAKATIME_HOME" ] || mkdir -p "$WAKATIME_HOME"
-
-
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
-
-export SINGULARITY_CONFIGDIR="$XDG_CONFIG_HOME/singularity"
-
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
-
-export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
-
-export EASYOCR_MODULE_PATH="$XDG_CONFIG_HOME/EasyOCR"
-
-export LYNX_CFG_PATH="$XDG_CONFIG_HOME/lynx.cfg"
-
-export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
-
-export GR_PREFS_PATH="$XDG_CONFIG_HOME/gnuradio"
-
-export EM_CONFIG="$XDG_CONFIG_HOME/emscripten/config"
 
