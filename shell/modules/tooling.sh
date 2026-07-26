@@ -303,4 +303,3 @@ export RECOLL_CONFDIR="${XDG_CONFIG_HOME}/recoll"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/notmuch/.notmuch-config"
 export UNCRUSTIFY_CONFIG="${XDG_CONFIG_HOME}/uncrustify/uncrustify.cfg"
 export GETIPLAYERUSERPREFS="${XDG_CONFIG_HOME}/get_iplayer"
-

@@ -3,49 +3,6 @@
   "type": "module",
   "version": "0.0.1",
   "description": "EgoHygiene.io - A website for EgoHygiene, a project focused on personal development and mental well-being.",
-  "keywords": [
-    "egohygiene",
-    "react",
-    "typescript",
-    "vite",
-    "tailwindcss",
-    "storybook"
-  ],
-  "license": "MIT",
-  "homepage": "https://egohygiene.io",
-  "bugs": {
-    "url": "https://github.com/egohygiene/website/issues",
-    "email": "szmyty@gmail.com"
-  },
-  "author": {
-    "name": "Alan Szmyt",
-    "email": "szmyty@gmail.com",
-    "url": "https://github.com/szmyty"
-  },
-  "contributors": [
-    {
-      "name": "Alan Szmyt",
-      "email": "szmyty@gmail.com",
-      "url": "https://github.com/szmyty"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/egohygiene/website.git"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
-    "types": "tsc -p tsconfig.types.json",
-    "build-cli": "tsc -p tsconfig.build.json",
-    "typedoc": "typedoc --options config/typedoc.json",
-    "dev:db:seed": "tsx src/db/seed.ts",
-    "lint": "eslint .",
-    "format": "prettier . --check"
-  },
   "dependencies": {
     "@astrojs/db": "^0.15.0",
     "@astrojs/mdx": "^4.3.1",

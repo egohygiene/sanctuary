@@ -1,6 +1,0 @@
-regex: true
-entropy: true
-branch: ""
-max_depth: 25
-fail: true
-only_verified: false

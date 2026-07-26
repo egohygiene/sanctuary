@@ -189,6 +189,9 @@
     "json.schemaDownload.trustedDomains": {
       "https://models.dev": true,
       "https://opencode.ai": true,
+      "https://schema.management.azure.com": true,
+      "https://raw.githubusercontent.com": true,
+      "https://json.schemastore.org": true,
     },
   },
   "extensions": {

@@ -99,6 +99,17 @@ if os::is_container; then
   core::path_append "/usr/local/sbin"
 fi
 
+export CLICOLOR=1
+export PYTHONUTF8=1
+export PYTHONIOENCODING="UTF-8"
+export POETRY_PREVIEW=1
+export PIPENV_VENV_IN_PROJECT=1
+
+# Colorize GCC warnings and errors.
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+export GHCUP_USE_XDG_DIRS="true"
+
 # --------------------------------------------
 # 🧹 Cleanup
 # --------------------------------------------
