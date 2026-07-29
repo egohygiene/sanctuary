@@ -21,7 +21,12 @@ teardown() {
     printf 'state=%s\n' \"\${XDG_STATE_HOME}\"
     printf 'runtime=%s\n' \"\${XDG_RUNTIME_DIR}\"
     [[ -d \${XDG_RUNTIME_DIR} ]] && printf 'runtime_exists=true\n'
-    printf 'runtime_mode=%s\n' \"\$(stat -f '%Lp' \"\${XDG_RUNTIME_DIR}\" 2>/dev/null || stat -c '%a' \"\${XDG_RUNTIME_DIR}\")\"
+    if [[ \"\$(uname -s)\" == 'Darwin' ]]; then
+      runtime_mode=\$(stat -f '%Lp' \"\${XDG_RUNTIME_DIR}\")
+    else
+      runtime_mode=\$(stat -c '%a' \"\${XDG_RUNTIME_DIR}\")
+    fi
+    printf 'runtime_mode=%s\n' \"\${runtime_mode}\"
   "
 
   [ "${status}" -eq 0 ]

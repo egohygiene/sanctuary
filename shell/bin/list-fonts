@@ -15,7 +15,6 @@ FORCE=false
 QUIET=false
 VERBOSE=false
 
-SELECTED_BACKEND=""
 WORK_DIRECTORY=""
 RAW_FILE=""
 FILTERED_FILE=""
@@ -372,7 +371,7 @@ select_and_collect_backend() {
     local candidate
     local -a candidates=()
     if [[ "$BACKEND" != auto ]]; then
-        if try_backend "$BACKEND"; then SELECTED_BACKEND=$BACKEND; return 0; fi
+        if try_backend "$BACKEND"; then return 0; fi
         log_error "backend '$BACKEND' is unavailable or produced no font records"
         exit 4
     fi
@@ -383,7 +382,7 @@ select_and_collect_backend() {
         *) candidates=(fontconfig filesystem) ;;
     esac
     for candidate in "${candidates[@]}"; do
-        if try_backend "$candidate"; then SELECTED_BACKEND=$candidate; log_verbose "selected backend: $candidate"; return 0; fi
+        if try_backend "$candidate"; then log_verbose "selected backend: $candidate"; return 0; fi
         log_verbose "backend unavailable or empty: $candidate"
     done
     log_error "no supported font backend produced records"

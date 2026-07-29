@@ -24,7 +24,7 @@ export EGOHYGIENE_MODULE_HISTORY_LOADED="true"
 # --------------------------------------------
 # 🛑 Dependency Check (XDG required)
 # --------------------------------------------
-if [[ -z "${XDG_CACHE_HOME:-}" ]]; then
+if [[ -z "${XDG_STATE_HOME:-}" ]]; then
   return 0
 fi
 
@@ -47,7 +47,8 @@ if shell::is_bash; then
   fi
 
   export HISTFILE="${history_state_home}/bash/history"
-  export HISTSIZE="10000"
+  export HISTSIZE="${EGOHYGIENE_HISTORY_SIZE:-50000}"
+  export HISTFILESIZE="${EGOHYGIENE_HISTORY_SIZE:-50000}"
 elif shell::is_zsh; then
   if ! mkdir -p "${history_state_home}/zsh"; then
     printf "[warn] history: unable to create history directory: %s\n" "${history_state_home}/zsh" >&2
@@ -55,39 +56,41 @@ elif shell::is_zsh; then
   fi
 
   export HISTFILE="${history_state_home}/zsh/history"
-  export HISTSIZE="10000"
-  export SAVEHIST="10000"
+  export HISTSIZE="${EGOHYGIENE_HISTORY_SIZE:-50000}"
+  export SAVEHIST="${EGOHYGIENE_HISTORY_SIZE:-50000}"
 fi
 
 # --------------------------------------------
 # 🧪 Language REPLs & Runtimes
 # --------------------------------------------
 
-export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
-export JULIA_HISTORY="${XDG_CACHE_HOME}/julia_history"
-export R_HISTFILE="${XDG_CACHE_HOME}/R_history"
-export OCTAVE_HISTFILE="${XDG_CACHE_HOME}/octave-hsts"
-export CALCHISTFILE="${XDG_CACHE_HOME}/calc_history"
+mkdir -p "${history_state_home}/history"
+
+export NODE_REPL_HISTORY="${history_state_home}/history/node"
+export JULIA_HISTORY="${history_state_home}/history/julia"
+export R_HISTFILE="${history_state_home}/history/r"
+export OCTAVE_HISTFILE="${history_state_home}/history/octave"
+export CALCHISTFILE="${history_state_home}/history/calc"
 
 # --------------------------------------------
 # 🗄️ Database & CLI Tools
 # --------------------------------------------
 
-export REDISCLI_HISTFILE="${XDG_CACHE_HOME}/rediscli_history"
-export SQLITE_HISTORY="${XDG_CACHE_HOME}/sqlite_history"
-export PSQL_HISTORY="${XDG_CACHE_HOME}/psql_history"
-export PGSQL_HISTORY="${XDG_CACHE_HOME}/pgsql_history"
-export MYSQL_HISTFILE="${XDG_CACHE_HOME}/mysql_history"
-export MYSQL_HISTSIZE="10000"
+export REDISCLI_HISTFILE="${history_state_home}/history/redis"
+export SQLITE_HISTORY="${history_state_home}/history/sqlite"
+export PSQL_HISTORY="${history_state_home}/history/postgresql"
+export PGSQL_HISTORY="${history_state_home}/history/pgsql"
+export MYSQL_HISTFILE="${history_state_home}/history/mysql"
+export MYSQL_HISTSIZE="${EGOHYGIENE_HISTORY_SIZE:-50000}"
 
 # --------------------------------------------
 # 🛠️ System & Debugging Tools
 # --------------------------------------------
 
-export LESSHISTFILE="${XDG_CACHE_HOME}/less_history"
-export LESSHISTSIZE="10000"
-export GDBHISTFILE="${XDG_CACHE_HOME}/gdb_history"
-export UNITS_HISTORY_FILE="${XDG_CACHE_HOME}/units_history"
-export RLWRAP_HOME="${XDG_CACHE_HOME}/rlwrap"
+export LESSHISTFILE="${history_state_home}/history/less"
+export LESSHISTSIZE="${EGOHYGIENE_HISTORY_SIZE:-50000}"
+export GDBHISTFILE="${history_state_home}/history/gdb"
+export UNITS_HISTORY_FILE="${history_state_home}/history/units"
+export RLWRAP_HOME="${history_state_home}/history/rlwrap"
 
 unset history_state_home

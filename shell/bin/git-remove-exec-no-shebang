@@ -95,7 +95,7 @@ main() {
 
     if [[ -x "${file}" ]] && ! has_shebang "${file}"; then
       chmod -x "${file}"
-      ((count++))
+      ((count += 1))
 
       if [[ "${QUIET}" -ne 1 ]]; then
         warn "Removed exec bit: ${file}"

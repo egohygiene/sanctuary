@@ -172,8 +172,7 @@ core::require_command() {
 # @exitcode 64 If the path is empty or contains the PATH delimiter.
 core::path_contains() {
     local directory=${1-}
-    local entry
-    local -a path_entries=()
+    local path_value
 
     if (($# != 1)) || [[ -z "$directory" ]]; then
         core::_error "core::path_contains expects one nonempty directory"
@@ -194,25 +193,13 @@ core::path_contains() {
         directory=${directory%/}
     done
 
-    if [[ "$directory" == "." ]]; then
-        case ":${PATH-}:" in
-            *::*) return 0 ;;
-        esac
-    fi
-
-    IFS=: read -r -a path_entries <<< "${PATH-}"
-    for entry in "${path_entries[@]}"; do
-        if [[ -z "$entry" ]]; then
-            entry="."
-        fi
-        while [[ "$entry" != "/" && "$entry" == */ ]]; do
-            entry=${entry%/}
-        done
-        if [[ "$entry" == "$directory" ]]; then
-            return 0
-        fi
-    done
-
+    path_value=":${PATH-}:"
+    case "$path_value" in
+        *":${directory}:"*) return 0 ;;
+        *::*)
+            [[ "$directory" == "." ]] && return 0
+            ;;
+    esac
     return 1
 }
 
@@ -222,7 +209,7 @@ core::path_contains() {
 # @exitcode 64 If the argument is invalid or is not a directory.
 core::path_prepend() {
     local directory=${1-}
-    local status
+    local path_check_status
 
     if (($# != 1)) || [[ -z "$directory" ]]; then
         core::_error "core::path_prepend expects one nonempty directory"
@@ -236,9 +223,9 @@ core::path_prepend() {
     if core::path_contains "$directory"; then
         return 0
     else
-        status=$?
-        if ((status != 1)); then
-            return "$status"
+        path_check_status=$?
+        if ((path_check_status != 1)); then
+            return "$path_check_status"
         fi
     fi
 
@@ -260,7 +247,7 @@ core::path_prepend() {
 # @exitcode 64 If the argument is invalid or is not a directory.
 core::path_append() {
     local directory=${1-}
-    local status
+    local path_check_status
 
     if (($# != 1)) || [[ -z "$directory" ]]; then
         core::_error "core::path_append expects one nonempty directory"
@@ -274,9 +261,9 @@ core::path_append() {
     if core::path_contains "$directory"; then
         return 0
     else
-        status=$?
-        if ((status != 1)); then
-            return "$status"
+        path_check_status=$?
+        if ((path_check_status != 1)); then
+            return "$path_check_status"
         fi
     fi
 
@@ -494,14 +481,9 @@ core::directory_is_empty() {
 # @description Return whether the effective user ID is zero.
 # @exitcode 0 If running as root.
 # @exitcode 1 Otherwise.
-# @exitcode 64 If arguments are supplied.
 core::is_root() {
     local effective_uid
 
-    if (($# != 0)); then
-        core::_error "core::is_root does not accept arguments"
-        return 64
-    fi
     if ! effective_uid=$(id -u 2>/dev/null); then
         core::_error "could not determine the effective user ID"
         return 1
@@ -516,7 +498,6 @@ core::is_root() {
 core::total_memory_bytes() {
     local key
     local value
-    local unit
     local pages
     local page_size
     local sysctl_key
@@ -527,7 +508,7 @@ core::total_memory_bytes() {
     fi
 
     if [[ -r "/proc/meminfo" ]]; then
-        while read -r key value unit; do
+        while read -r key value _; do
             if [[ "$key" == "MemTotal:" ]] && core::_is_nonnegative_integer "$value"; then
                 printf '%s\n' "$((value * 1024))"
                 return 0

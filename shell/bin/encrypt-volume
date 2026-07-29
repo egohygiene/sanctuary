@@ -20,7 +20,6 @@ ASSUME_YES=false
 DRY_RUN=false
 QUIET=false
 VERBOSE=false
-MOUNTED=false
 FILESYSTEM_TYPE=""
 
 # @description Print usage, safety policy, examples, dependencies, and exit codes.
@@ -347,7 +346,6 @@ detect_mount() {
     local output
     local mount_device
     local parent_device
-    MOUNTED=false
     FILESYSTEM_TYPE=""
     [[ -d "$MOUNTPOINT" ]] || return 1
     system=$(uname -s)
@@ -362,7 +360,6 @@ detect_mount() {
         [[ "$mount_device" != "$parent_device" ]] || return 1
         FILESYSTEM_TYPE=$(stat -f '%T' "$MOUNTPOINT" 2>/dev/null || true)
     fi
-    MOUNTED=true
     return 0
 }
 

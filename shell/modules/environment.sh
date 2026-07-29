@@ -41,13 +41,15 @@ export LC_ALL="${LC_ALL:-${LANG}}"
 # ✏️ Editor Defaults
 # --------------------------------------------
 
-# Prefer modern editors if available
-if guard::has_command "nvim"; then
-  export EDITOR="nvim"
-elif guard::has_command "vim"; then
-  export EDITOR="vim"
-else
-  export EDITOR="vi"
+# Respect a user-selected editor.
+if [[ -z "${EDITOR:-}" ]]; then
+  if guard::has_command "nvim"; then
+    export EDITOR="nvim"
+  elif guard::has_command "vim"; then
+    export EDITOR="vim"
+  else
+    export EDITOR="vi"
+  fi
 fi
 
 export VISUAL="${VISUAL:-${EDITOR}}"
@@ -56,47 +58,44 @@ export VISUAL="${VISUAL:-${EDITOR}}"
 # 🧠 PATH Orchestration
 # --------------------------------------------
 
-# Ensure PATH exists
 export PATH="${PATH:-/usr/bin:/bin}"
+export XDG_BIN_HOME="${XDG_BIN_HOME:-${HOME}/.local/bin}"
 
-# --------------------------------------------
-# 🧩 User-Level Binaries (Highest Priority)
-# --------------------------------------------
+mkdir -p "${XDG_BIN_HOME}"
 
-core::path_prepend "${EGOHYGIENE_SHELL_ROOT}/bin"
-core::path_prepend "${XDG_DATA_HOME}/bin"
-core::path_prepend "${HOME}/.local/bin"
+# Prepend in reverse priority order because each successful call becomes first.
+environment_path_candidates=(
+  "${ASDF_DATA_DIR:-${XDG_DATA_HOME}/asdf}/shims"
+  "${ASDF_DATA_DIR:-${XDG_DATA_HOME}/asdf}/bin"
+  "${PYENV_ROOT:-${XDG_DATA_HOME}/pyenv}/bin"
+  "${VOLTA_HOME:-${XDG_DATA_HOME}/volta}/bin"
+  "${PIPX_BIN_DIR:-${XDG_DATA_HOME}/pipx/bin}"
+  "${GOPATH:-${XDG_DATA_HOME}/go}/bin"
+  "${CARGO_HOME:-${XDG_DATA_HOME}/cargo}/bin"
+  "${PNPM_HOME:-${XDG_DATA_HOME}/pnpm}"
+  "${XDG_BIN_HOME}"
+  "${EGOHYGIENE_SHELL_ROOT}/bin"
+)
 
-# Language/tool-specific bins
-core::path_prepend "${XDG_DATA_HOME}/pnpm"
-core::path_prepend "${XDG_DATA_HOME}/cargo/bin"
-core::path_prepend "${XDG_DATA_HOME}/go/bin"
+for environment_path_candidate in "${environment_path_candidates[@]}"; do
+  if [[ -d "${environment_path_candidate}" ]]; then
+    core::path_prepend "${environment_path_candidate}"
+  fi
+done
 
-# --------------------------------------------
-# 🧪 Dev / Project Overrides
-# --------------------------------------------
+unset environment_path_candidate
+unset environment_path_candidates
 
-core::path_prepend "${PWD}/bin"
-core::path_prepend "${PWD}/node_modules/.bin"
-
-# --------------------------------------------
-# 🏗️ System-Level (Lowest Priority)
-# --------------------------------------------
-
-# macOS system paths (safe no-op on Linux)
-core::path_append "/usr/local/bin"
-core::path_append "/usr/bin"
-core::path_append "/bin"
-core::path_append "/usr/sbin"
-core::path_append "/sbin"
-
-# --------------------------------------------
-# 🧠 Container Awareness
-# --------------------------------------------
-
-if os::is_container; then
-  # Containers often need simpler PATHs
-  core::path_append "/usr/local/sbin"
+# Project-local executable directories are intentionally opt-in. Adding the
+# startup working directory to PATH makes PATH stale after `cd` and can execute
+# an untrusted binary merely by entering a directory.
+if [[ "${EGOHYGIENE_ENABLE_PROJECT_PATH:-0}" == "1" ]]; then
+  for environment_project_path in "${PWD}/bin" "${PWD}/node_modules/.bin"; do
+    if [[ -d "${environment_project_path}" ]]; then
+      core::path_prepend "${environment_project_path}"
+    fi
+  done
+  unset environment_project_path
 fi
 
 export CLICOLOR=1
@@ -106,7 +105,7 @@ export POETRY_PREVIEW=1
 export PIPENV_VENV_IN_PROJECT=1
 
 # Colorize GCC warnings and errors.
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 export GHCUP_USE_XDG_DIRS="true"
 

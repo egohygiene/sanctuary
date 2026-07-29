@@ -147,10 +147,10 @@ EOF
   "
 
   [ "${status}" -eq 0 ]
-  assert_output_contains "Usage: install-dust [--version x.y.z] [--install-dir DIR] [--help]"
-  assert_output_contains "Usage: install-eza [--version x.y.z] [--install-dir DIR] [--help]"
-  assert_output_contains "Usage: install-shfmt [--version x.y.z] [--install-dir DIR] [--help]"
-  assert_output_contains "Usage: install-typos [--version x.y.z] [--install-dir DIR] [--help]"
+  assert_output_contains "Usage: install-dust [--version VERSION] [--install-dir DIR] [--dry-run] [--no-verify] [--help]"
+  assert_output_contains "Usage: install-eza [--version VERSION] [--install-dir DIR] [--dry-run] [--no-verify] [--help]"
+  assert_output_contains "Usage: install-shfmt [--version VERSION] [--install-dir DIR] [--dry-run] [--no-verify] [--help]"
+  assert_output_contains "Usage: install-typos [--version VERSION] [--install-dir DIR] [--dry-run] [--no-verify] [--help]"
   assert_line "dust_root=${REPO_ROOT}"
   assert_line "eza_root=${REPO_ROOT}"
   assert_line "shfmt_root=${REPO_ROOT}"

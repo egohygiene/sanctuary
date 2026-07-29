@@ -1,0 +1,189 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -uo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." >/dev/null 2>&1 && pwd -P)"
+DEEP=0
+QUIET=0
+WARNINGS=0
+FAILURES=0
+
+usage() {
+  cat <<'EOF'
+Usage: shell-doctor [--deep] [--quiet] [--help]
+
+Audit shell bootstrap integrity, XDG directories, PATH safety, platform
+coverage, and optional migration concerns. --deep also performs syntax and
+clean-shell loading checks.
+EOF
+}
+
+ok() {
+  ((QUIET == 1)) || printf "ok    %s\n" "$*"
+}
+
+warn() {
+  printf "warn  %s\n" "$*" >&2
+  ((WARNINGS += 1))
+}
+
+fail() {
+  printf "fail  %s\n" "$*" >&2
+  ((FAILURES += 1))
+}
+
+while (($# > 0)); do
+  case "$1" in
+    --deep) DEEP=1 ;;
+    --quiet) QUIET=1 ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      printf "shell-doctor: unknown option: %s\n" "$1" >&2
+      usage >&2
+      exit 64
+      ;;
+  esac
+  shift
+done
+
+printf "EgoHygiene shell doctor\n"
+printf "root: %s\n\n" "${ROOT}"
+
+for required_path in \
+  ".shellrc" \
+  "init/init.sh" \
+  "modules/xdg.sh" \
+  "modules/environment.sh" \
+  "bin"; do
+  if [[ -e "${ROOT}/${required_path}" ]]; then
+    ok "required path: ${required_path}"
+  else
+    fail "missing required path: ${required_path}"
+  fi
+done
+
+case "$(uname -s 2>/dev/null)" in
+  Linux)
+    [[ -r "${ROOT}/platforms/linux/runtime.sh" ]] &&
+      ok "Linux platform runtime" ||
+      fail "Linux platform runtime missing"
+    ;;
+  Darwin)
+    [[ -r "${ROOT}/platforms/darwin/runtime.sh" ]] &&
+      ok "macOS platform runtime" ||
+      fail "macOS platform runtime missing"
+    ;;
+  MINGW*|MSYS*|CYGWIN*)
+    [[ -r "${ROOT}/platforms/windows/runtime.sh" ]] &&
+      ok "Git Bash/MSYS platform runtime" ||
+      fail "Git Bash/MSYS platform runtime missing"
+    ;;
+  *) warn "host platform is not covered: $(uname -s 2>/dev/null || printf unknown)" ;;
+esac
+
+for xdg_name in XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME; do
+  eval "xdg_value=\${${xdg_name}:-}"
+  if [[ -z "${xdg_value}" ]]; then
+    warn "${xdg_name} is not set in this process; source .shellrc first"
+  elif [[ "${xdg_value}" != /* ]]; then
+    fail "${xdg_name} is not absolute: ${xdg_value}"
+  elif [[ ! -d "${xdg_value}" ]]; then
+    warn "${xdg_name} does not exist: ${xdg_value}"
+  elif [[ ! -w "${xdg_value}" ]]; then
+    warn "${xdg_name} is not writable: ${xdg_value}"
+  else
+    ok "${xdg_name}: ${xdg_value}"
+  fi
+done
+unset xdg_name xdg_value
+
+declare -a seen_path_entries=()
+IFS=: read -r -a doctor_path_entries <<< "${PATH:-}"
+for doctor_path_entry in "${doctor_path_entries[@]}"; do
+  [[ -n "${doctor_path_entry}" ]] || doctor_path_entry="."
+
+  duplicate=0
+  for seen_path_entry in "${seen_path_entries[@]}"; do
+    if [[ "${doctor_path_entry}" == "${seen_path_entry}" ]]; then
+      duplicate=1
+      break
+    fi
+  done
+
+  if ((duplicate == 1)); then
+    warn "duplicate PATH entry: ${doctor_path_entry}"
+    continue
+  fi
+  seen_path_entries+=("${doctor_path_entry}")
+
+  if [[ "${doctor_path_entry}" == "." ]]; then
+    warn "PATH contains the current directory"
+  elif [[ ! -d "${doctor_path_entry}" ]]; then
+    warn "PATH entry does not exist: ${doctor_path_entry}"
+  elif [[ -w "${doctor_path_entry}" && ! -O "${doctor_path_entry}" ]]; then
+    warn "PATH entry is writable but not owned by the current user: ${doctor_path_entry}"
+  fi
+done
+unset doctor_path_entry doctor_path_entries duplicate seen_path_entry seen_path_entries
+
+if [[ -n "${EGOHYGIENE_XDG_MIGRATION_WARNINGS:-}" ]]; then
+  old_ifs="${IFS}"
+  IFS=:
+  for migration_variable in ${EGOHYGIENE_XDG_MIGRATION_WARNINGS}; do
+    warn "${migration_variable} kept its legacy location; migrate it before enabling the XDG target"
+  done
+  IFS="${old_ifs}"
+  unset migration_variable old_ifs
+fi
+
+if ((DEEP == 1)); then
+  while IFS= read -r -d "" script_path; do
+    case "$(head -n 1 "${script_path}")" in
+      *bash*)
+        if bash -n "${script_path}"; then
+          ok "bash syntax: ${script_path#${ROOT}/}"
+        else
+          fail "bash syntax: ${script_path#${ROOT}/}"
+        fi
+        ;;
+    esac
+  done < <(find "${ROOT}/bin" "${ROOT}/init" "${ROOT}/lib" "${ROOT}/modules" "${ROOT}/platforms" "${ROOT}/runtime" -type f -print0)
+
+  probe_home="$(mktemp -d "${TMPDIR:-/tmp}/shell-doctor.XXXXXX")"
+  if HOME="${probe_home}" XDG_RUNTIME_DIR="${probe_home}/runtime-bash" \
+    bash --noprofile --norc -c "source \"${ROOT}/.shellrc\"" >/dev/null; then
+    ok "clean Bash bootstrap"
+  else
+    fail "clean Bash bootstrap"
+  fi
+
+  if command -v zsh >/dev/null 2>&1; then
+    if HOME="${probe_home}" XDG_RUNTIME_DIR="${probe_home}/runtime-zsh" \
+      zsh --no-rcs -c "source \"${ROOT}/.shellrc\"" >/dev/null; then
+      ok "clean Zsh bootstrap"
+    else
+      fail "clean Zsh bootstrap"
+    fi
+  else
+    warn "Zsh is unavailable; clean Zsh bootstrap was not tested"
+  fi
+
+  if command -v fish >/dev/null 2>&1; then
+    if fish --no-execute "${ROOT}/runtime/shells/fish/runtime.fish"; then
+      ok "Fish syntax"
+    else
+      fail "Fish syntax"
+    fi
+  else
+    warn "Fish is unavailable; Fish syntax was not tested"
+  fi
+
+  rm -rf -- "${probe_home}"
+  unset probe_home script_path
+fi
+
+printf "\nsummary: %d failure(s), %d warning(s)\n" "${FAILURES}" "${WARNINGS}"
+((FAILURES == 0))

@@ -188,7 +188,7 @@ collection::invoke() {
     args+=("${it}")
   done
 
-  eval "${func}" "${args[@]}"
+  "${func}" "${args[@]}"
 }
 
 # --------------------------------------------

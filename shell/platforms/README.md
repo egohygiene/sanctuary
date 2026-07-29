@@ -1,6 +1,12 @@
-# platforms
+# Platform runtimes
 
-Reserved for operating-system runtime layers (for example `linux/`, `macos/`, `windows/`).
+Platform modules are loaded after the shared and shell-specific runtime.
 
-This directory is intentionally scaffolded only. Platform-specific behavior is loaded by
-`shell/init/load-platform-runtime.sh` when a runtime module exists.
+| Runtime | Coverage |
+| --- | --- |
+| `linux/` | Linux distributions, containers, and WSL; Snap paths and Linux aliases |
+| `darwin/` | macOS on Apple Silicon and Intel; Homebrew paths and macOS helpers |
+| `windows/` | Best-effort MSYS2/Git Bash environment marker |
+
+Platform modules must be safe to source repeatedly. Destructive operating-system
+configuration belongs in an explicit command, never in a login-shell runtime.

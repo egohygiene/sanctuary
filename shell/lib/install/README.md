@@ -53,3 +53,17 @@ The following installer entrypoints currently use the shared runtime:
 These wrappers intentionally stay small so that future migrations can reuse the
 same runtime without re-implementing download, checksum, extraction, install,
 logging, or cleanup behavior.
+
+All runtime-backed installers share this interface:
+
+```bash
+install-TOOL --version VERSION
+install-TOOL --install-dir "${XDG_BIN_HOME:-$HOME/.local/bin}"
+install-TOOL --dry-run
+install-TOOL --no-verify
+```
+
+The default destination is the user-owned XDG binary directory rather than
+`/usr/local/bin`. `--no-verify` is available for exceptional releases that do
+not publish usable checksums; it emits a warning and should not be the routine
+path.

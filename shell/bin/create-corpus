@@ -200,7 +200,7 @@ make_temporary_file() {
 # @arg $1 string Directory path.
 # @stdout Absolute directory path.
 absolute_directory() {
-    (CDPATH= cd -P -- "$1" 2>/dev/null && pwd -P)
+    (CDPATH="" cd -P -- "$1" 2>/dev/null && pwd -P)
 }
 
 # @description Resolve a file path to an absolute path without following its final component.

@@ -60,6 +60,7 @@ teardown() {
     HOME="${TEST_HOME}" \
     PATH="${REPO_ROOT}/bin:/usr/bin:/bin" \
     TMPDIR="${TMPDIR:-/tmp}" \
+    IMAGEMAGICK_COMMAND="image-magick-is-unavailable" \
     /bin/bash --noprofile --norc -lc "
       printf 'fake image\n' > '${FIXTURE_DIR}/icon.png'
       convert-to-ico '${FIXTURE_DIR}/icon.png'

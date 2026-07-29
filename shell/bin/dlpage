@@ -415,7 +415,7 @@ filename_for_url() {
 # @arg $1 string Directory path.
 # @stdout Absolute directory path.
 absolute_directory() {
-    (CDPATH= cd -P -- "$1" 2>/dev/null && pwd -P)
+    (CDPATH="" cd -P -- "$1" 2>/dev/null && pwd -P)
 }
 
 # @description Resolve a file path to an absolute path without requiring the file.

@@ -66,6 +66,14 @@ EOF
 }
 
 detect_imagemagick() {
+  if [[ -n "${IMAGEMAGICK_COMMAND:-}" ]]; then
+    if command_exists "${IMAGEMAGICK_COMMAND}"; then
+      printf "%s" "${IMAGEMAGICK_COMMAND}"
+      return 0
+    fi
+    return 1
+  fi
+
   if command_exists "magick"; then
     printf "magick"
     return 0
@@ -115,11 +123,7 @@ main() {
   log_info "Using ImageMagick command: ${imagemagick_command}"
   log_info "Converting '${input_image}' → '${output_image}'"
 
-  if [[ "${imagemagick_command}" == "magick" ]]; then
-    magick "${input_image}" -resize 256x256 "${output_image}"
-  else
-    convert "${input_image}" -resize 256x256 "${output_image}"
-  fi
+  "${imagemagick_command}" "${input_image}" -resize 256x256 "${output_image}"
 
   log_success "Successfully created: ${output_image}"
 }

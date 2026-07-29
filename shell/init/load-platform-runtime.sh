@@ -4,8 +4,7 @@
 # 🖥️ EgoHygiene Runtime — Platform Layer Loader
 # ============================================
 #
-# Loads optional operating-system runtime modules after shell runtime.
-# This loader intentionally does not implement platform behavior yet.
+# Loads the operating-system runtime after shared XDG, PATH, and tooling setup.
 #
 
 if [[ -n "${EGOHYGIENE_PLATFORM_RUNTIME_LOADED:-}" ]]; then
@@ -35,6 +34,9 @@ if [[ -f "${platform_runtime_path}" && -r "${platform_runtime_path}" ]]; then
   source "${platform_runtime_path}"
 else
   export EGOHYGIENE_PLATFORM_RUNTIME="none"
+  if [[ "${EGOHYGIENE_SHELL_DEBUG:-0}" == "1" ]]; then
+    printf "[debug] no platform runtime for: %s\n" "${platform_runtime_family}" >&2
+  fi
 fi
 
 unset platform_runtime_path

@@ -4,8 +4,7 @@
 # 🔒 EgoHygiene Module — Privacy & Telemetry
 # ============================================
 #
-# Disables tracking, analytics, and telemetry
-# across CLI tools and ecosystems.
+# Enables telemetry opt-outs across CLI tools and ecosystems.
 #
 # Guarantees:
 # - Idempotent
@@ -38,7 +37,6 @@ export NO_ANALYTICS="1"
 export ANALYTICS="no"
 export ADBLOCK="true"
 export TELEMETRY_DISABLED="1"
-export TELEMETRY_ENABLED="0"
 export SQA_OPT_OUT="true"
 export BUGGER_OFF="1"
 
@@ -54,7 +52,6 @@ export STORYBOOK_DISABLE_TELEMETRY="1"
 export NUXT_TELEMETRY_DISABLED="1"
 export VUEDX_TELEMETRY="off"
 export STRAPI_TELEMETRY_DISABLED="true"
-export STRAPI_DISABLE_UPDATE_NOTIFICATION="true"
 export REACT_APP_WEBINY_TELEMETRY="false"
 export NG_CLI_ANALYTICS="false"
 export NG_CLI_ANALYTICS_SHARE="false"
@@ -67,15 +64,12 @@ export DA_TEST_DISABLE_TELEMETRY="1"
 # --------------------------------------------
 
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
-export DOTNET_EnableDiagnostics="0"
 export DOTNET_INTERACTIVE_CLI_TELEMETRY_OPTOUT="1"
 export MLDOTNET_CLI_TELEMETRY_OPTOUT="True"
 export DOTNET_SVCUTIL_TELEMETRY_OPTOUT="1"
 export MSSQL_CLI_TELEMETRY_OPTOUT="True"
 export POWERSHELL_TELEMETRY_OPTOUT="1"
-export POWERSHELL_UPDATECHECK="Off"
 export PNPPOWERSHELL_DISABLETELEMETRY="true"
-export PNPPOWERSHELL_UPDATECHECK="false"
 export VSTEST_TELEMETRY_OPTEDIN="0"
 export ORYX_DISABLE_TELEMETRY="true"
 export BF_CLI_TELEMETRY="false"
@@ -93,15 +87,12 @@ export CLOUDSDK_CORE_DISABLE_USAGE_REPORTING="true"
 export AZURE_CORE_COLLECT_TELEMETRY="0"
 export SAM_CLI_TELEMETRY="0"
 export WERF_TELEMETRY="0"
-export PULUMI_SKIP_UPDATE_CHECK="true"
 export SLS_TRACKING_DISABLED="1"
 export SLS_TELEMETRY_DISABLED="1"
 export VAGRANT_CHECKPOINT_DISABLE="1"
-export VAGRANT_BOX_UPDATE_CHECK_DISABLE="1"
 export ARM_DISABLE_TERRAFORM_PARTNER_ID="true"
 export KICS_COLLECT_TELEMETRY="0"
 export INFRACOST_SELF_HOSTED_TELEMETRY="false"
-export INFRACOST_SKIP_UPDATE_CHECK="true"
 export STRIPE_CLI_TELEMETRY_OPTOUT="1"
 export SF_DISABLE_TELEMETRY="true"
 export SFDX_DISABLE_TELEMETRY="true"
@@ -128,7 +119,6 @@ export AUTOMATEDLAB_TELEMETRY_OPTOUT="1"
 
 export HOMEBREW_NO_ANALYTICS="1"
 export HOMEBREW_NO_ANALYTICS_THIS_RUN="1"
-export HOMEBREW_NO_AUTO_UPDATE="1"
 export COCOAPODS_DISABLE_STATS="true"
 export ALIBUILD_NO_ANALYTICS="1"
 export CHOOSENIM_NO_ANALYTICS="1"
@@ -157,11 +147,6 @@ export DISABLE_QUICKWIT_TELEMETRY="1"
 # 🧩 Miscellaneous
 # --------------------------------------------
 
-export STNOUPGRADE="1"
-export PEX_VERBOSE="0"
-export CALIBRE_SHOW_DEPRECATION_WARNINGS="0"
-export MPV_VERBOSE="0"
-export MPV_LEAK_REPORT="0"
 export CANVAS_LMS_STATS_COLLECTION="opt_out"
 export TELEMETRY_OPT_IN=""
 export ET_NO_TELEMETRY="ANY_VALUE"
@@ -175,9 +160,6 @@ export DISABLE_AUTO_UPDATE="true"
 export SUGGESTIONS_OPT_OUT="1"
 export AUTOMAGICA_NO_TELEMETRY="1"
 export MM_LOGSETTINGS_ENABLEDIAGNOSTICS="false"
-export MM_SERVICESETTINGS_ENABLESECURITYFIXALERT="false"
-export TYPO3_DISABLE_CORE_UPDATER="1"
-export REDIRECT_TYPO3_DISABLE_CORE_UPDATER="1"
 export REPORTPORTAL_CLIENT_JS_NO_ANALYTICS="true"
 
 # --------------------------------------------

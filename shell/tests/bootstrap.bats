@@ -22,8 +22,8 @@ teardown() {
   [ "${status}" -eq 0 ]
   assert_line "root=${REPO_ROOT}"
   assert_line "runtime_environment=local"
-  assert_line "platform_runtime=none"
-  assert_line "modules=xdg environment tooling history privacy cache"
+  assert_line "platform_runtime=linux"
+  assert_line "modules=xdg environment tooling aliases history privacy cache"
 }
 
 @test "entrypoint bootstrap is safe to source twice" {
@@ -36,7 +36,7 @@ teardown() {
   "
 
   [ "${status}" -eq 0 ]
-  assert_line "modules=xdg environment tooling history privacy cache"
+  assert_line "modules=xdg environment tooling aliases history privacy cache"
   assert_line "path_stable=true"
 }
 

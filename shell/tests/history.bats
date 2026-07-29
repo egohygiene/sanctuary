@@ -22,7 +22,7 @@ teardown() {
   [ "${status}" -eq 0 ]
   assert_line "shell=bash"
   assert_line "histfile=${TEST_HOME}/.local/state/bash/history"
-  assert_line "histsize=10000"
+  assert_line "histsize=50000"
   assert_line "history_dir=yes"
 }
 
@@ -45,6 +45,6 @@ teardown() {
   assert_line "shell=zsh"
   assert_line "bash_helpers=no"
   assert_line "histfile=${TEST_HOME}/.local/state/zsh/history"
-  assert_line "savehist=10000"
+  assert_line "savehist=50000"
   assert_line "history_dir=yes"
 }

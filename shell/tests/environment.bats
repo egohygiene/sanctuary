@@ -30,7 +30,7 @@ teardown() {
   assert_line "lc_all=en_US.UTF-8"
   assert_output_contains "editor="
   assert_output_contains "visual="
-  assert_output_contains "path=${TEST_HOME}/.local/bin:${TEST_HOME}/.local/share/bin:${REPO_ROOT}/bin:"
+  assert_output_contains "path=${REPO_ROOT}/bin:${TEST_HOME}/.local/bin:"
 }
 
 @test "environment module adds the shell system bin directory to PATH" {
@@ -67,12 +67,32 @@ teardown() {
   assert_line "visual=code"
 }
 
-@test "environment module adds project-local bins ahead of system paths" {
+@test "environment module does not add project-local bins by default" {
   PROJECT_DIR="${TEST_HOME}/project"
 
   run_in_clean_shell "${TEST_HOME}" "
     mkdir -p '${PROJECT_DIR}/bin' '${PROJECT_DIR}/node_modules/.bin'
     export EGOHYGIENE_SHELL_ROOT='${REPO_ROOT}'
+    export PATH='/usr/bin:/bin'
+    cd '${PROJECT_DIR}'
+    source '${REPO_ROOT}/init/load-core.sh'
+    source '${REPO_ROOT}/modules/xdg.sh'
+    source '${REPO_ROOT}/modules/environment.sh'
+    printf 'path=%s\n' \"\${PATH}\"
+  "
+
+  [ "${status}" -eq 0 ]
+  [[ "${output}" != *"${PROJECT_DIR}/node_modules/.bin"* ]]
+  [[ "${output}" != *"${PROJECT_DIR}/bin:"* ]]
+}
+
+@test "environment module can opt into project-local bins" {
+  PROJECT_DIR="${TEST_HOME}/project"
+
+  run_in_clean_shell "${TEST_HOME}" "
+    mkdir -p '${PROJECT_DIR}/bin' '${PROJECT_DIR}/node_modules/.bin'
+    export EGOHYGIENE_SHELL_ROOT='${REPO_ROOT}'
+    export EGOHYGIENE_ENABLE_PROJECT_PATH='1'
     export PATH='/usr/bin:/bin'
     cd '${PROJECT_DIR}'
     source '${REPO_ROOT}/init/load-core.sh'

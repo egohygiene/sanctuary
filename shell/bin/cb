@@ -13,7 +13,11 @@ VERSION="2.0.0"
 
 log()   { printf "%s\n" "$*" >&2; }
 error() { printf "[error] %s\n" "$*" >&2; }
-debug() { [[ "${DEBUG:-0}" == "1" ]] && printf "[debug] %s\n" "$*" >&2; }
+debug() {
+  if [[ "${DEBUG:-0}" == "1" ]]; then
+    printf "[debug] %s\n" "$*" >&2
+  fi
+}
 
 die() {
   local exit_code="$1"; shift
@@ -39,27 +43,38 @@ has_command() {
 # ------------------------------------------------------------------------------
 
 select_backend() {
+  if [[ -n "${CB_BACKEND:-}" ]]; then
+    case "${CB_BACKEND}" in
+      pbcopy|wl-copy|xclip|xsel|clip.exe|powershell.exe)
+        has_command "${CB_BACKEND}" || die 127 "Requested clipboard backend not found: ${CB_BACKEND}"
+        printf "%s\n" "${CB_BACKEND}"
+        return 0
+        ;;
+      *) die 64 "Unsupported CB_BACKEND: ${CB_BACKEND}" ;;
+    esac
+  fi
+
   if is_macos && has_command pbcopy; then
-    echo "pbcopy"; return 0
+    printf "pbcopy\n"; return 0
   fi
 
   if is_linux; then
     if has_command wl-copy; then
-      echo "wl-copy"; return 0
+      printf "wl-copy\n"; return 0
     fi
     if has_command xclip; then
-      echo "xclip"; return 0
+      printf "xclip\n"; return 0
     fi
     if has_command xsel; then
-      echo "xsel"; return 0
+      printf "xsel\n"; return 0
     fi
     if is_wsl && has_command clip.exe; then
-      echo "clip.exe"; return 0
+      printf "clip.exe\n"; return 0
     fi
   fi
 
   if is_windows && has_command powershell.exe; then
-    echo "powershell.exe"; return 0
+    printf "powershell.exe\n"; return 0
   fi
 
   return 1

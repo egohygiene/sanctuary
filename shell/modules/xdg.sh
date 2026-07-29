@@ -34,8 +34,31 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-${HOME}/.local/state}"
 
-export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-${XDG_CONFIG_HOME}:/etc/xdg}"
-export XDG_DATA_DIRS="${XDG_DATA_DIRS:-${XDG_DATA_HOME}:/usr/local/share:/usr/share}"
+export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
+xdg_variable_value=""
+for xdg_variable_name in \
+  XDG_CONFIG_HOME \
+  XDG_CACHE_HOME \
+  XDG_DATA_HOME \
+  XDG_STATE_HOME; do
+  eval "xdg_variable_value=\${${xdg_variable_name}}"
+  case "${xdg_variable_value}" in
+    /*) ;;
+    *)
+      printf "[warn] %s must be absolute; using the default under HOME\n" "${xdg_variable_name}" >&2
+      case "${xdg_variable_name}" in
+        XDG_CONFIG_HOME) export XDG_CONFIG_HOME="${HOME}/.config" ;;
+        XDG_CACHE_HOME) export XDG_CACHE_HOME="${HOME}/.cache" ;;
+        XDG_DATA_HOME) export XDG_DATA_HOME="${HOME}/.local/share" ;;
+        XDG_STATE_HOME) export XDG_STATE_HOME="${HOME}/.local/state" ;;
+      esac
+      ;;
+  esac
+done
+unset xdg_variable_name
+unset xdg_variable_value
 
 # --------------------------------------------
 # 🧠 Runtime Directory (XDG_RUNTIME_DIR)
@@ -66,16 +89,21 @@ fi
 
 # Ensure runtime dir exists with correct permissions (only if needed)
 if [[ ! -d "${XDG_RUNTIME_DIR}" ]]; then
-  mkdir -p "${XDG_RUNTIME_DIR}"
-  chmod 700 "${XDG_RUNTIME_DIR}"
+  if ! mkdir -p "${XDG_RUNTIME_DIR}" || ! chmod 700 "${XDG_RUNTIME_DIR}"; then
+    printf "[error] unable to create secure XDG runtime directory: %s\n" "${XDG_RUNTIME_DIR}" >&2
+    return 1
+  fi
 fi
 
 # --------------------------------------------
 # 📁 Ensure Base Directories Exist
 # --------------------------------------------
 
-mkdir -p \
+if ! mkdir -p \
   "${XDG_CONFIG_HOME}" \
   "${XDG_DATA_HOME}" \
   "${XDG_CACHE_HOME}" \
-  "${XDG_STATE_HOME}"
+  "${XDG_STATE_HOME}"; then
+  printf "[error] unable to create one or more XDG base directories\n" >&2
+  return 1
+fi

@@ -1,72 +1,111 @@
-# shell
+# EgoHygiene shell
 
-Canonical Sanctuary shell bootstrap and utility library.
+A portable, XDG-first shell runtime and CLI library for macOS, Linux, WSL,
+containers, and Git Bash/MSYS.
+
+## Install
+
+Clone or copy this directory somewhere stable, then source the appropriate
+entrypoint.
+
+Bash:
+
+```bash
+source "/absolute/path/to/shell/.shellrc"
+```
+
+Zsh:
+
+```zsh
+source "/absolute/path/to/shell/.shellrc"
+```
+
+Fish:
+
+```fish
+set -gx EGOHYGIENE_SHELL_ROOT "/absolute/path/to/shell"
+source "$EGOHYGIENE_SHELL_ROOT/runtime/shells/fish/runtime.fish"
+```
+
+Run the health check after installation:
+
+```bash
+shell-doctor --deep
+```
 
 ## Architecture
 
 ```text
 shell/
-├── bin/             # User-facing commands exposed on PATH, including installers
-├── init/            # Bootstrap entrypoints and orchestration
-├── lib/core/        # Runtime detection primitives and compatibility libraries
-├── lib/install/     # Shared installer runtime and installer documentation
-├── lib/extensions/  # Optional integrations loaded on demand
-├── runtime/         # Shared and shell-specific runtime layers
-├── modules/         # Higher-level environment modules
-├── platforms/       # Reserved for future OS-specific runtime layers
-└── tests/           # Bats coverage for bootstrap, modules, and commands
+├── assets/           # Optional user-facing assets
+├── bin/              # Standalone commands and installers
+├── docs/             # Architecture, configuration, and migration notes
+├── init/             # Bash/Zsh bootstrap orchestration
+├── lib/core/         # Detection and reusable shell primitives
+├── lib/install/      # Shared installer framework
+├── modules/          # Cross-platform environment policy
+├── platforms/        # Linux, macOS, and Git Bash/MSYS adapters
+├── runtime/shells/   # Bash, Zsh, POSIX, and Fish runtime layers
+└── tests/            # Bats integration and unit tests
 ```
 
-## Bootstrap flow
+See [architecture](docs/ARCHITECTURE.md) and
+[configuration](docs/CONFIGURATION.md) for the layer contracts and feature
+switches.
 
-1. `shell/.shellrc` resolves `EGOHYGIENE_SHELL_ROOT`.
-2. `shell/init/load-core.sh` performs deterministic runtime staging:
-   - environment detection (`EGOHYGIENE_RUNTIME_ENVIRONMENT`)
-   - OS detection (`lib/core/os.sh`)
-   - shell detection (`lib/core/shell.sh`)
-   - shared runtime (`runtime/shared/runtime.sh`)
-   - shell runtime (`runtime/shells/<shell>/runtime.sh`)
-3. `shell/init/load-platform-runtime.sh` loads an optional future platform runtime.
-4. `shell/init/load-extensions.sh` loads optional extensions.
-5. `shell/init/bootstrap.sh` applies the canonical module order:
-   `xdg → environment → tooling → history → privacy → cache`.
-6. Shell-specific code is guarded by the detected runtime:
-   - `lib/core/shell.sh` identifies the active shell as `bash`, `zsh`, or `unknown`
-   - `runtime/shells/bash/runtime.sh` loads Bash-only helpers
-   - shell-specific modules only load when a matching file exists in `modules/`
+## Key behavior
 
-## Fish shell
+- Correct XDG config, cache, data, state, and runtime directories.
+- Deterministic, deduplicated PATH with user tools before system tools.
+- No implicit current-directory or project-local PATH injection.
+- XDG locations for major language, package, cloud, infrastructure, database,
+  editor, Android, and media ecosystems.
+- Existing stateful tool data is never hidden by an automatic redirect.
+- Native Bash, Zsh, and Fish behavior with OS-specific adapters.
+- Telemetry opt-outs enabled by default; update checks remain enabled by
+  default.
+- XDG-state shell, REPL, database, debugger, and pager histories.
 
-Fish shell is supported through a standalone Fish-native runtime that does not
-use the Bash bootstrap path.
-
-```text
-runtime/shells/fish/
-├── runtime.fish        # Entry point — source from ~/.config/fish/config.fish
-├── conf.d/             # Auto-loaded configuration fragments
-├── functions/          # Fish functions
-└── completions/        # Fish completions
-```
-
-See [`runtime/shells/fish/README.md`](runtime/shells/fish/README.md) for
-integration instructions and a full migration summary.
-
-## Portability notes
-
-- The bootstrap is intended to be sourced from Bash or Zsh.
-- XDG directories default under `$HOME` and are created on demand.
-- The existing XDG module keeps runtime, config, data, cache, and state directories portable across local shells and devcontainer sessions.
-- Container-aware behavior is exposed through `os::is_container`, so devcontainers can share the canonical bootstrap without requiring a separate shell tree.
-
-## Validation
-
-Run the shell audit checks from the repository root:
+## New maintenance commands
 
 ```bash
-shellcheck shell/**/*.sh shell/bin/* || true
-bats shell/tests || true
+shell-doctor --deep
+telemetry-opt-out --list
+telemetry-opt-out --dry-run
+install-packages --dry-run packages.txt
+list-package-versions --format json
+install-pyenv --dry-run
+shell-banner
 ```
 
-See [`lib/install/README.md`](lib/install/README.md) for the canonical installer
-runtime layout and the thin-wrapper contract used by the `install-*` commands in
-`shell/bin`.
+The original utility commands remain in `bin/`, including `cspell-dicts`,
+`inject-subtitles`, `vpn-toggle`, `vscode-language-ids`, media tools, GitHub
+helpers, and installer commands.
+
+## Installer framework
+
+Runtime-backed GitHub release installers share platform mapping, retries,
+checksums, extraction, XDG destinations, and dry runs:
+
+```bash
+install-shfmt --dry-run
+install-eza --version "0.23.0"
+install-dust --install-dir "${XDG_BIN_HOME:-$HOME/.local/bin}"
+```
+
+Specialized source-build installers remain standalone because their dependency
+and build flows are materially different. See
+[`lib/install/README.md`](lib/install/README.md).
+
+## Development
+
+```bash
+task syntax
+task lint
+task test
+task doctor
+task check
+```
+
+The `.todo/` staging directory has been retired. Its resolution is recorded in
+[the migration log](docs/TODO-MIGRATION.md).

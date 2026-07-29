@@ -1,0 +1,150 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -uo pipefail
+
+DRY_RUN=0
+YES=0
+LIST_ONLY=0
+FAILURES=0
+APPLIED=0
+SKIPPED=0
+declare -a SELECTED_ACTIONS=()
+
+usage() {
+  cat <<'EOF'
+Usage: telemetry-opt-out [OPTIONS]
+
+Persist telemetry opt-outs for installed tools whose preference cannot be
+controlled reliably by environment variables alone.
+
+Options:
+  --only NAME     Run one named action; repeatable.
+  --list          List supported actions and availability.
+  --dry-run       Print commands without executing them.
+  --yes           Skip confirmation.
+  --help          Show this help.
+EOF
+}
+
+actions() {
+  cat <<'EOF'
+netlify|netlify|Disable Netlify CLI telemetry
+wapm|wapm|Disable WAPM telemetry
+dvc|dvc|Disable global DVC analytics
+pac|pac|Disable Power Platform CLI telemetry
+skaffold|skaffold|Disable global Skaffold metrics
+amplify|amplify|Disable AWS Amplify usage data
+appcenter|appcenter|Disable App Center CLI telemetry
+scaleway|scw|Disable Scaleway CLI telemetry
+sfctl|sfctl|Disable Service Fabric CLI telemetry
+ionic|ionic|Disable Ionic CLI telemetry
+flutter|flutter|Disable Flutter analytics
+dart|dart|Disable Dart analytics
+EOF
+}
+
+is_selected() {
+  local candidate="$1"
+  local selected
+  ((${#SELECTED_ACTIONS[@]} == 0)) && return 0
+  for selected in "${SELECTED_ACTIONS[@]}"; do
+    [[ "${selected}" == "${candidate}" ]] && return 0
+  done
+  return 1
+}
+
+print_command() {
+  printf "+"
+  printf " %q" "$@"
+  printf "\n"
+}
+
+run_action() {
+  local name="$1"
+  local command_name="$2"
+  shift 2
+
+  if ! command -v "${command_name}" >/dev/null 2>&1; then
+    printf "skip  %-12s command not installed: %s\n" "${name}" "${command_name}"
+    ((SKIPPED += 1))
+    return 0
+  fi
+
+  printf "apply %-12s " "${name}"
+  print_command "$@"
+  if ((DRY_RUN == 1)); then
+    ((APPLIED += 1))
+    return 0
+  fi
+
+  if "$@"; then
+    ((APPLIED += 1))
+  else
+    printf "fail  %s\n" "${name}" >&2
+    ((FAILURES += 1))
+  fi
+}
+
+execute_action() {
+  case "$1" in
+    netlify) run_action "netlify" "netlify" netlify --telemetry-disable ;;
+    wapm) run_action "wapm" "wapm" wapm config set telemetry.enabled false ;;
+    dvc) run_action "dvc" "dvc" dvc config core.analytics false --global ;;
+    pac) run_action "pac" "pac" pac telemetry disable ;;
+    skaffold) run_action "skaffold" "skaffold" skaffold config set --global collect-metrics false ;;
+    amplify) run_action "amplify" "amplify" amplify configure --usage-data-off ;;
+    appcenter) run_action "appcenter" "appcenter" appcenter telemetry off ;;
+    scaleway) run_action "scaleway" "scw" scw config set send-telemetry=false ;;
+    sfctl) run_action "sfctl" "sfctl" sfctl settings telemetry set_telemetry --off ;;
+    ionic) run_action "ionic" "ionic" ionic config set --global telemetry false ;;
+    flutter) run_action "flutter" "flutter" flutter config --no-analytics ;;
+    dart) run_action "dart" "dart" dart --disable-analytics ;;
+    *)
+      printf "telemetry-opt-out: unknown action: %s\n" "$1" >&2
+      return 64
+      ;;
+  esac
+}
+
+while (($# > 0)); do
+  case "$1" in
+    --only)
+      (($# >= 2)) || { printf "telemetry-opt-out: --only requires a name\n" >&2; exit 64; }
+      SELECTED_ACTIONS+=("$2")
+      shift 2
+      ;;
+    --list) LIST_ONLY=1; shift ;;
+    --dry-run) DRY_RUN=1; shift ;;
+    --yes) YES=1; shift ;;
+    --help|-h) usage; exit 0 ;;
+    *) printf "telemetry-opt-out: unknown option: %s\n" "$1" >&2; exit 64 ;;
+  esac
+done
+
+if ((LIST_ONLY == 1)); then
+  while IFS="|" read -r name command_name description; do
+    availability="missing"
+    command -v "${command_name}" >/dev/null 2>&1 && availability="installed"
+    printf "%-12s %-10s %s\n" "${name}" "${availability}" "${description}"
+  done < <(actions)
+  exit 0
+fi
+
+if ((DRY_RUN == 0 && YES == 0)); then
+  if [[ ! -t 0 ]]; then
+    printf "telemetry-opt-out: confirmation requires a terminal; use --yes\n" >&2
+    exit 64
+  fi
+  printf "Apply persistent telemetry opt-outs to installed tools? [y/N] "
+  read -r answer
+  case "${answer}" in y|Y|yes|YES) ;; *) printf "Cancelled.\n"; exit 0 ;; esac
+fi
+
+while IFS="|" read -r name _ _; do
+  if is_selected "${name}"; then
+    execute_action "${name}"
+  fi
+done < <(actions)
+
+printf "\nsummary: %d applied, %d skipped, %d failed\n" "${APPLIED}" "${SKIPPED}" "${FAILURES}"
+((FAILURES == 0))

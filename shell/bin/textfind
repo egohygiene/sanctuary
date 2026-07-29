@@ -208,7 +208,7 @@ _select_backend() {
     if _has_command rg; then
       SELECTED_BACKEND=rg
     elif _has_command grep; then
-      SELECTED_BACKEND=grep
+      SELECTED_BACKEND="grep"
     else
       _die 3 "no search backend found; install ripgrep or grep"
     fi
@@ -276,7 +276,7 @@ _run_grep() {
   for glob in "${EXCLUDE_GLOBS[@]}"; do arguments+=("--exclude=${glob}"); done
   for glob in "${EXCLUDE_DIR_GLOBS[@]}"; do arguments+=("--exclude-dir=${glob}"); done
 
-  GREP_OPTIONS= grep "${arguments[@]}" -- "${PATTERN}" "${PATHS[@]}"
+  GREP_OPTIONS="" grep "${arguments[@]}" -- "${PATTERN}" "${PATHS[@]}"
 }
 
 _run_search() {

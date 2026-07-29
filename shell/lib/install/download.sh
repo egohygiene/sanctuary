@@ -20,7 +20,6 @@ install::download::file() {
       --show-error \
       --location \
       --retry 3 \
-      --retry-all-errors \
       --connect-timeout 15 \
       --output "${destination_path}" \
       "${url}"

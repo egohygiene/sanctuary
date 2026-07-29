@@ -43,7 +43,7 @@ EOF
     chmod +x '${STUB_DIR}/pbcopy'
 
     export PATH='${STUB_DIR}:/usr/bin:/bin'
-    DEBUG=1 bash -x '${REPO_ROOT}/bin/cb' hello world >/dev/null 2>&1
+    CB_BACKEND='pbcopy' '${REPO_ROOT}/bin/cb' hello world >/dev/null 2>&1
     printf 'captured=%s\n' \"\$(cat '${CAPTURE_FILE}')\"
   "
 

@@ -524,13 +524,13 @@ _confirm_permanent_deletion() {
 # @description Attempt to stop Google Drive and its user-owned helpers.
 # @internal
 _stop_google_drive() {
-  local attempt pid found=false
+  local pid found=false
 
   _info "stopping Google Drive"
   osascript -e 'tell application "Google Drive" to quit' >/dev/null 2>&1 || true
   osascript -e 'tell application "Backup and Sync" to quit' >/dev/null 2>&1 || true
 
-  for attempt in 1 2 3 4 5; do
+  for _ in 1 2 3 4 5; do
     if ! _drive_pids | grep -q '[0-9]'; then
       _debug "Google Drive processes have stopped"
       found=false

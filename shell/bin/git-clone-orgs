@@ -241,7 +241,6 @@ validate_environment() {
 # @exitcode 4 If discovery fails or returns malformed data.
 discover_repositories() {
     local output
-    local line
     local full_name name ssh_url https_url archived fork visibility
     local -a api_command=(gh api --paginate)
     local jq_expression='.[] | [.full_name, .name, .ssh_url, .clone_url, (.archived|tostring), (.fork|tostring), .visibility] | @tsv'

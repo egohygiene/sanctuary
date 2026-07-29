@@ -124,22 +124,49 @@ install::github::checksum_from_release() {
 }
 
 install::github::usage() {
-  printf "Usage: install-%s [--version x.y.z] [--install-dir DIR] [--help]\n" "${INSTALL_TOOL_NAME}"
+  printf "Usage: install-%s [--version VERSION] [--install-dir DIR] [--dry-run] [--no-verify] [--help]\n" "${INSTALL_TOOL_NAME}"
 }
 
 install::github::parse_args() {
+  local default_install_dir
+
   INSTALL_REQUESTED_VERSION="${INSTALL_VERSION:-}"
-  INSTALL_TARGET_DIR="${INSTALL_INSTALL_DIR:-/usr/local/bin}"
+  if [[ -n "${XDG_BIN_HOME:-}" ]]; then
+    default_install_dir="${XDG_BIN_HOME}"
+  elif [[ -n "${HOME:-}" ]]; then
+    default_install_dir="${HOME}/.local/bin"
+  else
+    default_install_dir="/usr/local/bin"
+  fi
+  INSTALL_TARGET_DIR="${INSTALL_INSTALL_DIR:-${default_install_dir}}"
+  INSTALL_DRY_RUN="0"
+  INSTALL_SKIP_VERIFY="0"
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --version)
+        if [[ $# -lt 2 || -z "${2:-}" ]]; then
+          log::error "--version requires a value"
+          return 64
+        fi
         INSTALL_REQUESTED_VERSION="$2"
         shift 2
         ;;
       --install-dir)
+        if [[ $# -lt 2 || -z "${2:-}" ]]; then
+          log::error "--install-dir requires a directory"
+          return 64
+        fi
         INSTALL_TARGET_DIR="$2"
         shift 2
+        ;;
+      --dry-run)
+        INSTALL_DRY_RUN="1"
+        shift
+        ;;
+      --no-verify)
+        INSTALL_SKIP_VERIFY="1"
+        shift
         ;;
       --help|-h)
         install::github::usage
@@ -242,6 +269,17 @@ install::github::main() {
       "${tag}"
   )"
 
+  if [[ "${INSTALL_DRY_RUN}" == "1" ]]; then
+    printf "tool: %s\n" "${INSTALL_TOOL_NAME}"
+    printf "version: %s\n" "${version}"
+    printf "platform: %s\n" "${platform}"
+    printf "architecture: %s\n" "${arch}"
+    printf "asset: %s\n" "${asset}"
+    printf "url: %s\n" "$(install::github::release_asset_url "${INSTALL_OWNER}" "${INSTALL_REPO}" "${tag}" "${asset}")"
+    printf "install_dir: %s\n" "${INSTALL_TARGET_DIR}"
+    return 0
+  fi
+
   tmpdir="$(install::fs::tempdir)"
   EGOHYGIENE_INSTALL_RUNTIME_TMPDIR="${tmpdir}"
   trap 'install::fs::cleanup "${EGOHYGIENE_INSTALL_RUNTIME_TMPDIR:-}"' EXIT
@@ -256,7 +294,7 @@ install::github::main() {
     "$(install::github::release_asset_url "${INSTALL_OWNER}" "${INSTALL_REPO}" "${tag}" "${asset}")" \
     "${artifact_path}"
 
-  if [[ -n "${INSTALL_CHECKSUM_ASSET:-}" ]]; then
+  if [[ -n "${INSTALL_CHECKSUM_ASSET:-}" && "${INSTALL_SKIP_VERIFY}" != "1" ]]; then
     checksum="$(
       install::github::checksum_from_release \
         "${INSTALL_OWNER}" \
@@ -271,6 +309,8 @@ install::github::main() {
     else
       log::warn "Skipping checksum verification for ${asset}; no matching checksum entry found"
     fi
+  elif [[ "${INSTALL_SKIP_VERIFY}" == "1" ]]; then
+    log::warn "Checksum verification disabled by --no-verify"
   fi
 
   if [[ -n "${INSTALL_ARCHIVE_MEMBER_TEMPLATE:-}" ]]; then

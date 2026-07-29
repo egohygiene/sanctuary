@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+set -Eeuo pipefail
+
+TARGET="${PYENV_ROOT:-${XDG_DATA_HOME:-${HOME}/.local/share}/pyenv}"
+REF="${PYENV_GIT_TAG:-master}"
+PYTHON_VERSION=""
+USE_SSH=0
+WITH_PLUGINS=1
+UPDATE=0
+DRY_RUN=0
+
+usage() {
+  cat <<'EOF'
+Usage: install-pyenv [OPTIONS]
+
+Install pyenv under an XDG data directory using an atomic clone.
+
+Options:
+  --target DIR       Installation directory
+  --ref REF          Git branch or tag (default: master)
+  --python VERSION   Build and select a Python version after installation
+  --ssh              Clone from GitHub over SSH
+  --no-plugins       Skip pyenv-doctor, pyenv-update, and pyenv-virtualenv
+  --update           Update an existing installation and plugins
+  --dry-run          Show operations without changing files
+  --help             Show this help
+EOF
+}
+
+print_command() {
+  printf "+"
+  printf " %q" "$@"
+  printf "\n"
+}
+
+run() {
+  print_command "$@"
+  ((DRY_RUN == 1)) || "$@"
+}
+
+while (($# > 0)); do
+  case "$1" in
+    --target) (($# >= 2)) || exit 64; TARGET="$2"; shift 2 ;;
+    --ref) (($# >= 2)) || exit 64; REF="$2"; shift 2 ;;
+    --python) (($# >= 2)) || exit 64; PYTHON_VERSION="$2"; shift 2 ;;
+    --ssh) USE_SSH=1; shift ;;
+    --no-plugins) WITH_PLUGINS=0; shift ;;
+    --update) UPDATE=1; shift ;;
+    --dry-run) DRY_RUN=1; shift ;;
+    --help|-h) usage; exit 0 ;;
+    *) printf "install-pyenv: unknown option: %s\n" "$1" >&2; exit 64 ;;
+  esac
+done
+
+command -v git >/dev/null 2>&1 || { printf "install-pyenv: git is required\n" >&2; exit 127; }
+
+if ((USE_SSH == 1)); then
+  GITHUB_PREFIX="git@github.com:"
+else
+  GITHUB_PREFIX="https://github.com/"
+fi
+
+declare -a PLUGINS=(
+  "pyenv-doctor"
+  "pyenv-update"
+  "pyenv-virtualenv"
+)
+
+if [[ -d "${TARGET}/.git" ]]; then
+  ((UPDATE == 1)) || { printf "install-pyenv: already installed at %s; use --update\n" "${TARGET}" >&2; exit 73; }
+  run git -C "${TARGET}" fetch --tags --prune
+  run git -C "${TARGET}" checkout "${REF}"
+  run git -C "${TARGET}" pull --ff-only
+
+  if ((WITH_PLUGINS == 1)); then
+    for plugin_name in "${PLUGINS[@]}"; do
+      plugin_path="${TARGET}/plugins/${plugin_name}"
+      if [[ -d "${plugin_path}/.git" ]]; then
+        run git -C "${plugin_path}" pull --ff-only
+      else
+        run git clone --depth 1 "${GITHUB_PREFIX}pyenv/${plugin_name}.git" "${plugin_path}"
+      fi
+    done
+  fi
+elif [[ -e "${TARGET}" ]]; then
+  printf "install-pyenv: target exists but is not a pyenv checkout: %s\n" "${TARGET}" >&2
+  exit 73
+else
+  target_parent="$(dirname "${TARGET}")"
+  temp_target="${target_parent}/.pyenv-install.$$"
+  run mkdir -p "${target_parent}"
+  run git clone --branch "${REF}" --depth 1 "${GITHUB_PREFIX}pyenv/pyenv.git" "${temp_target}"
+
+  if ((WITH_PLUGINS == 1)); then
+    for plugin_name in "${PLUGINS[@]}"; do
+      run git clone --depth 1 "${GITHUB_PREFIX}pyenv/${plugin_name}.git" "${temp_target}/plugins/${plugin_name}"
+    done
+  fi
+
+  run mv "${temp_target}" "${TARGET}"
+fi
+
+if [[ -n "${PYTHON_VERSION}" ]]; then
+  run "${TARGET}/bin/pyenv" install --skip-existing "${PYTHON_VERSION}"
+  run "${TARGET}/bin/pyenv" global "${PYTHON_VERSION}"
+  run "${TARGET}/bin/pyenv" rehash
+fi
+
+printf "pyenv root: %s\n" "${TARGET}"
+printf "Reload your shell, then run: pyenv --version\n"

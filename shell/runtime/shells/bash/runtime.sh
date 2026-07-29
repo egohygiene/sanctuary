@@ -15,6 +15,15 @@ fi
 
 export EGOHYGIENE_RUNTIME_BASH_LOADED="true"
 
+if [[ $- == *i* ]]; then
+  shopt -s checkwinsize
+  shopt -s cmdhist
+  shopt -s histappend
+  if ((BASH_VERSINFO[0] >= 4)); then
+    shopt -s globstar
+  fi
+fi
+
 # --------------------------------------------
 # 📦 Core Bash Library
 #

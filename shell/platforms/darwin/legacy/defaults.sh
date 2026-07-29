@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+#
+# LEGACY REFERENCE ONLY — intentionally not loaded or executable.
+#
+# This historical macOS-defaults script changes hundreds of preferences,
+# requests administrator privileges, and starts a sudo keep-alive. Review and
+# migrate desired settings into a versioned, reversible macOS configuration
+# workflow before running any part of it.
 
 # ~/.macos — https://mths.be/macos
 

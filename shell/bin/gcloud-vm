@@ -414,7 +414,7 @@ resolve_file() {
     if [[ "$input" == */* ]]; then directory=${input%/*}; basename_value=${input##*/}; [[ -n "$directory" ]] || directory=/
     else directory=.; basename_value=$input
     fi
-    parent=$(CDPATH= cd -P -- "$directory" 2>/dev/null && pwd -P) || return 1
+    parent=$(CDPATH="" cd -P -- "$directory" 2>/dev/null && pwd -P) || return 1
     if [[ "$parent" == / ]]; then printf '/%s\n' "$basename_value"; else printf '%s/%s\n' "$parent" "$basename_value"; fi
 }
 

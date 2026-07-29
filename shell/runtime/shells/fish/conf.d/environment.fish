@@ -42,6 +42,14 @@ if not set -q XDG_STATE_HOME
     set -gx XDG_STATE_HOME $HOME/.local/state
 end
 
+if not set -q XDG_CONFIG_DIRS
+    set -gx XDG_CONFIG_DIRS /etc/xdg
+end
+
+if not set -q XDG_DATA_DIRS
+    set -gx XDG_DATA_DIRS /usr/local/share /usr/share
+end
+
 # --------------------------------------------
 # 🌐 Locale
 # --------------------------------------------
@@ -89,5 +97,29 @@ end
 # path if it is not already present.
 # --------------------------------------------
 
-fish_add_path --prepend --global $HOME/.local/bin
-fish_add_path --prepend --global $HOME/bin
+if not set -q XDG_BIN_HOME
+    set -gx XDG_BIN_HOME $HOME/.local/bin
+end
+
+mkdir -p $XDG_CONFIG_HOME $XDG_CACHE_HOME $XDG_DATA_HOME $XDG_STATE_HOME $XDG_BIN_HOME
+
+fish_add_path --prepend --global $XDG_DATA_HOME/asdf/shims
+fish_add_path --prepend --global $XDG_DATA_HOME/pyenv/bin
+fish_add_path --prepend --global $XDG_DATA_HOME/volta/bin
+fish_add_path --prepend --global $XDG_DATA_HOME/pipx/bin
+fish_add_path --prepend --global $XDG_DATA_HOME/go/bin
+fish_add_path --prepend --global $XDG_DATA_HOME/cargo/bin
+fish_add_path --prepend --global $XDG_DATA_HOME/pnpm
+fish_add_path --prepend --global $XDG_BIN_HOME
+fish_add_path --prepend --global $EGOHYGIENE_SHELL_ROOT/bin
+
+set -gx CARGO_HOME $XDG_DATA_HOME/cargo
+set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
+set -gx GOPATH $XDG_DATA_HOME/go
+set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
+set -gx PYENV_ROOT $XDG_DATA_HOME/pyenv
+set -gx VOLTA_HOME $XDG_DATA_HOME/volta
+set -gx PIP_CACHE_DIR $XDG_CACHE_HOME/pip
+set -gx PIPX_HOME $XDG_DATA_HOME/pipx
+set -gx PIPX_BIN_DIR $XDG_DATA_HOME/pipx/bin
+set -gx UV_CACHE_DIR $XDG_CACHE_HOME/uv

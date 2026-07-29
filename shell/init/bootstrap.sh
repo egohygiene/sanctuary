@@ -40,9 +40,19 @@ egohygiene_load_module "environment"
 # --------------------------------------------
 
 egohygiene_load_module "tooling"
+
+# Platform adapters depend on the XDG and PATH layers above.
+# shellcheck disable=SC1091
+source "${EGOHYGIENE_SHELL_ROOT}/init/load-platform-runtime.sh"
+
+egohygiene_load_module "aliases"
 egohygiene_load_module "history"
 egohygiene_load_module "privacy"
 egohygiene_load_module "cache"
+
+if [[ "${EGOHYGIENE_DISABLE_UPDATE_CHECKS:-0}" == "1" ]]; then
+  egohygiene_load_module "update-checks"
+fi
 
 # --------------------------------------------
 # 🖥️ Shell-Specific Module

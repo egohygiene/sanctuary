@@ -1,73 +1,40 @@
 #!/usr/bin/env bash
+# shellcheck shell=bash
 #
-# ============================================
-# 🧠 EgoHygiene Shell — Root Entrypoint
-# ============================================
+# Canonical Bash and Zsh entrypoint.
 #
-# This file is the single entrypoint for the EgoHygiene shell system.
-#
-# Responsibilities:
-# - Resolve project root directory
-# - Prevent duplicate initialization
-# - Export global environment variables
-# - Delegate to core initialization system
-#
-# This file is designed to be:
-# - sourced from any shell (bash, zsh)
-# - safe to re-source (idempotent)
-# - portable across environments (local, devcontainer, nixOS)
-#
+# Source this file from ~/.bashrc or ~/.zshrc. Fish uses its native entrypoint
+# at runtime/shells/fish/runtime.fish.
 
-# --------------------------------------------
-# 🛑 Prevent duplicate loading
-# --------------------------------------------
-if [[ -n "${EGOHYGIENE_SHELL_ALREADY_INITIALIZED}" ]]; then
+if [[ -n "${EGOHYGIENE_SHELL_INITIALIZED:-}" ]]; then
   return 0
 fi
 
-export EGOHYGIENE_SHELL_ALREADY_INITIALIZED="true"
+__egohygiene_shell_source_path=""
+if [[ -n "${BASH_VERSION:-}" ]]; then
+  __egohygiene_shell_source_path="${BASH_SOURCE[0]}"
+elif [[ -n "${ZSH_VERSION:-}" ]]; then
+  # shellcheck disable=SC2296
+  __egohygiene_shell_source_path="${(%):-%x}"
+else
+  printf "[error] .shellrc supports Bash and Zsh; use runtime.fish for Fish\n" >&2
+  return 64 2>/dev/null || exit 64
+fi
 
-# --------------------------------------------
-# 📁 Resolve shell root directory
-# --------------------------------------------
-#
-# Supports:
-# - bash (BASH_SOURCE)
-# - zsh (fallback via %x)
-#
+EGOHYGIENE_SHELL_ROOT="$(
+  builtin cd -- "$(dirname -- "${__egohygiene_shell_source_path}")" 2>/dev/null &&
+    pwd -P
+)"
 
-__egohygiene_shell_detect_root() {
-  # bash path resolution
-  if [[ -n "${BASH_SOURCE[0]}" ]]; then
-    cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd
-    return
-  fi
+if [[ -z "${EGOHYGIENE_SHELL_ROOT}" || ! -r "${EGOHYGIENE_SHELL_ROOT}/init/init.sh" ]]; then
+  printf "[error] unable to resolve the EgoHygiene shell root\n" >&2
+  unset __egohygiene_shell_source_path
+  return 1 2>/dev/null || exit 1
+fi
 
-  # zsh fallback
-  if [[ -n "${ZSH_VERSION}" ]]; then
-    # shellcheck disable=SC2296
-    cd "$(dirname "${(%):-%x}")" >/dev/null 2>&1 && pwd
-    return
-  fi
-
-  # final fallback (less reliable)
-  pwd
-}
-
-EGOHYGIENE_SHELL_ROOT="$(__egohygiene_shell_detect_root)"
 export EGOHYGIENE_SHELL_ROOT
-
-unset -f __egohygiene_shell_detect_root
-
-# --------------------------------------------
-# 🔧 Load core initialization
-# --------------------------------------------
+export EGOHYGIENE_SHELL_INITIALIZED="1"
+unset __egohygiene_shell_source_path
 
 # shellcheck disable=SC1091
 source "${EGOHYGIENE_SHELL_ROOT}/init/init.sh"
-
-# --------------------------------------------
-# 🧹 Cleanup
-# --------------------------------------------
-
-unset EGOHYGIENE_SHELL_ALREADY_INITIALIZED
