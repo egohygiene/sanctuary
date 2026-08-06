@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+includes:
+  project:
+    taskfile: ".engineering/tasks/project.yml"
+    flatten: true
+  app:
+    taskfile: ".engineering/tasks/app.yml"
+    flatten: true
+  agents: ".engineering/tasks/agents.yml"
+  copilot: ".engineering/tasks/copilot.yml"
+  git: ".engineering/tasks/git.yml"
+  lint: ".engineering/tasks/lint.yml"
+  security: ".engineering/tasks/security.yml"
+

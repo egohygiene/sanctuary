@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+#
+# @file markdown-to-pdf
+# @brief Render Markdown to PDF with cached color emoji assets.
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+##
+# Print command usage.
+#
+# Returns:
+#   0 on success.
+##
+print_usage() {
+  printf "Usage: markdown-to-pdf INPUT.md OUTPUT.pdf [PANDOC_ARGUMENT...]\n"
+}
+
+##
+# Main rendering entrypoint.
+#
+# Arguments:
+#   $1 - Input Markdown path.
+#   $2 - Output PDF path.
+#   Remaining arguments are passed to Pandoc.
+#
+# Returns:
+#   0 on success.
+##
+main() {
+  if [[ "$#" -lt 2 ]]; then
+    print_usage >&2
+    return 2
+  fi
+
+  local input_path="${1}"
+  local output_path="${2}"
+  shift 2
+
+  emoji-precache "${input_path}"
+  pandoc \
+    --filter="pandoc-emoji-filter" \
+    --pdf-engine="xelatex" \
+    --output="${output_path}" \
+    "${input_path}" \
+    "$@"
+}
+
+main "$@"
