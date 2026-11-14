@@ -60,6 +60,10 @@ requires a separate organization decision.
 See the [incubation lifecycle](docs/incubation-lifecycle.md) for state
 transitions, graduation, rejection, and archival rules.
 
+For legacy repository fragments, use the [provenance-first intake profile](docs/legacy-realignment-intake.md)
+to retain competing versions, explicit source and rights evidence, candidate
+owners and retirement-review gates without importing private material.
+
 ## Repository map
 
 - [`ARCHITECTURE.md`](ARCHITECTURE.md) — ownership and ecosystem boundaries.

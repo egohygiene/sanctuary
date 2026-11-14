@@ -11,6 +11,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from legacy_intake import validate_legacy_intake
+
 ROOT = Path(__file__).resolve().parents[1]
 INCUBATIONS = ROOT / "incubations"
 INDEX = INCUBATIONS / "index.json"
@@ -284,12 +287,23 @@ def validate_repository(*, include_examples: bool = False) -> list[str]:
                 )
             )
             manifests.append((path, manifest))
+            ledger_path = path.parent / "legacy-intake.json"
+            if ledger_path.exists():
+                ledger, ledger_errors = load_json(ledger_path)
+                errors.extend(ledger_errors)
+                if ledger is not None:
+                    errors.extend(validate_legacy_intake(ledger, incubation_id=path.parent.name))
 
     if include_examples:
         example, example_errors = load_json(EXAMPLE)
         errors.extend(example_errors)
         if example is not None:
             errors.extend(validate_manifest(example, EXAMPLE.relative_to(ROOT).as_posix()))
+        legacy_example = ROOT / "examples" / "legacy-realignment" / "legacy-intake.json"
+        ledger, ledger_errors = load_json(legacy_example)
+        errors.extend(ledger_errors)
+        if ledger is not None:
+            errors.extend(validate_legacy_intake(ledger))
 
     if index is None:
         return errors

@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.egohygiene.io/sanctuary/legacy-intake.v1.schema.json",
+  "title": "Sanctuary public legacy-realignment intake profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "incubation_id",
+    "synthetic",
+    "inventory_complete",
+    "expected_public_item_count",
+    "excluded_private_count",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "sanctuary.legacy-intake/v1"
+    },
+    "incubation_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "inventory_complete": {
+      "type": "boolean"
+    },
+    "expected_public_item_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "excluded_private_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 4096,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "source_repository",
+          "source_revision",
+          "revision_unavailable_reason",
+          "source_path",
+          "sha256",
+          "checksum_unavailable_reason",
+          "license",
+          "license_state",
+          "attribution",
+          "purpose",
+          "version_group",
+          "copied",
+          "disposition",
+          "destination",
+          "decision_reference",
+          "rationale"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "source_repository": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://[^?#]+$"
+          },
+          "source_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{40}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revision_unavailable_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_path": {
+            "type": "string",
+            "pattern": "^(?!/)(?![A-Za-z]:)(?!.*\\\\)(?!.*(?:^|/)\\.{1,2}(?:/|$))[^/]+(?:/[^/]+)*$"
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "checksum_unavailable_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "license": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "license_state": {
+            "enum": [
+              "verified",
+              "asserted",
+              "unknown",
+              "restricted",
+              "prohibited"
+            ]
+          },
+          "attribution": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_group": {
+            "type": "string",
+            "minLength": 1
+          },
+          "copied": {
+            "type": "boolean"
+          },
+          "disposition": {
+            "enum": [
+              "candidate",
+              "graduation-proposed",
+              "graduated",
+              "archive-proposed",
+              "archived",
+              "rejected",
+              "quarantine"
+            ]
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^egohygiene/[a-z0-9][a-z0-9.-]*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decision_reference": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://[^?#]+$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
