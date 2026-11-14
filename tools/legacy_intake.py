@@ -22,10 +22,13 @@ def relative_path(value: Any) -> bool:
 def public_url(value: Any) -> bool:
     if not isinstance(value, str):
         return False
-    parsed = urlsplit(value)
-    return (parsed.scheme == "https" and bool(parsed.hostname) and parsed.username is None
-            and parsed.password is None and not parsed.query and not parsed.fragment
-            and not any(ord(c) < 32 for c in value))
+    try:
+        parsed = urlsplit(value)
+        return (parsed.scheme == "https" and bool(parsed.hostname) and parsed.username is None
+                and parsed.password is None and not parsed.query and not parsed.fragment
+                and not any(ord(c) < 32 for c in value))
+    except (ValueError, UnicodeError):
+        return False
 
 
 def validate_legacy_intake(value: Any, *, incubation_id: str | None = None) -> list[str]:

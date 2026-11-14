@@ -99,6 +99,16 @@ class LegacyIntakeTests(unittest.TestCase):
                 self.assertTrue(errors)
                 self.assertNotIn("synthetic-private-canary", str(errors))
 
+    def test_malformed_ipv6_and_nfkc_hosts_fail_without_input_echo(self):
+        for field in ("source_repository", "decision_reference"):
+            for url in ("https://[synthetic-private-canary", "https://synthetic-private-canary\uff0f.invalid/path"):
+                with self.subTest(field=field, url=url):
+                    value = deepcopy(self.value)
+                    value["items"][0][field] = url
+                    errors = validate_legacy_intake(value)
+                    self.assertTrue(errors)
+                    self.assertNotIn("synthetic-private-canary", str(errors))
+
 
 if __name__ == "__main__":
     unittest.main()
